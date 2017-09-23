@@ -7,10 +7,10 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
   },
   css: [
@@ -20,10 +20,13 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#3B8070' },
+  loading: { color: '#009EE0' },
   /*
   ** Build configuration
   */
+  router: {
+    base: (process.env.NODE_ENV === 'generate') ? '/e-com-prototype/' : '/',
+  },
   build: {
     /*
     ** Run ESLINT on save
