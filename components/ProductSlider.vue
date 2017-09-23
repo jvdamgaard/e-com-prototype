@@ -1,0 +1,216 @@
+<template>
+  <div class="ProductSliderWrapper">
+    <Grid class="has-tiny-bottom-margin">
+      <div class="is-12-col is-8-col-on-tablet">
+        <h2 v-html="header" />
+      </div>
+      <div class="is-4-col is-hidden-on-mobile is-visible-on-tablet is-aligned-right">
+        <div class="is-inline has-right-margin">
+          <span v-for="n in 12" :key="n" class="ProductSlider__slider-indicator" :class="{
+            'ProductSlider__slider-indicator--active': (n === position + 1),
+            'is-hidden-on-tablet': slides() < n,
+          }">
+            &#8211;
+          </span>
+        </div>
+        <nuxt-link to="/" class="is-grey is-small">vis alle</nuxt-link>
+      </div>
+    </Grid>
+    <div class="ProductSlider">
+      <div class="ProductSlider__move ProductSlider__move--prev">
+        <div v-if="position != 0" class="ProductSlider__move-inner" @click="prev">
+          <Arrow  direction="left" class="ProductSlider__arrow" />
+        </div>
+      </div>
+      <div class="ProductSlider__inner" :style="{
+          'transform': `translate3d(-${position}00%, 0, 0)`,
+        }">
+        <div v-for="product in products" :key="product.id" class="ProductSlider__item">
+          <ProductCard  v-bind="product" />
+        </div>
+        <div class="ProductSlider__item ProductSlider__item--show-all">
+          <Btn type="primary" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
+        </div>
+      </div>
+      <div v-if="position + 1 < products.length / productsInSlider()" class="ProductSlider__move ProductSlider__move--next">
+        <div class="ProductSlider__move-inner" @click="next">
+          <Arrow  direction="right" class="ProductSlider__arrow" />
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Grid from '../components/Grid.vue';
+import Arrow from './Arrow.vue';
+import Btn from './Btn.vue';
+import ProductCard from './ProductCard.vue';
+import { getDataFromCss } from '../utils';
+
+export default {
+  components: {
+    Grid,
+    Arrow,
+    ProductCard,
+    Btn,
+  },
+  props: {
+    products: Array,
+    header: String,
+  },
+  data() {
+    return {
+      position: 0,
+    };
+  },
+  methods: {
+    next() {
+      this.position += 1;
+    },
+    prev() {
+      this.position -= 1;
+    },
+    productsInSlider() {
+      return getDataFromCss('visibleProductsInSlider', 6);
+    },
+    slides() {
+      return Math.ceil(this.products.length / this.productsInSlider());
+    },
+  },
+};
+</script>
+
+<style>
+@import '../assets/css/variables.css';
+
+.ProductSlider {
+  position: relative;
+  padding: 0 0.5rem;
+  overflow-x: hidden;
+}
+.touch .ProductSlider {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+  margin-bottom: -1rem;
+}
+.no-touch .ProductSlider {
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+  margin-top: -1rem;
+  margin-bottom: -4rem;
+}
+.no-touch .ProductSlider:hover {
+  z-index: 10;
+}
+
+.ProductSlider__slider-indicator {
+  display: inline-block;
+  opacity: 0;
+  color: var(--color-grey);
+  padding: 0 0.125rem;
+  transition: color 0.5s ease, opacity 0.2s ease;
+  margin-bottom: -0.25rem;
+}
+.ProductSlider__slider-indicator--active {
+  color: var(--color-grey-darker);
+}
+.no-touch .ProductSliderWrapper:hover .ProductSlider__slider-indicator {
+  opacity: 1;
+}
+
+.ProductSlider__inner {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.ProductSlider__move {
+  position: absolute;
+  top: 1rem;
+  bottom: 4rem;
+  width: 2.5rem;
+  z-index: 10;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.no-touch .ProductSliderWrapper:hover .ProductSlider__move {
+  opacity: 1;
+}
+.ProductSlider__move--prev {
+  padding-right: 1rem;
+  left: 0rem;
+}
+.ProductSlider__move--next {
+  padding-left: 1rem;
+  right: 0rem;
+}
+.ProductSlider__move-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.85);
+}
+
+.ProductSlider__arrow {
+  position: absolute;
+  top: calc(50% - 0.75rem);
+  left: calc(50% - 0.5rem);
+}
+.no-touch .ProductSlider__move--next .ProductSlider__move-inner:hover .ProductSlider__arrow {
+  border-left-color: var(--color-primary);
+}
+.no-touch .ProductSlider__move--prev .ProductSlider__move-inner:hover .ProductSlider__arrow {
+  border-right-color: var(--color-primary);
+}
+
+.ProductSlider__item {
+  display: flex;
+  flex: 0 0 58.3333%;
+  padding: 0 0.5rem;
+}
+
+.ProductSlider__item--show-all {
+  display: none;
+}
+.touch .ProductSlider__item--show-all {
+  display: flex;
+}
+.ProductSlider__show-all-btn {
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 32rem) {
+  .ProductSlider__item {
+    flex: 0 0 41.6667%;
+  }
+}
+@media (min-width: 48rem) {
+  .ProductSlider {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  .ProductSlider__item {
+    flex: 0 0 33.3333%;
+  }
+}
+@media (min-width: 64rem) {
+  .ProductSlider {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+  }
+  .ProductSlider__move {
+    width: 4rem;
+  }
+  .ProductSlider__item {
+    flex: 0 0 25%;
+  }
+}
+@media (min-width: 96rem) {
+  .ProductSlider__item {
+    flex: 0 0 16.6667%;
+  }
+}
+</style>
