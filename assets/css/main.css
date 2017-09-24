@@ -83,6 +83,11 @@ a:hover.has-no-underline { text-decoration: none; }
 .is-inline-list li { display: inline; }
 
 
+/* Borders */
+.has-border-top { border-top: 1px solid var(--color-grey-light); }
+.has-border-bottom { border-bottom: 1px solid var(--color-grey-light); }
+
+
 /* Form */
 
 input {

@@ -64,6 +64,8 @@
       <Banner v-if="module.type === 'Banner'" v-bind="module.data" />
       <UniqueSellingPoints v-if="module.type === 'UniqueSellingPoints'" />
     </section>
+
+    <MainFooter />
   </div>
 </template>
 
@@ -75,6 +77,7 @@ import ProductCard from '../components/ProductCard.vue';
 import ProductSlider from '../components/ProductSlider.vue';
 import Banner from '../components/Banner.vue';
 import UniqueSellingPoints from '../components/UniqueSellingPoints.vue';
+import MainFooter from '../components/MainFooter.vue';
 
 export default {
   components: {
@@ -84,6 +87,7 @@ export default {
     ProductSlider,
     Banner,
     UniqueSellingPoints,
+    MainFooter,
   },
   computed: mapState(['user', 'page']),
 };

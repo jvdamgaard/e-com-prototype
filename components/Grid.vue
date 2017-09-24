@@ -10,7 +10,8 @@
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
     grid-template-columns: repeat(12, 1fr);
-    margin: 1rem 1rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
   }
 
   /* Align */
@@ -60,7 +61,8 @@
     .Grid { 
       grid-column-gap: 1rem;
       grid-row-gap: 1rem;
-      margin: 2rem 2.5rem;
+      margin: 2rem 0;
+      padding: 0 2.5rem;
     }
 
     .Grid > .is-1-col-on-tablet { grid-column: span 1; }
@@ -80,7 +82,10 @@
 
   @media (min-width: 64rem) {
     
-    .Grid { margin: 3.5rem 4rem; }
+    .Grid { 
+      margin: 3.5rem 0;
+      padding: 0 4rem;
+    }
 
     .Grid > .is-1-col-on-laptop { grid-column: span 1; }
     .Grid > .is-2-col-on-laptop { grid-column: span 2; }
