@@ -36,7 +36,7 @@
     <div class="ProductCard__btn-wrapper">
       <div class="ProductCard__btn-wrapper-in-basket">
         <Btn type="primary" class="ProductCard__button ProductCard__button--remove-one" @click.native="subtractInBasket({ id })">-</Btn>
-        <Btn type="grey" class="ProductCard__button ProductCard__button--quantity">{{quantityInBasket}} i kurven</Btn>
+        <Btn type="grey" class="ProductCard__button ProductCard__button--quantity">{{quantityInBasket}}</Btn>
         <Btn type="primary" class="ProductCard__button ProductCard__button--add-one" @click.native="addToBasket({ id })">+</Btn>
       </div>
 
