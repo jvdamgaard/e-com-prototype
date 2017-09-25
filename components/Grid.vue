@@ -1,8 +1,24 @@
 <template>
-  <div class="Grid">
+  <div class="Grid" :class="[
+    `Grid--has-${rowGap}-row-gap`,
+  ]">
     <slot />
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    rowGap: {
+      type: String,
+      default: 'default',
+      validator(value) {
+        return ['default', 'large'].indexOf(value) !== -1;
+      },
+    },
+  },
+};
+</script>
 
 <style>
   .Grid {
@@ -12,6 +28,10 @@
     grid-template-columns: repeat(12, 1fr);
     margin: 1rem 0;
     padding: 0 1rem;
+  }
+
+  .Grid--has-large-row-gap {
+    grid-row-gap: 2rem;
   }
 
   /* Align */
@@ -59,8 +79,6 @@
   @media (min-width: 48rem) {
     
     .Grid { 
-      grid-column-gap: 1rem;
-      grid-row-gap: 1rem;
       margin: 2rem 0;
       padding: 0 2.5rem;
     }

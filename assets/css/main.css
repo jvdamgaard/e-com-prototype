@@ -32,6 +32,7 @@ small, .is-small { font-size: 0.8rem }
 h1, h2, h3, h4, .is-h1, .is-h2, .is-h3, .is-h4, .has-small-line-height { line-height: 1.1; }
 .has-medium-line-height { line-height: 1.3; }
 .has-no-line-height { line-height: 1; }
+.is-uppercase { text-transform: uppercase; }
 
 @media (min-width: 25rem) {
 }
@@ -65,6 +66,7 @@ a:hover.has-no-underline { text-decoration: none; }
 .is-dimmed { color: var(--color-grey-dark); }
 
 .has-white-background { background-color: var(--color-white); }
+.has-light-grey-background { background-color: var(--color-grey-lighter); }
 
 
 /* Text */

@@ -1,6 +1,7 @@
 <template>
   <div class="Btn" :class="[
-    `Btn--${type}`,
+    `Btn--is-${type}`,
+    `Btn---has-${height}-height`,
     { 
       'Btn--has-shadow': shadow,
     },
@@ -11,7 +12,7 @@
   </div>
 </template>
 
-<<script>
+<script>
 export default {
   props: {
     type: {
@@ -19,6 +20,13 @@ export default {
       default: 'primary',
       validator(value) {
         return ['primary', 'grey', 'yellow', 'grey-light'].indexOf(value) !== -1;
+      },
+    },
+    height: {
+      type: String,
+      default: 'default',
+      validator(value) {
+        return ['small', 'default'].indexOf(value) !== -1;
       },
     },
     shadow: {
@@ -60,24 +68,28 @@ export default {
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
 }
 
-.Btn--primary {
+.Btn---has-small-height {
+  height: 2.5rem;
+}
+
+.Btn--is-primary {
   color: var(--color-white);
   background-color: var(--color-primary);
 }
-.no-touch .Btn--primary:hover {
+.no-touch .Btn--is-primary:hover {
   background-color: var(--color-primary-dark);
 }
-.Btn--grey {
+.Btn--is-grey {
   color: var(--color-white);
   background-color: var(--color-grey-dark);
 }
-.no-touch .Btn--grey:hover {
+.no-touch .Btn--is-grey:hover {
   background-color: var(--color-grey-darker);
 }
-.Btn--grey-light {
+.Btn--is-grey-light {
   background-color: var(--color-grey-light);
 }
-.Btn--yellow {
+.Btn--is-yellow {
   color: var(--color-black);
   background-color: var(--color-yellow);
 }

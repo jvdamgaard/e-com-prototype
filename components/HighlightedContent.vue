@@ -6,7 +6,12 @@
       :key="item.id" 
       to="/" 
       class="HighlightedContent__item is-12-col has-no-underline" 
-      :class="`is-${colWidth}-col-on-tablet`" />
+      :class="[
+        `is-${colWidth}-col-on-tablet`,
+        { 
+          'is-6-col-on-phablet': items.length % 2 === 0,
+        }
+      ]" />
   </Grid>
 </template>
 
