@@ -77,8 +77,8 @@ export default {
   }
 
   @media (min-width: 48rem) {
-    
-    .Grid { 
+
+    .Grid {
       margin: 2rem 0;
       padding: 0 2.5rem;
     }
@@ -99,8 +99,8 @@ export default {
   }
 
   @media (min-width: 64rem) {
-    
-    .Grid { 
+
+    .Grid {
       margin: 3.5rem 0;
       padding: 0 4rem;
     }

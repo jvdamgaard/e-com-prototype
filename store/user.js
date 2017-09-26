@@ -1,15 +1,12 @@
 /* eslint no-param-reassign: 0 */
-
+import uniqBy from 'lodash/uniqBy';
 import products from '../mock/products';
 
 export function state() {
   return {
     lastSeen: products,
     basket: {
-      items: products.slice(0, 3).map(product => ({
-        quantity: Math.ceil(Math.random() * 3),
-        product,
-      })),
+      items: [],
     },
   };
 }
@@ -35,6 +32,12 @@ export const mutations = {
       }
     }
   },
+  addToLastSeen(s, product) {
+    s.lastSeen = uniqBy([
+      product,
+      ...s.lastSeen,
+    ], 'id').slice(0, 100);
+  },
 };
 
 export const actions = {
@@ -43,5 +46,8 @@ export const actions = {
   },
   subtractInBasket({ commit }, product) {
     commit('subtractInBasket', product);
+  },
+  addToLastSeen({ commit }, product) {
+    commit('addToLastSeen', product);
   },
 };

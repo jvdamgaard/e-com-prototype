@@ -1,15 +1,22 @@
 <template>
-  <Grid class="HighlightedContent has-white-background">
-    <nuxt-link 
-      v-for="item in items" 
-      v-html="item.html" 
-      :key="item.id" 
-      to="/" 
-      class="HighlightedContent__item is-12-col has-no-underline" 
+  <Grid class="HighlightedContent" :class="{
+    'has-white-background': theme === 'default',
+    'has-primary-background': theme === 'primary',
+  }">
+    <nuxt-link
+      v-for="item in items"
+      v-html="item.html"
+      :key="item.id"
+      to="/"
+      class="HighlightedContent__item is-12-col has-no-underline"
       :class="[
         `is-${colWidth}-col-on-tablet`,
-        { 
+        {
           'is-6-col-on-phablet': items.length % 2 === 0,
+          'has-white-background': theme === 'default',
+          'is-black': theme === 'default',
+          'has-primary-background': theme === 'primary',
+          'is-white': theme === 'primary',
         }
       ]" />
   </Grid>
@@ -24,6 +31,13 @@ export default {
   },
   props: {
     items: Array,
+    theme: {
+      type: String,
+      default: 'default',
+      validator(value) {
+        return ['default', 'primary'].indexOf(value) !== -1;
+      },
+    },
   },
   computed: {
     colWidth() {
@@ -40,11 +54,12 @@ export default {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.HighlightedContent p {
+  margin: 0.5rem 0;
+}
 .HighlightedContent__item {
   padding: 0.75rem 1rem;
   margin: -0.5rem -1rem;
-  color: var(--color-black);
-  background-color: var(--color-white);
   text-align: center;
   transition: all 0.2s ease;
 }
@@ -60,9 +75,6 @@ export default {
   .HighlightedContent {
     padding-top: 0;
     padding-bottom: 0;
-  }
-  .HighlightedContent p {
-    margin: 1rem 0;
   }
   .HighlightedContent__item {
     padding: 3rem 1rem;

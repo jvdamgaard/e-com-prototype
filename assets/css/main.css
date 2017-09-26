@@ -59,14 +59,17 @@ a:hover.has-no-underline { text-decoration: none; }
 
 /* Colors */
 
+.is-black { color: var(--color-black); }
 .is-grey { color: var(--color-grey-darker); }
 .is-red { color: var(--color-red); }
 .is-green { color: var(--color-green); }
 .is-yellow { color: var(--color-yellow); }
+.is-white { color: var(--color-white); }
 .is-dimmed { color: var(--color-grey-dark); }
 
 .has-white-background { background-color: var(--color-white); }
 .has-light-grey-background { background-color: var(--color-grey-lighter); }
+.has-primary-background { background-color: var(--color-primary); }
 
 
 /* Text */
@@ -151,7 +154,7 @@ input.no-border { border: 0; }
   display: flex;
   width: 100%;
 }
-.is-group > * { 
+.is-group > * {
   position: relative;
   display: flex;
   vertical-align: middle;

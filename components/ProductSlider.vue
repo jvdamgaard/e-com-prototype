@@ -1,14 +1,13 @@
 <template>
-  <div class="ProductSliderWrapper">
+  <div class="ProductSliderWrapper" @mouseover="setProductsInSlider">
     <Grid class="has-tiny-bottom-margin">
       <div class="is-12-col is-8-col-on-tablet">
         <h2 v-html="header" />
       </div>
       <div class="is-4-col is-hidden-on-mobile is-visible-on-tablet is-aligned-right">
         <div class="is-inline has-right-margin">
-          <span v-for="n in 12" :key="n" class="ProductSlider__slider-indicator" :class="{
+          <span v-for="n in slides" :key="n" class="ProductSlider__slider-indicator" :class="{
             'ProductSlider__slider-indicator--active': (n === position + 1),
-            'is-hidden-on-tablet': slides() < n,
           }">
             &#8211;
           </span>
@@ -26,13 +25,13 @@
           'transform': `translate3d(-${position}00%, 0, 0)`,
         }">
         <div v-for="product in products" :key="product.id" class="ProductSlider__item">
-          <ProductCard  v-bind="product" />
+          <ProductCard v-bind="product" @click.native="addToLastSeen(product)" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
           <Btn type="primary" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
         </div>
       </div>
-      <div v-if="position + 1 < products.length / productsInSlider()" class="ProductSlider__move ProductSlider__move--next">
+      <div v-if="position + 1 < products.length / productsInSlider" class="ProductSlider__move ProductSlider__move--next">
         <div class="ProductSlider__move-inner" @click="next">
           <Arrow  direction="right" class="ProductSlider__arrow" />
         </div>
@@ -42,6 +41,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'; // eslint-disable-line
 import Grid from '../components/Grid.vue';
 import Arrow from './Arrow.vue';
 import Btn from './Btn.vue';
@@ -62,20 +62,23 @@ export default {
   data() {
     return {
       position: 0,
+      productsInSlider: 0,
+      slides: 1,
     };
   },
   methods: {
+    ...mapActions({
+      addToLastSeen: 'user/addToLastSeen',
+    }),
     next() {
       this.position += 1;
     },
     prev() {
       this.position -= 1;
     },
-    productsInSlider() {
-      return getDataFromCss('visibleProductsInSlider', 6);
-    },
-    slides() {
-      return Math.ceil(this.products.length / this.productsInSlider());
+    setProductsInSlider() {
+      this.productsInSlider = getDataFromCss('visibleProductsInSlider', 0);
+      this.slides = Math.ceil(this.products.length / this.productsInSlider);
     },
   },
 };

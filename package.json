@@ -22,9 +22,10 @@
   "dependencies": {
     "cross-env": "latest",
     "eslint-config-airbnb-base": "latest",
-    "lodash.shuffle": "latest",
+    "lodash": "latest",
     "nuxt": "latest",
-    "push-dir": "latest"
+    "push-dir": "latest",
+    "vuex-persistedstate": "^2.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

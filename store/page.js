@@ -1,4 +1,4 @@
-import shuffle from 'lodash.shuffle';
+import shuffle from 'lodash/shuffle';
 import products from '../mock/products';
 
 export function state() {
@@ -20,6 +20,52 @@ export function state() {
       data: {
         header: 'Vores mest populære varer',
         products: shuffle(products).slice(0, 36),
+      },
+    }, {
+      id: 'content-1',
+      type: 'Content',
+      data: {
+        modules: [{
+          id: 'image-1',
+          type: 'Images',
+          data: {
+            fullWidth: true,
+            images: [{
+              url: '/images/nofu.jpg',
+              width: 1146,
+              height: 380,
+            }],
+          },
+        }, {
+          id: 'text-1',
+          type: 'BodyText',
+          data: {
+            content: '<h2 class="is-h1">NOFU</h2><h2>Dansk design, som alle har råd til</h2><p>Danske NOFU skaber smukke, tidløse møbler, som alle har råd til. Produkterne vidner om designer Bertil Stams kærlighed til rene linjer og den høje kvalitet, der kendetegner dansk design. Bertil har tegnet på NOFU-kollektionen siden 2014, men det er først nu, de smukke produkter lanceres i Norden.</p>',
+          },
+        }, {
+          id: 'image-1',
+          type: 'Images',
+          data: {
+            fullWidth: true,
+            images: [{
+              url: 'http://nofu.shop/media/inspiration/inspiration/4.jpg',
+              width: 1146,
+              height: 664,
+            }, {
+              url: 'http://nofu.shop/media/inspiration/inspiration/5.jpg',
+              width: 1146,
+              height: 664,
+            }, {
+              url: 'http://nofu.shop/media/inspiration/inspiration/7.jpg',
+              width: 1146,
+              height: 664,
+            }, {
+              url: 'http://nofu.shop/media/inspiration/inspiration/9.jpg',
+              width: 1146,
+              height: 664,
+            }],
+          },
+        }],
       },
     }, {
       id: 'productslider-3',

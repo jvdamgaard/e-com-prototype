@@ -1,8 +1,11 @@
 <template>
-  <nuxt-link to="/" class="ProductCard has-white-background" :class="{
-        'ProductCard--out-of-stock': stock.level === 0,
-        'ProductCard--in-basket': quantityInBasket > 0,
-      }">
+  <nuxt-link
+    to="/"
+    class="ProductCard has-white-background"
+    :class="{
+      'ProductCard--out-of-stock': stock.level === 0,
+      'ProductCard--in-basket': quantityInBasket > 0,
+    }">
 
     <div v-if="quantityInBasket > 0" class="ProductCard__sticker ProductCard__sticker--blue is-small">{{quantityInBasket}} lagt i kurven</div>
     <div v-else-if="stock.level === 0" class="ProductCard__sticker ProductCard__sticker--red is-small">{{stock.status}}</div>
@@ -148,13 +151,13 @@ export default {
 .ProductCard__sticker:after {
   content: '';
   border-top: 0.5rem solid var(--color-yellow);
-  border-right: 1px solid var(--color-yellow); 
-  border-left: 0.5rem solid transparent; 
+  border-right: 1px solid var(--color-yellow);
+  border-left: 0.5rem solid transparent;
   bottom: -0.5rem;
   content: "";
   position: absolute;
   left: 1rem;
-  width: 0; 
+  width: 0;
   height: 0;
   transition: left 0.2s ease;
 }
