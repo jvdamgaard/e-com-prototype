@@ -170,7 +170,7 @@ export default {
 
 .ProductSlider__item {
   display: flex;
-  flex: 0 0 58.3333%;
+  flex: 0 0 58.3333%; /* 7 cols */
   padding: 0 0.5rem;
 }
 
@@ -185,9 +185,15 @@ export default {
   height: 100%;
 }
 
-@media (min-width: 32rem) {
+body:before {
+  content: '{ "visibleProductsInSlider": 2 }';
+  display: none;
+}
+
+@media (min-width: 30rem) {
+  body:before { content: '{ "visibleProductsInSlider": 3 }'; }
   .ProductSlider__item {
-    flex: 0 0 41.6667%;
+    flex: 0 0 41.6667%; /* 5 cols */
   }
 }
 @media (min-width: 48rem) {
@@ -196,7 +202,13 @@ export default {
     padding-right: 2rem;
   }
   .ProductSlider__item {
-    flex: 0 0 33.3333%;
+    flex: 0 0 33.3333%; /* 4 cols */
+  }
+}
+@media (min-width: 54rem) {
+  body:before { content: '{ "visibleProductsInSlider": 4 }'; }
+  .ProductSlider__item {
+    flex: 0 0 25%; /* 3 cols */
   }
 }
 @media (min-width: 64rem) {
@@ -207,13 +219,11 @@ export default {
   .ProductSlider__move {
     width: 4rem;
   }
-  .ProductSlider__item {
-    flex: 0 0 25%;
-  }
 }
-@media (min-width: 96rem) {
+@media (min-width: 80rem) {
+  body:before { content: '{ "visibleProductsInSlider": 6 }'; }
   .ProductSlider__item {
-    flex: 0 0 16.6667%;
+    flex: 0 0 16.6667%; /* 2 cols */
   }
 }
 </style>

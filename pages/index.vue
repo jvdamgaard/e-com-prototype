@@ -63,7 +63,7 @@
       <ProductSlider v-if="module.type === 'ProductSlider'" v-bind="module.data" />
       <Banner v-if="module.type === 'Banner'" v-bind="module.data" />
       <UniqueSellingPoints v-if="module.type === 'UniqueSellingPoints'" />
-      <Content v-if="module.type === 'Content'" v-bind="module.data" />
+      <ContentContainer v-if="module.type === 'ContentContainer'" v-bind="module.data" />
     </section>
 
     <MainFooter />
@@ -79,7 +79,7 @@ import ProductSlider from '../components/ProductSlider.vue';
 import Banner from '../components/Banner.vue';
 import UniqueSellingPoints from '../components/UniqueSellingPoints.vue';
 import MainFooter from '../components/MainFooter.vue';
-import Content from '../components/Content.vue';
+import ContentContainer from '../components/ContentContainer.vue';
 
 export default {
   components: {
@@ -90,7 +90,7 @@ export default {
     Banner,
     UniqueSellingPoints,
     MainFooter,
-    Content,
+    ContentContainer,
   },
   computed: mapState(['user', 'page']),
 };

@@ -170,17 +170,12 @@ input.no-border { border: 0; }
 /* Responsive */
 
 .is-hidden-on-mobile { display: none!important; }
-body:before {
-  content: '{ "visibleProductsInSlider": 1 }';
-  display: none;
-}
 
 @media (min-width: 25rem) {
   .is-hidden-on-phablet { display: none!important; }
   .is-visible-on-phablet { display: block!important; }
   .is-inline-on-phablet { display: inline!important; }
   .is-inline-block-on-phablet { display: inline-block!important; }
-  body:before { content: '{ "visibleProductsInSlider": 2 }'; }
 }
 
 @media (min-width: 48rem) {
@@ -189,7 +184,6 @@ body:before {
   .is-visible-on-tablet { display: block!important; }
   .is-inline-on-tablet { display: inline!important; }
   .is-inline-block-on-tablet { display: inline-block!important; }
-  body:before { content: '{ "visibleProductsInSlider": 3 }'; }
 }
 
 @media (min-width: 64rem) {
@@ -197,13 +191,12 @@ body:before {
   .is-visible-on-laptop { display: block!important; }
   .is-inline-on-laptop { display: inline!important; }
   .is-inline-block-on-laptop { display: inline-block!important; }
-  body:before { content: '{ "visibleProductsInSlider": 4 }'; }
 }
 
 @media (min-width: 96rem) {
+  .is-body-size-on-desktop { font-size: 1rem; }
   .is-hidden-on-desktop { display: none!important; }
   .is-visible-on-desktop { display: block!important; }
   .is-inline-on-desktop { display: inline!important; }
   .is-inline-block-on-desktop { display: inline-block!important; }
-  body:before { content: '{ "visibleProductsInSlider": 6 }'; }
 }

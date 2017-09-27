@@ -23,27 +23,29 @@ export function state() {
       },
     }, {
       id: 'content-1',
-      type: 'Content',
+      type: 'ContentContainer',
       data: {
         modules: [{
-          id: 'image-1',
           type: 'Images',
           data: {
             fullWidth: true,
             images: [{
+              url: 'https://f.nordiskemedier.dk/22mv6249df3c014b.jpg',
+              width: 1200,
+              height: 628,
+            }, {
               url: '/images/nofu.jpg',
-              width: 1146,
-              height: 380,
+              width: 1200,
+              height: 628,
             }],
           },
         }, {
           id: 'text-1',
           type: 'BodyText',
           data: {
-            content: '<h2 class="is-h1">NOFU</h2><h2>Dansk design, som alle har råd til</h2><p>Danske NOFU skaber smukke, tidløse møbler, som alle har råd til. Produkterne vidner om designer Bertil Stams kærlighed til rene linjer og den høje kvalitet, der kendetegner dansk design. Bertil har tegnet på NOFU-kollektionen siden 2014, men det er først nu, de smukke produkter lanceres i Norden.</p>',
+            content: '<h2 class="is-h1">NOFU</h2><h2>Dansk design, som alle har råd til</h2><p>Danske NOFU skaber smukke, tidløse møbler, som alle har råd til. Produkterne vidner om designer Bertil Stams kærlighed til rene linjer og den høje kvalitet, der kendetegner dansk design. Bertil har tegnet på NOFU-kollektionen siden 2014, men det er først nu, de smukke produkter lanceres i Norden. <a href="/">Se hele NOFU serien</a></p>',
           },
         }, {
-          id: 'image-1',
           type: 'Images',
           data: {
             fullWidth: true,
@@ -68,11 +70,11 @@ export function state() {
         }],
       },
     }, {
-      id: 'productslider-3',
+      id: 'productslider-nofu',
       type: 'ProductSlider',
       data: {
-        header: 'Du kan måske også lide',
-        products: shuffle(products).slice(0, 36),
+        header: 'Bedst sælgende i NOFU serien',
+        products: products.filter(product => product.titel.toLowerCase().indexOf('nofu') !== -1),
       },
     }, {
       id: 'banner-1',
@@ -97,11 +99,52 @@ export function state() {
         }],
       },
     }, {
+      id: 'productslider-3',
+      type: 'ProductSlider',
+      data: {
+        header: 'Du kan måske også lide',
+        products: shuffle(products).slice(0, 36),
+      },
+    }, {
       id: 'productslide-4',
       type: 'ProductSlider',
       data: {
         header: 'Anbefalinger til dig i cykler',
         products: shuffle(products).slice(0, 36),
+      },
+    }, {
+      id: 'content-1',
+      type: 'ContentContainer',
+      data: {
+        modules: [{
+          id: 'text-1',
+          type: 'BodyText',
+          data: {
+            content: '<h2 class="is-h1">VRS</h2><h2>Med på de nyeste tendenser</h2><p>VRS er lækkert modetøj til dig, som gerne vil være med på de seneste tendenser uden at betale for meget. Vi tilbyder et stort udvalg af modetøj, sko, tilbehør, undertøj og basistøj til hele familien. Og med op mod 100 nye styles hver uge, så der altid er noget nyt at komme efter i butikkerne. Alt sammen skabt af vore egne designere i gode materialer, med en god pasform og til en rigtig god pris. <a href="/">Se hele VRS kollektionen</a></p>',
+          },
+        }, {
+          type: 'Images',
+          data: {
+            fullWidth: true,
+            images: [{
+              url: 'https://instagram.fcph3-1.fna.fbcdn.net/t51.2885-15/e35/21984919_619150525141625_6075077089520779264_n.jpg',
+              width: 1080,
+              height: 1080,
+            }, {
+              url: 'https://instagram.fcph3-1.fna.fbcdn.net/t51.2885-15/e35/17495071_407230232983531_2887631479469244416_n.jpg',
+              width: 1080,
+              height: 1080,
+            }, {
+              url: 'https://instagram.fcph3-1.fna.fbcdn.net/t51.2885-15/e35/18013921_1469721036411458_6034307331506831360_n.jpg',
+              width: 1080,
+              height: 1080,
+            }, {
+              url: 'https://instagram.fcph3-1.fna.fbcdn.net/t51.2885-15/e35/17934674_1440940599261171_630216790613426176_n.jpg',
+              width: 1080,
+              height: 1080,
+            }],
+          },
+        }],
       },
     }, {
       id: 'productslider-5',

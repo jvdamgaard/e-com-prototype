@@ -25,7 +25,7 @@
       <Star v-for="n in 5" :key="n" :rating="rating" :pos="n" />
       <small class="is-dimmed" style="float: right">{{recommendationPercentage}}% <span class="is-hidden-on-mobile is-inline-on-phablet">anbefaler</span></small>
     </p>
-    <p class="ProductCard__titel is-small is-body-size-on-tablet">
+    <p class="ProductCard__titel is-small is-body-size-on-desktop">
       {{titel}}<br>
       <span v-if="stock.status" class="is-red is-small">{{stock.status}}</span>
     </p>
@@ -117,7 +117,7 @@ export default {
   position: relative;
   height: 100%;
   width: 100%;
-  padding: 1rem 1rem 3rem 1rem;
+  padding: 0.5rem 0.5rem 3rem 0.5rem;
   transition: all 0.2s ease;
   color: var(--color-black);
   overflow: hidden;
@@ -126,7 +126,7 @@ export default {
   margin: -0.5rem -0.5rem -3rem;
   height: calc(100% + 3.5rem);
   width: calc(100% + 1rem);
-  padding: 1.5rem 1.5rem 6rem 1.5rem;
+  padding: 1rem 1rem 5.5rem 1rem;
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
   text-decoration: none;
   z-index: 10;
@@ -134,7 +134,18 @@ export default {
 .no-touch .ProductCard--out-of-stock:hover {
   margin-bottom: -0.5rem;
   height: calc(100% + 1rem);
-  padding-bottom: 3.5rem;
+  padding-bottom: 3rem;
+}
+@media (min-width: 36rem) {
+  .ProductCard {
+    padding: 1rem 1rem 3rem 1rem;
+  }
+  .no-touch .ProductCard:hover {
+    padding: 1.5rem 1.5rem 6rem 1.5rem;
+  }
+  .no-touch .ProductCard--out-of-stock:hover {
+    padding-bottom: 3.5rem;
+  }
 }
 
 .ProductCard__sticker {
