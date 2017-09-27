@@ -12,3 +12,11 @@ export function getDataFromCss(attribute, fallback = null) {
     return fallback;
   }
 }
+
+export function loadImage(src) {
+  return new Promise((resolve) => {
+    const downloadingImage = new Image();
+    downloadingImage.onload = resolve;
+    downloadingImage.src = src;
+  });
+}

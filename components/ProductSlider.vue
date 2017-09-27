@@ -6,7 +6,7 @@
       </div>
       <div class="is-4-col is-hidden-on-mobile is-visible-on-tablet is-aligned-right">
         <div class="is-inline has-right-margin">
-          <span v-for="n in slides" :key="n" class="ProductSlider__slider-indicator" :class="{
+          <span v-if="slides > 1" v-for="n in slides" :key="n" class="ProductSlider__slider-indicator" :class="{
             'ProductSlider__slider-indicator--active': (n === position + 1),
           }">
             &#8211;
@@ -15,7 +15,7 @@
         <nuxt-link to="/" class="is-grey is-small">vis alle</nuxt-link>
       </div>
     </Grid>
-    <div class="ProductSlider">
+    <div class="ProductSlider" @mousewheel="scrolled">
       <div class="ProductSlider__move ProductSlider__move--prev">
         <div v-if="position != 0" class="ProductSlider__move-inner" @click="prev">
           <Arrow  direction="left" class="ProductSlider__arrow" />
@@ -42,6 +42,7 @@
 
 <script>
 import { mapActions } from 'vuex'; // eslint-disable-line
+import throttle from 'lodash/throttle';
 import Grid from '../components/Grid.vue';
 import Arrow from './Arrow.vue';
 import Btn from './Btn.vue';
@@ -71,14 +72,33 @@ export default {
       addToLastSeen: 'user/addToLastSeen',
     }),
     next() {
-      this.position += 1;
+      if (this.position < this.slides - 1) {
+        this.position += 1;
+      }
     },
     prev() {
-      this.position -= 1;
+      if (this.position > 0) {
+        this.position -= 1;
+      }
     },
     setProductsInSlider() {
       this.productsInSlider = getDataFromCss('visibleProductsInSlider', 0);
       this.slides = Math.ceil(this.products.length / this.productsInSlider);
+    },
+    slide: throttle((delta, next, prev) => {
+      if (delta < 0) {
+        next();
+      } else if (delta > 0) {
+        prev();
+      }
+    }, 750, {
+      trailing: false,
+      leading: true,
+    }),
+    scrolled(event) {
+      if (event.wheelDeltaY === 0 && (event.wheelDeltaX < -10 || event.wheelDeltaX > 10)) {
+        this.slide(event.wheelDeltaX, this.next, this.prev);
+      }
     },
   },
 };

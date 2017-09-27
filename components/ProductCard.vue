@@ -19,7 +19,9 @@
       <div class="ProductCard__arrow ProductCard__arrow--left" @click="prevImage">
         <Arrow v-if="imagePos > 0" direction="left" />
       </div>
-      <img :src="images[imagePos]" />
+      <img :src="images[imagePos]" :class="{
+        loading,
+      }" />
     </div>
     <p class="ProductCard__reviews has-small-top-margin">
       <Star v-for="n in 5" :key="n" :rating="rating" :pos="n" />
@@ -54,6 +56,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
+import { loadImage } from '../utils';
 import Btn from './Btn.vue';
 import Arrow from './Arrow.vue';
 import Star from './Star.vue';
@@ -78,6 +81,7 @@ export default {
   data() {
     return {
       imagePos: 0,
+      loading: false,
     };
   },
   computed: {
@@ -100,10 +104,20 @@ export default {
       return x.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     },
     nextImage() {
-      this.imagePos += 1;
+      this.changeImage(1);
     },
     prevImage() {
-      this.imagePos -= 1;
+      this.changeImage(-1);
+    },
+    changeImage(deltaPos) {
+      if (!this.loading) {
+        this.loading = true;
+        const newPos = this.imagePos + deltaPos;
+        loadImage(this.images[newPos]).then(() => {
+          this.imagePos = newPos;
+          this.loading = false;
+        });
+      }
     },
   },
 };
@@ -218,6 +232,10 @@ export default {
   margin: auto;
   max-width: 100%;
   max-height: 100%;
+  transition: opacity 0.5s ease;
+}
+.ProductCard__image img.loading {
+  opacity: 0;
 }
 .ProductCard--out-of-stock .ProductCard__image img {
   filter: grayscale(100%);
