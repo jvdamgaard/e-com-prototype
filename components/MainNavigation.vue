@@ -1,6 +1,6 @@
 <template>
-  <div class="MainNavigation">
-    <Grid class="MainNavigation__grid is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
+  <div>
+    <Grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
       <div class="is-2-col is-1-col-on-desktop is-hidden-on-mobile is-visible-on-laptop" style="white-space: nowrap;">
         <nuxt-link to="/" class="MainNavigation__logo has-no-underline">
           <img src="/images/logo.svg" width="112" height="32" />
@@ -32,6 +32,7 @@
         </div>
       </div>
     </Grid>
+    <DepartmentNavigation />
   </div>
 </template>
 
@@ -39,11 +40,13 @@
   import { mapState } from 'vuex'; // eslint-disable-line
   import Grid from './Grid.vue';
   import Btn from './Btn.vue';
+  import DepartmentNavigation from './DepartmentNavigation.vue';
 
   export default {
     components: {
       Grid,
       Btn,
+      DepartmentNavigation,
     },
     computed: {
       ...mapState(['user']),
@@ -59,11 +62,6 @@
   @import '../assets/css/variables.css';
 
   .MainNavigation {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-  }
-
-  .MainNavigation__grid {
     height: 3.5rem;
   }
 

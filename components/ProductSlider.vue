@@ -91,10 +91,7 @@ export default {
       } else if (delta > 0) {
         prev();
       }
-    }, 750, {
-      trailing: false,
-      leading: true,
-    }),
+    }, 1000, { trailing: false, leading: true }),
     scrolled(event) {
       if (event.wheelDeltaY === 0 && (event.wheelDeltaX < -10 || event.wheelDeltaX > 10)) {
         this.slide(event.wheelDeltaX, this.next, this.prev);

@@ -47,7 +47,8 @@
           Hver måned trækkes en vinder af tre måneders forbrug af Nivea produkter til dame eller herre blandt alle modtagere af nyhedsmailen.
         </p>
       </div>
-    </Grid><Grid row-gap="large" class="Links has-white-background">
+    </Grid>
+    <Grid row-gap="large" class="Links has-white-background">
       <div class="is-12-col is-4-col-on-tablet">
         <h3 class="has-small-bottom-margin">Betalingsmuligheder</h3>
         <p>
@@ -73,6 +74,18 @@
           <img src="/icons/social-media/instagram.png" />
           <img src="/icons/social-media/twitter.png" />
           <img src="/icons/social-media/youtube.png" />
+        </p>
+      </div>
+    </Grid>
+    <Grid class="Links has-white-background is-small">
+      <div class="is-6-col">
+        <p class="is-grey">Copyright Dansk Supermarked Group</p>
+      </div>
+      <div class="is-6-col">
+        <p class="is-aligned-right">
+          <nuxt-link to="/" class="is-grey">Datapolitk</nuxt-link>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <nuxt-link to="/" class="is-grey">Handelsbetingelser</nuxt-link>
         </p>
       </div>
     </Grid>
