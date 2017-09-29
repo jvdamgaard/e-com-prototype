@@ -1,40 +1,62 @@
 <template>
-  <div class="DepartmentNavigation">
+  <div class="DepartmentNavigation" :class="{ 'DepartmentNavigation--active': this.state.deparmentNavActive }">
     <Grid class="has-no-top-margin has-no-bottom-margin">
-      <div class="is-3-col-on-laptop is-2-col-on-desktop">
+      <div
+        class="is-3-col-on-laptop is-2-col-on-desktop has-shadow"
+        @mouseover="enterMain"
+        @mouseleave="leaveMain">
         <div class="has-white-background has-vertical-padding is-full-height">
           <NavigationItem titel="Velkommen" description="Log ind eller opret bruger" icon="/icons/login.svg" />
           <h4 class="has-padding">Afdelinger</h4>
-          <NavigationItem titel="Elektronik" description="Bærbare, PC’er, Kabler" icon="/icons/electronic.png" />
-          <NavigationItem titel="Mobil &amp; tablet" description="Smartphones, Power banks" icon="/icons/mobile.png" />
-          <NavigationItem titel="Bøger, Film &amp; Musik" description="Literatur, Biografier" icon="/icons/books.png" />
-          <NavigationItem titel="Dagligvarer" description="Skønhed, Helbred" icon="/icons/food.png" />
-          <NavigationItem titel="Mode" description="Tøj, Sko, Ure, Smykker" icon="/icons/fashion.png" />
-          <NavigationItem titel="Bolig &amp; indretning" description="Køkken, Møbler" icon="/icons/home.png" />
-          <NavigationItem titel="Børn" description="Legetøj, Tøj, Spil, Sko" icon="/icons/children.png" />
-          <NavigationItem titel="Køretøjer" description="Cykler, Biltilbehør" icon="/icons/vehicles.png" />
-          <NavigationItem titel="Tilbud" description="I alle afdelinger" icon="/icons/offers.png" />
+          <NavigationItem
+            v-for="department in enhancedDepartments"
+            :titel="department.titel"
+            :description="department.description"
+            :icon="department.iconSrc"
+            :active="department.titel === activeDepartment"
+            :key="department.titel"
+            @click.native="expandDepartment(department.titel)"
+            @mouseover.native="setNextDepartment(department.titel)" />
         </div>
       </div>
-      <div class="is-9-col-on-laptop is-6-col-on-desktop">
+      <div
+        v-for="department in enhancedDepartments"
+        v-show="department.titel === activeDepartment"
+        class="is-9-col-on-laptop is-6-col-on-desktop has-shadow"
+        @mouseover="setNextDepartment(department.titel); enterSub();"
+        @mouseleave="leaveSub();">
         <Grid inner class="DepartmentNavigation__sub has-light-grey-background is-full-height">
-          <div class="is-4-col has-vertical-padding">
-            <template v-for="subDepartment in enhancedDepartments[0].col1.subDepartments">
+          <div class="is-4-col has-large-top-padding">
+            <template v-for="subDepartment in department.col1.subDepartments">
               <h3><nuxt-link to="/" class="is-black">{{ subDepartment.titel }}</nuxt-link></h3>
-              <ul v-if="subDepartment.subDepartments" class="is-unstyled-list has-small-bottom-margin">
+              <ul v-if="subDepartment.subDepartments" class="is-unstyled-list has-small-bottom-margin is-small">
                 <li v-for="subSubs in subDepartment.subDepartments"><nuxt-link to="/" class="is-grey">{{ subSubs.titel }}</nuxt-link></li>
               </ul>
             </template>
           </div>
-          <div class="is-4-col has-vertical-padding">
-            <template v-for="subDepartment in enhancedDepartments[0].col2.subDepartments">
+          <div class="is-4-col has-large-top-padding">
+            <template v-for="subDepartment in department.col2.subDepartments">
               <h3><nuxt-link to="/" class="is-black">{{ subDepartment.titel }}</nuxt-link></h3>
-              <ul v-if="subDepartment.subDepartments" class="is-unstyled-list has-small-bottom-margin">
+              <ul v-if="subDepartment.subDepartments" class="is-unstyled-list has-small-bottom-margin is-small">
                 <li v-for="subSubs in subDepartment.subDepartments"><nuxt-link to="/" class="is-grey">{{ subSubs.titel }}</nuxt-link></li>
               </ul>
             </template>
           </div>
-          <div class="is-4-col is-bg-image" style="background-image: url('https://images.unsplash.com/photo-1494688290324-e296afa7dc45?dpr=2&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=')" />
+          <div class="is-4-col is-2-row has-vertical-padding has-right-padding">
+            <nuxt-link
+              to="/"
+              class="is-4-col is-2-row is-bg-image is-full-width is-full-height is-block"
+              :style="`background-image: url('${department.promotion.imageSrc}')`"
+              :key="department.titel"/>
+          </div>
+          <div class="is-8-col has-large-bottom-padding">
+            <h3>Brands</h3>
+            <p class="DepartmentNavigation__brand-icons">
+              <nuxt-link v-for="brand in department.brands" to="/" :key="brand.imgSrc">
+                <img :src="brand.imgSrc"/>
+              </nuxt-link>
+            </p>
+          </div>
         </Grid>
       </div>
     </Grid>
@@ -42,7 +64,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'; // eslint-disable-line
+import { mapState, mapActions } from 'vuex'; // eslint-disable-line
+import debounce from 'lodash/debounce';
 import Grid from './Grid.vue';
 import NavigationItem from './NavigationItem.vue';
 
@@ -51,10 +74,16 @@ export default {
     Grid,
     NavigationItem,
   },
-  props: {
+  data() {
+    return {
+      activeDepartment: null,
+      nextDepartment: null,
+      hoverMain: false,
+      hoverSub: false,
+    };
   },
   computed: {
-    ...mapState(['departments']),
+    ...mapState(['departments', 'state']),
     enhancedDepartments() {
       return this.departments.map((department) => {
         const col1 = {
@@ -77,12 +106,49 @@ export default {
         });
 
         return {
-          titel: department.titel,
+          ...department,
           col1,
           col2,
         };
       });
     },
+  },
+  methods: {
+    ...mapActions({
+      closeDepartmentNav: 'state/closeDepartmentNav',
+    }),
+    expandDepartment(titel) {
+      this.activeDepartment = titel;
+    },
+    hasDepartmentChanged() {
+      if (this.activeDepartment !== this.nextDepartment) {
+        this.expandDepartment(this.nextDepartment);
+      }
+    },
+    debounceDepartmentChange: debounce((hasDepartmentChanged) => {
+      hasDepartmentChanged();
+    }, 100),
+    setNextDepartment(titel) {
+      this.nextDepartment = titel;
+      if (this.activeDepartment) {
+        this.debounceDepartmentChange(this.hasDepartmentChanged);
+      } else {
+        this.hasDepartmentChanged();
+      }
+    },
+    debounceCloseNav: debounce((closeNav) => {
+      closeNav();
+    }, 500),
+    closeNav() {
+      if (!this.hoverSub && !this.hoverMain) {
+        this.closeDepartmentNav();
+        this.expandDepartment(null);
+      }
+    },
+    leaveSub() { this.hoverSub = false; this.debounceCloseNav(this.closeNav); },
+    enterSub() { this.hoverSub = true; this.debounceCloseNav(this.closeNav); },
+    leaveMain() { this.hoverMain = false; this.debounceCloseNav(this.closeNav); },
+    enterMain() { this.hoverMain = true; this.debounceCloseNav(this.closeNav); },
   },
 };
 </script>
@@ -93,11 +159,29 @@ export default {
 .DepartmentNavigation {
   background-color: var(--color-pop-over-background);
   height: 100vh;
+  opacity: 0;
+  display: none;
+}
+
+.DepartmentNavigation--active {
+  display: block;
+  opacity: 1;
 }
 
 .DepartmentNavigation__sub {
   margin-left: -1rem;
   padding-left: 1rem;
   border-left: 1px solid var(--color-grey-light);
+}
+
+.DepartmentNavigation__brand-icons img {
+  height: 2rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  transition: transform 0.2s ease;
+}
+.no-touch .DepartmentNavigation__brand-icons img:hover {
+  transform: scale(1.2);
+  z-index: 10;
 }
 </style>

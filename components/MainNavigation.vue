@@ -1,13 +1,17 @@
 <template>
   <div>
-    <Grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
+    <Grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin has-shadow">
       <div class="is-2-col is-1-col-on-desktop is-hidden-on-mobile is-visible-on-laptop" style="white-space: nowrap;">
         <nuxt-link to="/" class="MainNavigation__logo has-no-underline">
           <img src="/images/logo.svg" width="112" height="32" />
         </nuxt-link>
       </div>
       <div class="is-2-col is-1-col-on-tablet">
-        <div class="MainNavigation__menu-icon is-aligned-center">
+        <div
+          class="MainNavigation__menu-icon is-aligned-center"
+          :class="{ 'MainNavigation__menu-icon--active': state.deparmentNavActive }"
+          @click="toggleDepartmentNav"
+          @mouseover="openDepartmentNav">
           <div>&#8801;</div>
         </div>
       </div>
@@ -37,7 +41,7 @@
 </template>
 
 <script>
-  import { mapState } from 'vuex'; // eslint-disable-line
+  import { mapState, mapActions } from 'vuex'; // eslint-disable-line
   import Grid from './Grid.vue';
   import Btn from './Btn.vue';
   import DepartmentNavigation from './DepartmentNavigation.vue';
@@ -48,11 +52,29 @@
       Btn,
       DepartmentNavigation,
     },
+    data() {
+      return {
+        deparmentNavActive: false,
+      };
+    },
     computed: {
-      ...mapState(['user']),
+      ...mapState(['user', 'state']),
       itemsInBasket() {
         return this.user.basket.items
           .reduce((accumulator, item) => (accumulator + item.quantity), 0);
+      },
+    },
+    methods: {
+      ...mapActions({
+        openDepartmentNav: 'state/openDepartmentNav',
+        closeDepartmentNav: 'state/closeDepartmentNav',
+      }),
+      toggleDepartmentNav() {
+        if (this.state.deparmentNavActive) {
+          this.closeDepartmentNav();
+        } else {
+          this.closeDepartmentNav();
+        }
       },
     },
   };
@@ -63,6 +85,7 @@
 
   .MainNavigation {
     height: 3.5rem;
+    overflow: hidden;
   }
 
   .MainNavigation__menu-icon {
@@ -73,9 +96,10 @@
     cursor: pointer;
     transition: all 0.25s ease;
   }
-  .MainNavigation__menu-icon:hover {
+  .MainNavigation__menu-icon--active {
     background-color: var(--color-white);
     color: var(--color-grey-dark);
+    z-index: 10;
   }
 
   .MainNavigation__logo {

@@ -1,12 +1,12 @@
 <template>
-  <div class="NavigationItem has-small-line-height is-group">
+  <div class="NavigationItem has-small-line-height is-group" :class="{ 'NavigationItem--active': active}">
     <div class="has-tiny-right-margin">
-      <img :src="icon" width="40" height="40" />
+      <img :src="icon" width="32" height="32" />
     </div>
     <div class="NavigationItem__text">
-      <div class="NavigationItem__text__inner is-full-width">
+      <div class="NavigationItem__text__inner is-full-width is-small">
         <strong>{{titel}}</strong><br>
-        <span class="is-dimmed is-small">{{description}}</span>
+        <span class="is-dimmed">{{description}}</span>
       </div>
     </div>
   </div>
@@ -18,6 +18,7 @@
       titel: String,
       description: String,
       icon: String,
+      active: Boolean,
     },
   };
 </script>
@@ -32,12 +33,13 @@
   border-left: 0.25rem solid transparent;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
-  transition: all 0.2s ease;
   width: calc(100% - 0.25rem);
 }
-.no-touch .NavigationItem:hover {
+.NavigationItem--active {
   background-color: var(--color-grey-lighter);
-  border-color: var(--color-grey-light);
+  border-top-color: var(--color-grey-light);
+  border-bottom-color: var(--color-grey-light);
+  border-left-color: var(--color-primary);
   width: calc(100% - 0.25rem + 1px);
   z-index: 2;
 }

@@ -48,7 +48,6 @@
     left: 0;
     right: 0;
     padding-top: 10rem;
-    box-shadow: 0 0 16px rgba(0,0,0,0.25);
     transform: translate3d(0,0,0);
     transition: transform 0.25s ease;
   }

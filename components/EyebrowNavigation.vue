@@ -43,7 +43,7 @@
 
   .EyebrowNavigation {
     background-color: var(--color-white);
-    height: 2rem;
+    height: 2rem;;
   }
   .EyebrowNavigation__links li {
     margin: 0 0.5rem;
