@@ -1,13 +1,13 @@
 /* eslint no-param-reassign: 0 */
 export function state() {
   return {
-    deparmentNavActive: false,
+    departmentNavActive: false,
   };
 }
 
 export const mutations = {
   toggleDepartmentNav(s, open) {
-    s.deparmentNavActive = open;
+    s.departmentNavActive = open;
   },
 };
 

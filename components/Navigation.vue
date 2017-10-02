@@ -1,18 +1,23 @@
 <template>
-  <nav class="Navigation"  :class="{ 'Navigation--collapsed': scrolled }">
-    <EyebrowNavigation></EyebrowNavigation>
-    <MainNavigation></MainNavigation>
-  </nav>
+  <div>
+    <nav class="Navigation"  :class="{ 'Navigation--collapsed': scrolled }">
+      <EyebrowNavigation></EyebrowNavigation>
+      <MainNavigation></MainNavigation>
+    </nav>
+    <MobileNavigation></MobileNavigation>
+  </div>
 </template>
 
 <script>
   import EyebrowNavigation from './EyebrowNavigation.vue';
   import MainNavigation from './MainNavigation.vue';
+  import MobileNavigation from './MobileNavigation.vue';
 
   export default {
     components: {
       EyebrowNavigation,
       MainNavigation,
+      MobileNavigation,
     },
     data() {
       return {
@@ -47,11 +52,15 @@
     top: -10rem;
     left: 0;
     right: 0;
+    max-height: calc(100vh + 10rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding-top: 10rem;
     transform: translate3d(0,0,0);
     transition: transform 0.25s ease;
   }
   .Navigation--collapsed {
+    max-height: calc(100vh + 12rem);
     transform: translate3d(0,-2rem,0);
   }
 </style>

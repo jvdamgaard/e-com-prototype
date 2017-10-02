@@ -26,16 +26,13 @@
         <div class="is-3-col-on-laptop is-2-col-on-desktop is-3-row">
           <div class="has-white-background has-vertical-padding is-full-height">
             <NavigationItem titel="Velkommen" description="Log ind eller opret bruger" icon="/icons/login.svg" />
-            <h4 class="has-padding">Afdelinger</h4>
-            <NavigationItem titel="Elektronik" description="Bærbare, PC’er, Kabler" icon="/icons/electronic.png" />
-            <NavigationItem titel="Mobil &amp; tablet" description="Smartphones, Power banks" icon="/icons/mobile.png" />
-            <NavigationItem titel="Bøger, Film &amp; Musik" description="Literatur, Biografier" icon="/icons/books.png" />
-            <NavigationItem titel="Dagligvarer" description="Skønhed, Helbred" icon="/icons/food.png" />
-            <NavigationItem titel="Mode" description="Tøj, Sko, Ure, Smykker" icon="/icons/fashion.png" />
-            <NavigationItem titel="Bolig &amp; indretning" description="Køkken, Møbler" icon="/icons/home.png" />
-            <NavigationItem titel="Børn" description="Legetøj, Tøj, Spil, Sko" icon="/icons/children.png" />
-            <NavigationItem titel="Køretøjer" description="Cykler, Biltilbehør" icon="/icons/vehicles.png" />
-            <NavigationItem titel="Tilbud" description="I alle afdelinger" icon="/icons/offers.png" />
+            <h3 class="has-padding">Afdelinger</h3>
+            <NavigationItem
+              v-for="department in departments"
+              :titel="department.titel"
+              :description="department.description"
+              :icon="department.iconSrc"
+              :key="department.titel" />
           </div>
         </div>
         <div class="is-9-col-on-laptop is-10-col-on-desktop">
@@ -92,7 +89,7 @@ export default {
     MainFooter,
     ContentContainer,
   },
-  computed: mapState(['user', 'page']),
+  computed: mapState(['user', 'page', 'departments']),
 };
 </script>
 

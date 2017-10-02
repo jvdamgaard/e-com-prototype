@@ -2,7 +2,7 @@
   <div class="Btn" :class="[
     `Btn--is-${type}`,
     `Btn---has-${height}-height`,
-    { 
+    {
       'Btn--has-shadow': shadow,
     },
   ]">
@@ -19,7 +19,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        return ['primary', 'grey', 'yellow', 'grey-light'].indexOf(value) !== -1;
+        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost'].indexOf(value) !== -1;
       },
     },
     height: {
@@ -92,5 +92,16 @@ export default {
 .Btn--is-yellow {
   color: var(--color-black);
   background-color: var(--color-yellow);
+}
+.no-touch .Btn--is-yellow:hover {
+  background-color: var(--color-yellow-dark);
+}
+.Btn--is-ghost {
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  background-color: transparent;
+}
+.no-touch .Btn--is-ghost:hover {
+  background-color: var(--color-grey-darker);
 }
 </style>

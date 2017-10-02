@@ -9,7 +9,7 @@
       <div class="is-2-col is-1-col-on-tablet">
         <div
           class="MainNavigation__menu-icon is-aligned-center"
-          :class="{ 'MainNavigation__menu-icon--active': state.deparmentNavActive }"
+          :class="{ 'MainNavigation__menu-icon--active': state.departmentNavActive }"
           @click="toggleDepartmentNav"
           @mouseover="openDepartmentNav">
           <div>&#8801;</div>
@@ -52,11 +52,6 @@
       Btn,
       DepartmentNavigation,
     },
-    data() {
-      return {
-        deparmentNavActive: false,
-      };
-    },
     computed: {
       ...mapState(['user', 'state']),
       itemsInBasket() {
@@ -70,10 +65,10 @@
         closeDepartmentNav: 'state/closeDepartmentNav',
       }),
       toggleDepartmentNav() {
-        if (this.state.deparmentNavActive) {
+        if (this.state.departmentNavActive) {
           this.closeDepartmentNav();
         } else {
-          this.closeDepartmentNav();
+          this.openDepartmentNav();
         }
       },
     },

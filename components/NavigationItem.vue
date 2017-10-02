@@ -1,7 +1,9 @@
 <template>
   <div class="NavigationItem has-small-line-height is-group" :class="{ 'NavigationItem--active': active}">
     <div class="has-tiny-right-margin">
-      <img :src="icon" width="32" height="32" />
+      <div class="NavigationItem__icon is-bg-image is-round" :style="{
+        'background-image': `url('${icon}')`,
+      }" />
     </div>
     <div class="NavigationItem__text">
       <div class="NavigationItem__text__inner is-full-width is-small">
@@ -27,7 +29,7 @@
 @import '../assets/css/variables.css';
 
 .NavigationItem {
-  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  padding: 0.25rem 1rem 0.25rem 0.5rem;
   cursor: pointer;
   margin-left: 0.25rem;
   border-left: 0.25rem solid transparent;
@@ -43,12 +45,26 @@
   width: calc(100% - 0.25rem + 1px);
   z-index: 2;
 }
+.NavigationItem__icon {
+  width: 5rem;
+  height: 5rem;
+}
 .NavigationItem__text {
-  width: calc(100% - 3.5rem);
+  width: calc(100% - 6rem);
 }
 .NavigationItem__text__inner {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+@media (min-width: 48rem) {
+  .NavigationItem__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .NavigationItem__text {
+    width: calc(100% - 3.5rem);
+  }
 }
 </style>

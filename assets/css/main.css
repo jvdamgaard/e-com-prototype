@@ -96,6 +96,7 @@ a:hover.has-no-underline { text-decoration: none; }
   background-repeat: no-repeat;
   background-size: cover;
 }
+.is-round { border-radius: 50%; }
 
 /* Borders */
 .has-border-top { border-top: 1px solid var(--color-grey-light); }
@@ -127,6 +128,7 @@ input.no-border { border: 0; }
 
 /* Spacing */
 
+.has-no-margin { margin: 0!important; }
 .has-no-top-margin { margin-top: 0!important; }
 .has-no-bottom-margin { margin-bottom: 0!important; }
 .has-no-horizontal-margin { margin-left: 0rem!important; margin-right: 0rem!important; }
@@ -142,6 +144,7 @@ input.no-border { border: 0; }
 .has-top-margin { margin-top: 2rem!important; }
 .has-right-margin { margin-right: 2rem!important; }
 
+.has-no-padding { padding: 0!important; }
 .has-tiny-top-padding { padding-top: 0.5rem!important; }
 .has-tiny-bottom-padding { padding-bottom: 0.5rem!important; }
 .has-tiny-right-padding { padding-right: 0.5rem!important; }
@@ -161,6 +164,9 @@ input.no-border { border: 0; }
 
 .is-inline { display: inline; }
 .is-block { display: block; }
+
+.is-absolute { position: absolute!important }
+.is-at-bottom { bottom: 0; }
 
 .is-group {
   position: relative;
