@@ -20,7 +20,11 @@
     "deploy": "gh-pages -d dist --dotfiles"
   },
   "dependencies": {
-    "@nuxtjs/pwa": "latest",
+    "@nuxtjs/icon": "latest",
+    "@nuxtjs/manifest": "latest",
+    "@nuxtjs/meta": "latest",
+    "@nuxtjs/workbox": "latest",
+    "@nuxtjs/cssnano": "latest",
     "cross-env": "latest",
     "gh-pages": "latest",
     "lodash": "latest",
