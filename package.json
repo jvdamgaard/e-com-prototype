@@ -17,17 +17,16 @@
     "generate": "cross-env NODE_ENV=generate nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "npm run generate && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
-    "@nuxtjs/pwa": "^0.2.1",
+    "@nuxtjs/pwa": "latest",
     "cross-env": "latest",
     "eslint-config-airbnb-base": "latest",
     "lodash": "latest",
-    "lru-cache": "^4.1.1",
+    "lru-cache": "latest",
     "nuxt": "latest",
-    "push-dir": "latest",
-    "vuex-persistedstate": "^2.0.0"
+    "vuex-persistedstate": "latest"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
@@ -38,6 +37,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1"
+    "eslint-plugin-standard": "^3.0.1",
+    "push-dir": "latest"
   }
 }

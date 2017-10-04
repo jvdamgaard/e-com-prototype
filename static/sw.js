@@ -19,23 +19,23 @@ importScripts('workbox-sw.prod.v1.3.0.js');
  */
 const fileManifest = [
   {
-    "url": "/_nuxt/app.970058929948bc2f13f5.js",
-    "revision": "8c9279d22061ab3b0be7c3d9eb9fc1ec"
+    "url": "/e-com-prototype/_nuxt/app.849c953d37d3639d8dd3.js",
+    "revision": "ef64e096b6349084a34aa674190b8b30"
   },
   {
-    "url": "/_nuxt/common.c642fadb72be5063ebfd.js",
-    "revision": "f8747d85e2d426110f9317dc5fc39ea3"
+    "url": "/e-com-prototype/_nuxt/common.ce34e7a292bd4efe33f2.js",
+    "revision": "2c2eccaeb9e9c23281f76170f6d54ec6"
   },
   {
-    "url": "/_nuxt/layouts/default.f6888458bcf876aa5a18.js",
+    "url": "/e-com-prototype/_nuxt/layouts/default.f6888458bcf876aa5a18.js",
     "revision": "ebf815887e4eadaed2fa973d66327ecd"
   },
   {
-    "url": "/_nuxt/manifest.4bd185ecf59a8e7a116f.js",
-    "revision": "a8aa9a33770c6cfbffacd7de3dfc5279"
+    "url": "/e-com-prototype/_nuxt/manifest.af8cae059f61e91a66c1.js",
+    "revision": "a2089d98b2dfd9f85eb07dcc0c9ffce3"
   },
   {
-    "url": "/_nuxt/pages/index.e7b316f9a32c6f23226e.js",
+    "url": "/e-com-prototype/_nuxt/pages/index.e7b316f9a32c6f23226e.js",
     "revision": "4d7b23f3f2fcbba7d8332d6434742180"
   }
 ];
@@ -46,5 +46,5 @@ const workboxSW = new self.WorkboxSW({
   "directoryIndex": "/"
 });
 workboxSW.precache(fileManifest);
-workboxSW.router.registerRoute('/**', workboxSW.strategies.networkFirst({}), 'GET');
-workboxSW.router.registerRoute('/_nuxt/**', workboxSW.strategies.cacheFirst({}), 'GET');
+workboxSW.router.registerRoute('/e-com-prototype/**', workboxSW.strategies.networkFirst({}), 'GET');
+workboxSW.router.registerRoute('/e-com-prototype/_nuxt/**', workboxSW.strategies.cacheFirst({}), 'GET');
