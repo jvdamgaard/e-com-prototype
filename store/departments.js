@@ -555,7 +555,7 @@ export function state() {
   }, {
     titel: 'Tilbud',
     description: 'Fra alle afdelinger',
-    iconSrc: '/icons/offers.png',
+    iconSrc: 'https://jvdamgaard.github.io/e-com-prototype/icons/offers.png',
     promotion: {
       imageSrc: 'https://images.unsplash.com/photo-1459257831348-f0cdd359235f?dpr=2&auto=format&fit=crop&w=500&h=1000&q=80&cs=tinysrgb&crop=',
     },
