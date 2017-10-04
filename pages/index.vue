@@ -6,7 +6,7 @@
         <Banner :banners="[{
           id: 87248725,
           image: {
-            url: '/images/top-banner.jpg',
+            url: 'https://jvdamgaard.github.io/e-com-prototype/images/top-banner.jpg',
             width: 1800,
             height: 360,
           },
@@ -25,7 +25,7 @@
       <Grid class="has-small-top-margin">
         <div class="is-3-col-on-laptop is-2-col-on-desktop is-3-row">
           <div class="has-white-background has-vertical-padding has-small-bottom-margin">
-            <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="/icons/login.svg" />
+            <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
           </div>
           <div class="has-white-background has-vertical-padding">
             <h3 class="has-padding">Afdelinger</h3>

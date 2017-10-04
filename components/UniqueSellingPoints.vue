@@ -14,19 +14,19 @@ export default {
       items: [{
         id: 'USP-1',
         html: `
-          <p><img src="/icons/click-n-collect.svg" /></p>
+          <p><img src="https://jvdamgaard.github.io/e-com-prototype/icons/click-n-collect.svg" /></p>
           <p>Altid <strong>fri fragt</strong> til Bilka, føtex og NETTO</p>
         `,
       }, {
         id: 'USP-2',
         html: `
-          <p><img src="/icons/returns.svg" /></p>
+          <p><img src="https://jvdamgaard.github.io/e-com-prototype/icons/returns.svg" /></p>
           <p><strong>30 dages returret</strong></p>
         `,
       }, {
         id: 'USP-3',
         html: `
-          <p><img src="/icons/free-delivery.svg" /></p>
+          <p><img src="https://jvdamgaard.github.io/e-com-prototype/icons/free-delivery.svg" /></p>
           <p><strong>Fri fragt</strong> på ordre over 1000,-</p>
         `,
       }],

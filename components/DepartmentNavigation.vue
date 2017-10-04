@@ -10,7 +10,7 @@
         @mouseover="enterMain"
         @mouseleave="leaveMain">
         <div class="DepartmentNavigation__departments has-white-background has-vertical-padding is-full-height">
-          <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="/icons/login.svg" />
+          <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
           <h3 class="has-padding">Afdelinger</h3>
           <NavigationItem
             v-for="department in enhancedDepartments"

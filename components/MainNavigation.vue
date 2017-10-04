@@ -19,7 +19,7 @@
         <div class="is-group">
           <input type="text" placeholder="Søg i mere end 250.000 produkter" class="no-border">
           <Btn type="yellow" class="MainNavigation__search-button">
-            <img src="/icons/search-black.svg" height="32" width="32" />
+            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/search-black.svg" height="32" width="32" />
           </Btn>
         </div>
       </div>

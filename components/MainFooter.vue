@@ -52,28 +52,28 @@
       <div class="is-12-col is-4-col-on-tablet">
         <h3 class="has-small-bottom-margin">Betalingsmuligheder</h3>
         <p>
-          <img src="/icons/payment-methods/dankort.png" />
-          <img src="/icons/payment-methods/master-card.png" />
-          <img src="/icons/payment-methods/mobilepay.png" />
-          <img src="/icons/payment-methods/paypal.png" />
-          <img src="/icons/payment-methods/visa-electron.png" />
-          <img src="/icons/payment-methods/visa.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/dankort.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/master-card.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/mobilepay.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/paypal.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa-electron.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa.png" />
         </p>
       </div>
       <div class="is-12-col is-4-col-on-tablet">
         <h3 class="has-small-bottom-margin">Partnere</h3>
         <p>
-          <img src="/icons/partners/iposen.png" />
-          <img src="/icons/partners/wupti.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/partners/iposen.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/partners/wupti.png" />
         </p>
       </div>
       <div class="is-12-col is-4-col-on-tablet">
         <h3 class="has-small-bottom-margin">Følg os</h3>
         <p>
-          <img src="/icons/social-media/facebook.png" />
-          <img src="/icons/social-media/instagram.png" />
-          <img src="/icons/social-media/twitter.png" />
-          <img src="/icons/social-media/youtube.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/social-media/facebook.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/social-media/instagram.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/social-media/twitter.png" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/icons/social-media/youtube.png" />
         </p>
       </div>
     </Grid>
