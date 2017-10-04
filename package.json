@@ -22,7 +22,7 @@
   "dependencies": {
     "@nuxtjs/pwa": "latest",
     "cross-env": "latest",
-    "gh-pages": "^1.0.0",
+    "gh-pages": "latest",
     "lodash": "latest",
     "lru-cache": "latest",
     "nuxt": "latest",
