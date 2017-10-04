@@ -3,7 +3,7 @@
     <Grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin has-shadow">
       <div class="is-2-col is-1-col-on-desktop is-hidden-on-mobile is-visible-on-laptop" style="white-space: nowrap;">
         <nuxt-link to="/" class="MainNavigation__logo has-no-underline">
-          <img src="/images/logo.svg" width="112" height="32" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo.svg" width="112" height="32" />
         </nuxt-link>
       </div>
       <div class="is-2-col is-1-col-on-tablet">
