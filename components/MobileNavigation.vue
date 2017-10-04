@@ -7,10 +7,8 @@
         'MobileNavigation--beyond': activeDepartment,
       }"
       >
-      <Grid class="has-no-margin has-no-padding">
-        <div class="is-12-col">
-          <BackNavigationItem :back="expandDepartment" :close="closeNav" />
-        </div>
+      <BackNavigationItem :back="expandDepartment" :close="closeNav" />
+      <Grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
         <div class="is-12-col">
           <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
         </div>
@@ -33,10 +31,8 @@
           'SubMobileNavigation--active': department.titel === activeDepartment,
           'SubMobileNavigation--beyond': department.titel === activeDepartment && activeSubDepartment,
         }">
-        <Grid class="has-no-margin has-no-padding">
-          <div class="is-12-col">
-            <BackNavigationItem :back="expandDepartment" titel="Alle afdelinger" :close="closeNav" />
-          </div>
+        <BackNavigationItem :back="expandDepartment" titel="Alle afdelinger" :close="closeNav" />
+        <Grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
           <div class="is-12-col">
             <h3 class="has-padding">{{department.titel}}</h3>
             <NavigationItem :titel="`<strong>Alle i ${department.titel}</strong>`" />
@@ -69,10 +65,8 @@
         v-for="subDepartment in department.subDepartments"
         class="SubSubMobileNavigation is-hidden-on-tablet"
         :class="{ 'SubSubMobileNavigation--active': subDepartment.titel === activeSubDepartment }">
-        <Grid class="has-no-margin has-no-padding">
-          <div class="is-12-col">
-            <BackNavigationItem :back="expandSubDepartment" :titel="department.titel" :close="closeNav" />
-          </div>
+        <BackNavigationItem :back="expandSubDepartment" :titel="department.titel" :close="closeNav" />
+        <Grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
           <div class="is-12-col">
             <h3 class="has-padding">{{subDepartment.titel}}</h3>
             <NavigationItem :titel="`<strong>Alle i ${subDepartment.titel}</strong>`" />
@@ -140,10 +134,13 @@ export default {
   right: 0;
   z-index: 1000;
   background-color: var(--color-grey-lighter);
-  padding: 0 1px 3rem 1px;
+  padding: 3.5rem 1px 3rem 1px;
+  transition: transform 0.5s ease;
+}
+.MobileNavigation__scrollable {
+  height: calc(100vh - 3.5rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  transition: transform 0.5s ease;
 }
 .MobileNavigation {
   transform: translate3d(-100%, 0, 0);

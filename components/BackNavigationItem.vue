@@ -29,7 +29,14 @@
 
 .BackNavigationItem {
   height: 3.5rem;
-  margin-bottom: -1rem;
+  margin-bottom: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  background: var(--color-grey-lighter);
+  border-bottom: 1px solid var(--color-grey-light);
 }
 /*.NavigationItem:after {
   content: '›';
