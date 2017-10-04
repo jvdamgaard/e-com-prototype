@@ -55,7 +55,7 @@ module.exports = {
       }),
     },
   },
-  // modules: [
-  //   '@nuxtjs/pwa',
-  // ],
+  modules: [
+    '@nuxtjs/pwa',
+  ],
 };
