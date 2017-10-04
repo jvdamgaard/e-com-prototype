@@ -28,7 +28,7 @@
           <ProductCard v-bind="product" @click.native="addToLastSeen(product)" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
-          <Btn type="primary" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
+          <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
         </div>
       </div>
       <div v-if="position + 1 < products.length / productsInSlider" class="ProductSlider__move ProductSlider__move--next">

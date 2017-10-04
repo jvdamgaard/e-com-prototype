@@ -10,7 +10,7 @@
         <div
           class="MainNavigation__menu-icon is-aligned-center"
           :class="{ 'MainNavigation__menu-icon--active': state.departmentNavActive }"
-          @click="toggleDepartmentNav"
+          @click="openDepartmentNav"
           @mouseover="openDepartmentNav">
           <div>&#8801;</div>
         </div>
@@ -64,13 +64,6 @@
         openDepartmentNav: 'state/openDepartmentNav',
         closeDepartmentNav: 'state/closeDepartmentNav',
       }),
-      toggleDepartmentNav() {
-        if (this.state.departmentNavActive) {
-          this.closeDepartmentNav();
-        } else {
-          this.openDepartmentNav();
-        }
-      },
     },
   };
 </script>

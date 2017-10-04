@@ -46,7 +46,7 @@
       </div>
 
       <div class="ProductCard__btn-wrapper-not-in-basket">
-        <Btn type="grey" class="ProductCard__button ProductCard__button--buy-now">Køb nu</Btn>
+        <Btn type="grey" class="ProductCard__button ProductCard__button--buy-now">Læs mere</Btn>
         <Btn type="primary" class="ProductCard__button ProductCard__button--add-to-basket" @click.native="addToBasket({ id })">Læg i kurv</Btn>
       </div>
     </div>

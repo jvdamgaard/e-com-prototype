@@ -5,20 +5,20 @@ export function state() {
   return {
     layout: 'frontpage',
     modules: [{
-      id: 'productslider-1',
+      id: 'productslide-2',
       type: 'ProductSlider',
       data: {
-        header: '<span class="is-red">Spottilbud</span> de næste 7t 47min',
+        header: 'Vores mest populære varer',
         products: shuffle(products).slice(0, 36),
       },
     }, {
       id: 'uniquesellingpoints-1',
       type: 'UniqueSellingPoints',
     }, {
-      id: 'productslide-2',
+      id: 'productslider-1',
       type: 'ProductSlider',
       data: {
-        header: 'Vores mest populære varer',
+        header: '<span class="is-red">Spottilbud</span> de næste 7t 47min',
         products: shuffle(products).slice(0, 36),
       },
     }, {

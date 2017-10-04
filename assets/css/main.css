@@ -145,12 +145,15 @@ input.no-border { border: 0; }
 .has-right-margin { margin-right: 2rem!important; }
 
 .has-no-padding { padding: 0!important; }
+.has-no-top-padding { padding-top: 0!important; }
+.has-no-bottom-padding { padding-bottom: 0!important; }
 .has-tiny-top-padding { padding-top: 0.5rem!important; }
 .has-tiny-bottom-padding { padding-bottom: 0.5rem!important; }
 .has-tiny-right-padding { padding-right: 0.5rem!important; }
 .has-tiny-left-padding { padding-left: 0.5rem!important; }
 .has-padding { padding: 1rem!important; }
 .has-right-padding { padding-right: 1rem!important; }
+.has-bottom-padding { padding-bottom: 1rem!important; }
 .has-vertical-padding { padding-top: 1rem!important; padding-bottom: 1rem!important; }
 .has-horizontal-padding { padding-left: 1rem!important; padding-right: 1rem!important; }
 .has-large-top-padding { padding-top: 2rem!important; }

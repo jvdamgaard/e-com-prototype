@@ -24,8 +24,10 @@
     <div class="is-hidden-on-mobile is-visible-on-laptop">
       <Grid class="has-small-top-margin">
         <div class="is-3-col-on-laptop is-2-col-on-desktop is-3-row">
-          <div class="has-white-background has-vertical-padding is-full-height">
-            <NavigationItem titel="Velkommen" description="Log ind eller opret bruger" icon="/icons/login.svg" />
+          <div class="has-white-background has-vertical-padding has-small-bottom-margin">
+            <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="/icons/login.svg" />
+          </div>
+          <div class="has-white-background has-vertical-padding">
             <h3 class="has-padding">Afdelinger</h3>
             <NavigationItem
               v-for="department in departments"

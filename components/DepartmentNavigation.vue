@@ -10,7 +10,7 @@
         @mouseover="enterMain"
         @mouseleave="leaveMain">
         <div class="DepartmentNavigation__departments has-white-background has-vertical-padding is-full-height">
-          <NavigationItem titel="Velkommen" description="Log ind eller opret bruger" icon="/icons/login.svg" />
+          <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="/icons/login.svg" />
           <h3 class="has-padding">Afdelinger</h3>
           <NavigationItem
             v-for="department in enhancedDepartments"
@@ -169,13 +169,13 @@ export default {
 .DepartmentNavigation {
   background-color: var(--color-pop-over-background);
   min-height: calc(100vh - 3.5rem);
-  opacity: 0;
   display: none;
 }
 
-.DepartmentNavigation--active {
-  display: block;
-  opacity: 1;
+@media (min-width: 48rem) {
+  .DepartmentNavigation--active {
+    display: block;
+  }
 }
 
 .DepartmentNavigation__sub {

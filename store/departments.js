@@ -16,7 +16,6 @@ export function state() {
       { imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg' },
       { imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg' },
       { imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg' },
-      { imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Canon_wordmark.svg' },
     ],
     subDepartments: [{
       titel: 'TV, foto og lyd',

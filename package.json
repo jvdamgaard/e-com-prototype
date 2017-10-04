@@ -20,9 +20,11 @@
     "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
+    "@nuxtjs/pwa": "^0.2.1",
     "cross-env": "latest",
     "eslint-config-airbnb-base": "latest",
     "lodash": "latest",
+    "lru-cache": "^4.1.1",
     "nuxt": "latest",
     "push-dir": "latest",
     "vuex-persistedstate": "^2.0.0"

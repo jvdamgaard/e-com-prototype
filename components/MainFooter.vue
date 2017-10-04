@@ -78,10 +78,10 @@
       </div>
     </Grid>
     <Grid class="Links has-white-background is-small">
-      <div class="is-6-col">
+      <div class="is-12-col is-6-col-on-tablet">
         <p class="is-grey">Copyright Dansk Supermarked Group</p>
       </div>
-      <div class="is-6-col">
+      <div class="is-12-col is-6-col-on-tablet">
         <p class="is-aligned-right">
           <nuxt-link to="/" class="is-grey">Datapolitk</nuxt-link>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

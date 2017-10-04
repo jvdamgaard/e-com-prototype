@@ -1,3 +1,5 @@
+const lruCache = require('lru-cache');
+
 module.exports = {
   /*
   ** Headers of the page
@@ -42,4 +44,18 @@ module.exports = {
       }
     },
   },
+  renderer: {
+    http2: {
+      push: true,
+    },
+    bundleRenderer: {
+      cache: lruCache({
+        max: 1000,
+        maxAge: 1000 * 60 * 15,
+      }),
+    },
+  },
+  modules: [
+    '@nuxtjs/pwa',
+  ],
 };
