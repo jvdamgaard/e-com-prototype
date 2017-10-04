@@ -24,7 +24,6 @@
     "@nuxtjs/manifest": "latest",
     "@nuxtjs/meta": "latest",
     "@nuxtjs/workbox": "latest",
-    "@nuxtjs/cssnano": "latest",
     "cross-env": "latest",
     "gh-pages": "latest",
     "lodash": "latest",

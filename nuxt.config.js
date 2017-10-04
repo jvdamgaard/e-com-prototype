@@ -60,6 +60,5 @@ module.exports = {
     '@nuxtjs/manifest',
     '@nuxtjs/meta',
     '@nuxtjs/workbox',
-    '@nuxtjs/cssnano',
   ],
 };
