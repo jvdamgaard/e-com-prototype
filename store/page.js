@@ -34,7 +34,7 @@ export function state() {
               width: 1200,
               height: 628,
             }, {
-              url: '/images/nofu.jpg',
+              url: 'https://jvdamgaard.github.io/e-com-prototype/images/nofu.jpg',
               width: 1200,
               height: 628,
             }],

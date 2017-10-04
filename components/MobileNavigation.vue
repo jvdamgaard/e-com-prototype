@@ -12,7 +12,7 @@
           <BackNavigationItem :back="expandDepartment" :close="closeNav" />
         </div>
         <div class="is-12-col">
-          <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="/icons/login.svg" />
+          <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
         </div>
         <div class="is-12-col">
           <h3 class="has-padding">Afdelinger</h3>
