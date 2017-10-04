@@ -56,6 +56,6 @@ module.exports = {
     },
   },
   modules: [
-    '@nuxtjs/pwa',
+    ['@nuxtjs/pwa', { icon: false }],
   ],
 };
