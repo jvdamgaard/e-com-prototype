@@ -8,7 +8,7 @@
         <strong>{{titel}}</strong>
       </div>
     </div>
-    <div class="BackNavigationItem__close" @click="close">
+    <div class="BackNavigationItem__close" @click="close" @touchstart="close">
       <p class="is-full-width is-center-aligned">&#215;</p>
     </div>
   </div>

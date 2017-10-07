@@ -23,7 +23,7 @@ export default [{
   titel: 'Apple iPhone 8',
   stock: {
     level: 100,
-    status: 'Kan bestilles til 27. august 2017',
+    status: 'Forventet levering om 21 dage',
   },
   price: 6199,
   rating: 5,
@@ -427,4 +427,21 @@ export default [{
   beforePrice: 3499,
   rating: 5,
   recommendations: 0.85,
+}, {
+  id: 27,
+  images: [
+    'http://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg',
+    'http://i2.mirror.co.uk/incoming/article11159435.ece/ALTERNATES/s615b/Apple-launch-iPhone-X-Cupertino-USA-12-Sep-2017.jpg',
+    'https://cdn.vox-cdn.com/thumbor/Su22ufw0Nw7BlUtOg5F3e9G-9Hk=/0x0:1717x1044/1200x800/filters:focal(722x385:996x659)/cdn.vox-cdn.com/uploads/chorus_image/image/56671365/vdhnbCX.0.png',
+    'https://www.imore.com/sites/imore.com/files/styles/larger_wm_brw/public/field/image/2017/09/iphone-x-home-screen.jpg?itok=nqEplDHJ',
+    'http://www.iphone8biz.com/wp-content/uploads/2017/08/iPhone-8-release-date.png',
+  ],
+  titel: 'Apple iPhone X',
+  stock: {
+    level: 100,
+    status: 'Forventet levering om 3 måneder',
+  },
+  price: 9999,
+  rating: 5,
+  recommendations: 1,
 }];

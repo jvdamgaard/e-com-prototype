@@ -11,6 +11,7 @@
           class="MainNavigation__menu-icon is-aligned-center"
           :class="{ 'MainNavigation__menu-icon--active': state.departmentNavActive }"
           @click="openDepartmentNav"
+          @touchstart="openDepartmentNav"
           @mouseover="openDepartmentNav">
           <div>&#8801;</div>
         </div>
@@ -24,7 +25,12 @@
         </div>
       </div>
       <div class="is-2-col is-1-col-on-tablet is-2-col-on-laptop is-aligned-center">
-        <div class="MainNavigation__basket-icon">
+        <div
+          class="MainNavigation__basket-icon"
+          :class="{ 'MainNavigation__basket-icon--active': state.miniBasketActive }"
+          @click="openMiniBasket"
+          @touchstart="openMiniBasket"
+          @mouseover="openMiniBasket">
           <span class="MainNavigation__basket-icon__text is-hidden-on-mobile is-inline-on-laptop">Kurv ({{itemsInBasket}})</span>
           <svg width="32px" height="32px" viewBox="0 0 32 32">
             <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -37,6 +43,7 @@
       </div>
     </Grid>
     <DepartmentNavigation />
+    <MiniBasket />
   </div>
 </template>
 
@@ -45,12 +52,14 @@
   import Grid from './Grid.vue';
   import Btn from './Btn.vue';
   import DepartmentNavigation from './DepartmentNavigation.vue';
+  import MiniBasket from './MiniBasket.vue';
 
   export default {
     components: {
       Grid,
       Btn,
       DepartmentNavigation,
+      MiniBasket,
     },
     computed: {
       ...mapState(['user', 'state']),
@@ -62,8 +71,13 @@
     methods: {
       ...mapActions({
         openDepartmentNav: 'state/openDepartmentNav',
-        closeDepartmentNav: 'state/closeDepartmentNav',
+        openMiniBasketNow: 'state/openMiniBasket',
       }),
+      openMiniBasket() {
+        if (this.user.basket.items.length > 0) {
+          this.openMiniBasketNow();
+        }
+      },
     },
   };
 </script>
@@ -129,11 +143,12 @@
     transition: fill 0.25s ease;
     fill: var(--color-white);
   }
-  .MainNavigation__basket-icon:hover {
+  .MainNavigation__basket-icon--active {
     background-color: var(--color-white);
     color: var(--color-grey-dark);
+    z-index: 10;
   }
-  .MainNavigation__basket-icon:hover path {
+  .MainNavigation__basket-icon--active path {
     fill: var(--color-grey-dark);
   }
 </style>

@@ -17,10 +17,10 @@ export const mutations = {
     if (existing) {
       existing.quantity += 1;
     } else {
-      s.basket.items.push({
-        quantity: 1,
-        product,
-      });
+      s.basket.items = [
+        { quantity: 1, product },
+        ...s.basket.items,
+      ];
     }
   },
   subtractInBasket(s, product) {
@@ -32,6 +32,9 @@ export const mutations = {
       }
     }
   },
+  removeFromBasket(s, product) {
+    s.basket.items = s.basket.items.filter(item => item.product.id !== product.id);
+  },
   addToLastSeen(s, product) {
     s.lastSeen = uniqBy([
       product,
@@ -41,11 +44,24 @@ export const mutations = {
 };
 
 export const actions = {
-  addToBasket({ commit }, product) {
-    commit('addToBasket', product);
+  addToBasket(context, product) {
+    const existing = context.state.basket.items.find(item => item.product.id === product.id);
+    context.commit('addToBasket', product);
+    if (!existing) {
+      context.dispatch('state/openMiniBasket', null, { root: true });
+    }
   },
-  subtractInBasket({ commit }, product) {
-    commit('subtractInBasket', product);
+  subtractInBasket(context, product) {
+    context.commit('subtractInBasket', product);
+    if (context.state.user.basket.items.length === 0) {
+      context.dispatch('state/closeMiniBasket', null, { root: true });
+    }
+  },
+  removeFromBasket(context, product) {
+    context.commit('removeFromBasket', product);
+    if (context.state.basket.items.length === 0) {
+      context.dispatch('state/closeMiniBasket', null, { root: true });
+    }
   },
   addToLastSeen({ commit }, product) {
     commit('addToLastSeen', product);

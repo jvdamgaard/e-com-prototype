@@ -52,7 +52,7 @@
           'is-hidden-on-mobile': i>2,
           'is-visible-on-desktop': i>2,
         }">
-          <ProductCard v-bind="product" />
+          <product-card :product="product" />
         </div>
       </Grid>
     </div>

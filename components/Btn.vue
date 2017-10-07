@@ -19,7 +19,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost'].indexOf(value) !== -1;
+        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'buy'].indexOf(value) !== -1;
       },
     },
     height: {
@@ -79,6 +79,12 @@ export default {
 .no-touch .Btn--is-primary:hover {
   background-color: var(--color-primary-dark);
 }
+
+.Btn--is-buy {
+  color: var(--color-white);
+  background-color: var(--color-buy);
+}
+
 .Btn--is-grey {
   color: var(--color-white);
   background-color: var(--color-grey-dark);
@@ -86,9 +92,11 @@ export default {
 .no-touch .Btn--is-grey:hover {
   background-color: var(--color-grey-darker);
 }
+
 .Btn--is-grey-light {
   background-color: var(--color-grey-light);
 }
+
 .Btn--is-yellow {
   color: var(--color-black);
   background-color: var(--color-yellow);
@@ -96,6 +104,7 @@ export default {
 .no-touch .Btn--is-yellow:hover {
   background-color: var(--color-yellow-dark);
 }
+
 .Btn--is-ghost {
   color: var(--color-primary);
   border: 1px solid var(--color-primary);

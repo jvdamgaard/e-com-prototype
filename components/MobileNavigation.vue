@@ -12,7 +12,7 @@
         <div class="is-12-col">
           <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
         </div>
-        <div class="is-12-col">
+        <div class="is-12-col has-large-bottom-padding">
           <h3 class="has-padding">Afdelinger</h3>
           <NavigationItem
             v-for="department in departments"
@@ -67,7 +67,7 @@
         :class="{ 'SubSubMobileNavigation--active': subDepartment.titel === activeSubDepartment }">
         <BackNavigationItem :back="expandSubDepartment" :titel="department.titel" :close="closeNav" />
         <Grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
-          <div class="is-12-col">
+          <div class="is-12-col has-large-bottom-padding">
             <h3 class="has-padding">{{subDepartment.titel}}</h3>
             <NavigationItem :titel="`<strong>Alle i ${subDepartment.titel}</strong>`" />
             <NavigationItem
@@ -149,13 +149,13 @@ export default {
 .SubMobileNavigation { z-index: 2001; }
 .SubSubMobileNavigation { z-index: 2002; }
 .SubMobileNavigation, .SubSubMobileNavigation {
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
 }
 .MobileNavigation--active, .SubMobileNavigation--active, .SubSubMobileNavigation--active {
   transform: translate3d(0, 0, 0);
 }
 .MobileNavigation--beyond, .SubMobileNavigation--beyond {
-  transform: translate3d(-50%, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .MobileNavigation__departments {}
 

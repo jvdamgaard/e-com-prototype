@@ -62,7 +62,7 @@
 
 @media (min-width: 48rem) {
   .NavigationItem {
-    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    padding: 0.25rem 1rem 0.25rem 0.5rem;
     margin-left: 0.25rem;
     border-left: 0.25rem solid transparent;
     border-top: 1px solid transparent;

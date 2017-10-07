@@ -25,7 +25,7 @@
           'transform': `translate3d(-${position}00%, 0, 0)`,
         }">
         <div v-for="product in products" :key="product.id" class="ProductSlider__item">
-          <ProductCard v-bind="product" @click.native="addToLastSeen(product)" />
+          <product-card :product="product" @click.native="addToLastSeen(product)" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
           <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>

@@ -20,3 +20,7 @@ export function loadImage(src) {
     downloadingImage.src = src;
   });
 }
+
+export function numberWithDots(x) {
+  return x.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
