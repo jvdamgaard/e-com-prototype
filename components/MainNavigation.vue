@@ -1,22 +1,21 @@
 <template>
   <div>
     <Grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin has-shadow">
-      <div class="is-2-col is-1-col-on-desktop is-hidden-on-mobile is-visible-on-laptop" style="white-space: nowrap;">
-        <nuxt-link to="/" class="MainNavigation__logo has-no-underline">
-          <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo.svg" width="112" height="32" />
+      <div class="is-2-col is-3-col-on-tablet is-2-col-on-desktop" style="white-space: nowrap;">
+        <nuxt-link to="/" class="MainNavigation__logo has-no-underline is-hidden-on-mobile is-visible-on-desktop">
+          <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo.svg" width="84" height="24" />
         </nuxt-link>
-      </div>
-      <div class="is-2-col is-1-col-on-tablet">
         <div
-          class="MainNavigation__menu-icon is-aligned-center"
+          class="MainNavigation__menu-icon"
           :class="{ 'MainNavigation__menu-icon--active': state.departmentNavActive }"
           @click="openDepartmentNav"
           @touchstart="openDepartmentNav"
           @mouseover="openDepartmentNav">
-          <div>&#8801;</div>
+            <span class="is-hidden-on-tablet">&#8801;</span>
+            <span class="is-hidden-on-mobile is-visible-on-tablet">Afdelinger ▼</span>
         </div>
       </div>
-      <div class="is-8-col is-10-col-on-tablet is-7-col-on-laptop is-8-col-on-desktop">
+      <div class="is-8-col is-7-col-on-laptop is-8-col-on-desktop">
         <div class="is-group">
           <input type="text" placeholder="Søg i mere end 250.000 produkter" class="no-border">
           <Btn type="yellow" class="MainNavigation__search-button">
@@ -83,72 +82,88 @@
 </script>
 
 <style>
-  @import '../assets/css/variables.css';
+@import '../assets/css/variables.css';
 
-  .MainNavigation {
-    height: 3.5rem;
-    overflow: hidden;
-  }
+.MainNavigation {
+  height: 3.5rem;
+  overflow: hidden;
+}
 
+.MainNavigation__logo {
+  float: left;
+  display: block;
+  height: 3.5rem;
+  vertical-align: middle;
+}
+
+.MainNavigation__logo img {
+  height: 3.5rem;
+  padding: 0.75rem 0;
+}
+
+.MainNavigation__menu-icon {
+  display: block;
+  float: left;
+  font-size: 2.5rem;
+  line-height: 1;
+  height: 3rem;
+  padding: 0rem 1rem 0.5rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.MainNavigation__menu-icon--active {
+  background-color: var(--color-white);
+  color: var(--color-grey-dark);
+  z-index: 10;
+}
+@media (min-width: 48rem) {
   .MainNavigation__menu-icon {
-    font-size: 2.5rem;
-    line-height: 2.5rem;
-    margin-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-  .MainNavigation__menu-icon--active {
-    background-color: var(--color-white);
-    color: var(--color-grey-dark);
-    z-index: 10;
-  }
-
-  .MainNavigation__logo {
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-  }
-
-  .MainNavigation__logo img {
-    height: 2rem;
-    vertical-align: middle;
-  }
-
-  .MainNavigation__search-button {
-    line-height: 2.5rem!important;
-    height: 2.5rem!important;
-  }
-
-  .MainNavigation__basket-icon {
-    display: inline-block;
-    width: 100%;
-    height: 3rem;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-  .MainNavigation__basket-icon__text {
+    font-size: 1rem;
     font-weight: bold;
-    margin-right: 0.5rem;
+    padding: 0.75rem 1rem 1.25rem;
   }
-  .MainNavigation__basket-icon svg {
-    height: 2rem;
-    width: 2rem;
-    display: inline-block;
-    vertical-align: middle;
-    margin: 0.25rem 0;
+}
+@media (min-width: 96rem) {
+  .MainNavigation__menu-icon {
+    float: right;
   }
-  .MainNavigation__basket-icon path {
-    transition: fill 0.25s ease;
-    fill: var(--color-white);
-  }
-  .MainNavigation__basket-icon--active {
-    background-color: var(--color-white);
-    color: var(--color-grey-dark);
-    z-index: 10;
-  }
-  .MainNavigation__basket-icon--active path {
-    fill: var(--color-grey-dark);
-  }
+}
+
+.MainNavigation__search-button {
+  line-height: 2.5rem!important;
+  height: 2.5rem!important;
+}
+
+.MainNavigation__basket-icon {
+  display: inline-block;
+  width: 100%;
+  height: 3rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.MainNavigation__basket-icon__text {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.MainNavigation__basket-icon svg {
+  height: 2rem;
+  width: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0.25rem 0;
+}
+.MainNavigation__basket-icon path {
+  transition: fill 0.25s ease;
+  fill: var(--color-white);
+}
+.MainNavigation__basket-icon--active {
+  background-color: var(--color-white);
+  color: var(--color-grey-dark);
+  z-index: 10;
+}
+.MainNavigation__basket-icon--active path {
+  fill: var(--color-grey-dark);
+}
 </style>

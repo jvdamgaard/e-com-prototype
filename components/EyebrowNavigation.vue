@@ -1,12 +1,12 @@
 <template>
   <Grid class="EyebrowNavigation is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
-    <div class="is-3-col is-2-col-on-phablet is-hidden-on-laptop">
-      <nuxt-link to="/" class="EyebrowNavigation__logo is-h2 has-no-underline">Bilka</nuxt-link>
+    <div class="is-3-col is-2-col-on-phablet is-3-col-on-laptop is-4-col-on-desktop">
+      <nuxt-link to="/" class="EyebrowNavigation__logo is-h2 has-no-underline is-hidden-on-desktop">Bilka</nuxt-link>
+      <span class="is-hidden-on-mobile is-inline-on-laptop is-small">
+        Dit hypermarked
+      </span>
     </div>
-    <div class="is-hidden-on-mobile is-visible-on-laptop is-2-col-on-laptop is-4-col-on-desktop is-small">
-      Dit hypermarked
-    </div>
-    <div class="is-hidden-on-mobile is-visible-on-laptop is-5-col-on-laptop is-4-col-on-desktop  is-small is-aligned-center">
+    <div class="is-hidden-on-mobile is-visible-on-laptop is-4-col-on-laptop is-4-col-on-desktop  is-small is-aligned-center">
       <nuxt-link to="/legetoej/lego/" class="is-grey"><strong class="is-red">25% rabat</strong> på alt LEGO indtil lørdag</nuxt-link>
     </div>
     <div class="is-9-col is-10-col-on-phablet is-5-col-on-laptop is-4-col-on-desktop">
