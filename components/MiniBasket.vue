@@ -106,6 +106,9 @@ export default {
   min-height: calc(100vh - 3.5rem);
   display: none;
 }
+.MiniBasket--active {
+  display: block;
+}
 
 .MiniBasket__items {
   max-height: calc(100vh - 20rem);
@@ -125,8 +128,5 @@ export default {
 }
 
 @media (min-width: 48rem) {
-  .MiniBasket--active {
-    display: block;
-  }
 }
 </style>
