@@ -114,7 +114,7 @@
 }
 .MainNavigation__menu-icon--active {
   background-color: var(--color-white);
-  color: var(--color-grey-dark);
+  color: var(--color-grey-darker);
   z-index: 10;
 }
 @media (min-width: 48rem) {
@@ -160,10 +160,10 @@
 }
 .MainNavigation__basket-icon--active {
   background-color: var(--color-white);
-  color: var(--color-grey-dark);
+  color: var(--color-grey-darker);
   z-index: 10;
 }
 .MainNavigation__basket-icon--active path {
-  fill: var(--color-grey-dark);
+  fill: var(--color-grey-darker);
 }
 </style>

@@ -212,7 +212,7 @@ export default {
 
 .ProductCard__image {
   position: relative;
-  padding-bottom: 80%;
+  padding-bottom: 75%;
   width: 100%;
 }
 .ProductCard__image img {

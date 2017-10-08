@@ -55,6 +55,9 @@ module.exports = {
       }),
     },
   },
+  plugins: [
+    { src: '~plugins/persisted-state.js', ssr: false },
+  ],
   modules: [
     '@nuxtjs/icon',
     '@nuxtjs/manifest',
