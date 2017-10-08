@@ -1,18 +1,16 @@
 <template>
   <div class="MiniBasketItem has-white-background clearfix">
-    <div class="MiniBasketItem__close" @click="removeFromBasket(product)">
-      <p class="is-full-width is-center-aligned">&#215;</p>
-    </div>
     <nuxt-link to="/" class="MiniBasketItem__image">
       <img :src="product.images[0]" />
     </nuxt-link>
     <p class="MiniBasketItem__titel is-small">
-      <nuxt-link to="/" class="is-black">{{product.titel}}</nuxt-link>
+      <nuxt-link to="/" class="is-black"><strong>{{product.titel}}</strong></nuxt-link>
       <span v-if="product.stock.status" class="is-red"><br>{{product.stock.status}}</span>
       <br><span class="is-dimmed">Antal:</span> {{quantity}}
       <span v-if="quantity > 1"><br>
         <span class="is-dimmed">Pr. stk.:</span> {{numberWithDots(product.price)}} kr
       </span>
+      <br><a href="#" class="is-black" @click.prevent="removeFromBasket(product)">Fjern fra kurven</a>
     </p>
     <p class="MiniBasketItem__prices is-aligned-right">
       <span v-if="product.beforePrice" class="MiniBasketItem__before-price is-small">{{numberWithDots(quantity * product.beforePrice)}} kr</span>
@@ -51,28 +49,13 @@ export default {
   margin-bottom: 1px;
 }
 
-.MiniBasketItem__close {
-  width: 2rem;
-  text-align: center;
-  height: 2rem;
-  font-size: 2rem;
-  line-height: 2rem;
-  color: var(--color-grey-dark);
-  font-weight: 200;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  z-index: 10;
-}
-
 .MiniBasketItem__image {
-  position: relative;
-  float: left;
+  position: absolute;
   width: 7rem;
-  padding-bottom: 5.5rem;
-  margin-right: 1rem;
+  padding-bottom: 5.25rem;
   z-index: 10;
+  top: 0.5rem;
+  left: 0.5rem;
 }
 .MiniBasketItem__image img {
   position: absolute;
@@ -86,7 +69,7 @@ export default {
 }
 
 .MiniBasketItem__titel {
-  padding: 0.5rem 1.5rem 2rem 0rem;
+  padding: 0.5rem 0.5rem 2rem 8.5rem;
 }
 
 .MiniBasketItem__prices {
