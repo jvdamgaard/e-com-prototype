@@ -99,10 +99,17 @@ export default {
     return {
       activeDepartment: null,
       activeSubDepartment: null,
+      departments: [],
     };
   },
   computed: {
-    ...mapState(['departments', 'state']),
+    ...mapState(['state']),
+  },
+  created() {
+    if (!process.browser) { return; }
+    fetch('/json/departments.json').then(response => response.json()).then((departments) => {
+      this.departments = departments;
+    });
   },
   methods: {
     ...mapActions({

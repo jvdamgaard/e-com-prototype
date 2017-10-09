@@ -91,7 +91,18 @@ export default {
     MainFooter,
     ContentContainer,
   },
-  computed: mapState(['user', 'page', 'departments']),
+  data() {
+    return {
+      departments: [],
+    };
+  },
+  computed: mapState(['user', 'page']),
+  created() {
+    if (!process.browser) { return; }
+    fetch('/json/departments.json').then(response => response.json()).then((departments) => {
+      this.departments = departments;
+    });
+  },
 };
 </script>
 

@@ -1,4 +1,3 @@
-import shuffle from 'lodash/shuffle';
 import products from '../mock/products';
 
 export function state() {
@@ -9,7 +8,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Vores mest populære varer',
-        products: shuffle(products).slice(0, 36),
+        src: '/json/products.json',
       },
     }, {
       id: 'uniquesellingpoints-1',
@@ -19,7 +18,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: '<span class="is-red">Spottilbud</span> de næste 7t 47min',
-        products: shuffle(products).slice(0, 36),
+        src: '/json/products.json',
       },
     }, {
       id: 'content-1',
@@ -74,6 +73,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Bedst sælgende i NOFU serien',
+        src: '/json/products.json',
         products: products.filter(product => product.titel.toLowerCase().indexOf('nofu') !== -1),
       },
     }, {
@@ -103,14 +103,14 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Du kan måske også lide',
-        products: shuffle(products).slice(0, 36),
+        src: '/json/products.json',
       },
     }, {
       id: 'productslide-4',
       type: 'ProductSlider',
       data: {
         header: 'Anbefalinger til dig i cykler',
-        products: shuffle(products).slice(0, 36),
+        src: '/json/products.json',
       },
     }, {
       id: 'content-1',
@@ -151,7 +151,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Det trender lige nu',
-        products: shuffle(products).slice(0, 36),
+        src: '/json/products.json',
       },
     }],
   };

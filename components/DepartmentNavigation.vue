@@ -88,10 +88,11 @@ export default {
       nextDepartment: null,
       hoverMain: false,
       hoverSub: false,
+      departments: [],
     };
   },
   computed: {
-    ...mapState(['departments', 'state']),
+    ...mapState(['state']),
     enhancedDepartments() {
       return this.departments.map((department) => {
         const col1 = {
@@ -120,6 +121,12 @@ export default {
         };
       });
     },
+  },
+  created() {
+    if (!process.browser) { return; }
+    fetch('/json/departments.json').then(response => response.json()).then((departments) => {
+      this.departments = departments;
+    });
   },
   methods: {
     ...mapActions({
