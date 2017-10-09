@@ -9,7 +9,7 @@ export function state() {
       data: {
         header: 'Vores mest populære varer',
         products: products.slice(0, 6),
-        src: '/json/products.json',
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
       },
     }, {
       id: 'uniquesellingpoints-1',
@@ -20,7 +20,7 @@ export function state() {
       data: {
         header: '<span class="is-red">Spottilbud</span> de næste 7t 47min',
         products: products.slice(0, 6),
-        src: '/json/products.json',
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
       },
     }, {
       id: 'content-1',
@@ -105,7 +105,7 @@ export function state() {
       data: {
         header: 'Du kan måske også lide',
         products: products.slice(0, 6),
-        src: '/json/products.json',
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
       },
     }, {
       id: 'productslide-4',
@@ -113,7 +113,7 @@ export function state() {
       data: {
         header: 'Anbefalinger til dig i cykler',
         products: products.slice(0, 6),
-        src: '/json/products.json',
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
       },
     }, {
       id: 'content-1',
@@ -155,7 +155,7 @@ export function state() {
       data: {
         header: 'Det trender lige nu',
         products: products.slice(0, 6),
-        src: '/json/products.json',
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
       },
     }],
   };

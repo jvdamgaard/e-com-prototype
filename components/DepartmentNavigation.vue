@@ -124,7 +124,7 @@ export default {
   },
   created() {
     if (!process.browser) { return; }
-    fetch('/json/departments.json').then(response => response.json()).then((departments) => {
+    fetch('https://jvdamgaard.github.io/e-com-prototype/json/departments.json').then(response => response.json()).then((departments) => {
       this.departments = departments;
     });
   },
