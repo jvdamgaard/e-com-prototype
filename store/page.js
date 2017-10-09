@@ -8,6 +8,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Vores mest populære varer',
+        products: products.slice(0, 6),
         src: '/json/products.json',
       },
     }, {
@@ -18,6 +19,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: '<span class="is-red">Spottilbud</span> de næste 7t 47min',
+        products: products.slice(0, 6),
         src: '/json/products.json',
       },
     }, {
@@ -73,7 +75,6 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Bedst sælgende i NOFU serien',
-        src: '/json/products.json',
         products: products.filter(product => product.titel.toLowerCase().indexOf('nofu') !== -1),
       },
     }, {
@@ -103,6 +104,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Du kan måske også lide',
+        products: products.slice(0, 6),
         src: '/json/products.json',
       },
     }, {
@@ -110,6 +112,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Anbefalinger til dig i cykler',
+        products: products.slice(0, 6),
         src: '/json/products.json',
       },
     }, {
@@ -151,6 +154,7 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Det trender lige nu',
+        products: products.slice(0, 6),
         src: '/json/products.json',
       },
     }],

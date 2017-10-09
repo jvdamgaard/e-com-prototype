@@ -93,16 +93,10 @@ export default {
   },
   data() {
     return {
-      departments: [],
+      departments: require('../static/json/departments'), //eslint-disable-line
     };
   },
   computed: mapState(['user', 'page']),
-  created() {
-    if (!process.browser) { return; }
-    fetch('/json/departments.json').then(response => response.json()).then((departments) => {
-      this.departments = departments;
-    });
-  },
 };
 </script>
 

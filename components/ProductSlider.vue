@@ -43,7 +43,6 @@
 <script>
 import { mapActions } from 'vuex'; // eslint-disable-line
 import throttle from 'lodash/throttle';
-import shuffle from 'lodash/shuffle';
 import Grid from '../components/Grid.vue';
 import Arrow from './Arrow.vue';
 import Btn from './Btn.vue';
@@ -73,7 +72,7 @@ export default {
   created() {
     if (!process.browser || !this.src) { return; }
     fetch(this.src).then(response => response.json()).then((products) => {
-      this.fetchedProducts = shuffle(products).slice(0, 36);
+      this.fetchedProducts = products.slice(0, 36);
     });
   },
   methods: {
