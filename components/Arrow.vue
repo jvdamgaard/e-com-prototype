@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<<script>
+<script>
 export default {
   props: {
     direction: {
@@ -23,7 +23,7 @@ export default {
 @import '../assets/css/variables.css';
 
 .Arrow {
-  width: 0; 
+  width: 0;
   height: 0;
   border-top: 0.75rem solid transparent;
   border-bottom: 0.75rem solid transparent;
