@@ -53,9 +53,6 @@ export const actions = {
   },
   subtractInBasket(context, product) {
     context.commit('subtractInBasket', product);
-    if (context.state.user.basket.items.length === 0) {
-      context.dispatch('state/closeMiniBasket', null, { root: true });
-    }
   },
   removeFromBasket(context, product) {
     context.commit('removeFromBasket', product);
