@@ -97,7 +97,14 @@ a:hover.has-no-underline { text-decoration: none; }
   background-size: cover;
 }
 .is-round { border-radius: 50%; }
-
+img[lazy=loading] {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+img[lazy=loaded] {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
 
 /* Borders */
 .has-border-top { border-top: 1px solid var(--color-grey-light); }
