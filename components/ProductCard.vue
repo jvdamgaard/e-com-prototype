@@ -19,9 +19,8 @@
       <div class="ProductCard__arrow ProductCard__arrow--left" @click="prevImage">
         <Arrow v-if="imagePos > 0" direction="left" />
       </div>
-      <img :src="lazy ? '' :product.images[imagePos]" v-lazy="lazy ? product.images[imagePos] : ''" :class="{
-        loading,
-      }" />
+      <img v-if="lazy" v-lazy="product.images[imagePos]" :class="{ loading }" />
+      <img v-if="!lazy" :src="product.images[imagePos]" :class="{ loading }" />
     </div>
     <p class="ProductCard__reviews has-small-top-margin">
       <Star v-for="n in 5" :key="n" :rating="product.rating" :pos="n" />
