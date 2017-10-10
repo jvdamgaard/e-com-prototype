@@ -28,7 +28,7 @@ export const mutations = {
     if (existing) {
       existing.quantity -= 1;
       if (existing.quantity === 0) {
-        s.basket.items = s.basket.items.filter(item => item.product !== product.id);
+        s.basket.items = s.basket.items.filter(item => item.product.id !== product.id);
       }
     }
   },

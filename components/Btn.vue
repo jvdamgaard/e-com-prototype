@@ -19,7 +19,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'buy'].indexOf(value) !== -1;
+        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'buy', 'red', 'green'].indexOf(value) !== -1;
       },
     },
     height: {
@@ -80,9 +80,14 @@ export default {
   background-color: var(--color-primary-dark);
 }
 
-.Btn--is-buy {
+.Btn--is-buy, .Btn--is-green {
   color: var(--color-white);
   background-color: var(--color-buy);
+}
+
+.Btn--is-red {
+  color: var(--color-white);
+  background-color: var(--color-red);
 }
 
 .Btn--is-grey {

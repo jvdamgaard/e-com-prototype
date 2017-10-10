@@ -40,14 +40,14 @@
 
     <div class="ProductCard__btn-wrapper">
       <div class="ProductCard__btn-wrapper-in-basket">
-        <Btn type="primary" class="ProductCard__button ProductCard__button--remove-one" @click.native="subtractInBasket(product)">-</Btn>
+        <Btn :type="(quantityInBasket === 1) ? 'red' : 'primary'" class="ProductCard__button ProductCard__button--remove-one" @click.native="subtractInBasket(product)">-</Btn>
         <Btn type="grey" class="ProductCard__button ProductCard__button--quantity">{{quantityInBasket}}</Btn>
         <Btn type="primary" class="ProductCard__button ProductCard__button--add-one" @click.native="addToBasket(product)">+</Btn>
       </div>
 
       <div class="ProductCard__btn-wrapper-not-in-basket">
         <Btn type="grey" class="ProductCard__button ProductCard__button--buy-now">Læs mere</Btn>
-        <Btn type="primary" class="ProductCard__button ProductCard__button--add-to-basket" @click.native="addToBasket(product)">Læg i kurv</Btn>
+        <Btn type="buy" class="ProductCard__button ProductCard__button--add-to-basket" @click.native="addToBasket(product)">Læg i kurv</Btn>
       </div>
     </div>
 
