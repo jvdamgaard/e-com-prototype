@@ -3,7 +3,7 @@
     <div :class="marginClasses" />
     <div v-for="(image, i) in images" :key="image.url" :class="imageClasses(i)">
       <img
-        :src="image.url"
+        v-lazy="image.url"
         :width="image.width"
         :height="image.height"
         class="is-full-width" />

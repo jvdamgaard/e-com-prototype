@@ -2,8 +2,8 @@
   <Grid>
     <div v-for="banner in banners" :key="banner.id" class="is-12-col" :class="`is-${12 / banners.length}-col-on-tablet`">
       <nuxt-link to="/" class="Banner" >
-        <img 
-          :src="banner.image.url"
+        <img
+          v-lazy="banner.image.url"
           :width="banner.image.width"
           :height="banner.image.height"
           class="is-full-width" />

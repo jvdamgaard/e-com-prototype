@@ -57,6 +57,7 @@ module.exports = {
   },
   plugins: [
     { src: '~plugins/persisted-state.js', ssr: false },
+    { src: '~plugins/lazy-load.js' },
   ],
   modules: [
     '@nuxtjs/icon',

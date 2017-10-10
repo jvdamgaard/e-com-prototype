@@ -19,7 +19,7 @@
       <div class="ProductCard__arrow ProductCard__arrow--left" @click="prevImage">
         <Arrow v-if="imagePos > 0" direction="left" />
       </div>
-      <img :src="product.images[imagePos]" :class="{
+      <img v-lazy="product.images[imagePos]" :class="{
         loading,
       }" />
     </div>
