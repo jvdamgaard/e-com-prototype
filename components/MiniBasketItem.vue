@@ -1,5 +1,7 @@
 <template>
-  <div class="MiniBasketItem has-white-background clearfix">
+  <div class="MiniBasketItem clearfix" :class="{
+    'MiniBasketItem--added': added,
+  }">
     <nuxt-link to="/" class="MiniBasketItem__image">
       <img :src="product.images[0]" />
     </nuxt-link>
@@ -30,6 +32,11 @@ export default {
     quantity: Number,
     product: Object,
   },
+  data() {
+    return {
+      added: false,
+    };
+  },
   methods: {
     ...mapActions({
       removeFromBasket: 'user/removeFromBasket',
@@ -37,6 +44,9 @@ export default {
     numberWithDots(x) {
       return x.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
     },
+  },
+  mounted() {
+    window.setTimeout(() => { this.added = true; }, 500);
   },
 };
 </script>
@@ -47,6 +57,13 @@ export default {
 .MiniBasketItem {
   padding: 0.5rem;
   margin-bottom: 1px;
+  background-color: var(--color-white);
+  transition: opacity 1s ease;
+  opacity: 0;
+}
+
+.MiniBasketItem--added {
+  opacity: 1;
 }
 
 .MiniBasketItem__image {
