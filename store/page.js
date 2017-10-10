@@ -1,6 +1,3 @@
-import shuffle from 'lodash/shuffle';
-import products from '../mock/products';
-
 export function state() {
   return {
     layout: 'frontpage',
@@ -9,8 +6,8 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Vores mest populære varer',
-        products: shuffle(products),
-        // src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
+        products: require('../static/json/most-popular.json').slice(0, 6), // eslint-disable-line
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json',
       },
     }, {
       id: 'uniquesellingpoints-1',
@@ -20,8 +17,8 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: '<span class="is-red">Spottilbud</span> de næste 7t 47min',
-        products: shuffle(products),
-        // src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
+        products: require('../static/json/offers.json').slice(0, 6), // eslint-disable-line
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/offers.json',
       },
     }, {
       id: 'content-1',
@@ -76,7 +73,8 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Bedst sælgende i NOFU serien',
-        products: products.filter(product => product.titel.toLowerCase().indexOf('nofu') !== -1),
+        products: require('../static/json/nofu.json').slice(0, 6), // eslint-disable-line
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/nofu.json',
       },
     }, {
       id: 'banner-1',
@@ -105,16 +103,16 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Du kan måske også lide',
-        products: shuffle(products),
-        // src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
+        products: require('../static/json/recommendations.json').slice(0, 6), // eslint-disable-line
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/recommendations.json',
       },
     }, {
       id: 'productslide-4',
       type: 'ProductSlider',
       data: {
         header: 'Anbefalinger til dig i cykler',
-        products: shuffle(products),
-        // src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
+        products: require('../static/json/recommended-bicycles.json').slice(0, 6), // eslint-disable-line
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/recommended-bicycles.json',
       },
     }, {
       id: 'content-1',
@@ -155,8 +153,8 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Det trender lige nu',
-        products: shuffle(products),
-        // src: 'https://jvdamgaard.github.io/e-com-prototype/json/products.json',
+        products: require('../static/json/trending.json').slice(0, 6), // eslint-disable-line
+        src: 'https://jvdamgaard.github.io/e-com-prototype/json/trending.json',
       },
     }],
   };
