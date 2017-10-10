@@ -19,7 +19,7 @@
       <div class="ProductCard__arrow ProductCard__arrow--left" @click="prevImage">
         <Arrow v-if="imagePos > 0" direction="left" />
       </div>
-      <img v-lazy="product.images[imagePos]" :class="{
+      <img :src="lazy ? '' :product.images[imagePos]" v-lazy="product.images[imagePos]" :class="{
         loading,
       }" />
     </div>
@@ -69,6 +69,10 @@ export default {
   },
   props: {
     product: Object,
+    lazy: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {

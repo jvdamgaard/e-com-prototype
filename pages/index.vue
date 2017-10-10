@@ -15,6 +15,7 @@
       <section>
         <ProductSlider
           :products="user.lastSeen.slice(0,24)"
+          :lazy="false"
           header="Fortsæt hvor du slap"
         />
       </section>
@@ -52,7 +53,7 @@
           'is-hidden-on-mobile': i>2,
           'is-visible-on-desktop': i>2,
         }">
-          <product-card :product="product" />
+          <product-card :product="product" :lazy="false" />
         </div>
       </Grid>
     </div>

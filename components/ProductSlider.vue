@@ -1,5 +1,5 @@
 <template>
-  <div class="ProductSliderWrapper" @mouseover="setProductsInSlider">
+  <div class="ProductSliderWrapper" @mouseover="setProductsInSlider" @mousewheel="scrolled">
     <Grid class="has-tiny-bottom-margin">
       <div class="is-12-col is-8-col-on-tablet">
         <h2 v-html="header" />
@@ -15,7 +15,7 @@
         <nuxt-link to="/" class="is-grey is-small">vis alle</nuxt-link>
       </div>
     </Grid>
-    <div class="ProductSlider" @mousewheel="scrolled">
+    <div class="ProductSlider">
       <div class="ProductSlider__move ProductSlider__move--prev">
         <div v-if="position != 0" class="ProductSlider__move-inner" @click="prev">
           <Arrow  direction="left" class="ProductSlider__arrow" />
@@ -25,7 +25,7 @@
           'transform': `translate3d(-${position}00%, 0, 0)`,
         }">
         <div v-for="product in fetchedProducts" :key="product.id" class="ProductSlider__item">
-          <product-card :product="product" @click.native="addToLastSeen(product)" />
+          <product-card :product="product" :lazy="lazy" @click.native="addToLastSeen(product)" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
           <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
@@ -60,6 +60,10 @@ export default {
     header: String,
     src: String,
     products: Array,
+    lazy: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
