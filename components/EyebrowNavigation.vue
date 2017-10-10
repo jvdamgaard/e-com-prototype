@@ -1,7 +1,7 @@
 <template>
   <Grid class="EyebrowNavigation is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
     <div class="is-3-col is-2-col-on-phablet is-3-col-on-laptop is-4-col-on-desktop">
-      <nuxt-link to="/" class="EyebrowNavigation__logo is-h2 has-no-underline is-hidden-on-desktop">Bilka</nuxt-link>
+      <nuxt-link to="/" class="EyebrowNavigation__logo is-h2 has-no-underline is-hidden-on-tablet">Bilka</nuxt-link>
       <span class="is-hidden-on-mobile is-inline-on-laptop is-small">
         Dit hypermarked
       </span>

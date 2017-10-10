@@ -189,12 +189,12 @@ input.no-border { border: 0; }
   position: relative;
   display: flex;
   width: 100%;
+  vertical-align: middle;
+  align-items: center;
 }
 .is-group > * {
   position: relative;
   display: flex;
-  vertical-align: middle;
-  align-items: center;
 }
 .clearfix:after {
   content: " ";
