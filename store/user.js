@@ -1,9 +1,10 @@
 /* eslint no-param-reassign: 0 */
 import uniqBy from 'lodash/uniqBy';
+import products from '../mock/products';
 
 export function state() {
   return {
-    lastSeen: [],
+    lastSeen: products,
     basket: {
       items: [],
     },
