@@ -26,6 +26,7 @@
             @touchstart="openMiniBasket"
             @mouseover="openMiniBasket">
             <span class="MainNavigation__basket-icon__text is-hidden-on-mobile is-inline-on-laptop">Kurv ({{itemsInBasket}})</span>
+            <span class="MainNavigation__basket-icon__text is-hidden-on-laptop">{{itemsInBasket}}</span>
             <svg width="32px" height="32px" viewBox="0 0 32 32">
               <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <g id="elements/icon/basket/black" fill-rule="nonzero" fill="#333333">
