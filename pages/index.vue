@@ -19,7 +19,8 @@ export default {
       .then(modules => ({ modules }));
   },
   mounted() {
-    window.scrollTo(0, 0);
+    const initPos = (window.pageYOffset > 33) ? 33 : 0;
+    window.scrollTo(0, initPos);
   },
 };
 </script>
