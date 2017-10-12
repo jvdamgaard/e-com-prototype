@@ -1,7 +1,5 @@
 <template>
-  <div class="Arrow" :class="`Arrow--${direction}`">
-    <slot />
-  </div>
+  <div class="Arrow" :class="`Arrow--${direction}`" />
 </template>
 
 <script>

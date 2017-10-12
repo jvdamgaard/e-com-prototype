@@ -1,8 +1,8 @@
 <template>
   <footer class="MainFooter">
-    <UniqueSellingPoints />
-    <FooterHighlightedContent />
-    <Grid row-gap="large" class="Links has-white-background">
+    <unique-selling-points />
+    <footer-highlighted-content />
+    <grid row-gap="large" class="Links has-white-background">
       <div class="is-12-col is-6-col-on-phablet is-3-col-on-tablet is-2-col-on-laptop">
         <h3 class="has-small-bottom-margin">Bilka</h3>
         <p><nuxt-link to="/" class="is-grey">Om os</nuxt-link></p>
@@ -47,8 +47,8 @@
           Hver måned trækkes en vinder af tre måneders forbrug af Nivea produkter til dame eller herre blandt alle modtagere af nyhedsmailen.
         </p>
       </div>
-    </Grid>
-    <Grid row-gap="large" class="Links has-white-background">
+    </grid>
+    <grid row-gap="large" class="Links has-white-background">
       <div class="is-12-col is-4-col-on-tablet">
         <h3 class="has-small-bottom-margin">Betalingsmuligheder</h3>
         <p>
@@ -76,8 +76,8 @@
           <img v-lazy="'https://jvdamgaard.github.io/e-com-prototype/icons/social-media/youtube.png'" />
         </p>
       </div>
-    </Grid>
-    <Grid class="Links has-white-background is-small">
+    </grid>
+    <grid class="Links has-white-background is-small">
       <div class="is-12-col is-6-col-on-tablet">
         <p class="is-grey">Copyright Dansk Supermarked Group</p>
       </div>
@@ -88,7 +88,7 @@
           <nuxt-link to="/" class="is-grey">Handelsbetingelser</nuxt-link>
         </p>
       </div>
-    </Grid>
+    </grid>
   </footer>
 </template>
 

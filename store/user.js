@@ -1,10 +1,9 @@
 /* eslint no-param-reassign: 0 */
 import uniqBy from 'lodash/uniqBy';
-import lastSeen from '../static/json/last-seen.json';
 
 export function state() {
   return {
-    lastSeen: lastSeen.slice(0, 5),
+    lastSeen: [],
     basket: {
       items: [],
     },

@@ -1,8 +1,8 @@
 <template>
   <div class="ContentContainer has-white-background">
     <template v-for="module in modules">
-      <Images v-if="module.type === 'Images'" v-bind="module.data" />
-      <BodyText v-if="module.type === 'BodyText'" v-bind="module.data" />
+      <images v-if="module.type === 'Images'" v-bind="module.data" />
+      <body-text v-if="module.type === 'BodyText'" v-bind="module.data" />
     </template>
   </div>
 </template>

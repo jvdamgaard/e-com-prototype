@@ -3,16 +3,17 @@
     class="DepartmentNavigation"
     :class="{ 'DepartmentNavigation--active': this.state.departmentNavActive }"
     @click.self="closeNav"
-    >
-    <Grid class="has-no-top-margin has-no-bottom-margin" @click.native.self="closeNav">
+  >
+    <grid class="has-no-top-margin has-no-bottom-margin" @click.native.self="closeNav">
       <div
         class="is-11-col is-4-col-on-tablet is-3-col-on-laptop is-2-col-on-desktop has-shadow"
         @mouseover="enterMain"
-        @mouseleave="leaveMain">
+        @mouseleave="leaveMain"
+      >
         <div class="DepartmentNavigation__departments has-white-background has-vertical-padding is-full-height">
-          <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
+          <navigation-item titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
           <h3 class="has-padding">Afdelinger</h3>
-          <NavigationItem
+          <navigation-item
             v-for="department in enhancedDepartments"
             :titel="department.titel"
             :description="department.description"
@@ -20,7 +21,8 @@
             :active="department.titel === activeDepartment"
             :key="department.titel"
             @click.native="expandDepartment(department.titel)"
-            @mouseover.native="setNextDepartment(department.titel, $event)" />
+            @mouseover.native="setNextDepartment(department.titel, $event)"
+          />
         </div>
       </div>
       <div
@@ -28,8 +30,9 @@
         v-show="department.titel === activeDepartment"
         class="is-8-col is-9-col-on-laptop is-6-col-on-desktop has-shadow"
         @mouseover="setNextDepartment(department.titel); enterSub();"
-        @mouseleave="leaveSub();">
-        <Grid inner class="DepartmentNavigation__sub has-light-grey-background is-full-height">
+        @mouseleave="leaveSub();"
+      >
+        <grid inner class="DepartmentNavigation__sub has-light-grey-background is-full-height">
           <div class="is-6-col is-4-col-on-laptop has-large-top-padding">
             <template v-for="subDepartment in department.col1.subDepartments">
               <h3><nuxt-link to="/" class="is-black">{{ subDepartment.titel }}</nuxt-link></h3>
@@ -51,8 +54,9 @@
               to="/"
               class="is-bg-image is-full-width is-full-height is-block is-white has-padding has-no-underline"
               :style="`background-image: url('${department.promotion.imageSrc}')`"
-              :key="department.titel">
-              <Btn v-if="department.promotion.btnLabel" type="yellow" shadow class="DepartmentNavigation__promo-btn">{{department.promotion.btnLabel}}</Btn>
+              :key="department.titel"
+            >
+              <btn v-if="department.promotion.btnLabel" type="yellow" shadow class="DepartmentNavigation__promo-btn">{{department.promotion.btnLabel}}</btn>
             </nuxt-link>
           </div>
           <div class="is-12-col is-8-col-on-laptop has-large-bottom-padding">
@@ -63,9 +67,9 @@
               </nuxt-link>
             </p>
           </div>
-        </Grid>
+        </grid>
       </div>
-    </Grid>
+    </grid>
   </div>
 </template>
 

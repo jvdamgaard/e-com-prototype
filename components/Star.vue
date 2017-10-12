@@ -1,5 +1,8 @@
 <template>
-  <img v-lazy="`https://jvdamgaard.github.io/e-com-prototype/icons/star-${color}.svg`" class="Star" />
+  <img
+    :src="`https://jvdamgaard.github.io/e-com-prototype/icons/star-${color}.svg`"
+    class="Star"
+  />
 </template>
 
 <script>

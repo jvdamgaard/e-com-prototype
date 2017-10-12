@@ -1,6 +1,6 @@
 <template>
   <div class="ProductSliderWrapper" @mouseover="setProductsInSlider" @mousewheel="scrolled">
-    <Grid class="has-tiny-bottom-margin">
+    <grid class="has-tiny-bottom-margin">
       <div class="is-12-col is-8-col-on-tablet">
         <h2 v-html="header" />
       </div>
@@ -14,7 +14,7 @@
         </div>
         <nuxt-link to="/" class="is-grey is-small">vis alle</nuxt-link>
       </div>
-    </Grid>
+    </grid>
     <div class="ProductSlider">
       <div class="ProductSlider__move ProductSlider__move--prev">
         <div v-if="position != 0" class="ProductSlider__move-inner" @click="prev">
@@ -24,8 +24,8 @@
       <div class="ProductSlider__inner" :style="{
           'transform': `translate3d(-${position}00%, 0, 0)`,
         }">
-        <div v-for="product in fetchedProducts" :key="product.id" class="ProductSlider__item">
-          <product-card :product="product" :lazy="lazy" @click.native="addToLastSeen(product)" />
+        <div v-for="(product, i) in fetchedProducts" :key="product.id" class="ProductSlider__item">
+          <product-card :product="product" :lazy="lazy || i > 5" @click.native="addToLastSeen(product)" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
           <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
@@ -42,6 +42,7 @@
 
 <script>
 import { mapActions } from 'vuex'; // eslint-disable-line
+import axios from 'axios';
 import throttle from 'lodash/throttle';
 import Grid from '../components/Grid.vue';
 import Arrow from './Arrow.vue';
@@ -74,9 +75,9 @@ export default {
     };
   },
   created() {
-    if (!process.browser || !this.src) { return; }
-    fetch(this.src).then(response => response.json()).then((products) => {
-      this.fetchedProducts = products.slice(0, 36);
+    if (!this.src || !process.browser) { return; }
+    axios.get(this.src).then(({ data }) => {
+      this.fetchedProducts = data.slice(0, 36);
     });
   },
   methods: {

@@ -6,7 +6,6 @@
     <div class="NavigationItem__text">
       <div class="NavigationItem__text__inner is-full-width is-small">
         <span v-html="titel" />
-        <!--<span class="is-dimmed">{{description}}</span>-->
       </div>
     </div>
   </div>

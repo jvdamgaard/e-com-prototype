@@ -5,25 +5,49 @@
     :class="{
       'ProductCard--out-of-stock': product.stock.level === 0,
       'ProductCard--in-basket': quantityInBasket > 0,
-    }">
-
-    <div v-if="quantityInBasket > 0" class="ProductCard__sticker ProductCard__sticker--blue is-small">{{quantityInBasket}} lagt i kurven</div>
-    <div v-else-if="product.stock.level === 0" class="ProductCard__sticker ProductCard__sticker--red is-small">{{product.stock.status}}</div>
-    <div v-else-if="product.label" class="ProductCard__sticker is-small" :class="`ProductCard__sticker--${product.label.color}`">{{product.label.text}}</div>
-    <div v-else-if="product.beforePrice" class="ProductCard__sticker is-small">Spar {{numberWithDots(product.beforePrice - product.price)}},-</div>
+    }"
+  >
+    <div
+      v-if="quantityInBasket > 0"
+      class="ProductCard__sticker ProductCard__sticker--blue is-small"
+    >
+      {{quantityInBasket}} lagt i kurven
+    </div>
+    <div
+      v-else-if="product.stock.level === 0"
+      class="ProductCard__sticker ProductCard__sticker--red is-small"
+    >
+      {{product.stock.status}}
+    </div>
+    <div
+      v-else-if="product.label"
+      class="ProductCard__sticker is-small"
+      :class="`ProductCard__sticker--${product.label.color}`"
+    >
+      {{product.label.text}}
+    </div>
+    <div
+      v-else-if="product.beforePrice"
+      class="ProductCard__sticker is-small"
+    >
+      Spar {{numberWithDots(product.beforePrice - product.price)}},-
+    </div>
 
     <div class="ProductCard__image">
       <div class="ProductCard__arrow ProductCard__arrow--right" @click="nextImage">
-        <Arrow v-if="product.images.length > 1 && imagePos < product.images.length - 1" direction="right" />
+        <arrow
+          v-if="product.images.length > 1 && imagePos < product.images.length - 1"
+          direction="right"
+        />
       </div>
       <div class="ProductCard__arrow ProductCard__arrow--left" @click="prevImage">
-        <Arrow v-if="imagePos > 0" direction="left" />
+        <arrow v-if="imagePos > 0" direction="left" />
       </div>
       <img v-if="lazy" v-lazy="product.images[imagePos]" :class="{ loading }" />
       <img v-if="!lazy" :src="product.images[imagePos]" :class="{ loading }" />
     </div>
     <p class="ProductCard__reviews has-small-top-margin">
-      <Star v-for="n in 5" :key="n" :rating="product.rating" :pos="n" />
+      <star v-for="n in 5" :key="n" :rating="product.rating" :pos="n" />
       <small class="is-dimmed" style="float: right">{{recommendationPercentage}}% <span class="is-hidden-on-mobile is-inline-on-phablet">anbefaler</span></small>
     </p>
     <p class="ProductCard__titel is-small is-body-size-on-desktop">
@@ -39,14 +63,14 @@
 
     <div class="ProductCard__btn-wrapper">
       <div class="ProductCard__btn-wrapper-in-basket">
-        <Btn :type="(quantityInBasket === 1) ? 'red' : 'primary'" class="ProductCard__button ProductCard__button--remove-one" @click.native="subtractInBasket(product)">-</Btn>
-        <Btn type="grey" class="ProductCard__button ProductCard__button--quantity">{{quantityInBasket}}</Btn>
-        <Btn type="primary" class="ProductCard__button ProductCard__button--add-one" @click.native="addToBasket(product)">+</Btn>
+        <btn :type="(quantityInBasket === 1) ? 'red' : 'primary'" class="ProductCard__button ProductCard__button--remove-one" @click.native="subtractInBasket(product)">-</btn>
+        <btn type="grey" class="ProductCard__button ProductCard__button--quantity">{{quantityInBasket}}</btn>
+        <btn type="primary" class="ProductCard__button ProductCard__button--add-one" @click.native="addToBasket(product)">+</btn>
       </div>
 
       <div class="ProductCard__btn-wrapper-not-in-basket">
-        <Btn type="grey" class="ProductCard__button ProductCard__button--buy-now">Læs mere</Btn>
-        <Btn type="buy" class="ProductCard__button ProductCard__button--add-to-basket" @click.native="addToBasket(product)">Læg i kurv</Btn>
+        <btn type="grey" class="ProductCard__button ProductCard__button--buy-now">Læs mere</btn>
+        <btn type="buy" class="ProductCard__button ProductCard__button--add-to-basket" @click.native="addToBasket(product)">Læg i kurv</btn>
       </div>
     </div>
 

@@ -1,15 +1,16 @@
 <template>
-  <Grid class="Images has-white-background">
+  <grid class="Images has-white-background">
     <div :class="marginClasses" />
     <div v-for="(image, i) in images" :key="image.url" :class="imageClasses(i)">
       <img
         v-lazy="image.url"
         :width="image.width"
         :height="image.height"
-        class="is-full-width" />
+        class="is-full-width"
+      />
     </div>
     <div :class="marginClasses" />
-  </Grid>
+  </grid>
 </template>
 
 <script>
