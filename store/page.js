@@ -1,12 +1,15 @@
 export function state() {
   return {
-    layout: 'frontpage',
+    layout: 'default',
     modules: [{
+      id: 'frontpage-top-modul',
+      type: 'FrontpageTop',
+      data: {},
+    }, {
       id: 'productslide-2',
       type: 'ProductSlider',
       data: {
         header: 'Vores mest populære varer',
-        products: require('../static/json/most-popular.json').slice(0, 6), // eslint-disable-line
         src: 'https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json',
       },
     }, {
@@ -17,7 +20,6 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: '<span class="is-red">Spottilbud</span> de næste 7t 47min',
-        products: require('../static/json/offers.json').slice(0, 6), // eslint-disable-line
         src: 'https://jvdamgaard.github.io/e-com-prototype/json/offers.json',
       },
     }, {
@@ -73,7 +75,6 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Bedst sælgende i NOFU serien',
-        products: require('../static/json/nofu.json').slice(0, 6), // eslint-disable-line
         src: 'https://jvdamgaard.github.io/e-com-prototype/json/nofu.json',
       },
     }, {
@@ -103,7 +104,6 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Du kan måske også lide',
-        products: require('../static/json/recommendations.json').slice(0, 6), // eslint-disable-line
         src: 'https://jvdamgaard.github.io/e-com-prototype/json/recommendations.json',
       },
     }, {
@@ -111,7 +111,6 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Anbefalinger til dig i cykler',
-        products: require('../static/json/recommended-bicycles.json').slice(0, 6), // eslint-disable-line
         src: 'https://jvdamgaard.github.io/e-com-prototype/json/recommended-bicycles.json',
       },
     }, {
@@ -153,7 +152,6 @@ export function state() {
       type: 'ProductSlider',
       data: {
         header: 'Det trender lige nu',
-        products: require('../static/json/trending.json').slice(0, 6), // eslint-disable-line
         src: 'https://jvdamgaard.github.io/e-com-prototype/json/trending.json',
       },
     }],
