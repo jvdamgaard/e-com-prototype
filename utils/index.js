@@ -1,4 +1,4 @@
-export function noop() {}
+import axios from 'axios';
 
 export function getDataFromCss(attribute, fallback = null) {
   try {
@@ -23,4 +23,19 @@ export function loadImage(src) {
 
 export function numberWithDots(x) {
   return x.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+export function resolveModulesData(res) {
+  return Promise.all(res.data.modules.map((module) => {
+    if (module.type === 'ProductSlider' && module.data.src) {
+      return axios.get(module.data.src).then(sliderRes => ({
+        ...module,
+        data: {
+          ...module.data,
+          products: sliderRes.data.slice(0, 6),
+        },
+      }));
+    }
+    return module;
+  }));
 }

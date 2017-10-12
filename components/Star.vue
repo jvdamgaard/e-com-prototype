@@ -1,6 +1,6 @@
 <template>
   <img
-    v-lazy="`https://jvdamgaard.github.io/e-com-prototype/icons/star-${color}.svg`"
+    :src="`https://jvdamgaard.github.io/e-com-prototype/icons/star-${color}.svg`"
     class="Star"
   />
 </template>

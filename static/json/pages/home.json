@@ -11,7 +11,8 @@
       "type": "ProductSlider",
       "data": {
         "header": "Vores mest populære varer",
-        "src": "https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json"
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json",
+        "lazy": false
       }
     },
     {

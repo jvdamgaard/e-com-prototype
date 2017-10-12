@@ -24,8 +24,8 @@
       <div class="ProductSlider__inner" :style="{
           'transform': `translate3d(-${position}00%, 0, 0)`,
         }">
-        <div v-for="product in fetchedProducts" :key="product.id" class="ProductSlider__item">
-          <product-card :product="product" :lazy="lazy" @click.native="addToLastSeen(product)" />
+        <div v-for="(product, i) in fetchedProducts" :key="product.id" class="ProductSlider__item">
+          <product-card :product="product" :lazy="lazy || i > 5" @click.native="addToLastSeen(product)" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
           <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
@@ -75,9 +75,9 @@ export default {
     };
   },
   created() {
-    if (!this.src) { return; }
+    if (!this.src || !process.browser) { return; }
     axios.get(this.src).then(({ data }) => {
-      this.fetchedProducts = data.slice(0, process.browser ? 36 : 6);
+      this.fetchedProducts = data.slice(0, 36);
     });
   },
   methods: {
