@@ -6,17 +6,19 @@
       <unique-selling-points v-if="module.type === 'UniqueSellingPoints'" />
       <content-container v-if="module.type === 'ContentContainer'" v-bind="module.data" />
       <frontpage-top v-if="module.type === 'FrontpageTop'" v-bind="module.data" />
+      <product-detail-page-summary v-if="module.type === 'ProductDetailPageSummary'" v-bind="module.data" />
     </section>
   </div>
 </template>
 
 <script>
-import ProductSlider from '../components/ProductSlider.vue';
-import Banner from '../components/Banner.vue';
-import UniqueSellingPoints from '../components/UniqueSellingPoints.vue';
-import MainFooter from '../components/MainFooter.vue';
-import ContentContainer from '../components/ContentContainer.vue';
-import FrontpageTop from '../components/FrontpageTop.vue';
+import ProductSlider from './ProductSlider.vue';
+import Banner from './Banner.vue';
+import UniqueSellingPoints from './UniqueSellingPoints.vue';
+import MainFooter from './MainFooter.vue';
+import ContentContainer from './ContentContainer.vue';
+import FrontpageTop from './FrontpageTop.vue';
+import ProductDetailPageSummary from './ProductDetailPageSummary.vue';
 
 export default {
   components: {
@@ -26,6 +28,7 @@ export default {
     MainFooter,
     ContentContainer,
     FrontpageTop,
+    ProductDetailPageSummary,
   },
   props: {
     modules: Array,

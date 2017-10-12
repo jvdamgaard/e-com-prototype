@@ -24,14 +24,14 @@
       <div class="ProductSlider__inner" :style="{
           'transform': `translate3d(-${position}00%, 0, 0)`,
         }">
-        <div v-for="(product, i) in fetchedProducts" :key="product.id" class="ProductSlider__item">
-          <product-card :product="product" :lazy="lazy || i > 5" @click.native="addToLastSeen(product)" />
+        <div v-for="(product, i) in shownProducts" :key="product.id" class="ProductSlider__item">
+          <product-card v-if="i < 36" :product="product" :lazy="lazy || i > 5" @click.native="addToLastSeen(product)" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
           <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
         </div>
       </div>
-      <div v-if="position + 1 < fetchedProducts.length / productsInSlider" class="ProductSlider__move ProductSlider__move--next">
+      <div v-if="position + 1 < shownProducts.length / productsInSlider" class="ProductSlider__move ProductSlider__move--next">
         <div class="ProductSlider__move-inner" @click="next">
           <Arrow  direction="right" class="ProductSlider__arrow" />
         </div>
@@ -60,7 +60,10 @@ export default {
   props: {
     header: String,
     src: String,
-    products: Array,
+    products: {
+      type: Array,
+      default: [],
+    },
     lazy: {
       type: Boolean,
       default: true,
@@ -71,8 +74,16 @@ export default {
       position: 0,
       productsInSlider: 0,
       slides: 1,
-      fetchedProducts: this.products || [],
+      fetchedProducts: null,
     };
+  },
+  computed: {
+    shownProducts() {
+      if (this.fetchedProducts) {
+        return this.fetchedProducts;
+      }
+      return this.products;
+    },
   },
   created() {
     if (!this.src || !process.browser) { return; }
@@ -96,7 +107,7 @@ export default {
     },
     setProductsInSlider() {
       this.productsInSlider = getDataFromCss('visibleProductsInSlider', 0);
-      this.slides = Math.ceil(this.fetchedProducts.length / this.productsInSlider);
+      this.slides = Math.ceil(this.shownProducts.length / this.productsInSlider);
     },
     slide: throttle((delta, next, prev) => {
       if (delta < 0) {

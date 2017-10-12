@@ -128,10 +128,6 @@
   .MainNavigation__menu-icon {
     float: right;
   }
-  .MainNavigation__logo img {
-    height: 3.5rem;
-    padding: 0.75rem 0;
-  }
 }
 
 .MainNavigation__search-button {

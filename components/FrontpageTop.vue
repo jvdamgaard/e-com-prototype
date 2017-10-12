@@ -3,7 +3,7 @@
     <!-- Mobile-tablet top -->
     <div class="is-hidden-on-laptop">
       <section>
-        <Banner :banners="[{
+        <banner :banners="[{
             id: 87248725,
             image: {
               url: 'https://jvdamgaard.github.io/e-com-prototype/images/top-banner.jpg',
@@ -14,8 +14,8 @@
         />
       </section>
       <section>
-        <ProductSlider
-          :products="user.lastSeen.slice(0,24)"
+        <product-slider
+          :products="user.lastSeen"
           :lazy="false"
           header="Fortsæt hvor du slap"
         />
@@ -71,7 +71,7 @@
         >
           <product-card :product="product" :lazy="false" />
         </div>
-      </Grid>
+      </grid>
     </div>
   </div>
 </template>

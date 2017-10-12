@@ -1,0 +1,66 @@
+{
+  "layout": "default",
+  "modules": [
+    {
+      "id": "product-summary",
+      "type": "ProductDetailPageSummary",
+      "data": {
+        "product": {
+          "id": 14,
+          "images": [
+            "https://bilkadk.imgix.net/medias/sys_master/root/hf4/he6/9549043171358/41763701-verdensmestercyklen.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h85/he4/9548696092702/41763701-1452.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/he2/h5f/9548697337886/41763701-1450.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h86/hfa/9548697698334/41763701-1448.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/ha2/ha9/9548690620446/41763701-1446.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h65/hf1/9548690980894/41763701-1444.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h71/hd5/9548691537950/41763701-1443.jpg"
+          ],
+          "titel": "SCO verdensmestercykel med 7 gear",
+          "stock": {
+            "level": 10
+          },
+          "price": 3499,
+          "rating": 4,
+          "recommendations": 0.95,
+          "label": {
+            "text": "Bedst i test",
+            "color": "green"
+          },
+          "shortDescription": "SCO Verdensmestercyklen er en nutidig udgave af en gammel klassiker. Det smukke retrodesign er en tro kopi af modellen, som Peder Pedersen triumferede på i 1974, hvor han blev verdensmester i sprint og satte verdensrekort på en SCO cykel. Modellen er sammensat med de bedste komponenter, der sikrer en god oplevelse på cyklen. Det brune gedebukkestyr er en tydelig reference til cyklen i 1974, og striberne på cyklens stel viser de farver, der indgår i regnbuetrøjen, som bæres af verdensmesteren. Cyklen findes i 28” med stålstel i størrelsen 55 cm. i farven rød. Modellen er forsynet med 7 udvendige Shimano Tourney gear og caliper-bremser for og bag.",
+          "keySpecifications": [{
+            "key": "Stel",
+            "value": "Stål"
+          }, {
+            "key": "Størrelse",
+            "value": "55 cm. stel, 28” hjul"
+          }, {
+            "key": "Gear",
+            "value": "7 udvendige gear, Shimano Tourney"
+          }]
+        },
+        "departments": [
+          "Fritid & Skønhed",
+          "Cykler",
+          "Herrecykler"
+        ]
+      }
+    },
+    {
+      "id": "productslider-others-liked",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Ofte købt sammen med",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/nofu.json"
+      }
+    },
+    {
+      "id": "productslider-others-bought",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Andre endte med at købe",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json"
+      }
+    }
+  ]
+}

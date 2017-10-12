@@ -140,6 +140,7 @@ input.no-border { border: 0; }
 .has-no-top-margin { margin-top: 0!important; }
 .has-no-bottom-margin { margin-bottom: 0!important; }
 .has-no-horizontal-margin { margin-left: 0rem!important; margin-right: 0rem!important; }
+.has-no-vertical-margin { margin-top: 0rem!important; margin-bottom: 0rem!important; }
 .has-tiny-vertical-margin { margin-top: 0.5rem!important; margin-bottom: 0.5rem!important; }
 .has-tiny-top-margin { margin-top: 0.5rem!important; }
 .has-tiny-bottom-margin { margin-bottom: 0.5rem!important; }
@@ -147,6 +148,7 @@ input.no-border { border: 0; }
 .has-tiny-left-margin { margin-left: 0.5rem!important; }
 .has-small-top-margin { margin-top: 1rem!important; }
 .has-small-bottom-margin { margin-bottom: 1rem!important; }
+.has-small-vertical-margin { margin-top: 1rem!important; margin-bottom: 1rem!important; }
 .has-small-right-margin { margin-right: 1rem!important; }
 .has-small-left-margin { margin-left: 1rem!important; }
 .has-top-margin { margin-top: 2rem!important; }
@@ -159,6 +161,7 @@ input.no-border { border: 0; }
 .has-tiny-bottom-padding { padding-bottom: 0.5rem!important; }
 .has-tiny-right-padding { padding-right: 0.5rem!important; }
 .has-tiny-left-padding { padding-left: 0.5rem!important; }
+.has-tiny-horizontal-padding { padding-left: 0.5rem!important; padding-right: 0.5rem!important; }
 .has-padding { padding: 1rem!important; }
 .has-right-padding { padding-right: 1rem!important; }
 .has-bottom-padding { padding-bottom: 1rem!important; }
@@ -166,6 +169,9 @@ input.no-border { border: 0; }
 .has-horizontal-padding { padding-left: 1rem!important; padding-right: 1rem!important; }
 .has-large-top-padding { padding-top: 2rem!important; }
 .has-large-bottom-padding { padding-bottom: 2rem!important; }
+.has-large-vertical-padding { padding-top: 2rem!important; padding-bottom: 2rem!important; }
+.has-large-left-padding { padding-left: 2rem!important; }
+.has-large-padding { padding: 2rem!important; }
 
 
 /* Layout */

@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    to="/"
+    :to="url"
     class="ProductCard has-white-background"
     :class="{
       'ProductCard--out-of-stock': product.stock.level === 0,
@@ -79,7 +79,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
-import { loadImage } from '../utils';
+import kebabCase from 'lodash/kebabCase';
+import { loadImage, numberWithDots } from '../utils';
 import Btn from './Btn.vue';
 import Arrow from './Arrow.vue';
 import Star from './Star.vue';
@@ -113,6 +114,9 @@ export default {
       if (!match) { return 0; }
       return match.quantity;
     },
+    url() {
+      return `/produkt/${kebabCase(this.product.titel)}/${this.product.id}/`;
+    },
   },
   methods: {
     ...mapActions({
@@ -120,7 +124,7 @@ export default {
       subtractInBasket: 'user/subtractInBasket',
     }),
     numberWithDots(x) {
-      return x.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+      return numberWithDots(x);
     },
     nextImage() {
       this.changeImage(1);

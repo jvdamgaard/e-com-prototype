@@ -26,7 +26,7 @@ export default {
       type: String,
       default: 'default',
       validator(value) {
-        return ['small', 'default'].indexOf(value) !== -1;
+        return ['small', 'default', 'large'].indexOf(value) !== -1;
       },
     },
     shadow: {
@@ -70,6 +70,9 @@ export default {
 
 .Btn---has-small-height {
   height: 2.5rem;
+}
+.Btn---has-large-height {
+  height: 4rem;
 }
 
 .Btn--is-primary {
