@@ -58,9 +58,11 @@ export default {
     MiniBasket,
     IconBasket,
   },
-  data: {
-    hoverDepartment: false,
-    hoverMiniBasket: false,
+  data() {
+    return {
+      hoverDepartment: false,
+      hoverMiniBasket: false,
+    };
   },
   computed: {
     ...mapState(['user', 'state']),
