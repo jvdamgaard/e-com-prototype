@@ -14,7 +14,7 @@ export default {
   },
   asyncData() {
     // Fecth modules data
-    return axios.get('https://raw.githubusercontent.com/jvdamgaard/e-com-prototype/master/static/json/pages/home.json')
+    return axios.get('https://jvdamgaard.github.io/e-com-prototype/json/pages/home.json')
       .then(resolveModulesData)
       .then(modules => ({ modules }));
   },
