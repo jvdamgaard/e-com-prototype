@@ -159,7 +159,7 @@ export default {
     },
     debounceCloseNav: debounce((closeNav) => {
       closeNav();
-    }, 500),
+    }, 250),
     closeNav() {
       if (!this.hoverSub && !this.hoverMain) {
         this.closeDepartmentNav();
