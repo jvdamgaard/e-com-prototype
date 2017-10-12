@@ -2,11 +2,11 @@
   <div class="MiniBasketItem clearfix" :class="{
     'MiniBasketItem--added': added,
   }">
-    <nuxt-link to="/" class="MiniBasketItem__image">
+    <nuxt-link :to="url" class="MiniBasketItem__image">
       <img :src="product.images[0]" />
     </nuxt-link>
     <p class="MiniBasketItem__titel is-small">
-      <nuxt-link to="/" class="is-black"><strong>{{product.titel}}</strong></nuxt-link>
+      <nuxt-link :to="url" class="is-black"><strong>{{product.titel}}</strong></nuxt-link>
       <span v-if="product.stock.status" class="is-red"><br>{{product.stock.status}}</span>
       <br><span class="is-dimmed">Antal:</span> {{quantity}}
       <span v-if="quantity > 1"><br>
@@ -25,6 +25,7 @@
 
 <script>
 import { mapActions } from 'vuex'; // eslint-disable-line
+import kebabCase from 'lodash/kebabCase';
 
 export default {
   components: {},
@@ -36,6 +37,11 @@ export default {
     return {
       added: false,
     };
+  },
+  computed: {
+    url() {
+      return `/produkt/${kebabCase(this.product.titel)}/${this.product.id}/`;
+    },
   },
   methods: {
     ...mapActions({
