@@ -27,7 +27,7 @@ export default {
     ...mapState(['user']),
   },
   asyncData({ params }) {
-    return axios.get(`http://localhost:3000/json/products/${params.productId}.json`)
+    return axios.get(`https://raw.githubusercontent.com/jvdamgaard/e-com-prototype/master/static/json/products/${params.productId}.json`)
       .then(resolveModulesData)
       .then(modules => ({ modules }));
   },

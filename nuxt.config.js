@@ -29,6 +29,12 @@ module.exports = {
   router: {
     base: (process.env.NODE_ENV === 'generate') ? '/e-com-prototype/' : '/',
   },
+  generate: {
+    routes: [
+      '/produkt/nofu-spisebordsstol/7/',
+      '/produkt/sco-verdensmestercykel-med-7-gear/14/',
+    ],
+  },
   build: {
     /*
     ** Run ESLINT on save
