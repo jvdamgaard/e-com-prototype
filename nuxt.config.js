@@ -28,6 +28,12 @@ module.exports = {
   */
   router: {
     base: (process.env.NODE_ENV === 'generate') ? '/e-com-prototype/' : '/',
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition;
+      }
+      return false;
+    },
   },
   generate: {
     routes: [

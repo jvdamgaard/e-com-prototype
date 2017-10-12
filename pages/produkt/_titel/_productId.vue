@@ -31,6 +31,9 @@ export default {
       .then(resolveModulesData)
       .then(modules => ({ modules }));
   },
+  mounted() {
+    window.scrollTo(0, 0);
+  },
 };
 </script>
 
