@@ -4,10 +4,10 @@
       'Navigation--collapsed': scrolled,
       'Navigation--scrollable': this.state.departmentNavActive,
     }">
-      <EyebrowNavigation></EyebrowNavigation>
-      <MainNavigation></MainNavigation>
+      <eyebrow-navigation />
+      <main-navigation />
     </nav>
-    <MobileNavigation></MobileNavigation>
+    <mobile-navigation />
   </div>
 </template>
 

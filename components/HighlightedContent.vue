@@ -1,5 +1,5 @@
 <template>
-  <Grid class="HighlightedContent" :class="{
+  <grid class="HighlightedContent" :class="{
     'has-white-background': theme === 'default',
     'has-primary-background': theme === 'primary',
   }">
@@ -18,7 +18,8 @@
           'has-primary-background': theme === 'primary',
           'is-white': theme === 'primary',
         }
-      ]" />
+      ]"
+    />
   </Grid>
 </template>
 

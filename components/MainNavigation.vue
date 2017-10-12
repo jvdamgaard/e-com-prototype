@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin has-shadow">
+    <grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin has-shadow">
       <div class="is-12-col">
         <div class="is-group">
           <nuxt-link to="/" class="MainNavigation__logo has-no-underline is-hidden-on-mobile is-visible-on-tablet">
@@ -11,20 +11,22 @@
             :class="{ 'MainNavigation__menu-icon--active': state.departmentNavActive }"
             @click="openDepartmentNav"
             @touchstart="openDepartmentNav"
-            @mouseover="openDepartmentNav">
-              <span class="is-hidden-on-tablet">&#8801;</span>
-              <span class="is-hidden-on-mobile is-visible-on-tablet" style="white-space: nowrap">Afdelinger ▼</span>
+            @mouseover="openDepartmentNav"
+          >
+            <span class="is-hidden-on-tablet">&#8801;</span>
+            <span class="is-hidden-on-mobile is-visible-on-tablet" style="white-space: nowrap">Afdelinger ▼</span>
           </div>
           <input type="text" placeholder="Søg i mere end 250.000 produkter" class="no-border">
-          <Btn type="yellow" class="MainNavigation__search-button">
+          <btn type="yellow" class="MainNavigation__search-button">
             <img src="https://jvdamgaard.github.io/e-com-prototype/icons/search-black.svg" height="32" width="32" />
-          </Btn>
+          </btn>
           <div
             class="MainNavigation__basket-icon"
             :class="{ 'MainNavigation__basket-icon--active': state.miniBasketActive }"
             @click="openMiniBasket"
             @touchstart="openMiniBasket"
-            @mouseover="openMiniBasket">
+            @mouseover="openMiniBasket"
+          >
             <span class="MainNavigation__basket-icon__text is-hidden-on-mobile is-inline-on-laptop">Kurv ({{itemsInBasket}})</span>
             <span class="MainNavigation__basket-icon__text is-hidden-on-laptop">{{itemsInBasket}}</span>
             <svg width="32px" height="32px" viewBox="0 0 32 32">
@@ -37,9 +39,9 @@
           </div>
         </div>
       </div>
-    </Grid>
-    <DepartmentNavigation />
-    <MiniBasket />
+    </grid>
+    <department-navigation />
+    <mini-basket />
   </div>
 </template>
 

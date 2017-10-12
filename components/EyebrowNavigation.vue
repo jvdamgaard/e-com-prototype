@@ -1,5 +1,5 @@
 <template>
-  <Grid class="EyebrowNavigation is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
+  <grid class="EyebrowNavigation is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
     <div class="is-12-col">
       <div class="is-group" style="white-space: nowrap">
         <nuxt-link to="/" class="EyebrowNavigation__logo is-h2 has-no-underline is-hidden-on-tablet">Bilka</nuxt-link>
@@ -25,7 +25,7 @@
         </ul>
       </div>
     </div>
-  </Grid>
+  </grid>
 </template>
 
 <script>

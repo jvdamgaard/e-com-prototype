@@ -1,9 +1,11 @@
 <template>
-  <Grid class="BodyText has-white-background">
-    <div class="is-hidden-on-mobile is-visible-on-laptop is-2-col-on-laptop is-3-col-on-desktop"></div>
-    <div v-for class="BodyText__content is-12-col is-8-col-on-laptop is-6-col-on-desktop" v-html="content"></div>
-    <div class="is-hidden-on-mobile is-visible-on-laptop is-2-col-on-laptop is-3-col-on-desktop"></div>
-  </Grid>
+  <grid class="BodyText has-white-background">
+    <div class="is-hidden-on-mobile is-visible-on-laptop is-2-col-on-laptop is-3-col-on-desktop" />
+    <div
+      class="BodyText__content is-12-col is-8-col-on-laptop is-6-col-on-desktop"
+      v-html="content"
+    />
+  </grid>
 </template>
 
 <script>

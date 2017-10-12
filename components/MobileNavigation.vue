@@ -6,23 +6,28 @@
         'MobileNavigation--active': this.state.departmentNavActive,
         'MobileNavigation--beyond': activeDepartment,
       }"
-      >
-      <BackNavigationItem :back="expandDepartment" :close="closeNav" />
-      <Grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
+    >
+      <mobile-navigation-back :back="expandDepartment" :close="closeNav" />
+      <grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
         <div class="is-12-col">
-          <NavigationItem titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
+          <navigation-item
+            titel="Log ind"
+            description="Log ind eller opret bruger"
+            icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
+          />
         </div>
         <div class="is-12-col has-large-bottom-padding">
           <h3 class="has-padding">Afdelinger</h3>
-          <NavigationItem
+          <navigation-item
             v-for="department in departments"
             :titel="department.titel"
             :description="department.description"
             :icon="department.iconSrc"
             :key="department.titel"
-            @click.native="expandDepartment(department.titel)" />
+            @click.native="expandDepartment(department.titel)"
+          />
         </div>
-      </Grid>
+      </grid>
     </div>
     <template v-for="department in departments">
       <div
@@ -30,17 +35,25 @@
         :class="{
           'SubMobileNavigation--active': department.titel === activeDepartment,
           'SubMobileNavigation--beyond': department.titel === activeDepartment && activeSubDepartment,
-        }">
-        <BackNavigationItem :back="expandDepartment" titel="Alle afdelinger" :close="closeNav" />
-        <Grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
+        }"
+      >
+        <mobile-navigation-back
+          :back="expandDepartment"
+          titel="Alle afdelinger"
+          :close="closeNav"
+        />
+        <grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
           <div class="is-12-col">
             <h3 class="has-padding">{{department.titel}}</h3>
-            <NavigationItem :titel="`<strong>Alle i ${department.titel}</strong>`" />
-            <NavigationItem
+            <navigation-item
+              :titel="`<strong>Alle i ${department.titel}</strong>`"
+            />
+            <navigation-item
               v-for="subDepartment in department.subDepartments"
               :titel="subDepartment.titel"
               :key="subDepartment.titel"
-              @click.native="expandSubDepartment(subDepartment.titel)" />
+              @click.native="expandSubDepartment(subDepartment.titel)"
+            />
           </div>
           <div class="is-12-col has-padding">
             <h3>Top brands</h3>
@@ -55,27 +68,43 @@
               to="/"
               class="SubMobileNavigation__promotion is-bg-image is-full-width is-block has-no-underline"
               :style="`background-image: url('${department.promotion.imageSrc}')`"
-              :key="department.titel">
-              <Btn v-if="department.promotion.btnLabel" type="yellow" shadow class="DepartmentNavigation__promo-btn">{{department.promotion.btnLabel}}</Btn>
+              :key="department.titel"
+            >
+              <btn
+                v-if="department.promotion.btnLabel"
+                type="yellow"
+                shadow
+                class="DepartmentNavigation__promo-btn"
+              >
+                {{department.promotion.btnLabel}}
+              </btn>
             </nuxt-link>
           </div>
-        </Grid>
+        </grid>
       </div>
       <div
         v-for="subDepartment in department.subDepartments"
         class="SubSubMobileNavigation is-hidden-on-tablet"
-        :class="{ 'SubSubMobileNavigation--active': subDepartment.titel === activeSubDepartment }">
-        <BackNavigationItem :back="expandSubDepartment" :titel="department.titel" :close="closeNav" />
-        <Grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
+        :class="{ 'SubSubMobileNavigation--active': subDepartment.titel === activeSubDepartment }"
+      >
+        <mobile-navigation-back
+          :back="expandSubDepartment"
+          :titel="department.titel"
+          :close="closeNav"
+        />
+        <grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
           <div class="is-12-col has-large-bottom-padding">
             <h3 class="has-padding">{{subDepartment.titel}}</h3>
-            <NavigationItem :titel="`<strong>Alle i ${subDepartment.titel}</strong>`" />
+            <NavigationItem
+              :titel="`<strong>Alle i ${subDepartment.titel}</strong>`"
+            />
             <NavigationItem
               v-for="subSubDepartment in subDepartment.subDepartments"
               :titel="subSubDepartment.titel"
-              :key="subSubDepartment.titel" />
+              :key="subSubDepartment.titel"
+            />
           </div>
-        </Grid>
+        </grid>
       </div>
     </template>
   </div>
@@ -85,7 +114,7 @@
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import Grid from './Grid.vue';
 import NavigationItem from './NavigationItem.vue';
-import BackNavigationItem from './BackNavigationItem.vue';
+import MobileNavigationBack from './MobileNavigationBack.vue';
 import Btn from './Btn.vue';
 
 export default {
@@ -93,7 +122,7 @@ export default {
     Grid,
     NavigationItem,
     Btn,
-    BackNavigationItem,
+    MobileNavigationBack,
   },
   data() {
     return {

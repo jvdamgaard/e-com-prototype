@@ -3,17 +3,24 @@
     class="MiniBasket"
     :class="{ 'MiniBasket--active': state.miniBasketActive }"
     @click.self="close"
-    >
-    <Grid class="has-no-top-margin has-no-bottom-margin" @click.native.self="close">
+  >
+    <grid class="has-no-top-margin has-no-bottom-margin" @click.native.self="close">
       <div
-        class="is-hidden-on-mobile is-visible-on-tablet is-5-col is-7-col-on-laptop is-9-col-on-desktop" @click="close" />
+        class="is-hidden-on-mobile is-visible-on-tablet is-5-col is-7-col-on-laptop is-9-col-on-desktop"
+        @click="close"
+      />
       <div
         class="is-12-col is-7-col-on-tablet is-5-col-on-laptop is-3-col-on-desktop has-shadow"
         @mouseover="enter"
-        @mouseleave="leave">
+        @mouseleave="leave"
+      >
         <div class="has-light-grey-background">
           <div class="MiniBasket__items">
-            <mini-basket-item v-for="item in user.basket.items" :key="item.product.id" v-bind="item" />
+            <mini-basket-item
+              v-for="item in user.basket.items"
+              :key="item.product.id"
+              v-bind="item"
+            />
           </div>
           <div class="MiniBasket__total is-h3 clearfix">
             {{itemsInBasket}} produkter total
@@ -39,7 +46,7 @@
           </div>
         </div>
       </div>
-    </Grid>
+    </grid>
   </div>
 </template>
 
