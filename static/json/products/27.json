@@ -1,0 +1,60 @@
+{
+  "layout": "default",
+  "modules": [
+    {
+      "id": "product-summary",
+      "type": "ProductDetailPageSummary",
+      "data": {
+        "product": {
+          "id": 27,
+          "images": [
+            "http://drop.ndtv.com/TECH/product_database/images/913201720152AM_635_iphone_x.jpeg",
+            "http://i2.mirror.co.uk/incoming/article11159435.ece/ALTERNATES/s615b/Apple-launch-iPhone-X-Cupertino-USA-12-Sep-2017.jpg",
+            "https://cdn.vox-cdn.com/thumbor/Su22ufw0Nw7BlUtOg5F3e9G-9Hk=/0x0:1717x1044/1200x800/filters:focal(722x385:996x659)/cdn.vox-cdn.com/uploads/chorus_image/image/56671365/vdhnbCX.0.png",
+            "https://www.imore.com/sites/imore.com/files/styles/larger_wm_brw/public/field/image/2017/09/iphone-x-home-screen.jpg?itok=nqEplDHJ",
+            "http://www.iphone8biz.com/wp-content/uploads/2017/08/iPhone-8-release-date.png"
+          ],
+          "titel": "Apple iPhone X",
+          "stock": {
+            "level": 100,
+            "status": "Forventet levering om 3 måneder"
+          },
+          "price": 9999,
+          "rating": 5,
+          "recommendations": 1,
+          "shortDescription": "Det har altid været Apples vision at skabe en iPhone, der er én stor skærm. En skærm, du bliver så opslugt af, at de fysiske rammer nærmest forsvinder og smelter sammen med det, du ser på den. Og en enhed, der er så intelligent, at du bare skal trykke på den, snakke til den eller kigge på den for at få den til at reagere. Med iPhone X er visionen blevet til virkelighed. Hils på fremtiden.",
+          "keySpecifications": [{
+            "key": "Skærm",
+            "value": "5,8\" Super Retina-skærm"
+          }, {
+            "key": "Autentificering",
+            "value": "Face ID"
+          }, {
+            "key": "Kamera",
+            "value": "12 MP dobbeltkamera"
+          }]
+        },
+        "departments": [
+          "Elektronik",
+          "Mobiltelefoner"
+        ]
+      }
+    },
+    {
+      "id": "productslider-others-liked",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Ofte købt sammen med",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/nofu.json"
+      }
+    },
+    {
+      "id": "productslider-others-bought",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Andre endte med at købe",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json"
+      }
+    }
+  ]
+}
