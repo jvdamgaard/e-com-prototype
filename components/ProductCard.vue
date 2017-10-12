@@ -61,18 +61,7 @@
       }">{{numberWithDots(product.price)}},-</span>
     </p>
 
-    <div class="ProductCard__btn-wrapper">
-      <div class="ProductCard__btn-wrapper-in-basket">
-        <btn :type="(quantityInBasket === 1) ? 'red' : 'primary'" class="ProductCard__button ProductCard__button--remove-one" @click.native="subtractInBasket(product)">-</btn>
-        <btn type="grey" class="ProductCard__button ProductCard__button--quantity">{{quantityInBasket}}</btn>
-        <btn type="primary" class="ProductCard__button ProductCard__button--add-one" @click.native="addToBasket(product)">+</btn>
-      </div>
-
-      <div class="ProductCard__btn-wrapper-not-in-basket">
-        <btn type="grey" class="ProductCard__button ProductCard__button--buy-now">Læs mere</btn>
-        <btn type="buy" class="ProductCard__button ProductCard__button--add-to-basket" @click.native="addToBasket(product)">Læg i kurv</btn>
-      </div>
-    </div>
+    <add-to-cart :product="product" class="ProductCard__btn-wrapper"/>
 
   </nuxt-link>
 </template>
@@ -84,12 +73,14 @@ import { loadImage, numberWithDots } from '../utils';
 import Btn from './Btn.vue';
 import Arrow from './Arrow.vue';
 import Star from './Star.vue';
+import AddToCart from './AddToCart.vue';
 
 export default {
   components: {
     Btn,
     Arrow,
     Star,
+    AddToCart,
   },
   props: {
     product: Object,
@@ -307,10 +298,9 @@ export default {
 }
 
 .ProductCard__btn-wrapper {
-  position: absolute;
+  position: absolute !important;
   bottom: -3rem;
   width: calc(100% + 1rem);
-  height: 3rem;
   left: -0.5rem;
   background-color: var(--color-grey-dark);
   transition: all 0.2s ease;
@@ -322,71 +312,5 @@ export default {
 }
 .ProductCard--out-of-stock .ProductCard__btn-wrapper {
   display: none;
-}
-
-.ProductCard__btn-wrapper-in-basket, .ProductCard__btn-wrapper-not-in-basket {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transition: opacity 0.2s ease;
-}
-.ProductCard__btn-wrapper-in-basket {
-  opacity: 0;
-  z-index: 1;
-}
-.ProductCard--in-basket .ProductCard__btn-wrapper-in-basket {
-  opacity: 1;
-  z-index: 2;
-}
-.ProductCard__btn-wrapper-not-in-basket {
-  opacity: 1;
-  z-index: 2;
-}
-.ProductCard--in-basket .ProductCard__btn-wrapper-not-in-basket {
-  opacity: 0;
-  z-index: 1;
-}
-
-.ProductCard__button {
-  position: absolute;
-  width: 50%;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-}
-
-.ProductCard__button--add-to-basket {
-  right: 0;
-}
-.ProductCard--in-basket .ProductCard__button--add-to-basket {
-  width: 25%;
-}
-
-.ProductCard__button--buy-now {
-  left: 0;
-}
-.ProductCard--in-basket .ProductCard__button--buy-now {
-  left: 25%;
-}
-
-.ProductCard__button--remove-one {
-  left: 0;
-  width: 0;
-}
-.ProductCard--in-basket .ProductCard__button--remove-one {
-  width: 25%;
-}
-
-.ProductCard__button--quantity {
-  left: 0;
-}
-.ProductCard--in-basket .ProductCard__button--quantity {
-  left: 25%;
-}
-
-.ProductCard__button--add-one {
-  right: 0;
-}
-.ProductCard--in-basket .ProductCard__button--add-one {
-  width: 25%;
 }
 </style>

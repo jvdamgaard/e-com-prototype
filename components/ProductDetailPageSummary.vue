@@ -2,7 +2,7 @@
   <div>
     <grid class="has-small-vertical-margin">
       <ul class="is-12-col is-inline-list is-small">
-        <li v-for="department in departments"><nuxt-link to="/" class="is-grey">{{department}}</nuxt-link><span class="is-dimmed"> / </span></li>
+        <li v-for="department in departments"><nuxt-link to="/" class="is-grey">{{department}}</nuxt-link><span class="is-dimmed has-tiny-horizontal-padding">/</span></li>
         <li><span class="is-dimmed">{{product.titel}}</span></li>
       </ul>
     </grid>
@@ -73,14 +73,13 @@
               </p>
             </div>
             <div :class="$style.summaryBoxInner">
-              <btn
-                type="buy"
-                height="large"
+              <add-to-cart
                 shadow
-                @click.native="addToBasket(product)"
-              >
-                Læg i kurv
-              </btn>
+                hideReadMore
+                height="large"
+                quantityLabel="lagt i kurven"
+                :product="product"
+              />
               <p class="has-top-margin"><strong class="is-green">På lager.</strong> Kan også afhentes i 9 butikker. <a href="#">Se hvilke butikker</a></p>
               <p class="has-tiny-top-margin"><strong>3-5 dages til 29,-</strong> Eller få den allerede i morgen ved valg af hurtigere leveringsmulighed. <a href="#">Se alle leveringsmuligheder</a></p>
             </div>
@@ -96,13 +95,13 @@ import { mapActions } from 'vuex'; // eslint-disable-line
 import { loadImage, numberWithDots } from '../utils';
 import Grid from './Grid.vue';
 import Star from './Star.vue';
-import Btn from './Btn.vue';
+import AddToCart from './AddToCart.vue';
 
 export default {
   components: {
     Grid,
     Star,
-    Btn,
+    AddToCart,
   },
   props: {
     product: Object,
