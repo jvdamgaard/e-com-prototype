@@ -27,7 +27,7 @@
         }">{{numberWithDots(product.price)}},00 kr.</span>
       </p>
     </div>
-    <div :class="$style.summaryBoxInner">
+    <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-tablet">
       <p>{{product.shortDescription.slice(0,250)}}... <a href="#description">Læs mere</a></p>
       <h2 class="has-small-top-margin">Nøglespecifikationer</h2>
       <ul class="is-unstyled-list has-tiny-top-margin">

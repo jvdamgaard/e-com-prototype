@@ -14,17 +14,17 @@
               :changeImagePosiiton="setImagePosition"
             />
           </div>
-          <div class="is-6-col has-large-vertical-padding">
+          <div class="is-12-col is-6-col-on-tablet has-large-vertical-padding">
             <product-image
               :images="product.images"
               :imagePosition="imagePosition"
               :changeImagePosiiton="setImagePosition"
             />
           </div>
-          <div class="is-6-col is-5-col-on-desktop">
+          <div class="is-12-col is-6-col-on-tablet is-5-col-on-desktop">
             <summary-box :product="product" />
           </div>
-          <div class="is-12-col is-hidden-on-laptop has-padding" :class="$style.mobileStock">
+          <div class="is-12-col is-hidden-on-laptop has-padding" :class="$style.borderTop">
             <add-to-cart
               shadow
               hideReadMore
@@ -34,6 +34,16 @@
             />
             <p class="has-tiny-top-margin"><strong class="is-green">På lager.</strong> Kan også afhentes i 9 butikker. <a href="#">Se hvilke butikker</a></p>
             <p class="has-tiny-top-margin"><strong>3-5 dages til 29,-</strong> Eller få den allerede i morgen ved valg af hurtigere leveringsmulighed. <a href="#">Se alle leveringsmuligheder</a></p>
+          </div>
+          <div class="is-12-col is-hidden-on-tablet has-padding" :class="$style.borderTop">
+            <p>{{product.shortDescription.slice(0,250)}}... <a href="#description">Læs mere</a></p>
+            <h2 class="has-small-top-margin">Nøglespecifikationer</h2>
+            <ul class="is-unstyled-list has-tiny-top-margin">
+              <li v-for="keySpec in product.keySpecifications">
+                <strong class="is-dimmed">{{keySpec.key}}:</strong> {{keySpec.value}}
+              </li>
+            </ul>
+            <p class="has-tiny-top-margin"><a href="#specifications">Se alle specifikationer</a></p>
           </div>
         </grid>
       </div>
@@ -100,7 +110,7 @@ export default {
   z-index: 100;
 }
 
-.mobileStock {
+.borderTop {
   border-top: 1px solid var(--color-grey-lighter);
 }
 
