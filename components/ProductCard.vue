@@ -6,6 +6,8 @@
       'ProductCard--out-of-stock': product.stock.level === 0,
       'ProductCard--in-basket': quantityInBasket > 0,
     }"
+    @mouseover.native="hovering = true"
+    @mouseleave.native="hovering = false"
   >
     <div
       v-if="quantityInBasket > 0"
@@ -33,19 +35,16 @@
       Spar {{numberWithDots(product.beforePrice - product.price)}},-
     </div>
 
-    <div class="ProductCard__image">
-      <div class="ProductCard__arrow ProductCard__arrow--right" @click="nextImage">
-        <arrow
-          v-if="product.images.length > 1 && imagePos < product.images.length - 1"
-          direction="right"
-        />
-      </div>
-      <div class="ProductCard__arrow ProductCard__arrow--left" @click="prevImage">
-        <arrow v-if="imagePos > 0" direction="left" />
-      </div>
-      <img v-if="lazy" v-lazy="product.images[imagePos]" :class="{ loading }" />
-      <img v-if="!lazy" :src="product.images[imagePos]" :class="{ loading }" />
-    </div>
+    <product-image
+      :images="product.images"
+      :imagePosition="imagePosition"
+      :changeImagePosiiton="setImagePosition"
+      :lazy="lazy"
+      :hovering="hovering"
+      type="productCard"
+      width="400"
+      height="300"
+    />
     <p class="ProductCard__reviews has-small-top-margin">
       <star v-for="n in 5" :key="n" :rating="product.rating" :pos="n" />
       <small class="is-dimmed" style="float: right">{{recommendationPercentage}}% <span class="is-hidden-on-mobile is-inline-on-phablet">anbefaler</span></small>
@@ -69,11 +68,12 @@
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import kebabCase from 'lodash/kebabCase';
-import { loadImage, numberWithDots } from '../utils';
+import { numberWithDots } from '../utils';
 import Btn from './Btn.vue';
 import Arrow from './Arrow.vue';
 import Star from './Star.vue';
 import AddToCart from './AddToCart.vue';
+import ProductImage from './ProductImage.vue';
 
 export default {
   components: {
@@ -81,6 +81,7 @@ export default {
     Arrow,
     Star,
     AddToCart,
+    ProductImage,
   },
   props: {
     product: Object,
@@ -91,8 +92,8 @@ export default {
   },
   data() {
     return {
-      imagePos: 0,
-      loading: false,
+      imagePosition: 0,
+      hovering: false,
     };
   },
   computed: {
@@ -117,21 +118,8 @@ export default {
     numberWithDots(x) {
       return numberWithDots(x);
     },
-    nextImage() {
-      this.changeImage(1);
-    },
-    prevImage() {
-      this.changeImage(-1);
-    },
-    changeImage(deltaPos) {
-      if (!this.loading) {
-        this.loading = true;
-        const newPos = this.imagePos + deltaPos;
-        loadImage(this.product.images[newPos]).then(() => {
-          this.imagePos = newPos;
-          this.loading = false;
-        });
-      }
+    setImagePosition(position) {
+      this.imagePosition = position;
     },
   },
 };

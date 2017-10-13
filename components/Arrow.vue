@@ -26,6 +26,7 @@ export default {
   border-top: 0.75rem solid transparent;
   border-bottom: 0.75rem solid transparent;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .Arrow--right {

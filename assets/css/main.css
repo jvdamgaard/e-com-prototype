@@ -96,7 +96,7 @@ a:hover.has-no-underline { text-decoration: none; }
   margin: 0;
   padding: 0;
 }
-.is-inline-list li { display: inline; }
+.is-inline-list li { display: inline-block; }
 
 
 /* Images */
@@ -150,6 +150,7 @@ input.no-border { border: 0; }
 .has-no-bottom-margin { margin-bottom: 0!important; }
 .has-no-horizontal-margin { margin-left: 0rem!important; margin-right: 0rem!important; }
 .has-no-vertical-margin { margin-top: 0rem!important; margin-bottom: 0rem!important; }
+.has-tiny-margin { margin: 0.5rem!important; }
 .has-tiny-vertical-margin { margin-top: 0.5rem!important; margin-bottom: 0.5rem!important; }
 .has-tiny-top-margin { margin-top: 0.5rem!important; }
 .has-tiny-bottom-margin { margin-bottom: 0.5rem!important; }
@@ -166,6 +167,7 @@ input.no-border { border: 0; }
 .has-no-padding { padding: 0!important; }
 .has-no-top-padding { padding-top: 0!important; }
 .has-no-bottom-padding { padding-bottom: 0!important; }
+.has-tiny-padding { padding: 0.5rem!important; }
 .has-tiny-top-padding { padding-top: 0.5rem!important; }
 .has-tiny-bottom-padding { padding-bottom: 0.5rem!important; }
 .has-tiny-right-padding { padding-right: 0.5rem!important; }
