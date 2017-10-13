@@ -6,7 +6,7 @@
     />
     <grid fullWidthOnSmallDevices class="has-no-top-margin">
       <div class="is-12-col has-white-background">
-        <grid inner>
+        <grid inner rowGap="none">
           <div class="is-1-col is-hidden-on-mobile is-visible-on-desktop">
             <thumbnails
               :images="product.images"
@@ -24,7 +24,7 @@
           <div class="is-6-col is-5-col-on-desktop">
             <summary-box :product="product" />
           </div>
-          <div class="is-12-col is-hidden-on-laptop" :class="$style.floatingBuy">
+          <div class="is-12-col is-hidden-on-laptop has-padding" :class="$style.mobileStock">
             <add-to-cart
               shadow
               hideReadMore
@@ -32,6 +32,8 @@
               quantityLabel="lagt i kurven"
               :product="product"
             />
+            <p class="has-tiny-top-margin"><strong class="is-green">På lager.</strong> Kan også afhentes i 9 butikker. <a href="#">Se hvilke butikker</a></p>
+            <p class="has-tiny-top-margin"><strong>3-5 dages til 29,-</strong> Eller få den allerede i morgen ved valg af hurtigere leveringsmulighed. <a href="#">Se alle leveringsmuligheder</a></p>
           </div>
         </grid>
       </div>
@@ -91,11 +93,15 @@ export default {
 
 .floatingBuy {
   position: fixed !important;
-  bottom: 0; /* avoid ios tap */
+  top: 3.5rem; /* avoid ios tap */
   left: 0;
   right: 0;
   transform: translateZ(0);
   z-index: 100;
+}
+
+.mobileStock {
+  border-top: 1px solid var(--color-grey-lighter);
 }
 
 </style>

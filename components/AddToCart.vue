@@ -144,14 +144,14 @@ export default {
 .inBasket .addToBasketButton { left: 75%; width: 25%; }
 
 .removeOneButton { composes: button; left: 0; width: 0; z-index: 2; }
-.inBasket .removeOneButton { width: 25%; }
+.inBasket .removeOneButton { width: 4rem; }
 
 .quantityButton { composes: button; left: 0; width: 50%; }
 .quantityButton:hover { z-index: 3; }
 .hideReadMore .quantityButton { width: 0; }
-.inBasket .quantityButton { width: 50%; left: 25%; }
+.inBasket .quantityButton { width: calc(100% - 8rem); left: 4rem; }
 
 .addOneButton { composes: button; left: 50%; z-index: 2; width: 50%; }
 .hideReadMore .addOneButton { left: 0; width: 100%; }
-.inBasket .addOneButton { left: 75%; width: 25%; }
+.inBasket .addOneButton { left: calc(100% - 4rem); width: 4rem; }
 </style>

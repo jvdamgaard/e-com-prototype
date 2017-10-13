@@ -18,7 +18,7 @@
             <span class="is-hidden-on-mobile is-visible-on-tablet" style="white-space: nowrap">Afdelinger ▼</span>
           </div>
           <input type="text" placeholder="Søg i mere end 250.000 produkter" class="no-border">
-          <btn type="yellow" class="MainNavigation__search-button">
+          <btn type="yellow" class="MainNavigation__search-button is-hidden-on-mobile is-visible-on-laptop">
             <img src="https://jvdamgaard.github.io/e-com-prototype/icons/search-black.svg" height="32" width="32" />
           </btn>
           <div

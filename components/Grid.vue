@@ -17,7 +17,7 @@ export default {
       type: String,
       default: 'default',
       validator(value) {
-        return ['default', 'large'].indexOf(value) !== -1;
+        return ['none', 'default', 'large'].indexOf(value) !== -1;
       },
     },
     inner: Boolean,
@@ -47,6 +47,9 @@ export default {
   }
 }
 
+.Grid--has-none-row-gap {
+  grid-row-gap: 0;
+}
 .Grid--has-large-row-gap {
   grid-row-gap: 2rem;
 }
