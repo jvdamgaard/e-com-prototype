@@ -1,24 +1,31 @@
 <template>
-  <div :class="$style[`${height}Container`]">
+  <div :class="[
+    $style.container,
+    $style[height],
+    {
+      [$style.hideReadMore]: hideReadMore,
+      [$style.inBasket]: quantityInBasket > 0,
+    }
+  ]">
     <div :class="[$style.wrapper, { [$style.active]: quantityInBasket > 0 }]">
       <btn
         type="primary"
         :shadow="shadow"
         :height="height"
-        :class="[$style.removeOneButton, { [$style.width25]: quantityInBasket > 0 }]"
+        :class="$style.removeOneButton"
         @click.stop.prevent.native="subtractInBasket(product)"
       >-</btn>
       <btn
         type="grey"
         :shadow="shadow"
         :height="height"
-        :class="[$style.quantityButton, { [$style.left25]: quantityInBasket > 0 }]"
+        :class="$style.quantityButton"
       >{{quantityInBasket}} {{quantityLabel}}</btn>
       <btn
         type="primary"
         :shadow="shadow"
         :height="height"
-        :class="[$style.addOneButton, { [$style.width25]: quantityInBasket > 0 }]"
+        :class="$style.addOneButton"
         class="ProductCard__button--add-one"
         @click.stop.prevent.native="addToBasket(product)"
       >+</btn>
@@ -30,19 +37,13 @@
         type="grey"
         :shadow="shadow"
         :height="height"
-        :class="[$style.readMoreButton, { [$style.left25]: quantityInBasket > 0 }]"
+        :class="$style.readMoreButton"
       >Læs mere</btn>
       <btn
         type="buy"
         :shadow="shadow"
         :height="height"
-        :class="[
-          $style.addToBasketButton,
-          {
-            [$style.width25]: quantityInBasket > 0,
-            [$style.width100]: hideReadMore && quantityInBasket === 0
-          }
-        ]"
+        :class="$style.addToBasketButton"
         @click.stop.prevent.native="addToBasket(product)"
       >Læg i kurv</btn>
     </div>
@@ -100,13 +101,20 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
-.defaultContainer {
+.container {
   position: relative;
+  background-color: var(--color-grey-dark);
+}
+
+.container.hideReadMore {
+  background-color: var(--color-buy);
+}
+
+.default {
   height: 3rem;
 }
-.largeContainer {
-  position: relative;
-  height: 4.5rem;
+.large {
+  height: 4rem;
 }
 
 .wrapper {
@@ -125,43 +133,25 @@ export default {
 
 .button {
   position: absolute;
-  width: 50%;
-  transition: all 0.2s ease;
-  white-space: nowrap;
 }
 
-.width100 { width: 100% !important; }
-.width25 { width: 25% !important; }
-.left25 { left: 25% !important; }
+.readMoreButton { composes: button; left: 0; width: 50%; }
+.hideReadMore .readMoreButton { display: none; }
+.inBasket .readMoreButton { left: 25%; }
 
-.addToBasketButton {
-  composes: button;
-  right: 0;
-}
+.addToBasketButton { composes: button; left: 50%; width: 50%; }
+.hideReadMore .addToBasketButton { left: 0%; width: 100%; }
+.inBasket .addToBasketButton { left: 75%; width: 25%; }
 
-.readMoreButton {
-  composes: button;
-  left: 0;
-}
+.removeOneButton { composes: button; left: 0; width: 0; z-index: 2; }
+.inBasket .removeOneButton { width: 25%; }
 
-.removeOneButton {
-  composes: button;
-  left: 0;
-  width: 0;
-  z-index: 2;
-}
+.quantityButton { composes: button; left: 0; width: 50%; }
+.quantityButton:hover { z-index: 3; }
+.hideReadMore .quantityButton { width: 0; }
+.inBasket .quantityButton { width: 50%; left: 25%; }
 
-.quantityButton {
-  composes: button;
-  left: 0;
-}
-.quantityButton:hover {
-  z-index: 3;
-}
-
-.addOneButton {
-  composes: button;
-  right: 0;
-  z-index: 2;
-}
+.addOneButton { composes: button; left: 50%; z-index: 2; width: 50%; }
+.hideReadMore .addOneButton { left: 0; width: 100%; }
+.inBasket .addOneButton { left: 75%; width: 25%; }
 </style>

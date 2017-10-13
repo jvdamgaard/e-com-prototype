@@ -51,21 +51,26 @@ export default {
   border: 0;
   cursor: pointer;
   transition: all 0.2s ease;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .Btn__inner {
-  width: 100%;
+  width: calc(10rem + 100%);
   height: 100%;
   display: flex;
   justify-content:  center;
   align-content:center;
   flex-direction: column;
+  margin-left: -5rem;
+  margin-right: -5rem;
 }
 
+
 .Btn--has-shadow {
-  box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.15);
+  box-shadow: 0 0.125rem 0.75rem rgba(0,0,0,0.2);
 }
 .no-touch .Btn--has-shadow:hover {
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
+  box-shadow: 0 0.125rem 1.5rem rgba(0,0,0,0.3);
 }
 
 .Btn---has-small-height {
