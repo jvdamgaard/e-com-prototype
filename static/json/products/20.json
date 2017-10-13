@@ -1,0 +1,64 @@
+{
+  "layout": "default",
+  "modules": [
+    {
+      "id": "product-summary",
+      "type": "ProductDetailPageSummary",
+      "data": {
+        "product": {
+          "id": 20,
+          "images": [
+            "https://bilkadk.imgix.net/medias/sys_master/root/hbb/h76/9518885961758/35816901-SCO-SH105-22-gear-57-cm.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h22/h78/9548453609502/35816901-30797.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h2a/h13/9548453969950/35816901-30795.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h7d/hfc/9548454461470/35816901-30793.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h38/h4b/9548475269150/35816901-30790.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/ha2/h09/9548475760670/35816901-30786.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/hfe/h36/9548476121118/35816901-30785.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/hf9/h2d/9548476481566/35816901-30782.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/hf3/hb0/9548476907550/35816901-30780.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h6c/hc6/9548477333534/35816901-30779.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h74/h61/9548477693982/35816901-30776.jpg"
+          ],
+          "titel": "SCO Rebel SH105 22 gear",
+          "stock": {
+            "level": 10
+          },
+          "price": 5999,
+          "beforePrice": 9999,
+          "rating": 5,
+          "recommendations": 0.85,
+          "shortDescription": "Den lette, elegante skalstol NOFU727 passer godt ind i en minimalistisk indrettet spisestue. Spisebordsstolens stel er fremstillet i massivt træ, mens selve skallen er lavet af formstøbt plastik. NOFU727 føjer et moderne strejf til klassisk dansk design og er et innovativt bud på en skalstol med stor personlighed. Stolen er udstyret med en lækker, formsyet pude, så NOFU727 ser ikke bare godt ud  man sidder også supergodt i stolen. NOFUs kollektioner er udført i bæredygtigt PEFC-certificeret og PU-lakeret træ. Produkterne overholder EUs REACH-lovgivning, hvilket betyder, at møblerne er fri for farlig kemi og dermed særdeles velegnede til børnefamilier. NOFU727 fås i flere farve nuancer. Alle NOFUs produkter er håndlavet specielt til dig efter dine ønsker.",
+          "keySpecifications": [{
+            "key": "Sædematerial",
+            "value": "Sort PP Plastik"
+          }, {
+            "key": "Stel material",
+            "value": "Natur ask"
+          }]
+        },
+        "departments": [
+          "Bolig",
+          "Stole",
+          "Spisebordsstole"
+        ]
+      }
+    },
+    {
+      "id": "productslider-others-liked",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Ofte købt sammen med",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/nofu.json"
+      }
+    },
+    {
+      "id": "productslider-others-bought",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Andre endte med at købe",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json"
+      }
+    }
+  ]
+}

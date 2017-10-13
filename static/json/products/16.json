@@ -1,0 +1,63 @@
+{
+  "layout": "default",
+  "modules": [
+    {
+      "id": "product-summary",
+      "type": "ProductDetailPageSummary",
+      "data": {
+        "product": {
+          "id": 16,
+          "images": [
+            "https://bilkadk.imgix.net/medias/sys_master/root/hf7/h78/9805238960158/CB36.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/hec/h4a/9226218242078.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/ha5/hef/9075128696862.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h41/h81/9543592542238.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h7c/h93/9543702183966.gif",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h5e/h0a/9805238599710/Grillb-rste.jpg"
+          ],
+          "titel": "Charbroil CB 36 inkl 5 dele",
+          "stock": {
+            "level": 10
+          },
+          "price": 2499,
+          "beforePrice": 6984,
+          "rating": 1,
+          "recommendations": 0.75,
+          "label": {
+            "text": "Bedst i test",
+            "color": "green"
+          },
+          "shortDescription": "Den lette, elegante skalstol NOFU727 passer godt ind i en minimalistisk indrettet spisestue. Spisebordsstolens stel er fremstillet i massivt træ, mens selve skallen er lavet af formstøbt plastik. NOFU727 føjer et moderne strejf til klassisk dansk design og er et innovativt bud på en skalstol med stor personlighed. Stolen er udstyret med en lækker, formsyet pude, så NOFU727 ser ikke bare godt ud  man sidder også supergodt i stolen. NOFUs kollektioner er udført i bæredygtigt PEFC-certificeret og PU-lakeret træ. Produkterne overholder EUs REACH-lovgivning, hvilket betyder, at møblerne er fri for farlig kemi og dermed særdeles velegnede til børnefamilier. NOFU727 fås i flere farve nuancer. Alle NOFUs produkter er håndlavet specielt til dig efter dine ønsker.",
+          "keySpecifications": [{
+            "key": "Sædematerial",
+            "value": "Sort PP Plastik"
+          }, {
+            "key": "Stel material",
+            "value": "Natur ask"
+          }]
+        },
+        "departments": [
+          "Bolig",
+          "Stole",
+          "Spisebordsstole"
+        ]
+      }
+    },
+    {
+      "id": "productslider-others-liked",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Ofte købt sammen med",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/nofu.json"
+      }
+    },
+    {
+      "id": "productslider-others-bought",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Andre endte med at købe",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json"
+      }
+    }
+  ]
+}

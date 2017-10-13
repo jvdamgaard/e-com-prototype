@@ -1,0 +1,57 @@
+{
+  "layout": "default",
+  "modules": [
+    {
+      "id": "product-summary",
+      "type": "ProductDetailPageSummary",
+      "data": {
+        "product": {
+          "id": 18,
+          "images": [
+            "https://bilkadk.imgix.net/medias/sys_master/root/h62/h9b/9793301413918/Kenwood-KMC570.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h8a/h3e/9112297734174.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h39/h3d/9112286691358.jpg",
+            "https://bilkadk.imgix.net/medias/sys_master/root/h0a/he4/9792964329502/9112296783902.jpg"
+          ],
+          "titel": "Kenwood Premier Chef m. blender og kødhakker",
+          "stock": {
+            "level": 10
+          },
+          "price": 2249,
+          "beforePrice": 4499,
+          "rating": 3,
+          "recommendations": 0.55,
+          "shortDescription": "Den lette, elegante skalstol NOFU727 passer godt ind i en minimalistisk indrettet spisestue. Spisebordsstolens stel er fremstillet i massivt træ, mens selve skallen er lavet af formstøbt plastik. NOFU727 føjer et moderne strejf til klassisk dansk design og er et innovativt bud på en skalstol med stor personlighed. Stolen er udstyret med en lækker, formsyet pude, så NOFU727 ser ikke bare godt ud  man sidder også supergodt i stolen. NOFUs kollektioner er udført i bæredygtigt PEFC-certificeret og PU-lakeret træ. Produkterne overholder EUs REACH-lovgivning, hvilket betyder, at møblerne er fri for farlig kemi og dermed særdeles velegnede til børnefamilier. NOFU727 fås i flere farve nuancer. Alle NOFUs produkter er håndlavet specielt til dig efter dine ønsker.",
+          "keySpecifications": [{
+            "key": "Sædematerial",
+            "value": "Sort PP Plastik"
+          }, {
+            "key": "Stel material",
+            "value": "Natur ask"
+          }]
+        },
+        "departments": [
+          "Bolig",
+          "Stole",
+          "Spisebordsstole"
+        ]
+      }
+    },
+    {
+      "id": "productslider-others-liked",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Ofte købt sammen med",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/nofu.json"
+      }
+    },
+    {
+      "id": "productslider-others-bought",
+      "type": "ProductSlider",
+      "data": {
+        "header": "Andre endte med at købe",
+        "src": "https://jvdamgaard.github.io/e-com-prototype/json/most-popular.json"
+      }
+    }
+  ]
+}
