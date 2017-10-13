@@ -3,6 +3,7 @@
     <breadcrumb
       :paths="breadcrumbPaths"
       :current="product.titel"
+      class="is-hidden-on-mobile is-visible-on-tablet"
     />
     <grid fullWidthOnSmallDevices class="has-no-top-margin">
       <div class="is-12-col has-white-background">
@@ -12,7 +13,6 @@
               :images="product.images"
               :imagePosition="imagePosition"
               :changeImagePosiiton="setImagePosition"
-              class="is-hidden-on-mobile is-visible-on-tablet"
             />
           </div>
           <div class="is-12-col is-6-col-on-tablet has-large-vertical-padding">
@@ -33,18 +33,10 @@
               quantityLabel="lagt i kurven"
               :product="product"
             />
-            <p class="has-tiny-top-margin"><strong class="is-green">På lager.</strong> Kan også afhentes i 9 butikker. <a href="#">Se hvilke butikker</a></p>
-            <p class="has-tiny-top-margin"><strong>3-5 dages til 29,-</strong> Eller få den allerede i morgen ved valg af hurtigere leveringsmulighed. <a href="#">Se alle leveringsmuligheder</a></p>
+            <stock :product="product" />
           </div>
           <div class="is-12-col is-hidden-on-tablet has-padding" :class="$style.borderTop">
-            <p>{{product.shortDescription.slice(0,250)}}... <a href="#description">Læs mere</a></p>
-            <h2 class="has-small-top-margin">Nøglespecifikationer</h2>
-            <ul class="is-unstyled-list has-tiny-top-margin">
-              <li v-for="keySpec in product.keySpecifications">
-                <strong class="is-dimmed">{{keySpec.key}}:</strong> {{keySpec.value}}
-              </li>
-            </ul>
-            <p class="has-tiny-top-margin"><a href="#specifications">Se alle specifikationer</a></p>
+            <description :product="product" />
           </div>
         </grid>
       </div>
@@ -59,6 +51,8 @@ import Grid from './Grid.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import ProductDetailPageSummaryThumbnails from './ProductDetailPageSummaryThumbnails.vue';
 import ProductDetailPageSummaryBox from './ProductDetailPageSummaryBox.vue';
+import ProductDetailPageSummaryStock from './ProductDetailPageSummaryStock.vue';
+import ProductDetailPageSummaryDescription from './ProductDetailPageSummaryDescription.vue';
 import ProductImage from './ProductImage.vue';
 import AddToCart from './AddToCart.vue';
 
@@ -68,6 +62,8 @@ export default {
     Breadcrumb,
     Thumbnails: ProductDetailPageSummaryThumbnails,
     SummaryBox: ProductDetailPageSummaryBox,
+    Stock: ProductDetailPageSummaryStock,
+    Description: ProductDetailPageSummaryDescription,
     ProductImage,
     AddToCart,
   },

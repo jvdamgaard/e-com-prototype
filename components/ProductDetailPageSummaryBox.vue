@@ -14,40 +14,11 @@
         <li class="is-dimmed has-tiny-horizontal-padding">/</li>
         <li><a href="#reviews">23 brugerbilleder</a></li>
       </ul>
-      <p class="is-aligned-right has-small-top-margin is-hidden-on-tablet">
-        <span
-          v-if="product.beforePrice"
-          class="has-tiny-right-margin"
-          :class="$style.beforePrice"
-        >
-          {{numberWithDots(product.beforePrice)}},00 kr.
-        </span>
-        <span class="is-h1" :class="{
-          'is-red': product.beforePrice,
-        }">{{numberWithDots(product.price)}},00 kr.</span>
-      </p>
+      <price :product="product" class="is-hidden-on-tablet" />
     </div>
     <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-tablet">
-      <p>{{product.shortDescription.slice(0,250)}}... <a href="#description">Læs mere</a></p>
-      <h2 class="has-small-top-margin">Nøglespecifikationer</h2>
-      <ul class="is-unstyled-list has-tiny-top-margin">
-        <li v-for="keySpec in product.keySpecifications">
-          <strong class="is-dimmed">{{keySpec.key}}:</strong> {{keySpec.value}}
-        </li>
-      </ul>
-      <p class="has-tiny-top-margin"><a href="#specifications">Se alle specifikationer</a></p>
-      <p class="is-aligned-right has-small-top-margin is-hidden-on-mobile is-visible-on-tablet">
-        <span
-          v-if="product.beforePrice"
-          class="has-tiny-right-margin"
-          :class="$style.beforePrice"
-        >
-          {{numberWithDots(product.beforePrice)}},00 kr.
-        </span>
-        <span class="is-h1" :class="{
-          'is-red': product.beforePrice,
-        }">{{numberWithDots(product.price)}},00 kr.</span>
-      </p>
+      <description :product="product" />
+      <price :product="product" />
     </div>
     <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-laptop">
       <add-to-cart
@@ -57,8 +28,7 @@
         quantityLabel="lagt i kurven"
         :product="product"
       />
-      <p class="has-tiny-top-margin"><strong class="is-green">På lager.</strong> Kan også afhentes i 9 butikker. <a href="#">Se hvilke butikker</a></p>
-      <p class="has-tiny-top-margin"><strong>3-5 dages til 29,-</strong> Eller få den allerede i morgen ved valg af hurtigere leveringsmulighed. <a href="#">Se alle leveringsmuligheder</a></p>
+      <stock :product="product" />
     </div>
   </div>
 </template>
@@ -68,11 +38,15 @@ import { mapActions } from 'vuex'; // eslint-disable-line
 import { numberWithDots } from '../utils';
 import Star from './Star.vue';
 import AddToCart from './AddToCart.vue';
+import ProductDetailPageSummaryStock from './ProductDetailPageSummaryStock.vue';
+import ProductDetailPageSummaryDescription from './ProductDetailPageSummaryDescription.vue';
 
 export default {
   components: {
     Star,
     AddToCart,
+    Stock: ProductDetailPageSummaryStock,
+    Description: ProductDetailPageSummaryDescription,
   },
   props: {
     product: Object,
@@ -106,10 +80,5 @@ export default {
 
 .summaryBoxInner:not(:first-child) {
   border-top: 1px solid var(--color-grey-lighter);
-}
-
-.beforePrice {
-  color: var(--color-grey);
-  text-decoration: line-through;
 }
 </style>

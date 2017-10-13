@@ -111,6 +111,12 @@ export default {
   width: 100%;
 }
 
+@media (min-width: 48rem) {
+  .image {
+    padding-bottom: 100%;
+  }
+}
+
 .productCard {
   padding-bottom: 75%;
 }
