@@ -9,32 +9,7 @@
     @mouseover.native="hovering = true"
     @mouseleave.native="hovering = false"
   >
-    <div
-      v-if="quantityInBasket > 0"
-      class="ProductCard__sticker ProductCard__sticker--blue is-small"
-    >
-      {{quantityInBasket}} lagt i kurven
-    </div>
-    <div
-      v-else-if="product.stock.level === 0"
-      class="ProductCard__sticker ProductCard__sticker--red is-small"
-    >
-      {{product.stock.status}}
-    </div>
-    <div
-      v-else-if="product.label"
-      class="ProductCard__sticker is-small"
-      :class="`ProductCard__sticker--${product.label.color}`"
-    >
-      {{product.label.text}}
-    </div>
-    <div
-      v-else-if="product.beforePrice"
-      class="ProductCard__sticker is-small"
-    >
-      Spar {{numberWithDots(product.beforePrice - product.price)}},-
-    </div>
-
+    <product-sticker :product="product" class="ProductCard__sticker" />
     <product-image
       :images="product.images"
       :imagePosition="imagePosition"
@@ -74,6 +49,7 @@ import Arrow from './Arrow.vue';
 import Star from './Star.vue';
 import AddToCart from './AddToCart.vue';
 import ProductImage from './ProductImage.vue';
+import ProductSticker from './ProductSticker.vue';
 
 export default {
   components: {
@@ -82,6 +58,7 @@ export default {
     Star,
     AddToCart,
     ProductImage,
+    ProductSticker,
   },
   props: {
     product: Object,
@@ -165,28 +142,8 @@ export default {
 }
 
 .ProductCard__sticker {
-  position: absolute;
   top: 0.5rem;
   left: 0;
-  background-color: var(--color-yellow);
-  font-weight: bold;
-  padding: 0 1rem;
-  line-height: 1.5rem;
-  transition: all 0.2s ease;
-  z-index: 10;
-}
-.ProductCard__sticker:after {
-  content: '';
-  border-top: 0.5rem solid var(--color-yellow);
-  border-right: 1px solid var(--color-yellow);
-  border-left: 0.5rem solid transparent;
-  bottom: -0.5rem;
-  content: "";
-  position: absolute;
-  left: 1rem;
-  width: 0;
-  height: 0;
-  transition: left 0.2s ease;
 }
 .no-touch .ProductCard:hover .ProductCard__sticker {
   top: 1rem;
@@ -194,30 +151,6 @@ export default {
 }
 .no-touch .ProductCard:hover .ProductCard__sticker:after {
   left: 1.5rem;
-}
-.ProductCard__sticker--red {
-  color: var(--color-white);
-  background-color: var(--color-red);
-}
-.ProductCard__sticker--red:after {
-  border-top: 0.5rem solid var(--color-red);
-  border-right: 1px solid var(--color-red);
-}
-.ProductCard__sticker--green {
-  color: var(--color-white);
-  background-color: var(--color-green);
-}
-.ProductCard__sticker--green:after {
-  border-top: 0.5rem solid var(--color-green);
-  border-right: 1px solid var(--color-green);
-}
-.ProductCard__sticker--blue {
-  color: var(--color-white);
-  background-color: var(--color-primary);
-}
-.ProductCard__sticker--blue:after {
-  border-top: 0.5rem solid var(--color-primary);
-  border-right: 1px solid var(--color-primary);
 }
 
 .ProductCard__image {

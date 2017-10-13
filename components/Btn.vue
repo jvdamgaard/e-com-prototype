@@ -51,18 +51,15 @@ export default {
   border: 0;
   cursor: pointer;
   transition: all 0.2s ease;
-  overflow: hidden;
   white-space: nowrap;
 }
 .Btn__inner {
-  width: calc(10rem + 100%);
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content:  center;
-  align-content:center;
+  align-content: center;
   flex-direction: column;
-  margin-left: -5rem;
-  margin-right: -5rem;
 }
 
 

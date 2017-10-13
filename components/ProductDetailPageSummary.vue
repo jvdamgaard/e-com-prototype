@@ -16,10 +16,17 @@
             />
           </div>
           <div class="is-12-col is-6-col-on-tablet has-large-vertical-padding has-horizontal-padding">
+            <product-sticker :product="product" :class="$style.sticker" />
             <product-image
               :images="product.images"
               :imagePosition="imagePosition"
               :changeImagePosiiton="setImagePosition"
+            />
+            <thumbnails
+              :images="product.images"
+              :imagePosition="imagePosition"
+              :changeImagePosiiton="setImagePosition"
+              class="is-hidden-on-desktop"
             />
           </div>
           <div class="is-12-col is-6-col-on-tablet is-5-col-on-desktop">
@@ -55,6 +62,7 @@ import ProductDetailPageSummaryStock from './ProductDetailPageSummaryStock.vue';
 import ProductDetailPageSummaryDescription from './ProductDetailPageSummaryDescription.vue';
 import ProductImage from './ProductImage.vue';
 import AddToCart from './AddToCart.vue';
+import ProductSticker from './ProductSticker.vue';
 
 export default {
   components: {
@@ -66,6 +74,7 @@ export default {
     Description: ProductDetailPageSummaryDescription,
     ProductImage,
     AddToCart,
+    ProductSticker,
   },
   props: {
     product: Object,
@@ -97,6 +106,11 @@ export default {
 
 <style module>
 @import '../assets/css/variables.css';
+
+.sticker {
+  top: 1rem;
+  right: -1rem;
+}
 
 .floatingBuy {
   position: fixed !important;
