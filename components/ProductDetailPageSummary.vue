@@ -12,6 +12,7 @@
               :images="product.images"
               :imagePosition="imagePosition"
               :changeImagePosiiton="setImagePosition"
+              class="is-hidden-on-mobile is-visible-on-tablet"
             />
           </div>
           <div class="is-12-col is-6-col-on-tablet has-large-vertical-padding">
