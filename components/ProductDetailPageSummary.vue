@@ -109,7 +109,11 @@ export default {
 
 .sticker {
   top: 1rem;
-  right: -1rem;
+  right: 0;
+}
+
+@media (min-width: 48rem) {
+  .sticker { right: -1rem; }
 }
 
 .floatingBuy {
