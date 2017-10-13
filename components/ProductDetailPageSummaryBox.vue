@@ -35,11 +35,11 @@
 
 <script>
 import { mapActions } from 'vuex'; // eslint-disable-line
-import { numberWithDots } from '../utils';
 import Star from './Star.vue';
 import AddToCart from './AddToCart.vue';
 import ProductDetailPageSummaryStock from './ProductDetailPageSummaryStock.vue';
 import ProductDetailPageSummaryDescription from './ProductDetailPageSummaryDescription.vue';
+import ProductDetailPageSummaryPrice from './ProductDetailPageSummaryPrice.vue';
 
 export default {
   components: {
@@ -47,6 +47,7 @@ export default {
     AddToCart,
     Stock: ProductDetailPageSummaryStock,
     Description: ProductDetailPageSummaryDescription,
+    Price: ProductDetailPageSummaryPrice,
   },
   props: {
     product: Object,
@@ -54,11 +55,6 @@ export default {
   computed: {
     recommendationPercentage() {
       return Math.ceil(this.product.recommendations * 100);
-    },
-  },
-  methods: {
-    numberWithDots(x) {
-      return numberWithDots(x);
     },
   },
 };

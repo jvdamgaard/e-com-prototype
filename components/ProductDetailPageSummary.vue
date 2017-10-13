@@ -15,7 +15,7 @@
               :changeImagePosiiton="setImagePosition"
             />
           </div>
-          <div class="is-12-col is-6-col-on-tablet has-large-vertical-padding">
+          <div class="is-12-col is-6-col-on-tablet has-large-vertical-padding has-horizontal-padding">
             <product-image
               :images="product.images"
               :imagePosition="imagePosition"

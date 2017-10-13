@@ -14,9 +14,16 @@
 </template>
 
 <script>
+import { numberWithDots } from '../utils';
+
 export default {
   props: {
     product: Object,
+  },
+  methods: {
+    numberWithDots(x) {
+      return numberWithDots(x);
+    },
   },
 };
 </script>
