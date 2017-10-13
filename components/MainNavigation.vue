@@ -144,8 +144,7 @@ export default {
   line-height: 1;
   height: 3rem;
   padding: 0rem 1rem 0.5rem;
-  margin-top: 0.5rem;
-  margin-right: 1rem;
+  margin: 0.5rem 0 0 -1rem;
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -159,6 +158,8 @@ export default {
     font-size: 1rem;
     font-weight: bold;
     padding: 0.75rem 1rem 1.25rem;
+    margin-right: 1rem;
+    margin-left: 0;
   }
 }
 @media (min-width: 96rem) {
@@ -176,15 +177,15 @@ export default {
   display: inline-block;
   height: 3rem;
   margin-top: 0.5rem;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
+  padding: 0 0.5rem;
   cursor: pointer;
   transition: all 0.25s ease;
-  padding: 0 1rem;
   white-space: nowrap;
 }
 .MainNavigation__basket-icon__text {
   font-weight: bold;
-  margin-right: 0.5rem;
+  margin-right: 0rem;
 }
 .MainNavigation__basket-icon svg {
   height: 2rem;
@@ -204,5 +205,14 @@ export default {
 }
 .MainNavigation__basket-icon--active path {
   fill: var(--color-grey-darker);
+}
+@media (min-width: 48rem) {
+  .MainNavigation__basket-icon {
+    padding: 0 1rem;
+    margin-left: 1rem;
+  }
+  .MainNavigation__basket-icon__text {
+    margin-right: 0.5rem;
+  }
 }
 </style>
