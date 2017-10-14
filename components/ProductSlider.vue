@@ -25,7 +25,7 @@
           'transform': `translate3d(-${position}00%, 0, 0)`,
         }">
         <div v-for="(product, i) in shownProducts" :key="product.id" class="ProductSlider__item">
-          <product-card v-if="i < 36" :product="product" :lazy="lazy || i > 5" @click.native="addToLastSeen(product)" />
+          <product-card v-if="i < 36" :product="product" :lazy="lazy || i > 5" />
         </div>
         <div class="ProductSlider__item ProductSlider__item--show-all">
           <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'; // eslint-disable-line
 import axios from 'axios';
 import throttle from 'lodash/throttle';
 import Grid from '../components/Grid.vue';
@@ -92,9 +91,6 @@ export default {
     });
   },
   methods: {
-    ...mapActions({
-      addToLastSeen: 'user/addToLastSeen',
-    }),
     next() {
       if (this.position < this.slides - 1) {
         this.position += 1;

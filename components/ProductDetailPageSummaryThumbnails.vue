@@ -7,7 +7,7 @@
       [$style.active]: imagePosition === i,
     }">
       <img
-        :src="`${image}?w=200&auto=format&fm=jpg`"
+        v-lazy="`${image}?w=200&auto=format&fm=jpg`"
         class="is-full-width"
         :class="$style.thumbnailImage"
         @click="changeImagePosiiton(i)"

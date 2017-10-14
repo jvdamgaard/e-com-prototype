@@ -97,9 +97,15 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      addToLastSeen: 'user/addToLastSeen',
+    }),
     setImagePosition(position) {
       this.imagePosition = position;
     },
+  },
+  mounted() {
+    this.addToLastSeen(this.product);
   },
 };
 </script>
