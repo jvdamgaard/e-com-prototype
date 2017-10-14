@@ -19,18 +19,18 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      titel: String,
-      description: String,
-      icon: String,
-      active: Boolean,
-      lazy: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  props: {
+    titel: String,
+    description: String,
+    icon: String,
+    active: Boolean,
+    lazy: {
+      type: Boolean,
+      default: false,
     },
-  };
+  },
+};
 </script>
 
 <style>

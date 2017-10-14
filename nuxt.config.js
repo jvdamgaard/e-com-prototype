@@ -69,6 +69,14 @@ module.exports = {
     ],
   },
   build: {
+    vendor: [
+      './utils',
+      'axios',
+      'vue-lazyload',
+      'lodash/throttle',
+      'lodash/kebabCase',
+      'lodash/debounce',
+    ],
     /*
     ** Run ESLINT on save
     */
