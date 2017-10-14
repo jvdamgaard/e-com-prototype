@@ -31,6 +31,12 @@ export default {
           text: `${this.quantityInBasket} lagt i kurven`,
         };
       }
+      if (this.product.beforePrice) {
+        return {
+          color: 'yellow',
+          text: `Spar ${this.product.beforePrice - this.product.price},-`,
+        };
+      }
       if (this.product.label) {
         return this.product.label;
       }
