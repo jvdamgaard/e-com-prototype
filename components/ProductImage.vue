@@ -144,7 +144,7 @@ export default {
   transition: opacity 0.2s ease;
   z-index: 2;
 }
-:global(.no-touch) .image:hover .arrow, .hovering .arrow {
+:global(.no-touch) .image:hover .arrow, :global(.no-touch) .hovering .arrow {
   opacity: 1;
 }
 
