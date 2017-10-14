@@ -11,7 +11,7 @@
         @mouseleave="leaveMain"
       >
         <div class="DepartmentNavigation__departments has-white-background has-vertical-padding is-full-height">
-          <navigation-item titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" />
+          <navigation-item titel="Log ind" description="Log ind eller opret bruger" icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg" lazy />
           <h3 class="has-padding">Afdelinger</h3>
           <navigation-item
             v-for="department in enhancedDepartments"
@@ -22,6 +22,7 @@
             :key="department.titel"
             @click.native="expandDepartment(department.titel)"
             @mouseover.native="setNextDepartment(department.titel, $event)"
+            lazy
           />
         </div>
       </div>
@@ -53,7 +54,7 @@
             <nuxt-link
               to="/"
               class="is-bg-image is-full-width is-full-height is-block is-white has-padding has-no-underline"
-              :style="`background-image: url('${department.promotion.imageSrc}')`"
+              v-lazy:background-image="department.promotion.imageSrc"
               :key="department.titel"
             >
               <btn v-if="department.promotion.btnLabel" type="yellow" shadow class="DepartmentNavigation__promo-btn">{{department.promotion.btnLabel}}</btn>
@@ -63,7 +64,7 @@
             <h3>Top brands</h3>
             <p class="DepartmentNavigation__brand-icons">
               <nuxt-link v-for="brand in department.brands" to="/" :key="brand.imgSrc">
-                <img :src="brand.imgSrc"/>
+                <img v-lazy="brand.imgSrc"/>
               </nuxt-link>
             </p>
           </div>

@@ -1,8 +1,15 @@
 <template>
   <div class="NavigationItem has-small-line-height is-group" :class="{ 'NavigationItem--active': active}">
-    <div v-if="icon" class="NavigationItem__icon is-bg-image is-round" :style="{
-      'background-image': `url('${icon}')`,
-    }" />
+    <div
+      v-if="icon && !lazy"
+      class="NavigationItem__icon is-bg-image is-round"
+      :style="{'background-image': `url('${icon}')`,}"
+    />
+    <div
+      v-if="icon && lazy"
+      class="NavigationItem__icon is-bg-image is-round"
+      v-lazy:background-image="icon"
+    />
     <div class="NavigationItem__text">
       <div class="NavigationItem__text__inner is-full-width is-small">
         <span v-html="titel" />
@@ -18,6 +25,10 @@
       description: String,
       icon: String,
       active: Boolean,
+      lazy: {
+        type: Boolean,
+        default: false,
+      },
     },
   };
 </script>

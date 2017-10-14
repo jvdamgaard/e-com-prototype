@@ -14,6 +14,7 @@
             titel="Log ind"
             description="Log ind eller opret bruger"
             icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
+            lazy
           />
         </div>
         <div class="is-12-col has-large-bottom-padding">
@@ -25,6 +26,7 @@
             :icon="department.iconSrc"
             :key="department.titel"
             @click.native="expandDepartment(department.titel)"
+            lazy
           />
         </div>
       </grid>
@@ -59,7 +61,7 @@
             <h3>Top brands</h3>
             <p class="SubMobileNavigation__brand-icons">
               <nuxt-link v-for="brand in department.brands" to="/" :key="brand.imgSrc">
-                <img :src="brand.imgSrc"/>
+                <img v-lazy="brand.imgSrc"/>
               </nuxt-link>
             </p>
           </div>
@@ -67,7 +69,7 @@
             <nuxt-link
               to="/"
               class="SubMobileNavigation__promotion is-bg-image is-full-width is-block has-no-underline"
-              :style="`background-image: url('${department.promotion.imageSrc}')`"
+              v-lazy:background-image="department.promotion.imageSrc"
               :key="department.titel"
             >
               <btn

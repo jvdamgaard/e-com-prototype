@@ -5,7 +5,6 @@
   }">
     <nuxt-link
       v-for="item in items"
-      v-html="item.html"
       :key="item.id"
       to="/"
       class="HighlightedContent__item is-12-col has-no-underline"
@@ -19,7 +18,10 @@
           'is-white': theme === 'primary',
         }
       ]"
-    />
+    >
+      <p v-if="item.icon"><img v-lazy="item.icon" /></p>
+      <div v-if="item.html" v-html="item.html" />
+    </nuxt-link>
   </Grid>
 </template>
 
