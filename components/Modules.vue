@@ -7,6 +7,7 @@
       <content-container v-if="module.type === 'ContentContainer'" v-bind="module.data" />
       <frontpage-top v-if="module.type === 'FrontpageTop'" v-bind="module.data" />
       <product-detail-page-summary v-if="module.type === 'ProductDetailPageSummary'" v-bind="module.data" />
+      <product-detail-page-description v-if="module.type === 'ProductDetailPageDescription'" v-bind="module.data" />
     </section>
   </div>
 </template>
@@ -19,6 +20,7 @@ import MainFooter from './MainFooter.vue';
 import ContentContainer from './ContentContainer.vue';
 import FrontpageTop from './FrontpageTop.vue';
 import ProductDetailPageSummary from './ProductDetailPageSummary.vue';
+import ProductDetailPageDescription from './ProductDetailPageDescription.vue';
 
 export default {
   components: {
@@ -29,6 +31,7 @@ export default {
     ContentContainer,
     FrontpageTop,
     ProductDetailPageSummary,
+    ProductDetailPageDescription,
   },
   props: {
     modules: Array,

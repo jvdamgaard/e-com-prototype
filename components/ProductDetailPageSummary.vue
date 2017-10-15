@@ -5,7 +5,7 @@
       :current="product.titel"
       class="is-hidden-on-mobile is-visible-on-tablet"
     />
-    <grid fullWidthOnSmallDevices class="has-no-top-margin">
+    <grid fullWidthUntil="tablet" class="has-no-top-margin">
       <div class="is-12-col has-white-background">
         <grid inner rowGap="none" colGap="none">
           <div class="is-1-col is-hidden-on-mobile is-visible-on-desktop">

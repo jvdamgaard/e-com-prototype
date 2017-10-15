@@ -165,11 +165,17 @@ export default {
   composes: arrow;
   right: 0.5rem;
 }
-.productCard .rightArrow { right: -1.25rem; }
 
 .leftArrow {
   composes: arrow;
   left: 0.5rem;
 }
+
+@media (min-width: 48rem) {
+  .rightArrow { right: -1.5rem; }
+  .leftArrow { left: -1.5rem; }
+}
+
+.productCard .rightArrow { right: -1.25rem; }
 .productCard .leftArrow { left: -1.25rem; }
 </style>

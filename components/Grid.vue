@@ -2,9 +2,9 @@
   <div class="Grid" :class="[
     `Grid--has-${rowGap}-row-gap`,
     `Grid--has-${colGap}-col-gap`,
+    `Grid--is-full-width-until-${fullWidthUntil}`,
     {
       'Grid--inner': inner,
-      'Grid--no-padding-on-small-devices': fullWidthOnSmallDevices,
     }
   ]">
     <slot />
@@ -29,7 +29,13 @@ export default {
       },
     },
     inner: Boolean,
-    fullWidthOnSmallDevices: Boolean,
+    fullWidthUntil: {
+      type: String,
+      default: 'none',
+      validator(value) {
+        return ['none', 'mobile', 'phablet', 'tablet', 'laptop', 'desktop'].indexOf(value) !== -1;
+      },
+    },
   },
 };
 </script>
@@ -49,11 +55,19 @@ export default {
   padding: 0;
 }
 
-@media (max-width: 1023px) {
-  .Grid--no-padding-on-small-devices {
-    padding: 0 !important;
-  }
+@media (max-width: 399px) {
+  .Grid--is-full-width-until-mobile { padding: 0 !important; }
 }
+@media (max-width: 767px) {
+  .Grid--is-full-width-until-phablet { padding: 0 !important; }
+}
+@media (max-width: 1023px) {
+  .Grid--is-full-width-until-tablet { padding: 0 !important; }
+}
+@media (max-width: 1537px) {
+  .Grid--is-full-width-until-laptop { padding: 0 !important; }
+}
+.Grid--is-full-width-until-desktop { padding: 0 !important; }
 
 .Grid--has-none-row-gap { grid-row-gap: 0; }
 .Grid--has-large-row-gap { grid-row-gap: 2rem; }
