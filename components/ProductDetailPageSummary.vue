@@ -7,27 +7,32 @@
     />
     <grid fullWidthOnSmallDevices class="has-no-top-margin">
       <div class="is-12-col has-white-background">
-        <grid inner rowGap="none">
+        <grid inner rowGap="none" colGap="none">
           <div class="is-1-col is-hidden-on-mobile is-visible-on-desktop">
             <thumbnails
               :images="product.images"
               :imagePosition="imagePosition"
               :changeImagePosiiton="setImagePosition"
+              :limit="8"
             />
           </div>
-          <div class="is-12-col is-6-col-on-tablet has-large-vertical-padding has-horizontal-padding">
+          <div class="is-12-col is-6-col-on-tablet">
             <product-sticker :product="product" :class="$style.sticker" />
-            <product-image
-              :images="product.images"
-              :imagePosition="imagePosition"
-              :changeImagePosiiton="setImagePosition"
-            />
-            <thumbnails
-              :images="product.images"
-              :imagePosition="imagePosition"
-              :changeImagePosiiton="setImagePosition"
-              class="is-hidden-on-desktop"
-            />
+            <div :class="$style.marginImage">
+              <product-image
+                :images="product.images"
+                :imagePosition="imagePosition"
+                :changeImagePosiiton="setImagePosition"
+              />
+            </div>
+            <div :class="$style.marginThumbnail">
+              <thumbnails
+                :images="product.images"
+                :imagePosition="imagePosition"
+                :changeImagePosiiton="setImagePosition"
+                class="is-hidden-on-desktop"
+              />
+            </div>
           </div>
           <div class="is-12-col is-6-col-on-tablet is-5-col-on-desktop">
             <summary-box :product="product" />
@@ -118,21 +123,19 @@ export default {
   right: 0;
 }
 
-@media (min-width: 48rem) {
-  .sticker { right: -1rem; }
-}
-
-.floatingBuy {
-  position: fixed !important;
-  top: 3.5rem; /* avoid ios tap */
-  left: 0;
-  right: 0;
-  transform: translateZ(0);
-  z-index: 100;
-}
-
 .borderTop {
   border-top: 1px solid var(--color-grey-lighter);
+}
+
+.marginThumbnail { margin: 1rem; }
+
+@media (min-width: 48rem) {
+  .sticker { right: -1rem; }
+  .marginImage { margin: 1rem; }
+}
+
+@media (min-width: 64rem) {
+  .marginThumbnail, .marginImage { margin: 2rem; }
 }
 
 </style>

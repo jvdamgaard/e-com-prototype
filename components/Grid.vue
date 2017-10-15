@@ -1,6 +1,7 @@
 <template>
   <div class="Grid" :class="[
     `Grid--has-${rowGap}-row-gap`,
+    `Grid--has-${colGap}-col-gap`,
     {
       'Grid--inner': inner,
       'Grid--no-padding-on-small-devices': fullWidthOnSmallDevices,
@@ -14,6 +15,13 @@
 export default {
   props: {
     rowGap: {
+      type: String,
+      default: 'default',
+      validator(value) {
+        return ['none', 'default', 'large'].indexOf(value) !== -1;
+      },
+    },
+    colGap: {
       type: String,
       default: 'default',
       validator(value) {
@@ -47,12 +55,11 @@ export default {
   }
 }
 
-.Grid--has-none-row-gap {
-  grid-row-gap: 0;
-}
-.Grid--has-large-row-gap {
-  grid-row-gap: 2rem;
-}
+.Grid--has-none-row-gap { grid-row-gap: 0; }
+.Grid--has-large-row-gap { grid-row-gap: 2rem; }
+
+.Grid--has-none-col-gap { grid-column-gap: 0; }
+.Grid--has-large-col-gap { grid-column-gap: 2rem; }
 
 /* Align */
 .Grid.is-aligned-vertical-center > * {

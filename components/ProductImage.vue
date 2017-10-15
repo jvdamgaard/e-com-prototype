@@ -128,6 +128,8 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
+  width: auto;
+  height: auto;
   max-width: 100%;
   max-height: 100%;
   transition: opacity 0.5s ease;
@@ -150,19 +152,13 @@ export default {
 
 .rightArrow {
   composes: arrow;
-  right: 1rem;
-}
-@media (min-width: 64rem) {
-  .rightArrow { right: 2rem; }
+  right: 0.5rem;
 }
 .productCard .rightArrow { right: -1.25rem; }
 
 .leftArrow {
   composes: arrow;
-  left: 1rem;
-}
-@media (min-width: 64rem) {
-  .leftArrow { left: 2rem; }
+  left: 0.5rem;
 }
 .productCard .leftArrow { left: -1.25rem; }
 </style>
