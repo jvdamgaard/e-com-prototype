@@ -92,8 +92,17 @@ export default {
           // Make sure this is the newest image
           if (this.imagePosition === position) {
             this.activeImagePosition = position;
-            this.loadingImage = false;
           }
+        })
+        .then(() => {
+          // Wait until image has bee painted (max two frames)
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              if (this.imagePosition === position) {
+                this.loadingImage = false;
+              }
+            });
+          });
         });
     },
   },
