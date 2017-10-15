@@ -16,14 +16,14 @@
       <arrow v-if="imagePosition > 0" direction="left" />
     </div>
     <img
-      v-if="lazy"
+      v-if="lazy && imagePosition === 0"
       v-lazy="`${images[activeImagePosition]}?w=${width}&h=${height}&auto=format&fm=jpg`"
       :class="{
         [$style.loadingImage]: loadingImage,
       }"
     />
     <img
-      v-if="!lazy"
+      v-else
       :src="`${images[activeImagePosition]}?w=${width}&h=${height}&auto=format&fm=jpg`"
       :class="{
         [$style.loadingImage]: loadingImage,
@@ -85,13 +85,16 @@ export default {
     },
     loadImage(position) {
       this.loadingImage = true;
-      loadImage(this.images[position]).then(() => {
-        // Make sure this is the newest image
-        if (this.imagePosition === position) {
-          this.activeImagePosition = position;
-          this.loadingImage = false;
-        }
-      });
+      const imageLoaded = loadImage(this.images[position]);
+      new Promise(resolve => setTimeout(resolve, 250))
+        .then(imageLoaded)
+        .then(() => {
+          // Make sure this is the newest image
+          if (this.imagePosition === position) {
+            this.activeImagePosition = position;
+            this.loadingImage = false;
+          }
+        });
     },
   },
   watch: {
@@ -132,11 +135,11 @@ export default {
   height: auto;
   max-width: 100%;
   max-height: 100%;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.25s ease;
 }
 
 .loadingImage {
-  opacity: 0;
+  opacity: 0 !important;
 }
 
 .arrow {
