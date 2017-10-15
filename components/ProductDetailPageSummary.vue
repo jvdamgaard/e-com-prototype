@@ -130,7 +130,7 @@ export default {
 .marginThumbnail { margin: 1rem; }
 
 @media (min-width: 48rem) {
-  .sticker { right: -1rem; }
+  .sticker { top: 2rem; }
   .marginImage { margin: 1rem; }
 }
 

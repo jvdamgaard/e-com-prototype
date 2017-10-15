@@ -6,6 +6,7 @@
 
 <script>
 import { mapState } from 'vuex'; // eslint-disable-line
+import { numberWithDots } from '../utils';
 
 export default {
   props: {
@@ -34,7 +35,7 @@ export default {
       if (this.product.beforePrice) {
         return {
           color: 'yellow',
-          text: `Spar ${this.product.beforePrice - this.product.price},-`,
+          text: `Spar ${numberWithDots(this.product.beforePrice - this.product.price)},-`,
         };
       }
       if (this.product.label) {
