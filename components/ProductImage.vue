@@ -16,15 +16,15 @@
       <arrow v-if="imagePosition > 0" direction="left" />
     </div>
     <img
-      v-if="lazy && imagePosition === 0"
-      v-lazy="`${images[activeImagePosition]}?w=${width}&h=${height}&auto=format&fm=jpg`"
+      v-if="lazy && activeImagePosition === 0"
+      v-lazy="getImagePath(activeImagePosition)"
       :class="{
         [$style.loadingImage]: loadingImage,
       }"
     />
     <img
       v-else
-      :src="`${images[activeImagePosition]}?w=${width}&h=${height}&auto=format&fm=jpg`"
+      :src="getImagePath(activeImagePosition)"
       :class="{
         [$style.loadingImage]: loadingImage,
       }"
@@ -83,25 +83,24 @@ export default {
         this.changeImagePosiiton(this.imagePosition + deltaPos);
       }
     },
+    getImagePath(position) {
+      return `${this.images[position]}?w=${this.width}&h=${this.height}&auto=format&fm=jpg`;
+    },
     loadImage(position) {
       this.loadingImage = true;
-      const imageLoaded = loadImage(this.images[position]);
+      const imageLoaded = loadImage(this.getImagePath(position));
+
+      // Make sure image has fade out
       new Promise(resolve => setTimeout(resolve, 250))
-        .then(imageLoaded)
+        .then(() => imageLoaded)
         .then(() => {
           // Make sure this is the newest image
           if (this.imagePosition === position) {
             this.activeImagePosition = position;
           }
-        })
-        .then(() => {
-          // Wait until image has bee painted (max two frames)
+          // Wait until image has bee painted
           requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              if (this.imagePosition === position) {
-                this.loadingImage = false;
-              }
-            });
+            this.loadingImage = false;
           });
         });
     },
