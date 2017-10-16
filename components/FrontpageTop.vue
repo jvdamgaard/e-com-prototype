@@ -49,8 +49,8 @@
             <image-container
               :lazy="false"
               src="https://images-na.ssl-images-amazon.com/images/G/01/img17/consumer-electronics/desktop/1067349_us_wireless-products_iphone-event_1800x360_desktop_r2.jpg"
-              width="1800"
-              height="360"
+              :width="1800"
+              :height="360"
             />
           </nuxt-link>
         </div>

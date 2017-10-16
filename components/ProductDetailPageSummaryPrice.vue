@@ -26,8 +26,11 @@ export default {
       return numberWithDots(x);
     },
     calculated(key) {
+      if (!this.product[key]) {
+        return 0;
+      }
       if (!this.product.variants) {
-        return this[key];
+        return this.product[key];
       }
       return this.activeVariants.reduce((accumulator, activeItemPos, variantPos) => {
         const activeVariant = this.product.variants[variantPos].items[activeItemPos];

@@ -67,6 +67,18 @@
         </grid>
       </div>
     </grid>
+    <div ref="stickyContainer" />
+    <grid :class="[
+      $style.stickyContainer,
+      {
+        [$style.stickyContainerSticks]: sticky,
+      },
+    ]">
+      <div class="is-10-col" />
+      <div class="is-2-col">
+        <product-card :product="product" lazy static />
+      </div>
+    </grid>
   </div>
 </template>
 
@@ -84,6 +96,7 @@ import ProductDetailPageSummaryVariants from './ProductDetailPageSummaryVariants
 import ProductImage from './ProductImage.vue';
 import AddToCart from './AddToCart.vue';
 import ProductSticker from './ProductSticker.vue';
+import ProductCard from './ProductCard.vue';
 
 export default {
   components: {
@@ -98,6 +111,7 @@ export default {
     ProductImage,
     AddToCart,
     ProductSticker,
+    ProductCard,
   },
   props: {
     product: Object,
@@ -107,6 +121,7 @@ export default {
     return {
       imagePosition: 0,
       activeVariants: [],
+      sticky: false,
     };
   },
   computed: {
@@ -135,6 +150,10 @@ export default {
         return value;
       });
     },
+    handleScroll() {
+      const fromTop = this.$refs.stickyContainer.getBoundingClientRect().top;
+      this.sticky = (fromTop <= 72);
+    },
   },
   created() {
     if (this.product.variants) {
@@ -143,6 +162,16 @@ export default {
   },
   mounted() {
     this.addToLastSeen(this.product);
+
+    if (process.browser) {
+      this.handleScroll();
+      window.addEventListener('scroll', this.handleScroll, { passive: true });
+    }
+  },
+  destroyed() {
+    if (process.browser) {
+      window.removeEventListener('scroll', this.handleScroll, { passive: true });
+    }
   },
 };
 </script>
@@ -160,6 +189,20 @@ export default {
 }
 
 .marginThumbnail { margin: 1rem; }
+
+.stickyContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+.stickyContainerSticks {
+  position: fixed;
+  top: 4.5rem;
+}
 
 @media (min-width: 48rem) {
   .sticker { top: 2rem; }

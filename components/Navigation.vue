@@ -39,12 +39,12 @@ export default {
   mounted() {
     if (process.browser) {
       this.handleScroll();
-      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll, { passive: true });
     }
   },
   destroyed() {
     if (process.browser) {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll, { passive: true });
     }
   },
 };

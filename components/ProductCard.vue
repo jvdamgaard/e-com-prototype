@@ -5,13 +5,15 @@
     :class="{
       'ProductCard--out-of-stock': product.stock.level === 0,
       'ProductCard--in-basket': quantityInBasket > 0,
+      'ProductCard--static': static,
+      'ProductCard--no-static': !static,
     }"
     @mouseover.native="hovering = true"
     @mouseleave.native="hovering = false"
   >
-    <product-sticker :product="product" class="ProductCard__sticker" />
+    <product-sticker v-if="!static" :product="product" class="ProductCard__sticker" />
     <product-image
-      :images="product.images"
+      :images="static ? product.images.slice(0, 1) : product.images"
       :imagePosition="imagePosition"
       :changeImagePosiiton="setImagePosition"
       :lazy="lazy"
@@ -35,7 +37,7 @@
       }">{{numberWithDots(product.price)}},-</span>
     </p>
 
-    <add-to-cart :product="product" class="ProductCard__btn-wrapper"/>
+    <add-to-cart :product="product" :hideReadMore="static" class="ProductCard__btn-wrapper"/>
 
   </nuxt-link>
 </template>
@@ -65,6 +67,10 @@ export default {
     lazy: {
       type: Boolean,
       default: true,
+    },
+    static: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -115,16 +121,18 @@ export default {
   color: var(--color-black);
   overflow: hidden;
 }
-.no-touch .ProductCard:hover {
+.ProductCard:hover {
+  text-decoration: none!important;
+}
+.no-touch .ProductCard--no-static:hover {
   margin: -0.5rem -0.5rem -3rem;
   height: calc(100% + 3.5rem);
   width: calc(100% + 1rem);
   padding: 1rem 1rem 5.5rem 1rem;
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
-  text-decoration: none;
   z-index: 10;
 }
-.no-touch .ProductCard--out-of-stock:hover {
+.no-touch .ProductCard--out-of-stock.ProductCard--no-static:hover {
   margin-bottom: -0.5rem;
   height: calc(100% + 1rem);
   padding-bottom: 3rem;
@@ -133,10 +141,10 @@ export default {
   .ProductCard {
     padding: 1rem 1rem 3rem 1rem;
   }
-  .no-touch .ProductCard:hover {
+  .no-touch .ProductCard--no-static:hover {
     padding: 1.5rem 1.5rem 6rem 1.5rem;
   }
-  .no-touch .ProductCard--out-of-stock:hover {
+  .no-touch .ProductCard--out-of-stock.ProductCard--no-static:hover {
     padding-bottom: 3.5rem;
   }
 }
@@ -153,7 +161,7 @@ export default {
   left: 1.5rem;
 }
 
-.ProductCard__image {
+/*.ProductCard__image {
   position: relative;
   padding-bottom: 75%;
   width: 100%;
@@ -190,13 +198,13 @@ export default {
 }
 .ProductCard__arrow--left {
   left: -1.25rem;
-}
+}*/
 
-.no-touch .ProductCard__reviews {
+.no-touch .ProductCard--no-static .ProductCard__reviews {
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-.no-touch .ProductCard:hover .ProductCard__reviews {
+.no-touch .ProductCard--no-static:hover .ProductCard__reviews {
   opacity: 1;
 }
 
@@ -206,11 +214,11 @@ export default {
   right: 1rem;
   transition: all 0.2s ease;
 }
-.no-touch .ProductCard:hover .ProductCard__prices {
+.no-touch .ProductCard--no-static:hover .ProductCard__prices {
   bottom: 4rem;
   right: 1.5rem;
 }
-.no-touch .ProductCard--out-of-stock:hover .ProductCard__prices {
+.no-touch .ProductCard--out-of-stock.ProductCard--no-static:hover .ProductCard__prices {
   bottom: 1.5rem;
 }
 .ProductCard__before-price {
@@ -226,12 +234,22 @@ export default {
   background-color: var(--color-grey-dark);
   transition: all 0.2s ease;
 }
-.no-touch .ProductCard:hover .ProductCard__btn-wrapper {
+.no-touch .ProductCard--no-static:hover .ProductCard__btn-wrapper,
+.ProductCard--static .ProductCard__btn-wrapper {
   bottom: 0;
   width: 100%;
   left: 0;
 }
 .ProductCard--out-of-stock .ProductCard__btn-wrapper {
   display: none;
+}
+
+.ProductCard--static {
+  margin-bottom: -3rem;
+  height: calc(100% + 3rem);
+  padding-bottom: 5rem;
+}
+.no-touch .ProductCard--static:hover {
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
 }
 </style>
