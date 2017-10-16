@@ -3,11 +3,11 @@
     <!-- Mobile-tablet top -->
     <div class="is-hidden-on-laptop">
       <section>
-        <banner :banners="[{
+        <banner :lazy="false" :banners="[{
             id: 87248725,
             image: {
               url: 'https://jvdamgaard.github.io/e-com-prototype/images/top-banner.jpg',
-              width: 1800,
+              width: 900,
               height: 360,
             },
           }]"

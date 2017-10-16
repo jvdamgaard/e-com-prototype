@@ -52,7 +52,7 @@
           },
           {
             "id": "text-1",
-            "type": "BodyText",
+            "type": "Text",
             "data": {
               "content": "<h2 class=\"is-h1\">NOFU</h2><h2>Dansk design, som alle har råd til</h2><p>Danske NOFU skaber smukke, tidløse møbler, som alle har råd til. Produkterne vidner om designer Bertil Stams kærlighed til rene linjer og den høje kvalitet, der kendetegner dansk design. Bertil har tegnet på NOFU-kollektionen siden 2014, men det er først nu, de smukke produkter lanceres i Norden. <a href=\"/\">Se hele NOFU serien</a></p>"
             }
@@ -145,7 +145,7 @@
         "modules": [
           {
             "id": "text-1",
-            "type": "BodyText",
+            "type": "Text",
             "data": {
               "content": "<h2 class=\"is-h1\">VRS</h2><h2>Med på de nyeste tendenser</h2><p>VRS er lækkert modetøj til dig, som gerne vil være med på de seneste tendenser uden at betale for meget. Vi tilbyder et stort udvalg af modetøj, sko, tilbehør, undertøj og basistøj til hele familien. Og med op mod 100 nye styles hver uge, så der altid er noget nyt at komme efter i butikkerne. Alt sammen skabt af vore egne designere i gode materialer, med en god pasform og til en rigtig god pris. <a href=\"/\">Se hele VRS kollektionen</a></p>"
             }
