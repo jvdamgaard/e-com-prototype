@@ -5,16 +5,9 @@
       v-for="(image, i) in images"
       :key="image.url"
       :class="imageClasses(i)"
-      :style="{ 'padding-bottom': `${image.height / image.width * 100}%` }"
     >
-      <img
-        v-if="lazy"
-        v-lazy="image.url"
-        :width="image.width"
-        :height="image.height"
-      />
-      <img
-        v-if="!lazy"
+      <image-container
+        :lazy="lazy"
         :src="image.url"
         :width="image.width"
         :height="image.height"
@@ -26,10 +19,12 @@
 
 <script>
 import Grid from '../components/Grid.vue';
+import ImageContainer from '../components/Image.vue';
 
 export default {
   components: {
     Grid,
+    ImageContainer,
   },
   props: {
     fullWidth: Boolean,

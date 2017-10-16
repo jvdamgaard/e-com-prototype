@@ -46,11 +46,11 @@
         </div>
         <div class="is-9-col-on-laptop is-10-col-on-desktop">
           <nuxt-link to="/">
-            <img
+            <image-container
+              :lazy="false"
               src="https://images-na.ssl-images-amazon.com/images/G/01/img17/consumer-electronics/desktop/1067349_us_wireless-products_iphone-event_1800x360_desktop_r2.jpg"
               width="1800"
               height="360"
-              class="is-full-width"
             />
           </nuxt-link>
         </div>
@@ -79,6 +79,7 @@
 <script>
 import { mapState } from 'vuex'; // eslint-disable-line
 import Grid from '../components/Grid.vue';
+import ImageContainer from '../components/Image.vue';
 import NavigationItem from '../components/NavigationItem.vue';
 import ProductCard from '../components/ProductCard.vue';
 import ProductSlider from '../components/ProductSlider.vue';
@@ -87,6 +88,7 @@ import Banner from '../components/Banner.vue';
 export default {
   components: {
     Grid,
+    ImageContainer,
     NavigationItem,
     ProductCard,
     ProductSlider,

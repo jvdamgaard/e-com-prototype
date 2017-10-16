@@ -9,16 +9,9 @@
       <nuxt-link
         to="/"
         class="Banner"
-        :style="{ 'padding-bottom': `${banner.image.height / banner.image.width * 100}%` }"
       >
-        <img
-          v-if="lazy"
-          v-lazy="banner.image.url"
-          :width="banner.image.width"
-          :height="banner.image.height"
-        />
-        <img
-          v-if="!lazy"
+        <image-container
+          :lazy="lazy"
           :src="banner.image.url"
           :width="banner.image.width"
           :height="banner.image.height"
@@ -30,10 +23,12 @@
 
 <script>
 import Grid from '../components/Grid.vue';
+import ImageContainer from '../components/Image.vue';
 
 export default {
   components: {
     Grid,
+    ImageContainer,
   },
   props: {
     banners: Array,

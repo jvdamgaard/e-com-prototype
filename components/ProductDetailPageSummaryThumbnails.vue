@@ -19,7 +19,7 @@
         +{{images.length - limit}}
       </span>
       <img
-        v-lazy="`${image}?w=200&auto=format&fm=jpg`"
+        :src="`${image}?w=200&auto=format&fm=jpg`"
         class="is-full-width"
         :class="$style.thumbnailImage"
       />

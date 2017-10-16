@@ -7,7 +7,12 @@
       <h2 class="is-h1 has-no-top-margin">Beskrivelse</h2>
       <div v-for="(section, i) in sections" v-if="i === 0 || expanded" class="clearfix">
         <h2 v-if="section.header">{{section.header}}</h2>
-        <img v-if="section.imgSrc" v-lazy="section.imgSrc" />
+        <div :class="$style.image">
+          <image-container
+            v-if="section.image"
+            v-bind="section.image"
+          />
+        </div>
         <div v-if="section.text" v-html="section.text" />
       </div>
       <div :class="$style.expander">
@@ -20,11 +25,13 @@
 <script>
 import Grid from './Grid.vue';
 import Btn from './Btn.vue';
+import ImageContainer from './Image.vue';
 
 export default {
   components: {
     Grid,
     Btn,
+    ImageContainer,
   },
   props: {
     sections: Array,
@@ -48,7 +55,7 @@ export default {
 .container {
   padding: 2rem 1rem;
 }
-.container img {
+.image {
   max-width: 100%;
   margin: 0.5rem 0;
 }
@@ -66,7 +73,7 @@ export default {
 }
 
 @media (min-width: 25rem) {
-  .container img {
+  .image {
     float: right;
     width: 33%;
     margin: 0 0 1rem 1rem;
@@ -75,14 +82,14 @@ export default {
 
 @media (min-width: 48rem) {
   .container { padding: 2rem; }
-  .container img { width: 25%; }
+  .image { width: 25%; }
   .container h2, .expander { margin: 4rem 0 2rem; }
   .container p, .container h3 { margin: 1rem 0; }
 }
 
 @media (min-width: 96rem) {
   .container { padding: 6rem 20%; }
-  .container img { margin: 0 0 1rem 1rem; }
+  .image { margin: 0 0 1rem 1rem; }
 }
 
 </style>
