@@ -37,6 +37,41 @@
           }, {
             "key": "Hukommelse",
             "value": "8 GB 2133 MHz DDR4-hukommelse"
+          }],
+          "variants": [{
+            "header": "Hukommelse",
+            "changePrice": true,
+            "default": 0,
+            "items": [{
+              "description": "8 GB",
+              "price": 0
+            }, {
+              "description": "16 GB",
+              "price": 1720
+            }, {
+              "description": "32 GB",
+              "price": 5160
+            }]
+          }, {
+            "header": "Lagringsplads",
+            "changePrice": true,
+            "default": 0,
+            "items": [{
+              "description": "1 TB Fusion Drive",
+              "price": 0
+            }, {
+              "description": "2 TB Fusion Drive",
+              "price": 1720
+            }, {
+              "description": "256 GB SSD",
+              "price": 860
+            }, {
+              "description": "512 GB SSD",
+              "price": 2580
+            }, {
+              "description": "1 TB SSD",
+              "price": 6020
+            }]
           }]
         },
         "departments": [

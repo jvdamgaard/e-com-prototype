@@ -19,8 +19,17 @@
       <description :product="product" />
     </div>
     <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-laptop">
-      <variants :product="product" />
-      <price :product="product" class="has-bottom-margin" />
+      <variants
+        v-if="product.variants"
+        :product="product"
+        :activeVariants="activeVariants"
+        :changeVariant="changeVariant"
+      />
+      <price
+        :product="product"
+        :activeVariants="activeVariants"
+        class="has-bottom-margin"
+      />
       <add-to-cart
         shadow
         hideReadMore
@@ -54,6 +63,8 @@ export default {
   },
   props: {
     product: Object,
+    activeVariants: Array,
+    changeVariant: Function,
   },
   computed: {
     recommendationPercentage() {

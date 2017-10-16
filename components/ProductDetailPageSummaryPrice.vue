@@ -5,11 +5,11 @@
       class="has-tiny-right-margin"
       :class="$style.beforePrice"
     >
-      {{numberWithDots(product.beforePrice)}},00 kr.
+      {{numberWithDots(calculated('beforePrice'))}},00 kr.
     </span>
     <span class="is-h1" :class="{
       'is-red': product.beforePrice,
-    }">{{numberWithDots(product.price)}},00 kr.</span>
+    }">{{numberWithDots(calculated('price'))}},00 kr.</span>
   </p>
 </template>
 
@@ -19,10 +19,23 @@ import { numberWithDots } from '../utils';
 export default {
   props: {
     product: Object,
+    activeVariants: Array,
   },
   methods: {
     numberWithDots(x) {
       return numberWithDots(x);
+    },
+    calculated(key) {
+      if (!this.product.variants) {
+        return this[key];
+      }
+      return this.activeVariants.reduce((accumulator, activeItemPos, variantPos) => {
+        const activeVariant = this.product.variants[variantPos].items[activeItemPos];
+        if (activeVariant.price) {
+          return accumulator + activeVariant.price;
+        }
+        return accumulator;
+      }, this.product[key]);
     },
   },
 };

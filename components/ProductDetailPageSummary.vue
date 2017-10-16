@@ -35,11 +35,23 @@
             </div>
           </div>
           <div class="is-12-col is-6-col-on-tablet is-5-col-on-desktop">
-            <summary-box :product="product" />
+            <summary-box
+              :product="product"
+              :activeVariants="activeVariants"
+              :changeVariant="changeVariant"
+            />
           </div>
           <div class="is-12-col is-hidden-on-laptop has-padding" :class="$style.borderTop">
-            <variants :product="product" />
-            <price :product="product" class="has-bottom-margin" />
+            <variants
+              v-if="product.variants"
+              :product="product"
+              :activeVariants="activeVariants"
+              :changeVariant="changeVariant"
+            />
+            <price
+              :product="product"
+              :activeVariants="activeVariants"
+              class="has-bottom-margin" />
             <add-to-cart
               shadow
               hideReadMore
@@ -94,6 +106,7 @@ export default {
   data() {
     return {
       imagePosition: 0,
+      activeVariants: [],
     };
   },
   computed: {
@@ -114,6 +127,19 @@ export default {
     setImagePosition(position) {
       this.imagePosition = position;
     },
+    changeVariant(variantPos, itemPos) {
+      this.activeVariants = this.activeVariants.map((value, i) => {
+        if (i === variantPos) {
+          return itemPos;
+        }
+        return value;
+      });
+    },
+  },
+  created() {
+    if (this.product.variants) {
+      this.activeVariants = this.product.variants.map(variant => variant.default);
+    }
   },
   mounted() {
     this.addToLastSeen(this.product);

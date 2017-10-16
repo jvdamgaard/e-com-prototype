@@ -1,26 +1,54 @@
 <template>
-  <div :class="$style.variants" v-if="product.id === 13">
-    <p><strong class="is-dimmed">Hukommelse:</strong> 8 GB</p>
-    <ul class="is-inline-list" :class="$style.variantWithPrice">
-      <li :class="$style.activeVariant">8 GB</li>
-      <li>16 GB <span>+ 1.720,00 kr.</span></li>
-      <li>32 GB <span>+ 5.160,00 kr.</span></li>
-    </ul>
-    <p><strong class="is-dimmed">Lagringsplads:</strong> 1 TB Fusion Drive</p>
-    <ul class="is-inline-list" :class="$style.variantWithPrice">
-      <li :class="$style.activeVariant">1 TB Fusion Drive</li>
-      <li>2 TB Fusion Drive <span>+ 1.720,00 kr.</span></li>
-      <li>256 GB SSD <span>+ 860,00 kr.</span></li>
-      <li>512 GB SSD <span>+ 2.580,00 kr.</span></li>
-      <li>1 TB SSD <span>+ 6.020,00 kr.</span></li>
-    </ul>
+  <div :class="$style.variants">
+    <template v-for="(variant, variantPos) of product.variants">
+      <p>
+        <strong class="is-dimmed">{{variant.header}}:</strong>
+        {{getActiveItem(variantPos).description}}
+      </p>
+      <ul class="is-inline-list" :class="{ [$style.variantWithPrice]: variant.changePrice }">
+        <li
+          v-for="(item, itemPos) in variant.items"
+          :class="{
+            [$style.activeVariant]: getActivePos(variantPos) === itemPos,
+          }"
+          @click="changeVariant(variantPos, itemPos)"
+        >
+          {{item.description}} <span>{{difference(variantPos, itemPos, item.price)}}</span>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 
 <script>
+import { numberWithDots } from '../utils';
+
 export default {
   props: {
     product: Object,
+    changeVariant: Function,
+    activeVariants: Array,
+  },
+  methods: {
+    getActivePos(variantPos) {
+      return this.activeVariants[variantPos];
+    },
+    getActiveItem(variantPos) {
+      const activePos = this.getActivePos(variantPos);
+      return this.product.variants[variantPos].items[activePos];
+    },
+    difference(variantPos, itemPos, price) {
+      const activeItem = this.getActiveItem(variantPos);
+      const priceDifference = price - activeItem.price;
+
+      if (priceDifference === 0) {
+        return '';
+      }
+      if (priceDifference > 0) {
+        return `+ ${numberWithDots(priceDifference)},00 kr.`;
+      }
+      return `- ${numberWithDots(Math.abs(priceDifference))},00 kr.`;
+    },
   },
 };
 </script>
