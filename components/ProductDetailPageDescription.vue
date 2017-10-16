@@ -4,7 +4,7 @@
       class="is-12-col is-9-col-on-laptop is-10-col-on-desktop has-white-background"
       :class="$style.container"
     >
-      <h2 class="is-h1 has-no-top-margin">Beskrivelse</h2>
+      <h2 class="is-h1 has-no-top-margin">{{header}}</h2>
       <div v-for="(section, i) in sections" v-if="i === 0 || expanded" class="clearfix">
         <h2 v-if="section.header">{{section.header}}</h2>
         <div :class="$style.image">
@@ -16,7 +16,7 @@
         <div v-if="section.text" v-html="section.text" />
       </div>
       <div :class="$style.expander">
-        <btn v-if="!expanded && sections.length > 1" type="ghost" @click.native="expand">Læs mere</btn>
+        <btn v-if="!expanded && sections.length > 1" type="ghost" @click.native="expand">{{buttonText}}</btn>
       </div>
     </div>
   </grid>
@@ -35,6 +35,14 @@ export default {
   },
   props: {
     sections: Array,
+    header: {
+      type: String,
+      default: 'Beskrivelse',
+    },
+    buttonText: {
+      type: String,
+      default: 'Læs mere',
+    },
   },
   data() {
     return {

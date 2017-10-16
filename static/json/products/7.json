@@ -39,6 +39,8 @@
       "id": "description",
       "type": "ProductDetailPageDescription",
       "data": {
+        "header": "Beskrivelse",
+        "buttonText": "Læs mere",
         "sections": [{
           "header": "NOFU727.",
           "image": {

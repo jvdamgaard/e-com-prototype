@@ -85,6 +85,8 @@
       "id": "description",
       "type": "ProductDetailPageDescription",
       "data": {
+        "header": "Beskrivelse",
+        "buttonText": "Læs mere",
         "sections": [{
           "header": "Apples vision er lysende klar.",
           "image": {
@@ -133,6 +135,49 @@
             "height": 419
           },
           "text": "<h3>Ikonisk design. Vild ingeniørkunst.</h3><p>iMac har altid været det ultimative inden for form og funktion. En alt-i-en-computer, som samler skærm, processor, grafik, lagring, hukommelse m.m. i et enkelt og elegant kabinet. Den nye iMac har den mest avancerede og klareste skærm, vi nogensinde har lavet til en stationær computer. Og den er spækket med de nyeste teknologier, som løfter power og ydeevne til et helt nyt niveau. Alligevel er den stadig kun 5 mm tynd ved kanten.</p>"
+        }]
+      }
+    },
+    {
+      "id": "specifications",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Specifikationer",
+        "buttonText": "Se alle specifikationer",
+        "sections": [{
+          "header": "Skærm",
+          "text": "<h3>Retina 5K-skærm</h3><p>27\" (diagonalt) Retina 5K-skærm<br />Opløsning på 5120 x 2880 pixels med understøttelse af en milliard farver<br />Lysstyrke på 500 nits<br />Bredere farveområde (P3)</p>",
+          "image": {
+            "src": "https://images.apple.com/v/imac/e/images/specs/display_retina_27in_large_2x.jpg",
+              "width": 546,
+              "height": 452
+          }
+        }, {
+          "header": "Processor",
+          "text": "<h3>3,4 GHz</h3><p>3,4 GHz quad-core Intel Core i5-processor (Turbo Boost op til 3,8 GHz)</p>"
+        }, {
+          "header": "Hukommelse",
+          "text": "<p>8 GB (2 x 4 GB) 2400 MHz DDR4-hukommelse, fire bruger­tilgængelige SO-DIMM-pladser</p><p>Kan konfigureres med 16 GB eller 32 GB</p>"
+        }, {
+          "header": "Lagringsplads",
+          "text": "<p>1 TB Fusion Drive</p><p>Kan konfigureres med 2 TB Fusion Drive eller 256 GB, 512 GB eller 1 TB SSD</p>"
+        }, {
+          "header": "Grafik",
+          "text": "<p>Radeon Pro 570 med 4 GB VRAM</p>"
+        }, {
+          "header": "Skærm­understøttelse og kamera",
+          "text": "<h3>FaceTime HD-kamera</h3><h3>Understøtter fuld originalopløsning med 1 milliard farver på den indbyggede skærm – og samtidig også:</h3><p>En ekstern skærm med en opløsning på 5120 x 2880 pixels (5K) ved 60 Hz og understøttelse af 1 milliard farver, eller<br />To eksterne skærme med en opløsning på 3840 x 2160 pixels (4K UHD) ved 60 Hz og understøttelse af 1 milliard farver, eller<br />To eksterne skærme med en opløsning på 4096 x 2304 pixels (4K) ved 60 Hz og understøttelse af millioner af farver</p><h3>Thunderbolt 3-udgang til digital video</h3><p>Original DisplayPort-udgang via USB‑C<br /> - Thunderbolt 2, HDMI, DVI og VGA understøttet via mellemstik (sælges separat)</p>"
+        }, {
+          "header": "Lyd",
+          "text": "<p>Stereohøjttalere</p><p>Mikrofon</p><p>3,5 mm jackstik til hovedtelefoner<br />-Understøtter Apple iPhone-headset med mikrofon</p>"
+        }, {
+          "header": "Tilslutning og udvidelse",
+          "text": "<p>3,5&nbsp;mm jackstik til hovedtelefoner</p><p>SDXC-kortplads</p><p>Fire USB&nbsp;3-porte (kompatible med USB&nbsp;2)</p><p>To Thunderbolt&nbsp;3-porte (USB‑C) med understøttelse&nbsp;af:<br /> - DisplayPort<br /> - Thunderbolt (op til 40 Gbps)<br /> - USB 3.1, 2. generation (op til 10 Gbps)<br /> - Thunderbolt 2, HDMI, DVI og VGA understøttet via mellemstik (sælges separat)</p><p>10/100/1000BASE-T Gigabit Ethernet (RJ‑45-stik)</p><p>Plads til Kensington-lås</p>",
+          "image": {
+            "src": "https://cnet2.cbsistatic.com/img/XPjDFVgyVE0FCfEVfOHzw5RuESk=/fit-in/970x0/2010/10/05/2278438e-cbf2-11e2-9a4a-0291187b029a/apple_imac_10_8a.jpg",
+              "width": 400,
+              "height": 300
+          }
         }]
       }
     },
