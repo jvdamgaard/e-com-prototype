@@ -162,6 +162,7 @@ input.no-border { border: 0; }
 .has-small-right-margin { margin-right: 1rem!important; }
 .has-small-left-margin { margin-left: 1rem!important; }
 .has-top-margin { margin-top: 2rem!important; }
+.has-bottom-margin { margin-bottom: 2rem!important; }
 .has-right-margin { margin-right: 2rem!important; }
 
 .has-no-padding { padding: 0!important; }

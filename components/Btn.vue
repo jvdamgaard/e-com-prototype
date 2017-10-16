@@ -116,12 +116,12 @@ export default {
 }
 
 .Btn--is-ghost {
-  color: var(--color-grey-darker);
-  border: 1px solid var(--color-grey-darker);
+  color: var(--color-grey-dark);
+  border: 1px solid var(--color-grey-dark);
   background-color: transparent;
 }
 .no-touch .Btn--is-ghost:hover {
   color: var(--color-white);
-  background-color: var(--color-grey-darker);
+  background-color: var(--color-grey-dark);
 }
 </style>

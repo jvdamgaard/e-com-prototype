@@ -38,6 +38,8 @@
             <summary-box :product="product" />
           </div>
           <div class="is-12-col is-hidden-on-laptop has-padding" :class="$style.borderTop">
+            <variants :product="product" />
+            <price :product="product" class="has-bottom-margin" />
             <add-to-cart
               shadow
               hideReadMore
@@ -65,6 +67,8 @@ import ProductDetailPageSummaryThumbnails from './ProductDetailPageSummaryThumbn
 import ProductDetailPageSummaryBox from './ProductDetailPageSummaryBox.vue';
 import ProductDetailPageSummaryStock from './ProductDetailPageSummaryStock.vue';
 import ProductDetailPageSummaryDescription from './ProductDetailPageSummaryDescription.vue';
+import ProductDetailPageSummaryPrice from './ProductDetailPageSummaryPrice.vue';
+import ProductDetailPageSummaryVariants from './ProductDetailPageSummaryVariants.vue';
 import ProductImage from './ProductImage.vue';
 import AddToCart from './AddToCart.vue';
 import ProductSticker from './ProductSticker.vue';
@@ -77,6 +81,8 @@ export default {
     SummaryBox: ProductDetailPageSummaryBox,
     Stock: ProductDetailPageSummaryStock,
     Description: ProductDetailPageSummaryDescription,
+    Price: ProductDetailPageSummaryPrice,
+    Variants: ProductDetailPageSummaryVariants,
     ProductImage,
     AddToCart,
     ProductSticker,

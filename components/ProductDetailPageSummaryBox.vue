@@ -14,19 +14,20 @@
         <li class="is-dimmed has-tiny-horizontal-padding">/</li>
         <li><a href="#reviews">23 brugerbilleder</a></li>
       </ul>
-      <price :product="product" class="is-hidden-on-tablet" />
     </div>
     <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-tablet">
       <description :product="product" />
-      <price :product="product" />
     </div>
     <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-laptop">
+      <variants :product="product" />
+      <price :product="product" class="has-bottom-margin" />
       <add-to-cart
         shadow
         hideReadMore
         height="large"
         quantityLabel="lagt i kurven"
         :product="product"
+        class="has-bottom-margin"
       />
       <stock :product="product" />
     </div>
@@ -40,6 +41,7 @@ import AddToCart from './AddToCart.vue';
 import ProductDetailPageSummaryStock from './ProductDetailPageSummaryStock.vue';
 import ProductDetailPageSummaryDescription from './ProductDetailPageSummaryDescription.vue';
 import ProductDetailPageSummaryPrice from './ProductDetailPageSummaryPrice.vue';
+import ProductDetailPageSummaryVariants from './ProductDetailPageSummaryVariants.vue';
 
 export default {
   components: {
@@ -48,6 +50,7 @@ export default {
     Stock: ProductDetailPageSummaryStock,
     Description: ProductDetailPageSummaryDescription,
     Price: ProductDetailPageSummaryPrice,
+    Variants: ProductDetailPageSummaryVariants,
   },
   props: {
     product: Object,
