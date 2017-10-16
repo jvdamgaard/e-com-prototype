@@ -1,20 +1,20 @@
 <template>
   <div class="ContentContainer has-white-background">
     <template v-for="module in modules">
-      <images v-if="module.type === 'Images'" v-bind="module.data" />
-      <body-text v-if="module.type === 'BodyText'" v-bind="module.data" />
+      <content-images v-if="module.type === 'Images'" v-bind="module.data" />
+      <content-text v-if="module.type === 'Text'" v-bind="module.data" />
     </template>
   </div>
 </template>
 
 <script>
-import Images from './Images.vue';
-import BodyText from './BodyText.vue';
+import ContentImages from './ContentImages.vue';
+import ContentText from './ContentText.vue';
 
 export default {
   components: {
-    Images,
-    BodyText,
+    ContentImages,
+    ContentText,
   },
   props: {
     modules: Array,

@@ -6,12 +6,22 @@
       class="is-12-col"
       :class="`is-${12 / banners.length}-col-on-tablet`"
     >
-      <nuxt-link to="/" class="Banner">
+      <nuxt-link
+        to="/"
+        class="Banner"
+        :style="{ 'padding-bottom': `${banner.image.height / banner.image.width * 100}%` }"
+      >
         <img
+          v-if="lazy"
           v-lazy="banner.image.url"
           :width="banner.image.width"
           :height="banner.image.height"
-          class="is-full-width"
+        />
+        <img
+          v-if="!lazy"
+          :src="banner.image.url"
+          :width="banner.image.width"
+          :height="banner.image.height"
         />
       </nuxt-link>
     </div>
@@ -27,6 +37,10 @@ export default {
   },
   props: {
     banners: Array,
+    lazy: {
+      type: Boolean,
+      default: true,
+    },
   },
 };
 </script>
@@ -44,5 +58,10 @@ export default {
 }
 .Banner img {
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
 </style>
