@@ -10,7 +10,7 @@
         <grid inner rowGap="none" colGap="none">
           <div class="is-1-col is-hidden-on-mobile is-visible-on-desktop">
             <thumbnails
-              :images="product.images"
+              :images="variantImages"
               :imagePosition="imagePosition"
               :changeImagePosiiton="setImagePosition"
               :limit="8"
@@ -20,14 +20,14 @@
             <product-sticker :product="product" :class="$style.sticker" />
             <div :class="$style.marginImage">
               <product-image
-                :images="product.images"
+                :images="variantImages"
                 :imagePosition="imagePosition"
                 :changeImagePosiiton="setImagePosition"
               />
             </div>
             <div :class="$style.marginThumbnail">
               <thumbnails
-                :images="product.images"
+                :images="variantImages"
                 :imagePosition="imagePosition"
                 :changeImagePosiiton="setImagePosition"
                 class="is-hidden-on-desktop"
@@ -68,15 +68,25 @@
       </div>
     </grid>
     <div ref="stickyContainer" />
-    <grid :class="[
-      $style.stickyContainer,
-      {
-        [$style.stickyContainerSticks]: sticky,
-      },
-    ]">
-      <div class="is-10-col" />
-      <div class="is-2-col">
-        <product-card :product="product" lazy static />
+    <grid
+      :class="[
+        $style.stickyContainer,
+        {
+          [$style.stickyContainerSticks]: sticky,
+        },
+      ]"
+      :style="{ top: stickyTopPosition }"
+    >
+      <div class="is-9-col is-10-col-on-desktop" />
+      <div class="is-3-col is-2-col-on-desktop">
+        <product-card
+          :product="product"
+          :images="variantImages"
+          lazy
+          static
+          ref="stickyProductCard"
+          class="is-hidden-on-mobile is-visible-on-laptop"
+        />
       </div>
     </grid>
   </div>
@@ -122,6 +132,7 @@ export default {
       imagePosition: 0,
       activeVariants: [],
       sticky: false,
+      stickyTopPosition: 'auto',
     };
   },
   computed: {
@@ -133,6 +144,23 @@ export default {
           url: `/afdeling/${currentPaths.join('/')}/`,
         };
       });
+    },
+    variantImages() {
+      if (this.product.variants && this.product.variants.length > 0) {
+        let variantImages = this.product.images;
+
+        this.product.variants.some((variant, i) => {
+          if (variant.items[0].images && variant.items[0].images.length > 0) {
+            const activeVariant = this.activeVariants[i];
+            variantImages = variant.items[activeVariant].images;
+            return true;
+          }
+          return false;
+        });
+
+        return variantImages;
+      }
+      return this.product.images;
     },
   },
   methods: {
@@ -151,8 +179,28 @@ export default {
       });
     },
     handleScroll() {
-      const fromTop = this.$refs.stickyContainer.getBoundingClientRect().top;
-      this.sticky = (fromTop <= 72);
+      const stickyOffset = 72;
+      const sectionMargin = 56;
+      const stickyTop = this.$refs.stickyContainer.getBoundingClientRect().top;
+      const stickyHeight = this.$refs.stickyProductCard.$el.getBoundingClientRect().height;
+      const {
+        top: lastElTop,
+      } = document.getElementsByClassName('section__ProductSlider')[0].getBoundingClientRect();
+      const offsetFromBottom = lastElTop - stickyOffset - stickyHeight - sectionMargin;
+
+      if (offsetFromBottom < 0) {
+        const scrollTop = window.pageYOffset;
+        const { clientTop } = document.documentElement;
+        const lastElBottomPos = (lastElTop + scrollTop) - clientTop;
+        this.stickyTopPosition = `${lastElBottomPos - stickyHeight - sectionMargin}px`;
+        this.sticky = false;
+      } else if (stickyTop <= stickyOffset) {
+        this.stickyTopPosition = `${stickyOffset}px`;
+        this.sticky = true;
+      } else {
+        this.stickyTopPosition = 'auto';
+        this.sticky = false;
+      }
     },
   },
   created() {
@@ -201,7 +249,6 @@ export default {
 
 .stickyContainerSticks {
   position: fixed;
-  top: 4.5rem;
 }
 
 @media (min-width: 48rem) {
