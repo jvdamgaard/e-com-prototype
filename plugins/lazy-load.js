@@ -4,4 +4,11 @@ import VueLazyload from 'vue-lazyload';
 Vue.use(VueLazyload, {
   error: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif',
   loading: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif',
+  observer: true,
+
+  // optional
+  observerOptions: {
+    rootMargin: '500px',
+    threshold: 0,
+  },
 });
