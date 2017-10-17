@@ -13,7 +13,7 @@
   >
     <product-sticker v-if="!static" :product="product" class="ProductCard__sticker" />
     <product-image
-      :images="static ? product.images.slice(0, 1) : product.images"
+      :images="static ? shownImages.slice(0, 1) : shownImages"
       :imagePosition="imagePosition"
       :changeImagePosiiton="setImagePosition"
       :lazy="lazy"
@@ -64,6 +64,7 @@ export default {
   },
   props: {
     product: Object,
+    images: Array,
     lazy: {
       type: Boolean,
       default: true,
@@ -91,6 +92,9 @@ export default {
     },
     url() {
       return `/produkt/${kebabCase(this.product.titel)}/${this.product.id}/`;
+    },
+    shownImages() {
+      return this.images ? this.images : this.product.images;
     },
   },
   methods: {
@@ -161,45 +165,6 @@ export default {
   left: 1.5rem;
 }
 
-/*.ProductCard__image {
-  position: relative;
-  padding-bottom: 75%;
-  width: 100%;
-}
-.ProductCard__image img {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
-  transition: opacity 0.5s ease;
-}
-.ProductCard__image img.loading {
-  opacity: 0;
-}
-.ProductCard--out-of-stock .ProductCard__image img {
-  filter: grayscale(100%);
-  opacity: 0.5;
-}
-
-.ProductCard__arrow {
-  opacity: 0;
-  position: absolute;
-  top: calc(50% - 0.375rem);
-}
-.no-touch .ProductCard:hover .ProductCard__arrow {
-  opacity: 1;
-}
-.ProductCard__arrow--right {
-  right: -1.25rem;
-}
-.ProductCard__arrow--left {
-  left: -1.25rem;
-}*/
-
 .no-touch .ProductCard--no-static .ProductCard__reviews {
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -245,11 +210,12 @@ export default {
 }
 
 .ProductCard--static {
-  margin-bottom: -3rem;
-  height: calc(100% + 3rem);
-  padding-bottom: 5rem;
+  margin-bottom: -3.5rem;
+  height: calc(100% + 3.5rem);
+  padding-bottom: 5.5rem;
+  cursor: default;
 }
-.no-touch .ProductCard--static:hover {
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
+.ProductCard--static .ProductCard__prices {
+  bottom: 3.5rem;
 }
 </style>
