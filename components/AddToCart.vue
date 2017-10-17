@@ -26,7 +26,6 @@
         :shadow="shadow"
         :height="height"
         :class="$style.addOneButton"
-        class="ProductCard__button--add-one"
         @click.stop.prevent.native="addToBasket(product)"
       >+</btn>
     </div>

@@ -1,12 +1,13 @@
 <template>
-  <div class="Btn" :class="[
-    `Btn--is-${type}`,
-    `Btn---has-${height}-height`,
+  <div :class="[
+    $style.container,
+    $style[type],
     {
-      'Btn--has-shadow': shadow,
+      [$style[height]]: height !== 'default',
+      [$style.shadow]: shadow,
     },
   ]">
-    <div class="Btn__inner">
+    <div :class="$style.inner">
       <slot />
     </div>
   </div>
@@ -38,10 +39,10 @@ export default {
 </script>
 
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.Btn {
+.container {
   position: relative;
   font-weight: bold;
   text-align: center;
@@ -53,7 +54,7 @@ export default {
   transition: all 0.2s ease;
   white-space: nowrap;
 }
-.Btn__inner {
+.inner {
   width: 100%;
   height: 100%;
   display: flex;
@@ -63,64 +64,67 @@ export default {
 }
 
 
-.Btn--has-shadow {
+.shadow {
   box-shadow: 0 0.125rem 0.75rem rgba(0,0,0,0.2);
 }
-.no-touch .Btn--has-shadow:hover {
+:global(.no-touch) .shadow:hover {
   box-shadow: 0 0.125rem 1.5rem rgba(0,0,0,0.3);
 }
 
-.Btn---has-small-height {
+.small {
   height: 2.5rem;
 }
-.Btn---has-large-height {
+.large {
   height: 4rem;
 }
 
-.Btn--is-primary {
+.primary {
   color: var(--color-white);
   background-color: var(--color-primary);
 }
-.no-touch .Btn--is-primary:hover {
+:global(.no-touch) .primary:hover {
   background-color: var(--color-primary-dark);
 }
 
-.Btn--is-buy, .Btn--is-green {
+.buy, .green {
   color: var(--color-white);
   background-color: var(--color-buy);
 }
+:global(.no-touch) .buy:hover, :global(.no-touch) .green:hover {
+  background-color: var(--color-buy-dark);
+}
 
-.Btn--is-red {
+.red {
   color: var(--color-white);
   background-color: var(--color-red);
 }
 
-.Btn--is-grey {
+.grey {
   color: var(--color-white);
   background-color: var(--color-grey-dark);
 }
-.no-touch .Btn--is-grey:hover {
+:global(.no-touch) .grey:hover {
   background-color: var(--color-grey-darker);
 }
 
-.Btn--is-grey-light {
+.grey-light {
   background-color: var(--color-grey-light);
 }
 
-.Btn--is-yellow {
+.yellow {
   color: var(--color-black);
   background-color: var(--color-yellow);
 }
-.no-touch .Btn--is-yellow:hover {
+:global(.no-touch) .yellow:hover {
   background-color: var(--color-yellow-dark);
 }
 
-.Btn--is-ghost {
+.ghost {
   color: var(--color-grey-darker);
   border: 1px solid var(--color-grey-darker);
   background-color: transparent;
 }
-.no-touch .Btn--is-ghost:hover {
+:global(.no-touch) .ghost:hover {
   color: var(--color-white);
   background-color: var(--color-grey-darker);
 }
