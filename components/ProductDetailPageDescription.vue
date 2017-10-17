@@ -1,5 +1,5 @@
 <template>
-  <grid fullWidthUntil="phablet" id="description">
+  <grid fullWidthUntil="phablet">
     <div
       class="is-12-col is-9-col-on-laptop is-10-col-on-desktop has-white-background"
       :class="$style.container"
@@ -15,8 +15,8 @@
         </div>
         <div v-if="section.text" v-html="section.text" />
       </div>
-      <div :class="$style.expander">
-        <btn v-if="!expanded && sections.length > 1" type="ghost" @click.native="expand">{{buttonText}}</btn>
+      <div :class="$style.expander" v-if="!expanded && sections.length > 1">
+        <btn type="ghost" @click.native="expand">{{buttonText}}</btn>
       </div>
     </div>
   </grid>
