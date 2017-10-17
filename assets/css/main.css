@@ -87,6 +87,7 @@ a:hover.has-no-underline { text-decoration: none; }
 
 .is-aligned-right { text-align: right; }
 .is-aligned-center { text-align: center; }
+.is-strike-through { text-decoration: line-through; }
 
 
 /* Lists */

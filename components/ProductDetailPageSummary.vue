@@ -57,6 +57,7 @@
               hideReadMore
               height="large"
               quantityLabel="lagt i kurven"
+              ref="mobileAddToCart"
               :product="product"
             />
             <stock :product="product" />
@@ -89,6 +90,13 @@
         />
       </div>
     </grid>
+    <sticky-card
+      :product="product"
+      :images="variantImages"
+      :active="mobileSticky"
+      ref="stickyMobileProductCard"
+      class="is-hidden-on-laptop"
+    />
   </div>
 </template>
 
@@ -97,12 +105,13 @@ import { mapActions } from 'vuex'; // eslint-disable-line
 import kebabCase from 'lodash/kebabCase';
 import Grid from './Grid.vue';
 import Breadcrumb from './Breadcrumb.vue';
-import ProductDetailPageSummaryThumbnails from './ProductDetailPageSummaryThumbnails.vue';
-import ProductDetailPageSummaryBox from './ProductDetailPageSummaryBox.vue';
-import ProductDetailPageSummaryStock from './ProductDetailPageSummaryStock.vue';
-import ProductDetailPageSummaryDescription from './ProductDetailPageSummaryDescription.vue';
-import ProductDetailPageSummaryPrice from './ProductDetailPageSummaryPrice.vue';
-import ProductDetailPageSummaryVariants from './ProductDetailPageSummaryVariants.vue';
+import Thumbnails from './ProductDetailPageSummaryThumbnails.vue';
+import SummaryBox from './ProductDetailPageSummaryBox.vue';
+import Stock from './ProductDetailPageSummaryStock.vue';
+import Description from './ProductDetailPageSummaryDescription.vue';
+import Price from './ProductDetailPageSummaryPrice.vue';
+import Variants from './ProductDetailPageSummaryVariants.vue';
+import StickyCard from './ProductDetailPageStickyCard.vue';
 import ProductImage from './ProductImage.vue';
 import AddToCart from './AddToCart.vue';
 import ProductSticker from './ProductSticker.vue';
@@ -112,12 +121,13 @@ export default {
   components: {
     Grid,
     Breadcrumb,
-    Thumbnails: ProductDetailPageSummaryThumbnails,
-    SummaryBox: ProductDetailPageSummaryBox,
-    Stock: ProductDetailPageSummaryStock,
-    Description: ProductDetailPageSummaryDescription,
-    Price: ProductDetailPageSummaryPrice,
-    Variants: ProductDetailPageSummaryVariants,
+    Thumbnails,
+    SummaryBox,
+    Stock,
+    Description,
+    Price,
+    Variants,
+    StickyCard,
     ProductImage,
     AddToCart,
     ProductSticker,
@@ -132,7 +142,9 @@ export default {
       imagePosition: 0,
       activeVariants: [],
       sticky: false,
+      mobileSticky: false,
       stickyTopPosition: 'auto',
+      lastSlider: null,
     };
   },
   computed: {
@@ -179,13 +191,14 @@ export default {
       });
     },
     handleScroll() {
+      // Laptop and desktop
       const stickyOffset = 72;
       const sectionMargin = 56;
       const stickyTop = this.$refs.stickyContainer.getBoundingClientRect().top;
       const stickyHeight = this.$refs.stickyProductCard.$el.getBoundingClientRect().height;
       const {
         top: lastElTop,
-      } = document.getElementsByClassName('section__ProductSlider')[0].getBoundingClientRect();
+      } = this.lastSlider.getBoundingClientRect();
       const offsetFromBottom = lastElTop - stickyOffset - stickyHeight - sectionMargin;
 
       if (offsetFromBottom < 0) {
@@ -201,11 +214,23 @@ export default {
         this.stickyTopPosition = 'auto';
         this.sticky = false;
       }
+
+      const {
+        top: addToCartTop,
+        height: addToCartHeight,
+      } = this.$refs.mobileAddToCart.$el.getBoundingClientRect();
+
+      // Mobile - tablet
+      this.mobileSticky = (addToCartTop + addToCartHeight) < 0
+        && (lastElTop - window.innerHeight) > 0;
     },
   },
   created() {
     if (this.product.variants) {
       this.activeVariants = this.product.variants.map(variant => variant.default);
+    }
+    if (process.browser) {
+      [this.lastSlider] = document.getElementsByClassName('section__ProductSlider');
     }
   },
   mounted() {

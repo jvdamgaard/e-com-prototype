@@ -75,7 +75,7 @@ export default {
       type: String,
       default: 'default',
       validator(value) {
-        return ['default', 'large'].indexOf(value) !== -1;
+        return ['small', 'default', 'large'].indexOf(value) !== -1;
       },
     },
   },
@@ -109,6 +109,9 @@ export default {
   background-color: var(--color-buy);
 }
 
+.small {
+  height: 2.5rem;
+}
 .default {
   height: 3rem;
 }
