@@ -223,6 +223,7 @@ export default {
       // Mobile - tablet
       this.mobileSticky = (addToCartTop + addToCartHeight) < 0
         && (lastElTop - window.innerHeight) > 0;
+      console.log(addToCartTop + addToCartHeight, lastElTop - window.innerHeight);
     },
   },
   created() {
