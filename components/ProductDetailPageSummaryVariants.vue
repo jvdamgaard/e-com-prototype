@@ -13,7 +13,11 @@
           }"
           @click="changeVariant(variantPos, itemPos)"
         >
-          {{item.description}} <span>{{difference(variantPos, itemPos, item.price)}}</span>
+          <template v-if="!item.images || item.images.length === 0">{{item.description}}</template>
+          <template v-else>
+            <div :class="$style.imageContainer"><img :src="`${item.images[0]}?w=200&auto=format&fm=jpg`" /></div>
+          </template>
+          <span v-if="!Number.isNaN(Number(item.price))">{{difference(variantPos, itemPos, item.price)}}</span>
         </li>
       </ul>
     </template>
@@ -63,14 +67,6 @@ export default {
   margin-bottom: 2rem;
 }
 
-.variantWithPrice li {
-  width: 100%;
-}
-.variantWithPrice span {
-  color: var(--color-grey-dark);
-  float: right;
-}
-
 .variants li {
   margin-right: 0.5rem;
   margin-top: 0.5rem;
@@ -78,12 +74,49 @@ export default {
   padding: 0.75rem 0.5rem;
   cursor: pointer;
   transition: border-color 0.2s ease;
+  min-width: 3rem;
+  text-align: center;
 }
-.variants li:hover {
+:global(.no-touch) .variants li:hover {
   border-color: var(--color-grey-dark);
 }
 
 .variants li.activeVariant {
-  border-color: var(--color-primary);
+  border-color: var(--color-primary) !important;
+}
+
+.imageContainer {
+  position: relative;
+  float: left;
+  width: 5rem;
+  padding-bottom: 5rem;
+  margin: -0.375rem;
+}
+
+.imageContainer img {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.variantWithPrice li {
+  width: 100%;
+  text-align: left;
+}
+.variantWithPrice span {
+  color: var(--color-grey-dark);
+  float: right;
+}
+.variantWithPrice .imageContainer {
+  width: 4rem;
+  padding-bottom: 4rem;
 }
 </style>
