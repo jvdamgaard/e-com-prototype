@@ -17,13 +17,16 @@
           "price": 9999,
           "rating": 5,
           "recommendations": 0.7,
-          "shortDescription": "Den lette, elegante skalstol NOFU727 passer godt ind i en minimalistisk indrettet spisestue. Spisebordsstolens stel er fremstillet i massivt træ, mens selve skallen er lavet af formstøbt plastik. NOFU727 føjer et moderne strejf til klassisk dansk design og er et innovativt bud på en skalstol med stor personlighed. Stolen er udstyret med en lækker, formsyet pude, så NOFU727 ser ikke bare godt ud  man sidder også supergodt i stolen. NOFUs kollektioner er udført i bæredygtigt PEFC-certificeret og PU-lakeret træ. Produkterne overholder EUs REACH-lovgivning, hvilket betyder, at møblerne er fri for farlig kemi og dermed særdeles velegnede til børnefamilier. NOFU727 fås i flere farve nuancer. Alle NOFUs produkter er håndlavet specielt til dig efter dine ønsker.",
+          "shortDescription": "Den nye MacBook Pro er supertynd, superlet og nu endnu hurtigere og mere powerfuld end nogensinde før. Den har den klareste og mest farverige skærm på en bærbar Mac og op til 10 timers batteritid*. Det er en bærbar, der er bygget til alt det, du laver hver dag. Og til alle de gode idéer, der følger med.",
           "keySpecifications": [{
-            "key": "Sædematerial",
-            "value": "Sort PP Plastik"
+            "key": "Skærm",
+            "value": "13\" Retina"
           }, {
-            "key": "Stel material",
-            "value": "Natur ask"
+            "key": "Processor",
+            "value": "7. generations dual-core Intel Core i5-processor"
+          }, {
+            "key": "Lagringsplads",
+            "value": "256 GB HHD"
           }]
         },
         "departments": [
@@ -31,6 +34,30 @@
           "Stole",
           "Spisebordsstole"
         ]
+      }
+    },
+    {
+      "id": "description",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Beskrivelse",
+        "buttonText": "Læs mere",
+        "sections": [{
+          "header": "Apple Macbook Pro",
+          "text": "<p>Den nye MacBook Pro er supertynd, superlet og nu endnu hurtigere og mere powerfuld end nogensinde før. Den har den klareste og mest farverige skærm på en bærbar Mac og op til 10 timers batteritid*. Det er en bærbar, der er bygget til alt det, du laver hver dag. Og til alle de gode idéer, der følger med.</p>"
+        }]
+      }
+    },
+    {
+      "id": "specifications",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Specifikationer",
+        "buttonText": "Se alle specifikationer",
+        "sections": [{
+          "header": "Apple Macbook Pro",
+          "text": "<p> - Strålende Retina-skærm<br /> - Syvendegenerations dual-core Intel Core i5-processor<br /> - Intel Iris Plus Graphics 640<br /> - Ultrahurtigt SSD-lager<br /> - To Thunderbolt 3-porte (USB-C)<br /> - Op til 10 timers batteritid*<br /> - 802.11ac Wi-Fi<br /> - Force Touch-pegefelt<br /> - Fås i space grey og sølv</p>"
+        }]
       }
     },
     {

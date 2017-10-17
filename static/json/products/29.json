@@ -8,7 +8,8 @@
         "product": {
           "id": 29,
           "images": [
-            "https://bilkadk.imgix.net/medias/sys_master/root/h21/h1e/9215105073182.jpg"
+            "https://d3pou62b68nfh3.cloudfront.net/aZqztmrkNBez1-0rOmEpvun21Pw=/1200x1200/https://www.friluftsland.dk/contentfiles/80826a9af4bd71a7aa8b16260a8e22ba.jpg",
+            "https://d3pou62b68nfh3.cloudfront.net/szADuqrk2Seiuqvud54_WDk0Tjw=/1200x1200/https://www.friluftsland.dk/contentfiles/85f28609f59903ef93e7d952919c3e70.jpg"
           ],
           "titel": "Ron Thompson Ontario jakke",
           "stock": {
@@ -21,13 +22,51 @@
             "text": "Online lagersalg",
             "color": "yellow"
           },
-          "shortDescription": "Den lette, elegante skalstol NOFU727 passer godt ind i en minimalistisk indrettet spisestue. Spisebordsstolens stel er fremstillet i massivt træ, mens selve skallen er lavet af formstøbt plastik. NOFU727 føjer et moderne strejf til klassisk dansk design og er et innovativt bud på en skalstol med stor personlighed. Stolen er udstyret med en lækker, formsyet pude, så NOFU727 ser ikke bare godt ud  man sidder også supergodt i stolen. NOFUs kollektioner er udført i bæredygtigt PEFC-certificeret og PU-lakeret træ. Produkterne overholder EUs REACH-lovgivning, hvilket betyder, at møblerne er fri for farlig kemi og dermed særdeles velegnede til børnefamilier. NOFU727 fås i flere farve nuancer. Alle NOFUs produkter er håndlavet specielt til dig efter dine ønsker.",
+          "shortDescription": "En funktionel og praktisk fiskejakke, der samtidig doubler som fiskevest. (Ærmerne kan lynes af). Her er tale om en virkelig slidstærk og gennemtænkt jakke med masser af praktiske og rummelige lommer – en jakke, der samtidig yder optimal beskyttelse mod elementernes rasen.",
           "keySpecifications": [{
             "key": "Sædematerial",
             "value": "Sort PP Plastik"
           }, {
             "key": "Stel material",
             "value": "Natur ask"
+          }],
+          "variants": [{
+            "header": "Farve",
+            "default": 0,
+            "items": [{
+              "description": "Burnt Olive Green Heather (Grøn)",
+              "images": [
+                "https://d3pou62b68nfh3.cloudfront.net/aZqztmrkNBez1-0rOmEpvun21Pw=/1200x1200/https://www.friluftsland.dk/contentfiles/80826a9af4bd71a7aa8b16260a8e22ba.jpg",
+                "https://d3pou62b68nfh3.cloudfront.net/szADuqrk2Seiuqvud54_WDk0Tjw=/1200x1200/https://www.friluftsland.dk/contentfiles/85f28609f59903ef93e7d952919c3e70.jpg"
+              ]
+            }, {
+              "description": "Tnf Black (Sort)",
+              "images": [
+                "https://d3pou62b68nfh3.cloudfront.net/1uJGxQIIhrpvJpnKxm_DzHQNMeM=/1200x1200/https://www.friluftsland.dk/contentfiles/0515d8edc95db76f3f67efa8690fbb34.jpg"
+              ]
+            }, {
+              "description": "Tnf Mgrey Hthr/urban Navy (Grå)",
+              "images": [
+                "https://d3pou62b68nfh3.cloudfront.net/zWV4lhCf4cmUAGSajIGwfPCmcMI=/1200x1200/https://www.friluftsland.dk/contentfiles/8f2f1e2e5c406becca99e0c7186927b8.jpg"
+              ]
+            }, {
+              "description": "Urban Navy (Blå)",
+              "images": [
+                "https://d3pou62b68nfh3.cloudfront.net/l6QjZzZF8MOKbY3S-kHE-uCVt9k=/1200x1200/https://www.friluftsland.dk/contentfiles/d5990b5dabe0408a7245810560d7dd78.jpg"
+              ]
+            }]
+          }, {
+            "header": "Størrelse",
+            "default": 0,
+            "items": [{
+              "description": "S"
+            }, {
+              "description": "M"
+            }, {
+              "description": "L"
+            }, {
+              "description": "XL"
+            }]
           }]
         },
         "departments": [
@@ -35,6 +74,52 @@
           "Stole",
           "Spisebordsstole"
         ]
+      }
+    },
+    {
+      "id": "description",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Beskrivelse",
+        "buttonText": "Læs mere",
+        "sections": [{
+          "header": "Ron Thompson Ontario jakke",
+          "text": "<p>En funktionel og praktisk fiskejakke, der samtidig doubler som fiskevest. (Ærmerne kan lynes af). Her er tale om en virkelig slidstærk og gennemtænkt jakke med masser af praktiske og rummelige lommer – en jakke, der samtidig yder optimal beskyttelse mod elementernes rasen.</p>"
+        }]
+      }
+    },
+    {
+      "id": "specifications",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Specifikationer",
+        "buttonText": "Se alle specifikationer",
+        "sections": [{
+          "header": "Ron Thompson Ontario jakke",
+          "text": "<p> - 100% vandtæt og vindtæt<br /> - Holder alt dit værktøj og udstyr tæt på dig<br /> - 17 lommer med kvalitets metallynlåse eller velcro-lukning<br /> - Foret for komfort og varme<br /> - Hætten kan gemmes i krave<br /> - Zip-off aftagelige ærmer<br /> - Velcro ved håndled</p>"
+        }]
+      }
+    },
+    {
+      "id": "size-guide",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Størrelsesguide",
+        "buttonText": "Se alle størrelser",
+        "sections": [{
+          "text": "<h3>Small</h3><p><strong class=\"is-dimmed\">Længde ryg:</strong> 69cm<br /><strong class=\"is-dimmed\">Bryst:</strong> 59cm<br /><strong class=\"is-dimmed\">Søm:</strong> 59cm<br /><strong class=\"is-dimmed\">Armlængde:</strong> 67cm<br /><strong class=\"is-dimmed\">Manchet:</strong> 15cm</p>",
+          "image": {
+            "src": "https://www.wagner.dk/sitecore/commerce/produktbilleder/mand.png?i={2C67D44E-3052-437E-B073-9ADACDC082A6}",
+            "width": 153,
+            "height": 185
+          }
+        }, {
+          "text": "<h3>Medium</h3><p><strong class=\"is-dimmed\">Længde ryg:</strong> 70cm<br /><strong class=\"is-dimmed\">Bryst:</strong> 61cm<br /><strong class=\"is-dimmed\">Søm:</strong> 61cm<br /><strong class=\"is-dimmed\">Armlængde:</strong> 68cm<br /><strong class=\"is-dimmed\">Manchet:</strong> 15cm</p>"
+        }, {
+          "text": "<h3>Large</h3><p><strong class=\"is-dimmed\">Længde ryg:</strong> 71cm<br /><strong class=\"is-dimmed\">Bryst:</strong> 63cm<br /><strong class=\"is-dimmed\">Søm:</strong> 63cm<br /><strong class=\"is-dimmed\">Armlængde:</strong> 69cm<br /><strong class=\"is-dimmed\">Manchet:</strong> 15cm</p>"
+        }, {
+          "text": "<h3>X-Large</h3><p><strong class=\"is-dimmed\">Længde ryg:</strong> 72cm<br /><strong class=\"is-dimmed\">Bryst:</strong> 65cm<br /><strong class=\"is-dimmed\">Søm:</strong> 65cm<br /><strong class=\"is-dimmed\">Armlængde:</strong> 69cm<br /><strong class=\"is-dimmed\">Manchet:</strong> 15cm</p>"
+        }]
       }
     },
     {

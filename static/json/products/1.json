@@ -22,13 +22,15 @@
             "text": "Fast lav pris",
             "color": "yellow"
           },
-          "shortDescription": "Den lette, elegante skalstol NOFU727 passer godt ind i en minimalistisk indrettet spisestue. Spisebordsstolens stel er fremstillet i massivt træ, mens selve skallen er lavet af formstøbt plastik. NOFU727 føjer et moderne strejf til klassisk dansk design og er et innovativt bud på en skalstol med stor personlighed. Stolen er udstyret med en lækker, formsyet pude, så NOFU727 ser ikke bare godt ud  man sidder også supergodt i stolen. NOFUs kollektioner er udført i bæredygtigt PEFC-certificeret og PU-lakeret træ. Produkterne overholder EUs REACH-lovgivning, hvilket betyder, at møblerne er fri for farlig kemi og dermed særdeles velegnede til børnefamilier. NOFU727 fås i flere farve nuancer. Alle NOFUs produkter er håndlavet specielt til dig efter dine ønsker.",
           "keySpecifications": [{
-            "key": "Sædematerial",
-            "value": "Sort PP Plastik"
+            "key": "Effekt",
+            "value": "2000 watt"
           }, {
-            "key": "Stel material",
-            "value": "Natur ask"
+            "key": "Dyser",
+            "value": "4 stk."
+          }, {
+            "key": "Temperatur og luftstrøms justering",
+            "value": "3 trin"
           }]
         },
         "departments": [
@@ -36,6 +38,18 @@
           "Stole",
           "Spisebordsstole"
         ]
+      }
+    },
+    {
+      "id": "specifications",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Specifikationer",
+        "buttonText": "Se alle specifikationer",
+        "sections": [{
+          "header": "Worx varmepistol",
+          "text": "<p> - Effekt: 2000 watt<br /> - 4 stk. dyser<br /> - 1 stk. skraber<br /> - Keramisk kerne, der beskytter varmelegmerne<br /> - Beskyttelse mod overophedning<br /> - Varmepistolen leveres i papæske</p><h3>3-trins temperatur og luftstrøms justering</h3><p> - Trin 1: 50 grader / 300 l. min<br /> - Trin 2: 350 grader / 300 l. min<br /> - Trin 3: 580 grader / 500 l. min</p>"
+        }]
       }
     },
     {

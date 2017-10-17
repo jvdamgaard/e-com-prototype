@@ -36,6 +36,106 @@
       }
     },
     {
+      "id": "description",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Beskrivelse",
+        "buttonText": "Læs mere",
+        "sections": [{
+          "header": "Apples vision er lysende klar.",
+          "image": {
+            "src": "https://images.apple.com/v/imac/e/images/overview/imac_21_hero_large_2x.jpg",
+            "width": 1194,
+            "height": 1214
+          },
+          "text": "<p>En computeroplevelse, der er så spektakulær, at du glemmer alt omkring dig. Det var vores vision for iMac. Og nu fremstår denne vision stærkere og klarere end nogensinde før. Den nye iMac er fyldt med splinternye processorer, de nyeste grafikteknologier, innovativ lagring og forbindelsesmuligheder med større båndbredde. Og det hele udfolder sig på den klareste og mest farverige Retina-skærm på en iMac – nogensinde. Så du får en endnu mere medrivende oplevelse. Og funklende nye muligheder for at nyde det hele.</p>"
+        }, {
+          "header": "Spænd  sikkerhedsselen.",
+          "image": {
+            "src": "https://bilkadk.imgix.net/medias/sys_master/root/h70/h02/9664252608542/iMac27-34r-MagicKeyboard1-34r-MagicMouse-34r-SCREEN.jpg",
+            "width": 686,
+            "height": 1024
+          },
+          "text": "<h3>Højere ydeevne over hele linjen.</h3><p>Takket være syvendegenerations Intel Core i5- og i7-processorer og den nyeste grafik med høj ydeevne er iMac nu hurtigere og mere powerfuld end nogensinde før. Lagringskapaciteten er også kommet op i højeste gear med det hurtige og rummelige Fusion Drive, der nu fås i standard­konfigurationerne af både 27\" og 21,5\" med Retina-skærm. Så du kan gøre alle dine yndlingsting på iMac. Med masser af fart på.</p>"
+        }, {
+          "header": "Grafik, der slår dig omkuld. Billedligt talt.",
+          "image": {
+            "src": "https://bilkadk.imgix.net/medias/sys_master/root/hb8/h81/9664253493278/iMac27-PF-SCREEN.jpg",
+            "width": 1024,
+            "height": 872
+          },
+          "text": "<p>iMac er udstyret med nye kraftfulde grafik­processorer fra Radeon Pro 500-serien, som får alt, hvad du ser, til at se helt fantastisk ud. 27\" iMac med Retina 5K-skærm fås med op til 8 GB dedikeret VRAM. Og 21,5\" iMac med Retina 4K-skærm slår sig løs med op til 4 GB. De leverer begge visuelle effekter og 3D-grafik, der demonstrerer rå power i sin fineste form. Du får desuden funktioner til avanceret video­redigering, så du kan redigere multicam-projekter i Final Cut Pro X med op til fem 4K-videostreams i fuld opløsning.</p>"
+        }, {
+          "header": "Retinas lyseste øjeblik.",
+          "image": {
+            "src": "https://images.apple.com/v/imac/e/images/overview/imac_27_hero_large_2x.jpg",
+            "width": 1302,
+            "height": 1564
+          },
+          "text": "<h3>Klarere end nogensinde før. Flere farver end nogensinde før.</h3><p>Retina-skærmen skinner endnu stærkere igennem på den nye iMac. Én milliard farver og lysstyrken på 500 nits får dig til at se den spillevende grafik i et helt nyt lys. Og pixeltætheden er så høj, at de enkelte pixels ikke kan ses med det blotte øje. Tekst står helt skarpt, og dine mails og dokumenter har aldrig set bedre ud. Det er ganske enkelt den bedste Retina-skærm på en Mac nogensinde.</p>"
+        }, {
+          "header": "Thunderbolt 3. Få flere gode forbindelser.",
+          "image": {
+            "src": "https://images-na.ssl-images-amazon.com/images/G/01/electronics/apple/apple-12q4-imac-21-lg.jpg",
+            "width": 540,
+            "height": 737
+          },
+          "text": "<h3>Dobbelt op på hastighed og båndbredde i forhold til forrige generation.</h3><p>Alle iMac-modeller har som standard to Thunderbolt 3-porte (USB-C). Hver port leverer dataoverførsel på op til 40 Gb/s til og fra eksterne drev og kameraer og dobbelt så stor båndbredde ved tilkobling af videoenheder og skærme. Fire USB 3-porte giver dig rig mulighed for at tilslutte eksterne enheder som din printer, iPhone, USB-nøgle m.fl. Og med ultrahurtig Wi-Fi med tre strømme og trådløs Bluetooth 4.2-teknologi får du øjeblikkelig adgang til alt dit yndlingsindhold.</p>"
+        }, {
+          "header": "Der kan ske meget på 5 millimeter.",
+          "image": {
+            "src": "https://eshop.macsales.com/Customized_Pages/imgs-wrapper/used-macs/refurbished-apple-imac.jpg",
+            "width": 457,
+            "height": 419
+          },
+          "text": "<h3>Ikonisk design. Vild ingeniørkunst.</h3><p>iMac har altid været det ultimative inden for form og funktion. En alt-i-en-computer, som samler skærm, processor, grafik, lagring, hukommelse m.m. i et enkelt og elegant kabinet. Den nye iMac har den mest avancerede og klareste skærm, vi nogensinde har lavet til en stationær computer. Og den er spækket med de nyeste teknologier, som løfter power og ydeevne til et helt nyt niveau. Alligevel er den stadig kun 5 mm tynd ved kanten.</p>"
+        }]
+      }
+    },
+    {
+      "id": "specifications",
+      "type": "ProductDetailPageDescription",
+      "data": {
+        "header": "Specifikationer",
+        "buttonText": "Se alle specifikationer",
+        "sections": [{
+          "header": "Skærm",
+          "text": "<h3>Retina 5K-skærm</h3><p>27\" (diagonalt) Retina 5K-skærm<br />Opløsning på 5120 x 2880 pixels med understøttelse af en milliard farver<br />Lysstyrke på 500 nits<br />Bredere farveområde (P3)</p>",
+          "image": {
+            "src": "https://images.apple.com/v/imac/e/images/specs/display_retina_27in_large_2x.jpg",
+              "width": 546,
+              "height": 452
+          }
+        }, {
+          "header": "Processor",
+          "text": "<h3>3,4 GHz</h3><p>3,4 GHz quad-core Intel Core i5-processor (Turbo Boost op til 3,8 GHz)</p>"
+        }, {
+          "header": "Hukommelse",
+          "text": "<p>8 GB (2 x 4 GB) 2400 MHz DDR4-hukommelse, fire bruger­tilgængelige SO-DIMM-pladser</p><p>Kan konfigureres med 16 GB eller 32 GB</p>"
+        }, {
+          "header": "Lagringsplads",
+          "text": "<p>1 TB Fusion Drive</p><p>Kan konfigureres med 2 TB Fusion Drive eller 256 GB, 512 GB eller 1 TB SSD</p>"
+        }, {
+          "header": "Grafik",
+          "text": "<p>Radeon Pro 570 med 4 GB VRAM</p>"
+        }, {
+          "header": "Skærm­understøttelse og kamera",
+          "text": "<h3>FaceTime HD-kamera</h3><h3>Understøtter fuld originalopløsning med 1 milliard farver på den indbyggede skærm – og samtidig også:</h3><p>En ekstern skærm med en opløsning på 5120 x 2880 pixels (5K) ved 60 Hz og understøttelse af 1 milliard farver, eller<br />To eksterne skærme med en opløsning på 3840 x 2160 pixels (4K UHD) ved 60 Hz og understøttelse af 1 milliard farver, eller<br />To eksterne skærme med en opløsning på 4096 x 2304 pixels (4K) ved 60 Hz og understøttelse af millioner af farver</p><h3>Thunderbolt 3-udgang til digital video</h3><p>Original DisplayPort-udgang via USB‑C<br /> - Thunderbolt 2, HDMI, DVI og VGA understøttet via mellemstik (sælges separat)</p>"
+        }, {
+          "header": "Lyd",
+          "text": "<p>Stereohøjttalere</p><p>Mikrofon</p><p>3,5 mm jackstik til hovedtelefoner<br />-Understøtter Apple iPhone-headset med mikrofon</p>"
+        }, {
+          "header": "Tilslutning og udvidelse",
+          "text": "<p>3,5&nbsp;mm jackstik til hovedtelefoner</p><p>SDXC-kortplads</p><p>Fire USB&nbsp;3-porte (kompatible med USB&nbsp;2)</p><p>To Thunderbolt&nbsp;3-porte (USB‑C) med understøttelse&nbsp;af:<br /> - DisplayPort<br /> - Thunderbolt (op til 40 Gbps)<br /> - USB 3.1, 2. generation (op til 10 Gbps)<br /> - Thunderbolt 2, HDMI, DVI og VGA understøttet via mellemstik (sælges separat)</p><p>10/100/1000BASE-T Gigabit Ethernet (RJ‑45-stik)</p><p>Plads til Kensington-lås</p>",
+          "image": {
+            "src": "https://cnet2.cbsistatic.com/img/XPjDFVgyVE0FCfEVfOHzw5RuESk=/fit-in/970x0/2010/10/05/2278438e-cbf2-11e2-9a4a-0291187b029a/apple_imac_10_8a.jpg",
+              "width": 400,
+              "height": 300
+          }
+        }]
+      }
+    },
+    {
       "id": "productslider-others-liked",
       "type": "ProductSlider",
       "data": {
