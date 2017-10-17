@@ -229,14 +229,12 @@ export default {
     if (this.product.variants) {
       this.activeVariants = this.product.variants.map(variant => variant.default);
     }
-    if (process.browser) {
-      [this.lastSlider] = document.getElementsByClassName('section__ProductSlider');
-    }
   },
   mounted() {
     this.addToLastSeen(this.product);
 
     if (process.browser) {
+      [this.lastSlider] = document.getElementsByClassName('section__ProductSlider');
       this.handleScroll();
       window.addEventListener('scroll', this.handleScroll, { passive: true });
     }
