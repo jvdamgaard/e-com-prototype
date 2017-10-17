@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section v-for="module in modules" :key="module.id">
+    <section v-for="module in modules" :key="module.id" :id="module.id" :class="`section__${module.type}`">
       <product-slider v-if="module.type === 'ProductSlider'" v-bind="module.data" />
       <banner v-if="module.type === 'Banner'" v-bind="module.data" />
       <unique-selling-points v-if="module.type === 'UniqueSellingPoints'" />
