@@ -89,6 +89,15 @@ module.exports = {
           exclude: /(node_modules)/,
         });
       }
+      if (ctx.dev) {
+        config.module.rules[0].options.cssModules = { //eslint-disable-line
+          localIdentName: '[path]---[name]---[local]',
+        };
+      } else {
+        config.module.rules[0].options.cssModules = { //eslint-disable-line
+          localIdentName: '[hash:base64:5]',
+        };
+      }
     },
   },
   renderer: {

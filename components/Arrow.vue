@@ -1,5 +1,5 @@
 <template>
-  <div class="Arrow" :class="`Arrow--${direction}`" />
+  <div :class="$style[direction]" />
 </template>
 
 <script>
@@ -17,10 +17,10 @@ export default {
 </script>
 
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.Arrow {
+.arrow {
   width: 0;
   height: 0;
   border-top: 0.75rem solid transparent;
@@ -29,17 +29,19 @@ export default {
   cursor: pointer;
 }
 
-.Arrow--right {
+.right {
+  composes: arrow;
   border-left: 1rem solid var(--color-grey);
 }
-.Arrow--right:hover {
+.right:hover {
   border-left-color: var(--color-primary);
 }
 
-.Arrow--left {
+.left {
+  composes: arrow;
   border-right: 1rem solid var(--color-grey);
 }
-.Arrow--left:hover {
+.left:hover {
   border-right-color: var(--color-primary);
 }
 </style>
