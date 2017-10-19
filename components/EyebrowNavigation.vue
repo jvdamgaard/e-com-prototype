@@ -1,58 +1,103 @@
 <template>
-  <grid class="EyebrowNavigation is-aligned-vertical-center has-no-top-margin has-no-bottom-margin">
-    <div class="is-12-col">
-      <div class="is-group" style="white-space: nowrap">
-        <nuxt-link to="/" class="EyebrowNavigation__logo is-h2 has-no-underline is-hidden-on-tablet">Bilka</nuxt-link>
-        <span class="is-hidden-on-mobile is-inline-on-laptop is-small">
+  <grid :class="$style.container">
+    <grid-col verticalCenter>
+      <div :class="$style.group">
+        <nuxt-link to="/" :class="$style.logo">Bilka</nuxt-link>
+        <span :class="$style.tagline">
           Dit hypermarked
         </span>
-        <div class="is-hidden-on-mobile is-visible-on-laptop is-small is-aligned-center is-full-width">
-          <nuxt-link to="/legetoej/lego/" class="is-grey"><strong class="is-red">25% rabat</strong> på alt LEGO indtil lørdag</nuxt-link>
+        <div :class="$style.promotion">
+          <nuxt-link to="/legetoej/lego/" :class="$style.promotionLink">
+            <strong class="is-red">25% rabat</strong> på alt LEGO indtil lørdag
+          </nuxt-link>
         </div>
-        <ul class="EyebrowNavigation__links is-inline-list is-aligned-right is-small is-grey">
+        <ul :class="$style.links">
           <li>
-            <nuxt-link to="/tilbudsaviden/" class="is-grey">Tilbudsavis</nuxt-link>
+            <nuxt-link to="/tilbudsaviden/" :class="$style.link">Tilbudsavis</nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/kundeservice/" class="is-grey">Find butik</nuxt-link>
+            <nuxt-link to="/kundeservice/" :class="$style.link">Find butik</nuxt-link>
           </li>
-          <li class="is-hidden-on-mobile is-inline-on-phablet">
-            <nuxt-link to="/kundeservice/" class="is-grey">Kundeservice</nuxt-link>
+          <li :class="$style.customerService">
+            <nuxt-link to="/kundeservice/" :class="$style.link">Kundeservice</nuxt-link>
           </li>
-          <li class="is-hidden-on-mobile is-inline-on-tablet">
-            <nuxt-link to="/log-ind/" class="is-grey">Log ind</nuxt-link>
+          <li :class="$style.login">
+            <nuxt-link to="/log-ind/" :class="$style.link">Log ind</nuxt-link>
           </li>
         </ul>
       </div>
-    </div>
+    </grid-col>
   </grid>
 </template>
 
 <script>
   import Grid from './Grid.vue';
+  import GridCol from './GridCol.vue';
 
   export default {
     components: {
       Grid,
+      GridCol,
     },
   };
 </script>
 
-<style>
-  @import '../assets/css/variables.css';
+<style module>
+@import '../assets/css/variables.css';
 
-  .EyebrowNavigation {
-    background-color: var(--color-white);
-    height: 2rem;;
-  }
-  .EyebrowNavigation__links li {
-    margin: 0 0.5rem;
-  }
-  .EyebrowNavigation__links li:last-child {
-    margin-right: 0;
-  }
+.container {
+  background-color: var(--color-white);
+  height: 2rem;
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+.group {
+  composes: group from './styles.css';
+  white-space: nowrap
+}
+.logo {
+  composes: h2 from './styles.css';
+  composes: hiddenOnTablet from './styles.css';
+  text-decoration: none !important;
+  font-weight: 900;
+}
+.tagline {
+  composes: hiddenOnMobile from './styles.css';
+  composes: inlineOnTablet from './styles.css';
+  composes: small from './styles.css';
+}
+.promotion {
+  composes: small from './styles.css';
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+.link { color: var(--color-grey-darker); }
+.promotionLink {
+  composes: hiddenOnMobile from './styles.css';
+  composes: visibleOnLaptop from './styles.css';
+  composes: link;
+}
+.links {
+  composes: inlineList from './styles.css';
+  composes: small from './styles.css';
+  text-align: right;
+  color: var(--color-grey-dark);
+}
+.links li {
+  margin: 0 0.5rem;
+}
+.links li:last-child {
+  margin-right: 0;
+}
 
-  .EyebrowNavigation__logo {
-    font-weight: 900;
-  }
+.customerService {
+  composes: hiddenOnMobile from './styles.css';
+  composes: inlineOnPhablet from './styles.css';
+}
+.login {
+  composes: hiddenOnMobile from './styles.css';
+  composes: inlineOnTablet from './styles.css';
+}
+
 </style>
