@@ -55,8 +55,6 @@ import Grid from './Grid.vue';
 import GridCol from './GridCol.vue';
 import MainDepartments from './DepartmentNavigationMainDepartments.vue';
 import SubDepartments from './DepartmentNavigationSubDepartments.vue';
-import Group from './DepartmentNavigationGroup.vue';
-import Btn from './Btn.vue';
 
 export default {
   components: {
@@ -64,8 +62,6 @@ export default {
     GridCol,
     MainDepartments,
     SubDepartments,
-    Btn,
-    Group,
   },
   data() {
     return {
@@ -165,61 +161,10 @@ export default {
 }
 
 @media (min-width: 48rem) {
-  .active {
-    display: block;
-  }
+  .active { display: block; }
 }
 
-.grid {
-  margin: 0;
-}
-
-.mainContainer {
-  composes: shadow from './styles.css';
-}
-
-.mainDepartments {
-  padding: 1rem 0;
-  min-height: 100%;
-}
-
-.mainDepartmentsHeading { padding: 1rem; }
-
-.subDepartmentsGrid {
-  composes: shadow from './styles.css';
-}
-
-.subDepartment {
-  background-color: var(--color-grey-lighter);
-  min-height: 100%;
-  margin-left: -1rem;
-  padding-left: 1rem;
-  border-left: 1px solid var(--color-grey-light);
-}
-
-.promo {
-  composes: bgImage from './styles.css';
-  width: 100%;
-  height: 100%;
-  display: block;
-  padding: 1rem;
-}
-
-.promoBtn {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  right: 1rem;
-}
-
-.brandIcon {
-  height: 2rem;
-  margin-right: 1rem;
-  margin-top: 1rem;
-  transition: transform 0.2s ease;
-}
-:global(.no-touch) .brandIcon:hover {
-  transform: scale(1.2);
-  z-index: 10;
-}
+.grid { margin: 0; }
+.mainContainer { composes: shadow from './styles.css'; }
+.subDepartmentsGrid { composes: shadow from './styles.css'; }
 </style>

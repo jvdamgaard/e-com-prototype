@@ -2,9 +2,9 @@
   <grid :class="$style.container">
     <grid-col
       v-if="!this.fullWidth && this.images.length <= 2"
+      mobile="0"
       laptop="2"
       desktop="3"
-      :class="$style.margin"
     />
     <grid-col
       v-for="(image, i) in images"
@@ -18,12 +18,6 @@
         :height="image.height"
       />
     </grid-col>
-    <grid-col
-      v-if="!this.fullWidth && this.images.length <= 2"
-      laptop="2"
-      desktop="3"
-      :class="$style.margin"
-    />
   </grid>
 </template>
 
@@ -78,11 +72,5 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
-.container {
-  justify-content: center;
-}
-.margin {
-  composes: hiddenOnMobile from './styles.css';
-  composes: visibleOnLaptop from './styles.css';
-}
+.container { justify-content: center; }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <grid :class="$style.container">
     <grid-col
+      mobile="0"
       laptop="2"
       desktop="3"
-      :class="$style.margin"
     />
     <grid-col
       laptop="8"
@@ -32,12 +32,8 @@ export default {
 
 <style module>
 @import '../assets/css/variables.css';
-.container { background-color: var(--color-white); }
 
-.margin {
-  composes: hiddenOnMobile from './styles.css';
-  composes: visibleOnLaptop from './styles.css';
-}
+.container { background-color: var(--color-white); }
 
 .content > * { margin: 1rem 0; }
 .content > *:first-child { margin-top: 0; }
