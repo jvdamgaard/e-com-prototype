@@ -1,33 +1,35 @@
 <template>
   <grid>
-    <div
-      v-for="banner in banners"
-      :key="banner.id"
-      class="is-12-col"
-      :class="`is-${12 / banners.length}-col-on-tablet`"
-    >
-      <nuxt-link
-        to="/"
-        class="Banner"
+    <template v-for="banner in banners">
+      <grid-col
+        mobile="12"
+        :tablet="`${12 / banners.length}`"
       >
-        <image-container
-          :lazy="lazy"
-          :src="banner.image.url"
-          :width="banner.image.width"
-          :height="banner.image.height"
-        />
-      </nuxt-link>
-    </div>
+        <nuxt-link
+          to="/"
+          :class="$style.banner"
+        >
+          <image-container
+            :lazy="lazy"
+            :src="banner.image.url"
+            :width="banner.image.width"
+            :height="banner.image.height"
+          />
+        </nuxt-link>
+      </grid-col>
+    </template>
   </grid>
 </template>
 
 <script>
-import Grid from '../components/Grid.vue';
-import ImageContainer from '../components/Image.vue';
+import Grid from './Grid.vue';
+import GridCol from './GridCol.vue';
+import ImageContainer from './Image.vue';
 
 export default {
   components: {
     Grid,
+    GridCol,
     ImageContainer,
   },
   props: {
@@ -40,23 +42,15 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.Banner {
+.banner {
   display: block;
   transition: box-shadow 0.2s ease;
   background-color: var(--color-white);
 }
-.no-touch .Banner:hover {
+:global(.no-touch) .banner:hover {
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
-}
-.Banner img {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="ContentContainer has-white-background">
+  <div :class="$style.container">
     <template v-for="module in modules">
       <content-images v-if="module.type === 'Images'" v-bind="module.data" />
       <content-text v-if="module.type === 'Text'" v-bind="module.data" />
@@ -22,19 +22,20 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.ContentContainer > *:first-child { padding-top: 1rem; }
-.ContentContainer > *:last-child { padding-bottom: 1rem; }
+.container { background-color: var(--color-white); }
+.container > *:first-child { padding-top: 1rem; }
+.container > *:last-child { padding-bottom: 1rem; }
 
 @media (min-width: 48rem) {
-  .ContentContainer > *:first-child { padding-top: 2rem; }
-  .ContentContainer > *:last-child { padding-bottom: 2rem; }
+  .container > *:first-child { padding-top: 2rem; }
+  .container > *:last-child { padding-bottom: 2rem; }
 }
 
 @media (min-width: 64rem) {
-  .ContentContainer > *:first-child { padding-top: 3.5rem; }
-  .ContentContainer > *:last-child { padding-bottom: 3.5rem; }
+  .container > *:first-child { padding-top: 3.5rem; }
+  .container > *:last-child { padding-bottom: 3.5rem; }
 }
 </style>

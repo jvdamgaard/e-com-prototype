@@ -1,19 +1,28 @@
 <template>
-  <grid class="BodyText has-white-background">
-    <div class="is-hidden-on-mobile is-visible-on-laptop is-2-col-on-laptop is-3-col-on-desktop" />
-    <div
-      class="BodyText__content is-12-col is-8-col-on-laptop is-6-col-on-desktop"
-      v-html="content"
+  <grid :class="$style.container">
+    <grid-col
+      laptop="2"
+      desktop="3"
+      :class="$style.margin"
     />
+    <grid-col
+      laptop="8"
+      dekstop="6"
+      :class="$style.content"
+    >
+      <div v-html="content" />
+    </grid-col>
   </grid>
 </template>
 
 <script>
 import Grid from '../components/Grid.vue';
+import GridCol from '../components/GridCol.vue';
 
 export default {
   components: {
     Grid,
+    GridCol,
   },
   props: {
     content: String,
@@ -21,9 +30,16 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
-.BodyText__content > * { margin: 1rem 0; }
-.BodyText__content > *:first-child { margin-top: 0; }
-.BodyText__content > *:last-child { margin-bottom: 0; }
+.container { background-color: var(--color-white); }
+
+.margin {
+  composes: hiddenOnMobile from './styles.css';
+  composes: visibleOnLaptop from './styles.css';
+}
+
+.content > * { margin: 1rem 0; }
+.content > *:first-child { margin-top: 0; }
+.content > *:last-child { margin-bottom: 0; }
 </style>

@@ -1,10 +1,15 @@
 <template>
-  <grid class="Images has-white-background">
-    <div :class="marginClasses" />
-    <div
+  <grid :class="$style.container">
+    <grid-col
+      v-if="!this.fullWidth && this.images.length <= 2"
+      laptop="2"
+      desktop="3"
+      :class="$style.margin"
+    />
+    <grid-col
       v-for="(image, i) in images"
       :key="image.url"
-      :class="imageClasses(i)"
+      v-bind="imageCols(i)"
     >
       <image-container
         :lazy="lazy"
@@ -12,18 +17,25 @@
         :width="image.width"
         :height="image.height"
       />
-    </div>
-    <div :class="marginClasses" />
+    </grid-col>
+    <grid-col
+      v-if="!this.fullWidth && this.images.length <= 2"
+      laptop="2"
+      desktop="3"
+      :class="$style.margin"
+    />
   </grid>
 </template>
 
 <script>
 import Grid from '../components/Grid.vue';
+import GridCol from '../components/GridCol.vue';
 import ImageContainer from '../components/Image.vue';
 
 export default {
   components: {
     Grid,
+    GridCol,
     ImageContainer,
   },
   props: {
@@ -34,55 +46,43 @@ export default {
       default: true,
     },
   },
-  computed: {
-    marginClasses() {
-      const classes = ['is-hidden-on-mobile'];
-      if (!this.fullWidth && this.images.length <= 2) {
-        classes.push('is-visible-on-laptop');
-        classes.push('is-2-col-on-laptop');
-        classes.push('is-3-col-on-desktop');
-      }
-      return classes.join(' ');
-    },
-  },
   methods: {
-    imageClasses(position) {
-      const classes = ['is-12-col'];
+    imageCols(position) {
+      const cols = {};
+
+      cols.xs = '12';
 
       // Full width
       if (this.fullWidth || this.images.length > 2) {
         // Make first image in phablet view full width when three images
         if (this.images.length === 3 && position === 0) {
-          classes.push('is-12-col-on-phablet');
+          cols.phablet = '12';
         } else if (this.images.length > 1) {
-          classes.push('is-6-col-on-phablet');
+          cols.phablet = '6';
         }
 
-        classes.push(`is-${12 / this.images.length}-col-on-tablet`);
+        cols.tablet = `${12 / this.images.length}`;
 
       // Content width
       } else {
-        classes.push(`is-${8 / this.images.length}-col-on-laptop`);
-        classes.push(`is-${6 / this.images.length}-col-on-desktop`);
+        cols.laptop = `${8 / this.images.length}`;
+        cols.desktop = `${6 / this.images.length}`;
       }
-      return classes.join(' ');
+
+      return cols;
     },
   },
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.Images {
+.container {
   justify-content: center;
 }
-.Images img {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
+.margin {
+  composes: hiddenOnMobile from './styles.css';
+  composes: visibleOnLaptop from './styles.css';
 }
 </style>
