@@ -1,36 +1,28 @@
 <template>
-  <grid class="HighlightedContent" :class="{
-    'has-white-background': theme === 'default',
-    'has-primary-background': theme === 'primary',
-  }">
-    <nuxt-link
+  <grid :class="$style[theme]">
+    <grid-col
       v-for="item in items"
       :key="item.id"
-      to="/"
-      class="HighlightedContent__item is-12-col has-no-underline"
-      :class="[
-        `is-${colWidth}-col-on-tablet`,
-        {
-          'is-6-col-on-phablet': items.length % 2 === 0,
-          'has-white-background': theme === 'default',
-          'is-black': theme === 'default',
-          'has-primary-background': theme === 'primary',
-          'is-white': theme === 'primary',
-        }
-      ]"
+      mobile="12"
+      :phablet="items.length % 2 === 0 ? '6' : '12'"
+      :tablet="`${colWidth}`"
     >
-      <p v-if="item.icon"><img v-lazy="item.icon" /></p>
-      <div v-if="item.html" v-html="item.html" />
-    </nuxt-link>
-  </Grid>
+      <nuxt-link to="/" :class="$style.item">
+        <p v-if="item.icon"><img v-lazy="item.icon" /></p>
+        <div v-if="item.html" v-html="item.html" />
+      </nuxt-link>
+    </grid-col>
+  </grid>
 </template>
 
 <script>
-import Grid from '../components/Grid.vue';
+import Grid from './Grid.vue';
+import GridCol from './GridCol.vue';
 
 export default {
   components: {
     Grid,
+    GridCol,
   },
   props: {
     items: Array,
@@ -50,44 +42,65 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.HighlightedContent {
+.container {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.HighlightedContent p {
+.default {
+  composes: container;
+  background-color: var(--color-white);
+}
+.primary {
+  composes: container;
+  background-color: var(--color-primary);
+}
+.container p {
   margin: 0.5rem 0;
 }
-.HighlightedContent__item {
+
+.item {
+  display: block;
+  height: 100%;
   padding: 0.75rem 1rem;
   margin: -0.5rem -1rem;
   text-align: center;
   transition: all 0.2s ease;
+  text-decoration: none !important;
 }
-.HighlightedContent__item img {
+.default .item {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+.primary .item {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+.item img {
   height: 3rem;
 }
-.no-touch .HighlightedContent__item:hover {
+:global(.no-touch) .item:hover {
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
   z-index: 10;
 }
 
 @media (min-width: 48rem) {
-  .HighlightedContent {
+  .container {
     padding-top: 0;
     padding-bottom: 0;
   }
-  .HighlightedContent__item {
+  .item {
     padding: 3rem 1rem;
     margin: 0 -0.5rem;
   }
-  .HighlightedContent__item img {
+  .item img {
     height: 4rem;
     width: auto
   }
-  .no-touch .HighlightedContent__item:hover {
+  :global(.no-touch) .item:hover {
+    height: calc(100% + 1rem);
     margin: -0.5rem -1rem;
     padding: 3.5rem 1.5rem;
     box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
