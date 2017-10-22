@@ -1,40 +1,38 @@
 <template>
   <div>
-    <grid class="MainNavigation has-primary-background is-white is-aligned-vertical-center has-no-top-margin has-no-bottom-margin has-shadow">
-      <div class="is-12-col">
-        <div class="is-group">
-          <nuxt-link to="/" class="MainNavigation__logo has-no-underline is-hidden-on-mobile is-visible-on-tablet">
+    <grid :class="$style.container">
+      <grid-col verticalCenter>
+        <div :class="$style.group">
+          <nuxt-link to="/" :class="$style.logo">
             <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo.svg" width="84" height="24" />
           </nuxt-link>
           <div
-            class="MainNavigation__menu-icon"
-            :class="{ 'MainNavigation__menu-icon--active': state.departmentNavActive }"
+            :class="state.departmentNavActive ? $style.menuIconActive : $style.menuIcon"
             @click="openDepartmentNav"
             @touchstart="openDepartmentNav"
             @mouseover="enterDepartment"
             @mouseleave="leaveDepartment"
           >
-            <span class="is-hidden-on-tablet">&#8801;</span>
-            <span class="is-hidden-on-mobile is-visible-on-tablet" style="white-space: nowrap">Afdelinger ▼</span>
+            <span :class="$style.burgerIcon">&#8801;</span>
+            <span :class="$style.textMenu">Afdelinger ▼</span>
           </div>
-          <input type="text" placeholder="Søg i mere end 250.000 produkter" class="no-border">
-          <btn type="yellow" class="MainNavigation__search-button is-hidden-on-mobile is-visible-on-laptop">
+          <input type="text" placeholder="Søg i mere end 250.000 produkter" :class="$style.searchInput">
+          <btn type="yellow" :class="$style.searchButton">
             <img src="https://jvdamgaard.github.io/e-com-prototype/icons/search-black.svg" height="32" width="32" />
           </btn>
           <div
-            class="MainNavigation__basket-icon"
-            :class="{ 'MainNavigation__basket-icon--active': state.miniBasketActive }"
+            :class="state.miniBasketActive ? $style.basketIconActive : $style.basketIcon"
             @click="openMiniBasket"
             @touchstart="openMiniBasket"
             @mouseover="enterMiniBasket"
             @mouseleave="leaveMiniBasket"
           >
-            <span class="MainNavigation__basket-icon__text is-hidden-on-mobile is-inline-on-laptop">Kurv ({{itemsInBasket}})</span>
-            <span class="MainNavigation__basket-icon__text is-hidden-on-laptop">{{itemsInBasket}}</span>
+            <span :class="$style.basketFullText">Kurv ({{itemsInBasket}})</span>
+            <span :class="$style.basketShortText">{{itemsInBasket}}</span>
             <icon-basket />
           </div>
         </div>
-      </div>
+      </grid-col>
     </grid>
     <department-navigation />
     <mini-basket />
@@ -45,6 +43,7 @@
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import debounce from 'lodash/debounce';
 import Grid from './Grid.vue';
+import GridCol from './GridCol.vue';
 import Btn from './Btn.vue';
 import DepartmentNavigation from './DepartmentNavigation.vue';
 import MiniBasket from './MiniBasket.vue';
@@ -53,6 +52,7 @@ import IconBasket from './IconBasket.vue';
 export default {
   components: {
     Grid,
+    GridCol,
     Btn,
     DepartmentNavigation,
     MiniBasket,
@@ -117,28 +117,38 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.MainNavigation {
+.container {
+  composes: shadow from './styles.css';
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  margin-top: 0!important;
+  margin-bottom: 0!important;
   height: 3.5rem;
   overflow: hidden;
 }
 
-.MainNavigation__logo {
+.group { composes: group from './styles.css'; }
+
+.logo {
+  composes: hiddenOnMobile from './styles.css';
+  composes: visivleOnTablet from './styles.css';
+  text-decoration: none;
   display: block;
   height: 3.5rem;
   vertical-align: middle;
   margin-right: 1rem;
 }
 
-.MainNavigation__logo img {
+.logo img {
   height: 3.5rem;
   width: auto;
   padding: 1.25rem 0;
 }
 
-.MainNavigation__menu-icon {
+.menuIcon {
   display: block;
   font-size: 2.5rem;
   line-height: 1;
@@ -148,13 +158,14 @@ export default {
   cursor: pointer;
   transition: all 0.25s ease;
 }
-.MainNavigation__menu-icon--active {
+.menuIconActive {
+  composes: menuIcon;
   background-color: var(--color-white);
   color: var(--color-grey-darker);
   z-index: 10;
 }
 @media (min-width: 48rem) {
-  .MainNavigation__menu-icon {
+  .menuIcon {
     font-size: 1rem;
     font-weight: bold;
     padding: 0.75rem 1rem 1.25rem;
@@ -163,17 +174,28 @@ export default {
   }
 }
 @media (min-width: 96rem) {
-  .MainNavigation__menu-icon {
+  .menuIcon {
     float: right;
   }
 }
 
-.MainNavigation__search-button {
+.burgerIcon { composes: hiddenOnTablet from './styles.css'; }
+.textMenu {
+  composes: hiddenOnMobile from './styles.css';
+  composes: visibleOnTablet from './styles.css';
+  white-space: nowrap;
+}
+
+.searchInput { border: 0; }
+
+.searchButton {
+  composes: hiddenOnMobile from './styles.css';
+  composes: visibleOnTablet from './styles.css';
   line-height: 2.5rem!important;
   height: 2.5rem!important;
 }
 
-.MainNavigation__basket-icon {
+.basketIcon {
   display: inline-block;
   height: 3rem;
   margin-top: 0.5rem;
@@ -183,35 +205,47 @@ export default {
   transition: all 0.25s ease;
   white-space: nowrap;
 }
-.MainNavigation__basket-icon__text {
-  font-weight: bold;
-  margin-right: 0rem;
-}
-.MainNavigation__basket-icon svg {
+.basketIcon svg {
   height: 2rem;
   width: 2rem;
   display: inline-block;
   vertical-align: middle;
   margin: 0.25rem 0;
 }
-.MainNavigation__basket-icon path {
+.basketIcon path {
   transition: fill 0.25s ease;
   fill: var(--color-white);
 }
-.MainNavigation__basket-icon--active {
+.basketIconActive {
+  composes: basketIcon;
   background-color: var(--color-white);
   color: var(--color-grey-darker);
   z-index: 10;
 }
-.MainNavigation__basket-icon--active path {
+.basketIconActive path {
   fill: var(--color-grey-darker);
 }
+
+.basketIconText {
+  font-weight: bold;
+  margin-right: 0rem;
+}
+.basketFullText {
+  composes: hiddenOnMobile from './styles.css';
+  composes: inlineOnLaptop from './styles.css';
+  composes: basketIconText;
+}
+.basketShortText {
+  composes: hiddenOnLaptop from './styles.css';
+  composes: basketIconText;
+}
+
 @media (min-width: 48rem) {
-  .MainNavigation__basket-icon {
+  .basketIcon {
     padding: 0 1rem;
     margin-left: 1rem;
   }
-  .MainNavigation__basket-icon__text {
+  .basketIconText {
     margin-right: 0.5rem;
   }
 }
