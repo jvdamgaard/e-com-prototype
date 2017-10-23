@@ -134,7 +134,7 @@ export default {
 
 .logo {
   composes: hiddenOnMobile from './styles.css';
-  composes: visivleOnTablet from './styles.css';
+  composes: visibleOnTablet from './styles.css';
   text-decoration: none;
   display: block;
   height: 3.5rem;

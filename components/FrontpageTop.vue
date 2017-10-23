@@ -46,8 +46,8 @@
         <grid-col laptop="5" :class="$style.topMargin">
           <h2>Fortsæt hvor du slap</h2>
         </grid-col>
-        <grid-col laptop="4" desktop="5" :class="$style.lastSeenHeader">
-          <nuxt-link to="/">vis hele historikken</nuxt-link>
+        <grid-col laptop="4" desktop="5" :class="$style.lastSeen">
+          <nuxt-link to="/" :class="$style.lastSeenLink">vis hele historikken</nuxt-link>
         </grid-col>
         <grid-col
           v-for="(product, i) in user.lastSeen.slice(0,5)"
@@ -120,10 +120,12 @@ export default {
   margin-top: 2rem;
 }
 
-.lastSeenHeader {
-  composes: small from './styles.css';
-  color: var(--color-grey-darker);
+.lastSeen {
   margin-top: 2rem;
   text-align: right;
+}
+.lastSeenLink {
+  composes: small from './styles.css';
+  color: var(--color-grey-darker);
 }
 </style>
