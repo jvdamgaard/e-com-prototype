@@ -25,8 +25,8 @@ export default {
 .headerLink { color: var(--color-black); }
 .subLink { color: var(--color-grey-darker); }
 .list {
-  composes: unstyledList from './styles.css';
-  composes: small from './styles.css';
+  composes: unstyledList from global;
+  composes: small from global;
   margin-bottom: 1rem;
 }
 </style>

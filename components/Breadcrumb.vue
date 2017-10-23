@@ -38,8 +38,8 @@ export default {
 }
 
 .list {
-  composes: inlineList from './styles.css';
-  composes: small from './styles.css';
+  composes: inlineList from global;
+  composes: small from global;
 }
 
 .link {

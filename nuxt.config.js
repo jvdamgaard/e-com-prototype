@@ -17,6 +17,7 @@ module.exports = {
   },
   css: [
     '@/assets/css/main.css',
+    '@/assets/css/global.css',
   ],
 
   /*
@@ -77,6 +78,7 @@ module.exports = {
       'lodash/kebabCase',
       'lodash/debounce',
     ],
+
     /*
     ** Run ESLINT on save
     */

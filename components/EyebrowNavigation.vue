@@ -52,35 +52,35 @@
   margin-bottom: 0rem !important;
 }
 .group {
-  composes: group from './styles.css';
+  composes: group from global;
   white-space: nowrap
 }
 .logo {
-  composes: h2 from './styles.css';
-  composes: hiddenOnTablet from './styles.css';
+  composes: h2 from global;
+  composes: hiddenOnTablet from global;
   text-decoration: none !important;
   font-weight: 900;
 }
 .tagline {
-  composes: hiddenOnMobile from './styles.css';
-  composes: inlineOnTablet from './styles.css';
-  composes: small from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: inlineOnTablet from global;
+  composes: small from global;
 }
 .promotion {
-  composes: small from './styles.css';
+  composes: small from global;
   display: block;
   text-align: center;
   width: 100%;
 }
 .link { color: var(--color-grey-darker); }
 .promotionLink {
-  composes: hiddenOnMobile from './styles.css';
-  composes: visibleOnLaptop from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: inlineOnLaptop from global;
   composes: link;
 }
 .links {
-  composes: inlineList from './styles.css';
-  composes: small from './styles.css';
+  composes: inlineList from global;
+  composes: small from global;
   text-align: right;
   color: var(--color-grey-dark);
 }
@@ -92,12 +92,12 @@
 }
 
 .customerService {
-  composes: hiddenOnMobile from './styles.css';
-  composes: inlineOnPhablet from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: inlineOnPhablet from global;
 }
 .login {
-  composes: hiddenOnMobile from './styles.css';
-  composes: inlineOnTablet from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: inlineOnTablet from global;
 }
 
 </style>

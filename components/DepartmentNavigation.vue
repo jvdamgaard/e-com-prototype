@@ -165,6 +165,6 @@ export default {
 }
 
 .grid { margin: 0; }
-.mainContainer { composes: shadow from './styles.css'; }
-.subDepartmentsGrid { composes: shadow from './styles.css'; }
+.mainContainer { composes: shadow from global; }
+.subDepartmentsGrid { composes: shadow from global; }
 </style>

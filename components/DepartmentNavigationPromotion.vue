@@ -33,7 +33,7 @@ export default {
 @import '../assets/css/variables.css';
 
 .promo {
-  composes: bgImage from './styles.css';
+  composes: bgImage from global;
   width: 100%;
   height: 100%;
   display: block;

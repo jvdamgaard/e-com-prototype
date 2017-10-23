@@ -121,7 +121,7 @@ export default {
 @import '../assets/css/variables.css';
 
 .container {
-  composes: shadow from './styles.css';
+  composes: shadow from global;
   background-color: var(--color-primary);
   color: var(--color-white);
   margin-top: 0!important;
@@ -130,11 +130,11 @@ export default {
   overflow: hidden;
 }
 
-.group { composes: group from './styles.css'; }
+.group { composes: group from global; }
 
 .logo {
-  composes: hiddenOnMobile from './styles.css';
-  composes: visibleOnTablet from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: visibleOnTablet from global;
   text-decoration: none;
   display: block;
   height: 3.5rem;
@@ -179,18 +179,18 @@ export default {
   }
 }
 
-.burgerIcon { composes: hiddenOnTablet from './styles.css'; }
+.burgerIcon { composes: hiddenOnTablet from global; }
 .textMenu {
-  composes: hiddenOnMobile from './styles.css';
-  composes: visibleOnTablet from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: visibleOnTablet from global;
   white-space: nowrap;
 }
 
 .searchInput { border: 0; }
 
 .searchButton {
-  composes: hiddenOnMobile from './styles.css';
-  composes: visibleOnTablet from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: visibleOnTablet from global;
   line-height: 2.5rem!important;
   height: 2.5rem!important;
 }
@@ -231,12 +231,12 @@ export default {
   margin-right: 0rem;
 }
 .basketFullText {
-  composes: hiddenOnMobile from './styles.css';
-  composes: inlineOnLaptop from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: inlineOnLaptop from global;
   composes: basketIconText;
 }
 .basketShortText {
-  composes: hiddenOnLaptop from './styles.css';
+  composes: hiddenOnLaptop from global;
   composes: basketIconText;
 }
 

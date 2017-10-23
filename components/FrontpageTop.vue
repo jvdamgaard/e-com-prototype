@@ -93,9 +93,11 @@ export default {
   computed: mapState(['user']),
   methods: {
     expandDepartment(department) {
+      // eslint-disable-next-line
       console.log('Should expand', department);
     },
     setNextDepartment(department) {
+      // eslint-disable-next-line
       console.log('Should set next', department);
     },
   },
@@ -106,12 +108,12 @@ export default {
 <style module>
 
 .mobile {
-  composes: hiddenOnLaptop from './styles.css';
+  composes: hiddenOnLaptop from global;
 }
 
 .desktop {
-  composes: hiddenOnMobile from './styles.css';
-  composes: visibleOnLaptop from './styles.css';
+  composes: hiddenOnMobile from global;
+  composes: visibleOnLaptop from global;
 }
 
 .desktopGrid { margin-top: 1rem; }
@@ -125,7 +127,7 @@ export default {
   text-align: right;
 }
 .lastSeenLink {
-  composes: small from './styles.css';
+  composes: small from global;
   color: var(--color-grey-darker);
 }
 </style>

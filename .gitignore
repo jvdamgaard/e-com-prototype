@@ -9,6 +9,6 @@ npm-debug.log
 
 # Nuxt generate
 dist
-static/sw.js
+static/sw.*
 static/workbox-*
 package-lock.json

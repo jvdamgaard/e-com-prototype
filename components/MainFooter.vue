@@ -5,6 +5,7 @@
     <grid row-gap="large" :class="$style.links">
       <grid-col
         v-for="linkSection in linkSections"
+        :key="linkSection.header"
         phablet="6"
         tablet="3"
         laptop="2"
@@ -29,6 +30,7 @@
     <grid row-gap="large" :class="$style.links">
       <grid-col
         v-for="imageSection in imageSections"
+        :key="imageSection.header"
         tablet="4"
       >
         <h3 :class="$style.header">{{ imageSection.header }}</h3>
@@ -161,25 +163,25 @@ export default {
 }
 
 .link {
-  composes: small from './styles.css';
+  composes: small from global;
   color: var(--color-grey-darker);
 }
 
 .newsletterGroup {
-  composes: group from './styles.css';
+  composes: group from global;
 }
 .newsletterInput {
   background-color: var(--color-grey-lighter);
   border: 0;
 }
 .newsletterDescription {
-  composes: small from './styles.css';
+  composes: small from global;
   color: var(--color-grey-dark);
 }
 
 .bottomNav {
   composes: links;
-  composes: small from './styles.css';
+  composes: small from global;
   background-color: var(--color-white);
   color: var(--color-grey-darker);
 }
