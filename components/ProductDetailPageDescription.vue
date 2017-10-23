@@ -74,17 +74,16 @@ export default {
   margin: 0.5rem 0;
 }
 
-.expander {
-  width: 50%;
-  margin-left: auto!important;
-  margin-right: auto!important;
-}
-
 @media (min-width: 25rem) {
   .image {
     float: right;
     width: 33%;
     margin: 0 0 1rem 1rem;
+  }
+  .expander {
+    width: 50%;
+    margin-left: auto!important;
+    margin-right: auto!important;
   }
 }
 
