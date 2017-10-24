@@ -16,7 +16,7 @@
         :class="$style.inner"
         class="is-h2"
       >
-        +{{images.length - limit}}
+        +{{images.length - limit + 1}}
       </span>
       <img
         :src="`${image}?w=200&auto=format&fm=jpg`"
@@ -35,7 +35,7 @@ export default {
     imagePosition: Number,
     limit: {
       type: Number,
-      default: 16,
+      default: 10,
     },
   },
 };

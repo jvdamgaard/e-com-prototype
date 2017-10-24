@@ -16,17 +16,23 @@
       <arrow v-if="imagePosition > 0" direction="left" />
     </div>
     <img
-      v-if="lazy && activeImagePosition === 0"
-      v-lazy="getImagePath(activeImagePosition)"
+      v-if="lazy && activeImagePosition0 === 0"
+      v-lazy="getImagePath(activeImagePosition0)"
       :class="{
-        [$style.loadingImage]: loadingImage,
+        [$style.loadingImage]: loadingImage0,
       }"
     />
     <img
       v-else
-      :src="getImagePath(activeImagePosition)"
+      :src="getImagePath(activeImagePosition0)"
       :class="{
-        [$style.loadingImage]: loadingImage,
+        [$style.loadingImage]: loadingImage0,
+      }"
+    />
+    <img
+      :src="getImagePath(activeImagePosition1)"
+      :class="{
+        [$style.loadingImage]: loadingImage1,
       }"
     />
   </div>
@@ -67,8 +73,12 @@ export default {
   },
   data() {
     return {
-      activeImagePosition: 0,
-      loadingImage: false,
+      loading: false,
+      activePosition: 0,
+      activeImagePosition0: 0,
+      activeImagePosition1: 0,
+      loadingImage0: false,
+      loadingImage1: true,
     };
   },
   methods: {
@@ -79,7 +89,7 @@ export default {
       this.changeImage(-1);
     },
     changeImage(deltaPos) {
-      if (!this.loadingImage) {
+      if (!this.loading) {
         this.changeImagePosiiton(this.imagePosition + deltaPos);
       }
     },
@@ -87,20 +97,22 @@ export default {
       return `${this.images[position]}?w=${this.width}&h=${this.height}&auto=format&fm=jpg`;
     },
     loadImage(position) {
-      this.loadingImage = true;
-      const imageLoaded = loadImage(this.getImagePath(position));
+      this.loading = true;
+      this[`loadingImage${this.activePosition}`] = true;
 
       // Make sure image has fade out
-      new Promise(resolve => setTimeout(resolve, 250))
-        .then(() => imageLoaded)
+      loadImage(this.getImagePath(position))
         .then(() => {
+          this.activePosition = this.activePosition === 0 ? 1 : 0;
+
           // Make sure this is the newest image
           if (this.imagePosition === position) {
-            this.activeImagePosition = position;
+            this[`activeImagePosition${this.activePosition}`] = position;
           }
           // Wait until image has bee painted
           requestAnimationFrame(() => {
-            this.loadingImage = false;
+            this[`loadingImage${this.activePosition}`] = false;
+            this.loading = false;
           });
         });
     },
@@ -143,7 +155,7 @@ export default {
   height: auto;
   max-width: 100%;
   max-height: 100%;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.5s ease;
 }
 
 .loadingImage {
