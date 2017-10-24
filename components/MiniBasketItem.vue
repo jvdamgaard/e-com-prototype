@@ -1,24 +1,26 @@
 <template>
-  <div class="MiniBasketItem clearfix" :class="{
-    'MiniBasketItem--added': added,
-  }">
-    <nuxt-link :to="url" class="MiniBasketItem__image">
+  <div :class="[
+    $style.container,
+    { [$style.added]: added }
+  ]">
+    <nuxt-link :to="url" :class="$style.image">
       <img :src="product.images[0]" />
     </nuxt-link>
-    <p class="MiniBasketItem__titel is-small">
-      <nuxt-link :to="url" class="is-black"><strong>{{product.titel}}</strong></nuxt-link>
-      <span v-if="product.stock.status" class="is-red"><br>{{product.stock.status}}</span>
-      <br><span class="is-dimmed">Antal:</span> {{quantity}}
+    <p :class="$style.titel">
+      <nuxt-link :to="url" :class="$style.blackLink"><strong>{{product.titel}}</strong></nuxt-link>
+      <span v-if="product.stock.status" :class="$style.red"><br>{{product.stock.status}}</span>
+      <br><span :class="$style.dimmed">Antal:</span> {{quantity}}
       <span v-if="quantity > 1"><br>
-        <span class="is-dimmed">Pr. stk.:</span> {{numberWithDots(product.price)}} kr
+        <span :class="$style.dimmed">Pr. stk.:</span> {{numberWithDots(product.price)}} kr
       </span>
-      <br><a href="#" class="is-black" @click.prevent="removeFromBasket(product)">Fjern fra kurven</a>
+      <br><a href="#" :class="$style.blackLink" @click.prevent="removeFromBasket(product)">Fjern fra kurven</a>
     </p>
-    <p class="MiniBasketItem__prices is-aligned-right">
-      <span v-if="product.beforePrice" class="MiniBasketItem__before-price is-small">{{numberWithDots(quantity * product.beforePrice)}} kr</span>
-      <span class="is-h3 has-tiny-left-margin" :class="{
-        'is-red': product.beforePrice,
-      }">{{numberWithDots(quantity * product.price)}} kr</span>
+    <p :class="$style.prices">
+      <span v-if="product.beforePrice" :class="$style.beforePrice">{{numberWithDots(quantity * product.beforePrice)}} kr</span>
+      <span class="" :class="[
+        $style.price,
+        { [$style.red]: product.beforePrice },
+      ]">{{numberWithDots(quantity * product.price)}} kr</span>
     </p>
   </div>
 </template>
@@ -57,10 +59,11 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.MiniBasketItem {
+.container {
+  composes: clearfix from global;
   padding: 0.5rem;
   margin-bottom: 1px;
   background-color: var(--color-white);
@@ -68,11 +71,11 @@ export default {
   opacity: 0;
 }
 
-.MiniBasketItem--added {
+.added {
   opacity: 1;
 }
 
-.MiniBasketItem__image {
+.image {
   position: absolute;
   width: 7rem;
   padding-bottom: 5.25rem;
@@ -80,7 +83,7 @@ export default {
   top: 0.5rem;
   left: 0.5rem;
 }
-.MiniBasketItem__image img {
+.image img {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -91,18 +94,29 @@ export default {
   max-height: 100%;
 }
 
-.MiniBasketItem__titel {
+.titel {
+  composes: small from global;
   padding: 0.5rem 0.5rem 2rem 8.5rem;
 }
 
-.MiniBasketItem__prices {
+.blackLink { color: var(--color-black); }
+.red { color: var(--color-red); }
+.dimmed { color: var(--color-grey-dark); }
+
+.prices {
+  text-align: right;
   position: absolute;
   bottom: 1rem;
   right: 1rem;
   transition: all 0.2s ease;
 }
-.MiniBasketItem__before-price {
+.beforePrice {
+  composes: small from global;
   color: var(--color-grey);
   text-decoration: line-through;
+}
+.price {
+  composes: h3 from global;
+  margin-left: 0.5rem;
 }
 </style>
