@@ -1,9 +1,13 @@
 <template>
   <div>
-    <nav class="Navigation"  :class="{
-      'Navigation--collapsed': scrolled,
-      'Navigation--scrollable': this.state.departmentNavActive,
     }">
+    <nav :class="[
+      $style.container,
+      {
+        [$style.collapsed]: scrolled,
+        [$style.scrollable]: this.state.departmentNavActive,
+      },
+    ]">
       <eyebrow-navigation />
       <main-navigation />
     </nav>
@@ -50,10 +54,10 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.Navigation {
+.container {
   position: fixed;
   z-index: 100;
   top: -10rem;
@@ -66,10 +70,10 @@ export default {
   transform: translate3d(0,0,0);
   transition: transform 0.25s ease;
 }
-.Navigation--scrollable {
+.scrollable {
   overflow-y: auto;
 }
-.Navigation--collapsed {
+.collapsed {
   max-height: calc(100vh + 12rem);
   transform: translate3d(0,-2rem,0);
 }
