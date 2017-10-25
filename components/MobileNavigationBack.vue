@@ -1,15 +1,15 @@
 <template>
-  <div class="BackNavigationItem" @click="back(null)">
-    <div v-if="titel" class="BackNavigationItem__back">
-      <p class="is-full-width is-center-aligned">&#8249;</p>
+  <div :class="$style.container" @click="back(null)">
+    <div v-if="titel" :class="$style.back">
+      <p :class="$style.buttonInner">&#8249;</p>
     </div>
-    <div v-if="titel"  class="BackNavigationItem__text">
-      <div class="BackNavigationItem__text__inner is-full-width is-small">
+    <div v-if="titel" :class="$style.text">
+      <div :class="$style.textInner">
         <strong>{{titel}}</strong>
       </div>
     </div>
-    <div class="BackNavigationItem__close" @click="close" @touchstart="close">
-      <p class="is-full-width is-center-aligned">&#215;</p>
+    <div :class="$style.close" @click="close" @touchstart="close">
+      <p :class="$style.buttonInner">&#215;</p>
     </div>
   </div>
 </template>
@@ -24,10 +24,10 @@
   };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.BackNavigationItem {
+.container {
   height: 3.5rem;
   margin-bottom: 0;
   position: fixed;
@@ -38,17 +38,8 @@
   background: var(--color-grey-lighter);
   border-bottom: 1px solid var(--color-grey-light);
 }
-/*.NavigationItem:after {
-  content: '›';
-  position: absolute;
-  right: 1rem;
-  font-size: 2.5rem;
-  line-height: 1;
-  color: var(--color-grey-dark);
-  font-weight: 200;
-  top: calc(50% - 1.25rem);
-}*/
-.BackNavigationItem__back, .BackNavigationItem__close {
+
+.button {
   width: 3.5rem;
   text-align: center;
   height: 3.5rem;
@@ -59,15 +50,28 @@
   position: absolute;
   top: 0;
 }
-.BackNavigationItem__back { left: 0; }
-.BackNavigationItem__close { right: 0; }
-.BackNavigationItem__text {
+.buttonInner {
+  width: 100%;
+  text-align: center;
+}
+.back {
+  composes: button;
+  left: 0;
+}
+.close {
+  composes: button;
+  right: 0;
+}
+
+.text {
   width: calc(100% - 7rem);
   height: 3.5rem;
   line-height: 3.5rem;
   margin-left: 3.5rem;
 }
-.NavigationItem__text__inner {
+.textInner {
+  composes: small from global;
+  width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
