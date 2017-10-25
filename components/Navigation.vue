@@ -1,6 +1,5 @@
 <template>
   <div>
-    }">
     <nav :class="[
       $style.container,
       {
