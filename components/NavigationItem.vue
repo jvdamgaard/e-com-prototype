@@ -1,17 +1,20 @@
 <template>
-  <div class="NavigationItem has-small-line-height is-group" :class="{ 'NavigationItem--active': active}">
+  <div :class="[
+    $style.container,
+    { [$style.active]: active}
+  ]">
     <div
       v-if="icon && !lazy"
-      class="NavigationItem__icon is-bg-image is-round"
+      :class="$style.icon"
       :style="{'background-image': `url('${icon}')`,}"
     />
     <div
       v-if="icon && lazy"
-      class="NavigationItem__icon is-bg-image is-round"
+      :class="$style.icon"
       v-lazy:background-image="icon"
     />
-    <div class="NavigationItem__text">
-      <div class="NavigationItem__text__inner is-full-width is-small">
+    <div :class="$style.text">
+      <div :class="$style.textInner">
         <span v-html="titel" />
       </div>
     </div>
@@ -33,17 +36,19 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.NavigationItem {
+.container {
+  composes: smallLineHeight from global;
+  composes: group from global;
   padding: 0.5rem 1rem;
   cursor: pointer;
   background-color: var(--color-white);
   margin-bottom: 1px;
   min-height: 4rem;
 }
-.NavigationItem:after {
+.container:after {
   content: '›';
   position: absolute;
   right: 1rem;
@@ -53,25 +58,29 @@ export default {
   color: var(--color-grey-light);
   top: calc(50% - 1rem);
 }
-.NavigationItem:last-child {
+.container:last-child {
   margin-bottom: 0px;
 }
-.NavigationItem__icon {
+.icon {
+  composes: bgImage from global;
+  composes: round from global;
   width: 4rem;
   height: 4rem;
   margin-right: 1rem;
 }
-.NavigationItem__text {
+.text {
   width: calc(100% - 6.5rem);
 }
-.NavigationItem__text__inner {
+.textInner {
+  composes: small from global;
+  width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 @media (min-width: 48rem) {
-  .NavigationItem {
+  .container {
     padding: 0.25rem 1rem 0.25rem 0.5rem;
     margin-left: 0.25rem;
     border-left: 0.25rem solid transparent;
@@ -81,7 +90,7 @@ export default {
     width: calc(100% - 0.25rem);
     min-height: 0;
   }
-  .NavigationItem--active {
+  .active {
     background-color: var(--color-grey-lighter);
     border-top-color: var(--color-grey-light);
     border-bottom-color: var(--color-grey-light);
@@ -89,15 +98,15 @@ export default {
     width: calc(100% - 0.25rem + 1px);
     z-index: 2;
   }
-  .NavigationItem:after {
+  .container:after {
     display: none;
   }
-  .NavigationItem__icon {
+  .icon {
     width: 2.5rem;
     height: 2.5rem;
     margin-right: 0.5rem;
   }
-  .NavigationItem__text {
+  .text {
     width: calc(100% - 3.5rem);
   }
 }
