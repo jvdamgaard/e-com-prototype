@@ -1,17 +1,19 @@
 <template>
   <nuxt-link
     :to="url"
-    class="ProductCard has-white-background"
-    :class="{
-      'ProductCard--out-of-stock': product.stock.level === 0,
-      'ProductCard--in-basket': quantityInBasket > 0,
-      'ProductCard--static': static,
-      'ProductCard--no-static': !static,
-    }"
+    :class="[
+      $style.container,
+      {
+        [$style.outOfStock]: product.stock.level === 0,
+        [$style.inBasket]: quantityInBasket > 0,
+        [$style.static]: static,
+        [$style.noStatic]: !static,
+      },
+    ]"
     @mouseover.native="hovering = true"
     @mouseleave.native="hovering = false"
   >
-    <product-sticker v-if="!static" :product="product" class="ProductCard__sticker" />
+    <product-sticker v-if="!static" :product="product" :class="$style.sticker" />
     <product-image
       :images="static ? shownImages.slice(0, 1) : shownImages"
       :imagePosition="imagePosition"
@@ -22,22 +24,23 @@
       width="400"
       height="300"
     />
-    <p class="ProductCard__reviews has-small-top-margin">
+    <p :class="$style.reviews">
       <star v-for="n in 5" :key="n" :rating="product.rating" :pos="n" />
-      <small class="is-dimmed" style="float: right">{{recommendationPercentage}}% <span class="is-hidden-on-mobile is-inline-on-phablet">anbefaler</span></small>
+      <small :class="$style.recommendationPercentage">{{recommendationPercentage}}% <span class="hiddenOnMobile inlineOnPhablet">anbefaler</span></small>
     </p>
-    <p class="ProductCard__titel is-small is-body-size-on-desktop">
+    <p :class="$style.titel">
       {{product.titel}}<br>
-      <span v-if="product.stock.status" class="is-red is-small">{{product.stock.status}}</span>
+      <span v-if="product.stock.status" :class="$style.stockStatus">{{product.stock.status}}</span>
     </p>
-    <p class="ProductCard__prices is-aligned-right">
-      <span v-if="product.beforePrice" class="ProductCard__before-price">{{numberWithDots(product.beforePrice)}},-</span>
-      <span class="is-h2 has-tiny-left-margin" :class="{
-        'is-red': product.beforePrice,
-      }">{{numberWithDots(product.price)}},-</span>
+    <p :class="$style.prices">
+      <span v-if="product.beforePrice" :class="$style.beforePrice">{{numberWithDots(product.beforePrice)}},-</span>
+      <span :class="[
+        $style.price,
+        { [$style.red]: product.beforePrice },
+      ]">{{numberWithDots(product.price)}},-</span>
     </p>
 
-    <add-to-cart :product="product" :hideReadMore="static" class="ProductCard__btn-wrapper"/>
+    <add-to-cart :product="product" :hideReadMore="static" :class="$style.btnWrapper"/>
 
   </nuxt-link>
 </template>
@@ -112,10 +115,10 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.ProductCard {
+.container {
   display: block;
   position: relative;
   height: 100%;
@@ -124,11 +127,12 @@ export default {
   transition: all 0.2s ease;
   color: var(--color-black);
   overflow: hidden;
+  background-color: var(--color-white);
 }
-.ProductCard:hover {
+.container:hover {
   text-decoration: none!important;
 }
-.no-touch .ProductCard--no-static:hover {
+:global(.no-touch) .noStatic:hover {
   margin: -0.5rem -0.5rem -3rem;
   height: calc(100% + 3.5rem);
   width: calc(100% + 1rem);
@@ -136,62 +140,84 @@ export default {
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
   z-index: 10;
 }
-.no-touch .ProductCard--out-of-stock.ProductCard--no-static:hover {
+:global(.no-touch) .outOfStock.noStatic:hover {
   margin-bottom: -0.5rem;
   height: calc(100% + 1rem);
   padding-bottom: 3rem;
 }
 @media (min-width: 36rem) {
-  .ProductCard {
+  .container {
     padding: 1rem 1rem 3rem 1rem;
   }
-  .no-touch .ProductCard--no-static:hover {
+  :global(.no-touch) .noStatic:hover {
     padding: 1.5rem 1.5rem 6rem 1.5rem;
   }
-  .no-touch .ProductCard--out-of-stock.ProductCard--no-static:hover {
+  :global(.no-touch) .outOfStock.noStatic:hover {
     padding-bottom: 3.5rem;
   }
 }
 
-.ProductCard__sticker {
+.sticker {
   top: 0.5rem;
   left: 0;
 }
-.no-touch .ProductCard:hover .ProductCard__sticker {
+:global(.no-touch) .container:hover .sticker {
   top: 1rem;
   padding-left: 1.5rem;
 }
-.no-touch .ProductCard:hover .ProductCard__sticker:after {
+:global(.no-touch) .container:hover .sticker:after {
   left: 1.5rem;
 }
 
-.no-touch .ProductCard--no-static .ProductCard__reviews {
+.reviews { margin-top: 1rem; }
+:global(.no-touch) .noStatic .reviews {
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-.no-touch .ProductCard--no-static:hover .ProductCard__reviews {
+:global(.no-touch) .noStatic:hover .reviews {
   opacity: 1;
 }
 
-.ProductCard__prices {
+.recommendationPercentage {
+  color: var(--color-grey-dark);
+  float: right;
+}
+
+.titel {
+  composes: small from global;
+  composes: bodySizeOnDesktop from global;
+}
+
+.stockStatus {
+  composes: small from global;
+  color: var(--color-red);
+}
+
+.prices {
   position: absolute;
   bottom: 1rem;
   right: 1rem;
   transition: all 0.2s ease;
+  text-align: right;
 }
-.no-touch .ProductCard--no-static:hover .ProductCard__prices {
+:global(.no-touch) .noStatic:hover .prices {
   bottom: 4rem;
   right: 1.5rem;
 }
-.no-touch .ProductCard--out-of-stock.ProductCard--no-static:hover .ProductCard__prices {
+:global(.no-touch) .outOfStock.noStatic:hover .prices {
   bottom: 1.5rem;
 }
-.ProductCard__before-price {
+.beforePrice {
   color: var(--color-grey);
   text-decoration: line-through;
 }
+.price {
+  composes: h2 from global;
+  margin-left: 0.5rem;
+}
+.red { color: var(--color-red); }
 
-.ProductCard__btn-wrapper {
+.btnWrapper {
   position: absolute !important;
   bottom: -3rem;
   width: calc(100% + 1rem);
@@ -199,23 +225,23 @@ export default {
   background-color: var(--color-grey-dark);
   transition: all 0.2s ease;
 }
-.no-touch .ProductCard--no-static:hover .ProductCard__btn-wrapper,
-.ProductCard--static .ProductCard__btn-wrapper {
+:global(.no-touch) .noStatic:hover .btnWrapper,
+.static .btnWrapper {
   bottom: 0;
   width: 100%;
   left: 0;
 }
-.ProductCard--out-of-stock .ProductCard__btn-wrapper {
+.outOfStock .btnWrapper {
   display: none;
 }
 
-.ProductCard--static {
+.static {
   margin-bottom: -3.5rem;
   height: calc(100% + 3.5rem);
   padding-bottom: 5.5rem;
   cursor: default;
 }
-.ProductCard--static .ProductCard__prices {
+.static .prices {
   bottom: 3.5rem;
 }
 </style>
