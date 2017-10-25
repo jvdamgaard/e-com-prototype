@@ -1,24 +1,26 @@
 <template>
   <div>
     <div
-      class="MobileNavigation is-hidden-on-tablet"
-      :class="{
-        'MobileNavigation--active': this.state.departmentNavActive,
-        'MobileNavigation--beyond': activeDepartment,
-      }"
+      :class="[
+        $style.main,
+        {
+          [$style.active]: this.state.departmentNavActive,
+          [$style.beyond]: activeDepartment,
+        },
+      ]"
     >
       <mobile-navigation-back :back="expandDepartment" :close="closeNav" />
-      <grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
-        <div class="is-12-col">
+      <grid :class="$style.inner">
+        <grid-col>
           <navigation-item
             titel="Log ind"
             description="Log ind eller opret bruger"
             icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
             lazy
           />
-        </div>
-        <div class="is-12-col has-large-bottom-padding">
-          <h3 class="has-padding">Afdelinger</h3>
+        </grid-col>
+        <grid-col :class="$style.departments">
+          <h3 :class="$style.header">Afdelinger</h3>
           <navigation-item
             v-for="department in departments"
             :titel="department.titel"
@@ -28,25 +30,27 @@
             @click.native="expandDepartment(department.titel)"
             lazy
           />
-        </div>
+        </grid-col>
       </grid>
     </div>
     <template v-for="department in departments">
       <div
-        class="SubMobileNavigation is-hidden-on-tablet"
-        :class="{
-          'SubMobileNavigation--active': department.titel === activeDepartment,
-          'SubMobileNavigation--beyond': department.titel === activeDepartment && activeSubDepartment,
-        }"
+        :class="[
+          $style.sub,
+          {
+            [$style.active]: department.titel === activeDepartment,
+            [$style.beyond]: department.titel === activeDepartment && activeSubDepartment,
+          },
+        ]"
       >
         <mobile-navigation-back
           :back="expandDepartment"
           titel="Alle afdelinger"
           :close="closeNav"
         />
-        <grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
-          <div class="is-12-col">
-            <h3 class="has-padding">{{department.titel}}</h3>
+        <grid :class="$style.inner">
+          <grid-col>
+            <h3 :class="$style.header">{{department.titel}}</h3>
             <navigation-item
               :titel="`<strong>Alle i ${department.titel}</strong>`"
             />
@@ -56,19 +60,19 @@
               :key="subDepartment.titel"
               @click.native="expandSubDepartment(subDepartment.titel)"
             />
-          </div>
-          <div class="is-12-col has-padding">
+          </grid-col>
+          <grid-col :class="$style.brands">
             <h3>Top brands</h3>
-            <p class="SubMobileNavigation__brand-icons">
+            <p>
               <nuxt-link v-for="brand in department.brands" to="/" :key="brand.imgSrc">
-                <img v-lazy="brand.imgSrc"/>
+                <img v-lazy="brand.imgSrc" :class="$style.brandIcon"/>
               </nuxt-link>
             </p>
-          </div>
-          <div class="is-12-col has-horizontal-padding">
+          </grid-col>
+          <grid-col :class="$style.promotionContainer">
             <nuxt-link
               to="/"
-              class="SubMobileNavigation__promotion is-bg-image is-full-width is-block has-no-underline"
+              :class="$style.promotionLink"
               v-lazy:background-image="department.promotion.imageSrc"
               :key="department.titel"
             >
@@ -76,27 +80,29 @@
                 v-if="department.promotion.btnLabel"
                 type="yellow"
                 shadow
-                class="DepartmentNavigation__promo-btn"
+                :class="$style.promotionButton"
               >
                 {{department.promotion.btnLabel}}
               </btn>
             </nuxt-link>
-          </div>
+          </grid-col>
         </grid>
       </div>
       <div
         v-for="subDepartment in department.subDepartments"
-        class="SubSubMobileNavigation is-hidden-on-tablet"
-        :class="{ 'SubSubMobileNavigation--active': subDepartment.titel === activeSubDepartment }"
+        :class="[
+          $style.subSub,
+          { [$style.active]: subDepartment.titel === activeSubDepartment },
+        ]"
       >
         <mobile-navigation-back
           :back="expandSubDepartment"
           :titel="department.titel"
           :close="closeNav"
         />
-        <grid class="has-no-margin has-no-padding MobileNavigation__scrollable">
-          <div class="is-12-col has-large-bottom-padding">
-            <h3 class="has-padding">{{subDepartment.titel}}</h3>
+        <grid :class="$style.inner">
+          <grid-col :class="$style.departments">
+            <h3 :class="$style.header">{{subDepartment.titel}}</h3>
             <NavigationItem
               :titel="`<strong>Alle i ${subDepartment.titel}</strong>`"
             />
@@ -105,7 +111,7 @@
               :titel="subSubDepartment.titel"
               :key="subSubDepartment.titel"
             />
-          </div>
+          </grid-col>
         </grid>
       </div>
     </template>
@@ -115,6 +121,7 @@
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import Grid from './Grid.vue';
+import GridCol from './GridCol.vue';
 import NavigationItem from './NavigationItem.vue';
 import MobileNavigationBack from './MobileNavigationBack.vue';
 import Btn from './Btn.vue';
@@ -122,6 +129,7 @@ import Btn from './Btn.vue';
 export default {
   components: {
     Grid,
+    GridCol,
     NavigationItem,
     Btn,
     MobileNavigationBack,
@@ -161,10 +169,10 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.MobileNavigation, .SubMobileNavigation, .SubSubMobileNavigation {
+.navigation {
   position: fixed;
   top: 0;
   left: 0;
@@ -175,32 +183,59 @@ export default {
   padding: 3.5rem 1px 3rem 1px;
   transition: transform 0.5s ease;
 }
-.MobileNavigation__scrollable {
+
+.main {
+  composes: hiddenOnTablet from global;
+  composes: navigation;
+  transform: translate3d(-100%, 0, 0);
+  z-index: 2000;
+}
+.sub {
+  composes: hiddenOnTablet from global;
+  composes: navigation;
+  transform: translate3d(100%, 0, 0);
+  z-index: 2001;
+}
+.subSub {
+  composes: hiddenOnTablet from global;
+  composes: navigation;
+  transform: translate3d(100%, 0, 0);
+  z-index: 2002;
+}
+
+.active { transform: translate3d(0, 0, 0); }
+.beyond { transform: translate3d(-25%, 0, 0); }
+
+.inner {
+  margin: 0;
+  padding: 0;
   height: calc(100vh - 3.5rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
-.MobileNavigation {
-  transform: translate3d(-100%, 0, 0);
-  z-index: 2000;
-}
-.SubMobileNavigation { z-index: 2001; }
-.SubSubMobileNavigation { z-index: 2002; }
-.SubMobileNavigation, .SubSubMobileNavigation {
-  transform: translate3d(-100%, 0, 0);
-}
-.MobileNavigation--active, .SubMobileNavigation--active, .SubSubMobileNavigation--active {
-  transform: translate3d(0, 0, 0);
-}
-.MobileNavigation--beyond, .SubMobileNavigation--beyond {
-  transform: translate3d(0, 0, 0);
-}
-.MobileNavigation__departments {}
+.departments { padding-bottom: 2rem; }
+.header { padding: 1rem; }
 
-.SubMobileNavigation__promotion {
+.promotionContainer {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.promotionLink {
+  composes: bgImage from global;
+  width: 100%;
+  display: block;
+  text-decoration: none !important;
   padding-top: 150%;
 }
-.SubMobileNavigation__brand-icons img {
+.promotionButton {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.brands { padding: 1rem; }
+.brandIcon {
   height: 3rem;
   margin-right: 1rem;
   margin-top: 1rem;
