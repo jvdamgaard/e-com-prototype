@@ -48,6 +48,17 @@ export default {
   margin-bottom: 1px;
   min-height: 4rem;
 }
+
+/* Hide first part of bottom border */
+.container:not(:last-child):before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 1rem;
+  background-color: var(--color-white);
+}
 .container:after {
   content: '›';
   position: absolute;
@@ -64,8 +75,8 @@ export default {
 .icon {
   composes: bgImage from global;
   composes: round from global;
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   margin-right: 1rem;
 }
 .text {

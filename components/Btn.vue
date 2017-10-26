@@ -20,7 +20,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'buy', 'red', 'green'].indexOf(value) !== -1;
+        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'ghost-white', 'buy', 'red', 'green'].indexOf(value) !== -1;
       },
     },
     height: {
@@ -127,5 +127,15 @@ export default {
 :global(.no-touch) .ghost:hover {
   color: var(--color-white);
   background-color: var(--color-grey-darker);
+}
+
+.ghost-white {
+  color: var(--color-white);
+  border: 1px solid var(--color-white);
+  background-color: transparent;
+}
+:global(.no-touch) .ghost:hover {
+  color: var(--color-black);
+  background-color: var(--color-white);
 }
 </style>

@@ -9,22 +9,28 @@
     },
     "brands": [
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
+        "titel": "Apple"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg",
+        "titel": "Google"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/29/HP_New_Logo_2D.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/29/HP_New_Logo_2D.svg",
+        "titel": "HP"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+        "titel": "Samsung"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg",
+        "titel": "Dell"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/20/LG_symbol.svg",
+        "titel": "LG"
       }
     ],
     "subDepartments": [
@@ -164,13 +170,16 @@
     },
     "brands": [
       {
-        "imgSrc": "https://foetexdk.imgix.net/medias/sys_master/root/h4d/hb9/9651273531422/Karup-logo.jpg"
+        "imgSrc": "https://foetexdk.imgix.net/medias/sys_master/root/h4d/hb9/9651273531422/Karup-logo.jpg",
+        "titel": "Karup"
       },
       {
-        "imgSrc": "http://nofugroup.com/wp-content/uploads/2016/11/NOFU-LOGO-300x300.png"
+        "imgSrc": "http://nofugroup.com/wp-content/uploads/2016/11/NOFU-LOGO-300x300.png",
+        "titel": "NOFU"
       },
       {
-        "imgSrc": "https://images-na.ssl-images-amazon.com/images/I/61WG0fFONaL._SX466_.jpg"
+        "imgSrc": "https://images-na.ssl-images-amazon.com/images/I/61WG0fFONaL._SX466_.jpg",
+        "titel": "Apple"
       }
     ],
     "subDepartments": [
@@ -349,10 +358,12 @@
     },
     "brands": [
       {
-        "imgSrc": "https://cdn.worx.com/skin/frontend/positec/default/images/positec/worx-small-logo.1504715396.png"
+        "imgSrc": "https://cdn.worx.com/skin/frontend/positec/default/images/positec/worx-small-logo.1504715396.png",
+        "titel": "Worx"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/en/b/bf/Bosch-brand.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/en/b/bf/Bosch-brand.svg",
+        "titel": "Bosch"
       }
     ],
     "subDepartments": [
@@ -511,19 +522,24 @@
     },
     "brands": [
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/LEGO_logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/LEGO_logo.svg",
+        "titel": "LEGO"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/1/16/Nerf_logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/1/16/Nerf_logo.svg",
+        "titel": "Nerf"
       },
       {
-        "imgSrc": "https://vignette.wikia.nocookie.net/logopedia/images/c/ce/Disney.svg/revision/latest/scale-to-width-down/640?cb=20170506132802"
+        "imgSrc": "https://vignette.wikia.nocookie.net/logopedia/images/c/ce/Disney.svg/revision/latest/scale-to-width-down/640?cb=20170506132802",
+        "titel": "Disney"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/1/18/Brio_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/1/18/Brio_Logo.svg",
+        "titel": "BRIO"
       },
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/4/41/Playmobil_logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/4/41/Playmobil_logo.svg",
+        "titel": "Playmobil"
       }
     ],
     "subDepartments": [
@@ -675,7 +691,8 @@
     },
     "brands": [
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/29/HP_New_Logo_2D.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/29/HP_New_Logo_2D.svg",
+        "titel": "HP"
       }
     ],
     "subDepartments": [
@@ -829,7 +846,8 @@
     },
     "brands": [
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg",
+        "titel": "Google"
       }
     ],
     "subDepartments": [
@@ -970,7 +988,8 @@
     },
     "brands": [
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+        "titel": "Samsung"
       }
     ],
     "subDepartments": [
@@ -1097,7 +1116,8 @@
     },
     "brands": [
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+        "titel": "Samsung"
       }
     ],
     "subDepartments": [
@@ -1257,7 +1277,8 @@
     },
     "brands": [
       {
-        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg"
+        "imgSrc": "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+        "titel": "Samsung"
       }
     ],
     "subDepartments": [

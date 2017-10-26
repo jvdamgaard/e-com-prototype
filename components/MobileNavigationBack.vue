@@ -35,8 +35,8 @@
   left: 0;
   right: 0;
   z-index: 2000;
-  background: var(--color-grey-lighter);
-  border-bottom: 1px solid var(--color-grey-light);
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-grey-lighter);
 }
 
 .button {
@@ -75,5 +75,6 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  text-align: center;
 }
 </style>
