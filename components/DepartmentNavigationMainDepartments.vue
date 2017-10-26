@@ -18,7 +18,6 @@
       @click.native="expandDepartment(department.titel)"
       @mouseover.native="setNextDepartment(department.titel, $event)"
       lazy
-      :class="$style.navItem"
     />
   </div>
 </template>
@@ -49,7 +48,4 @@ export default {
 }
 
 .heading { padding: 1rem; }
-
-.navItem { margin-bottom: 0; }
-.navItem:before { display: none; }
 </style>

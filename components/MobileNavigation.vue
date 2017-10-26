@@ -21,6 +21,7 @@
             description="Log ind eller opret bruger"
             icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
             lazy
+            :class="$style.navItem"
           />
           <h3 :class="$style.header">Shop efter afdeling</h3>
           <navigation-item
@@ -31,11 +32,12 @@
             :key="department.titel"
             @click.native="expandDepartment(department.titel)"
             lazy
+            :class="$style.navItem"
           />
           <h3 :class="$style.header">Mere fra bilka</h3>
-          <navigation-item titel="Tilbudsavis" />
-          <navigation-item titel="Find butik" />
-          <navigation-item titel="Kundeservice" />
+          <navigation-item titel="Tilbudsavis" :class="$style.navItem" />
+          <navigation-item titel="Find butik" :class="$style.navItem" />
+          <navigation-item titel="Kundeservice" :class="$style.navItem" />
         </grid-col>
       </grid>
     </div>
@@ -76,6 +78,7 @@
             <navigation-item
               titel="Vis alle produkter"
               :icon="department.iconSrc"
+              :class="$style.navItem"
             />
             <h3 :class="$style.header">Shop efter afdeling</h3>
             <navigation-item
@@ -83,6 +86,7 @@
               :titel="subDepartment.titel"
               :key="subDepartment.titel"
               @click.native="expandSubDepartment(subDepartment.titel)"
+              :class="$style.navItem"
             />
             <h3 :class="$style.header">Shop efter brand</h3>
             <navigation-item
@@ -90,6 +94,7 @@
               :key="brand.imgSrc"
               :titel="brand.titel"
               :icon="brand.imgSrc"
+              :class="$style.navItem"
             />
           </grid-col>
         </grid>
@@ -110,12 +115,14 @@
           <grid-col :class="$style.departments">
             <NavigationItem
               titel="Vis alle produkter"
+              :class="$style.navItem"
             />
             <h3 :class="$style.header">Shop efter afdeling</h3>
             <NavigationItem
               v-for="subSubDepartment in subDepartment.subDepartments"
               :titel="subSubDepartment.titel"
               :key="subSubDepartment.titel"
+              :class="$style.navItem"
             />
           </grid-col>
         </grid>
@@ -220,6 +227,17 @@ export default {
   -webkit-overflow-scrolling: touch;
 }
 .header { padding: 2rem 1rem 1rem; }
+
+.navItem:not(:last-child) { margin-bottom: 1px; }
+.navItem:not(:last-child):before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 1rem;
+  background-color: var(--color-white);
+}
 
 .promotionContainer {
   padding: 1rem 1rem 0;

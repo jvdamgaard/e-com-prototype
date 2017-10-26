@@ -45,20 +45,9 @@ export default {
   padding: 0.5rem 1rem;
   cursor: pointer;
   background-color: var(--color-white);
-  margin-bottom: 1px;
   min-height: 4rem;
 }
 
-/* Hide first part of bottom border */
-.container:not(:last-child):before {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -1px;
-  height: 1px;
-  width: 1rem;
-  background-color: var(--color-white);
-}
 .container:after {
   content: '›';
   position: absolute;
