@@ -1,10 +1,11 @@
 <template>
   <grid fullWidthUntil="phablet">
-    <div
-      class="is-12-col is-9-col-on-laptop is-10-col-on-desktop has-white-background"
+    <grid-col
+      laptop="9"
+      desktop="10"
       :class="$style.container"
     >
-      <h2 class="is-h1 has-no-top-margin">{{header}}</h2>
+      <h2 :class="$style.header">{{header}}</h2>
       <div v-for="(section, i) in sections" v-if="i === 0 || expanded" class="clearfix">
         <h2 v-if="section.header">{{section.header}}</h2>
         <div :class="$style.image">
@@ -18,18 +19,20 @@
       <div :class="$style.expander" v-if="!expanded && sections.length > 1">
         <btn type="ghost" @click.native="expand">{{buttonText}}</btn>
       </div>
-    </div>
+    </grid-col>
   </grid>
 </template>
 
 <script>
 import Grid from './Grid.vue';
+import GridCol from './GridCol.vue';
 import Btn from './Btn.vue';
 import ImageContainer from './Image.vue';
 
 export default {
   components: {
     Grid,
+    GridCol,
     Btn,
     ImageContainer,
   },
@@ -62,6 +65,11 @@ export default {
 
 .container {
   padding: 2rem 1rem;
+  background-color: var(--color-white);
+}
+.header {
+  composes: h1 from global;
+  margin-top: 0!important;
 }
 .image {
   max-width: 100%;

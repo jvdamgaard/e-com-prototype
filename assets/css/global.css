@@ -89,7 +89,7 @@ img[lazy=loaded] {
 .borderTop { border-top: 1px solid var(--color-grey-light); }
 .borderBottom { border-bottom: 1px solid var(--color-grey-light); }
 
-.shadow { box-shadow: 0 0 16px rgba(0,0,0,0.25); }
+.shadow { box-shadow: 0 0 1.5rem rgba(0,0,0,0.25); }
 
 
 /* Layout */

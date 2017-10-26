@@ -4,14 +4,13 @@
       $style.container,
       { [$style.active]: active },
     ]"
-    class="has-shadow"
   >
     <div>
       <add-to-cart :product="product" hideReadMore height="small" />
     </div>
-    <grid class="has-no-vertical-margin">
-      <div class="is-12-col">
-        <div class="is-group is-small">
+    <grid :class="$style.grid">
+      <grid-col>
+        <div class="group small">
           <div>
             <product-image
               :images="shownImages.slice(0, 1)"
@@ -22,19 +21,20 @@
               :class="$style.image"
             />
           </div>
-          <div class="has-tiny-left-margin is-full-width">
+          <div :class="$style.header">
             {{product.titel}}
           </div>
-          <div class="is-aligned-right has-tiny-left-margin">
-            <span v-if="product.beforePrice" class="is-dimmed is-strike-through">
+          <div :class="$style.prices">
+            <span v-if="product.beforePrice">
               {{numberWithDots(product.beforePrice)}},-
             </span>
-            <span class="has-tiny-left-margin" :class="{
-              'is-red': product.beforePrice,
-            }"><strong>{{numberWithDots(product.price)}},-</strong></span>
+            <span :class="[
+              $style.price,
+              { [$style.red]: product.beforePrice },
+            ]"><strong>{{numberWithDots(product.price)}},-</strong></span>
           </div>
         </div>
-      </div>
+      </grid-col>
     </grid>
 
   </div>
@@ -44,6 +44,7 @@
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import { numberWithDots } from '../utils';
 import Grid from './Grid.vue';
+import GridCol from './GridCol.vue';
 import Btn from './Btn.vue';
 import Star from './Star.vue';
 import AddToCart from './AddToCart.vue';
@@ -52,6 +53,7 @@ import ProductImage from './ProductImage.vue';
 export default {
   components: {
     Grid,
+    GridCol,
     Btn,
     Star,
     AddToCart,
@@ -82,6 +84,7 @@ export default {
 @import '../assets/css/variables.css';
 
 .container {
+  composes: shadow from global;
   position: fixed;
   width: 100%;
   bottom: 0;
@@ -91,8 +94,27 @@ export default {
   transition: transform 0.5s ease;
 }
 .active { transform: translate3d(0, 0, 0); }
-.floatLeft { float: left; margin-right: 0.5rem; }
-.floatRight { float: right; }
+
+.grid {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.header {
+  margin-left: 0.5rem;
+  width: 100%;
+}
+
+.prices {
+  text-align: right;
+  margin-left: 0.5rem;
+}
+.beforePrice {
+  color: var(--color-grey-dark);
+  text-decoration: line-through;
+}
+.price { margin-left: 0.5rem; }
+.red { color: var(--color-red); }
 
 .image {
   height: 3rem;
