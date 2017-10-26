@@ -1,16 +1,8 @@
 <template>
   <grid :class="$style.container">
-    <grid-col
-      mobile="0"
-      laptop="2"
-      desktop="3"
-    />
-    <grid-col
-      laptop="8"
-      dekstop="6"
-      :class="$style.content"
-    >
-      <div v-html="content" />
+    <grid-col mobile="0" laptop="2" desktop="3" />
+    <grid-col laptop="8" desktop="6" >
+      <div v-html="content" :class="$style.content" />
     </grid-col>
   </grid>
 </template>
