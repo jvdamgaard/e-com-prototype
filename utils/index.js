@@ -26,13 +26,13 @@ export function numberWithDots(x) {
 }
 
 export function resolveModulesData(res) {
-  return Promise.all(res.data.modules.map((module) => {
+  return Promise.all(res.data.modules.map((module, i) => {
     if (module.type === 'ProductSlider' && module.data.src) {
       return axios.get(module.data.src).then(sliderRes => ({
         ...module,
         data: {
           ...module.data,
-          products: sliderRes.data.slice(0, 6),
+          products: sliderRes.data.slice(0, i < 5 ? 6 : 0),
         },
       }));
     }
