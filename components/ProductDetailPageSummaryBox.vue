@@ -2,23 +2,23 @@
   <div :class="$style.summaryBox">
     <div :class="$style.summaryBoxInner">
       <h1>{{product.titel}}</h1>
-      <ul class="is-inline-list has-tiny-top-padding">
+      <ul :class="$style.ratingList">
         <li>
           <star v-for="n in 5" :key="n" :rating="product.rating" :pos="n" />
           &nbsp;&nbsp;{{product.rating.toFixed(1).replace('.', ',')}}
         </li>
-        <li class="is-dimmed has-tiny-horizontal-padding">/</li>
+        <li>/</li>
         <li>{{recommendationPercentage}}% anbefaler</li>
-        <li class="is-dimmed has-tiny-horizontal-padding">/</li>
+        <li>/</li>
         <li><a href="#reviews">54 anmeldelser</a></li>
-        <li class="is-dimmed has-tiny-horizontal-padding">/</li>
+        <li>/</li>
         <li><a href="#reviews">23 brugerbilleder</a></li>
       </ul>
     </div>
-    <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-tablet">
+    <div :class="$style.summaryBoxInner" class="hiddenOnMobile visibleOnTablet">
       <description :product="product" />
     </div>
-    <div :class="$style.summaryBoxInner" class="is-hidden-on-mobile is-visible-on-laptop">
+    <div :class="$style.summaryBoxInner" class="hiddenOnMobile visibleOnLaptop">
       <variants
         v-if="product.variants"
         :product="product"
@@ -28,7 +28,7 @@
       <price
         :product="product"
         :activeVariants="activeVariants"
-        class="has-bottom-margin"
+        :class="$style.price"
       />
       <add-to-cart
         shadow
@@ -36,7 +36,7 @@
         height="large"
         quantityLabel="lagt i kurven"
         :product="product"
-        class="has-bottom-margin"
+        :class="$style.addToCart"
       />
       <stock :product="product" />
     </div>
@@ -83,6 +83,16 @@ export default {
 }
 
 .summaryBoxInner { padding: 1rem; }
+
+.ratingList {
+  composes: inlineList from global;
+  padding-top: 0.5rem;
+}
+.ratingList li:even {
+  padding: 0 0.5rem;
+  color: var(--color-grey-dark);
+}
+.price, .addToCart { margin-bottom: 2rem; }
 
 @media (min-width: 64rem) {
   .summaryBoxInner { padding: 2rem; }

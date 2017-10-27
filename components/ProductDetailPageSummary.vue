@@ -3,20 +3,20 @@
     <breadcrumb
       :paths="breadcrumbPaths"
       :current="product.titel"
-      class="is-hidden-on-mobile is-visible-on-tablet"
+      class="hiddenOnMobile visibleOnTablet"
     />
-    <grid fullWidthUntil="tablet" class="has-no-top-margin">
-      <div class="is-12-col has-white-background">
+    <grid fullWidthUntil="tablet" :class="$style.grid">
+      <grid-col :class="$style.background">
         <grid inner rowGap="none" colGap="none">
-          <div class="is-1-col is-hidden-on-mobile is-visible-on-desktop">
+          <grid-col mobile="0" desktop="1">
             <thumbnails
               :images="variantImages"
               :imagePosition="imagePosition"
               :changeImagePosiiton="setImagePosition"
               :limit="8"
             />
-          </div>
-          <div class="is-12-col is-6-col-on-tablet">
+          </grid-col>
+          <grid-col tablet="6">
             <product-sticker :product="product" :class="$style.sticker" />
             <div :class="$style.marginImage">
               <product-image
@@ -30,18 +30,18 @@
                 :images="variantImages"
                 :imagePosition="imagePosition"
                 :changeImagePosiiton="setImagePosition"
-                class="is-hidden-on-desktop"
+                class="hiddenOnDesktop"
               />
             </div>
-          </div>
-          <div class="is-12-col is-6-col-on-tablet is-5-col-on-desktop">
+          </grid-col>
+          <grid-col tablet="6" desktop="5">
             <summary-box
               :product="product"
               :activeVariants="activeVariants"
               :changeVariant="changeVariant"
             />
-          </div>
-          <div class="is-12-col is-hidden-on-laptop has-padding" :class="$style.borderTop">
+          </grid-col>
+          <grid-col laptop="0" :class="$style.borderTop">
             <variants
               v-if="product.variants"
               :product="product"
@@ -51,7 +51,7 @@
             <price
               :product="product"
               :activeVariants="activeVariants"
-              class="has-bottom-margin" />
+              :class="$style.price" />
             <add-to-cart
               shadow
               hideReadMore
@@ -61,12 +61,12 @@
               :product="product"
             />
             <stock :product="product" />
-          </div>
-          <div class="is-12-col is-hidden-on-tablet has-padding" :class="$style.borderTop">
+          </grid-col>
+          <grid-col tablet="0" :class="$style.borderTop">
             <description :product="product" />
-          </div>
+          </grid-col>
         </grid>
-      </div>
+      </grid-col>
     </grid>
     <div ref="stickyContainer" />
     <grid
@@ -78,24 +78,24 @@
       ]"
       :style="{ top: stickyTopPosition }"
     >
-      <div class="is-9-col is-10-col-on-desktop" />
-      <div class="is-3-col is-2-col-on-desktop">
+      <grid-col mobile="9" desktop="10" />
+      <grid-col mobile="3" desktop="2">
         <product-card
           :product="product"
           :images="variantImages"
           lazy
           static
           ref="stickyProductCard"
-          class="is-hidden-on-mobile is-visible-on-laptop"
+          class="hiddenOnMobile visibleOnLaptop"
         />
-      </div>
+      </grid-col>
     </grid>
     <sticky-card
       :product="product"
       :images="variantImages"
       :active="mobileSticky"
       ref="stickyMobileProductCard"
-      class="is-hidden-on-laptop"
+      class="hiddenOnLaptop"
     />
   </div>
 </template>
@@ -104,6 +104,7 @@
 import { mapActions } from 'vuex'; // eslint-disable-line
 import kebabCase from 'lodash/kebabCase';
 import Grid from './Grid.vue';
+import GridCol from './GridCol.vue';
 import Breadcrumb from './Breadcrumb.vue';
 import Thumbnails from './ProductDetailPageSummaryThumbnails.vue';
 import SummaryBox from './ProductDetailPageSummaryBox.vue';
@@ -120,6 +121,7 @@ import ProductCard from './ProductCard.vue';
 export default {
   components: {
     Grid,
+    GridCol,
     Breadcrumb,
     Thumbnails,
     SummaryBox,
@@ -250,6 +252,9 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
+.grid { margin-top: 0; }
+.background { background-color: var(--color-white); }
+
 .sticker {
   top: 1rem;
   right: 0;
@@ -257,7 +262,10 @@ export default {
 
 .borderTop {
   border-top: 1px solid var(--color-grey-lighter);
+  padding: 1rem;
 }
+
+.price { margin-bottom: 2rem; }
 
 .marginThumbnail { margin: 1rem; }
 

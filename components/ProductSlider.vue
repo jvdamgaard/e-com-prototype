@@ -1,39 +1,43 @@
 <template>
-  <div class="ProductSliderWrapper" @mouseover="setProductsInSlider" @mousewheel="scrolled">
-    <grid class="has-tiny-bottom-margin">
-      <div class="is-12-col is-8-col-on-tablet">
+  <div @mouseover="setProductsInSlider" @mousewheel="scrolled">
+    <grid :class="$style.headerGrid">
+      <grid-col tablet="8">
         <h2 v-html="header" />
-      </div>
-      <div class="is-4-col is-hidden-on-mobile is-visible-on-tablet is-aligned-right">
-        <div class="is-inline has-right-margin">
-          <span v-if="slides > 1" v-for="n in slides" :key="n" class="ProductSlider__slider-indicator" :class="{
-            'ProductSlider__slider-indicator--active': (n === position + 1),
-          }">
+      </grid-col>
+      <grid-col mobile="0" tablet="4" :class="$style.headerRight">
+        <div :class="$style.stepIndicatorWrapper">
+          <span v-if="slides > 1" v-for="n in slides" :key="n" :class="[
+            $style.stepIndicator,
+            { [$style.stepIndicatorActive]: (n === position + 1) }
+          ]">
             &#8211;
           </span>
         </div>
-        <nuxt-link to="/" class="is-grey is-small">vis alle</nuxt-link>
-      </div>
+        <nuxt-link to="/" :class="$style.showAllLink">vis alle</nuxt-link>
+      </grid-col>
     </grid>
-    <div class="ProductSlider">
-      <div class="ProductSlider__move ProductSlider__move--prev">
-        <div v-if="position != 0" class="ProductSlider__move-inner" @click="prev">
-          <Arrow  direction="left" class="ProductSlider__arrow" />
+    <div :class="$style.slider">
+      <div :class="[$style.move, $style.prev]">
+        <div v-if="position != 0" :class="$style.moveInner" @click="prev">
+          <arrow  direction="left" :class="$style.arrow" />
         </div>
       </div>
-      <div class="ProductSlider__inner" :style="{
+      <div :class="$style.sliderInner" :style="{
           'transform': `translate3d(${position === 0 ? '0' : `-${position}00%`}, 0, 0)`,
         }">
-        <div v-for="(product, i) in shownProducts" :key="product.id" class="ProductSlider__item">
+        <div v-for="(product, i) in shownProducts" :key="product.id" :class="$style.item">
           <product-card v-if="i < 36" :product="product" :lazy="lazy || i > 5" />
         </div>
-        <div class="ProductSlider__item ProductSlider__item--show-all">
-          <Btn type="grey" shadow class="ProductSlider__show-all-btn">Vis alle</Btn>
+        <div :class="[$style.item, $style.showAll]">
+          <btn type="grey" shadow :class="$style.showAllBtn">Vis alle</btn>
         </div>
       </div>
-      <div v-if="position + 1 < shownProducts.length / productsInSlider" class="ProductSlider__move ProductSlider__move--next">
-        <div class="ProductSlider__move-inner" @click="next">
-          <Arrow  direction="right" class="ProductSlider__arrow" />
+      <div
+        v-if="position + 1 < shownProducts.length / productsInSlider"
+        :class="[$style.move, $style.next]"
+      >
+        <div :class="$style.moveInner" @click="next">
+          <arrow  direction="right" :class="$style.arrow" />
         </div>
       </div>
     </div>
@@ -44,6 +48,7 @@
 import axios from 'axios';
 import throttle from 'lodash/throttle';
 import Grid from '../components/Grid.vue';
+import GridCol from '../components/GridCol.vue';
 import Arrow from './Arrow.vue';
 import Btn from './Btn.vue';
 import ProductCard from './ProductCard.vue';
@@ -52,6 +57,7 @@ import { getDataFromCss } from '../utils';
 export default {
   components: {
     Grid,
+    GridCol,
     Arrow,
     ProductCard,
     Btn,
@@ -121,31 +127,39 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 @import '../assets/css/variables.css';
 
-.ProductSlider {
+.slider {
   position: relative;
   padding: 0 0.5rem;
   overflow-x: hidden;
 }
-.touch .ProductSlider {
+:global(.touch) .slider {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 1rem;
   margin-bottom: -1rem;
 }
-.no-touch .ProductSlider {
+:global(.no-touch) .slider {
   padding-top: 1rem;
   padding-bottom: 4rem;
   margin-top: -1rem;
   margin-bottom: -4rem;
 }
-.no-touch .ProductSlider:hover {
+:global(.no-touch) .slider:hover {
   z-index: 10;
 }
 
-.ProductSlider__slider-indicator {
+.headerGrid { margin-bottom: 0.5rem; }
+.headerRight { text-align: right; }
+
+.stepIndicatorWrapper {
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+.stepIndicator {
   display: inline-block;
   opacity: 0;
   color: var(--color-grey);
@@ -153,71 +167,74 @@ export default {
   transition: color 0.5s ease, opacity 0.2s ease;
   margin-bottom: -0.25rem;
 }
-.ProductSlider__slider-indicator--active {
+.stepIndicatorActive {
   color: var(--color-grey-darker);
 }
-.no-touch .ProductSliderWrapper:hover .ProductSlider__slider-indicator {
+:global(.no-touch) .slider:hover .stepIndicator {
   opacity: 1;
 }
 
-.ProductSlider__inner {
+.showAllLink {
+  composes: small from global;
+  color: var(--color-grey-darker);
+}
+
+.slider { position: relative; }
+.sliderInner {
   display: flex;
   transition: transform 0.5s ease;
 }
 
-.ProductSlider__move {
+.move {
   position: absolute;
-  top: 1rem;
-  bottom: 4rem;
+  top: 0;
+  bottom: 0;
   width: 2.5rem;
   z-index: 10;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-.no-touch .ProductSliderWrapper:hover .ProductSlider__move {
+:global(.no-touch) .slider:hover .move {
   opacity: 1;
 }
-.ProductSlider__move--prev {
+.prev {
   padding-right: 1rem;
   left: 0rem;
 }
-.ProductSlider__move--next {
+.next {
   padding-left: 1rem;
   right: 0rem;
 }
-.ProductSlider__move-inner {
+.moveInner {
   position: relative;
   width: 100%;
   height: 100%;
   background: rgba(255,255,255,0.85);
 }
 
-.ProductSlider__arrow {
+.arrow {
   position: absolute;
   top: calc(50% - 0.75rem);
   left: calc(50% - 0.5rem);
 }
-.no-touch .ProductSlider__move--next .ProductSlider__move-inner:hover .ProductSlider__arrow {
+:global(.no-touch) .move:hover .arrow {
   border-left-color: var(--color-primary);
 }
-.no-touch .ProductSlider__move--prev .ProductSlider__move-inner:hover .ProductSlider__arrow {
-  border-right-color: var(--color-primary);
-}
 
-.ProductSlider__item {
+.item {
   display: flex;
   flex: 0 0 58.3333%; /* 7 cols */
   padding: 0 0.5rem;
 }
 
-.ProductSlider__item--show-all {
+.showAll {
   display: none;
 }
-.touch .ProductSlider__item--show-all {
+:global(.touch) .showAll {
   display: flex;
 }
-.ProductSlider__show-all-btn {
+.showAllBtn {
   width: 100%;
   height: 100%;
 }
@@ -229,37 +246,37 @@ body:before {
 
 @media (min-width: 30rem) {
   body:before { content: '{ "visibleProductsInSlider": 3 }'; }
-  .ProductSlider__item {
+  .item {
     flex: 0 0 41.6667%; /* 5 cols */
   }
 }
 @media (min-width: 48rem) {
-  .ProductSlider {
+  .slider {
     padding-left: 2rem;
     padding-right: 2rem;
   }
-  .ProductSlider__item {
+  .item {
     flex: 0 0 33.3333%; /* 4 cols */
   }
 }
 @media (min-width: 54rem) {
   body:before { content: '{ "visibleProductsInSlider": 4 }'; }
-  .ProductSlider__item {
+  .item {
     flex: 0 0 25%; /* 3 cols */
   }
 }
 @media (min-width: 64rem) {
-  .ProductSlider {
+  .slider {
     padding-left: 3.5rem;
     padding-right: 3.5rem;
   }
-  .ProductSlider__move {
+  .move {
     width: 4rem;
   }
 }
 @media (min-width: 80rem) {
   body:before { content: '{ "visibleProductsInSlider": 6 }'; }
-  .ProductSlider__item {
+  .item {
     flex: 0 0 16.6667%; /* 2 cols */
   }
 }

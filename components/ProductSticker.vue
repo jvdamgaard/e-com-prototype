@@ -1,5 +1,5 @@
 <template>
-  <div v-if="label" :class="[$style.sticker, $style[label.color]]" class="is-small">
+  <div v-if="label" :class="[$style.sticker, $style[label.color]]">
     {{label.text}}
   </div>
 </template>
@@ -51,6 +51,7 @@ export default {
 @import '../assets/css/variables.css';
 
 .sticker {
+  composes: small from global;
   position: absolute;
   background-color: var(--color-yellow);
   font-weight: bold;

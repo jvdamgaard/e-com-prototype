@@ -70,6 +70,7 @@ module.exports = {
     ],
   },
   build: {
+    analyze: true,
     vendor: [
       './utils',
       'axios',
