@@ -24,6 +24,7 @@
           :expandDepartment="expandDepartment"
           :setNextDepartment="setNextDepartment"
           :activeDepartment="activeDepartment"
+          lazy
         />
       </grid-col>
       <grid-col

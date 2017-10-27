@@ -17,7 +17,7 @@
       :key="department.titel"
       @click.native="expandDepartment(department.titel)"
       @mouseover.native="setNextDepartment(department.titel, $event)"
-      lazy
+      :lazy="lazy"
     />
   </div>
 </template>
@@ -34,6 +34,7 @@ export default {
     expandDepartment: Function,
     setNextDepartment: Function,
     activeDepartment: String,
+    lazy: Boolean,
   },
 };
 </script>
