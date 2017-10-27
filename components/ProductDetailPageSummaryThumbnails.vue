@@ -1,8 +1,5 @@
 <template>
-  <ul
-    class="is-unstyled-list clearfix"
-    :class="$style.thumbnailList"
-  >
+  <ul :class="$style.thumbnailList">
     <li
       v-for="(image, i) in images.slice(0, limit)"
       :class="{
@@ -14,13 +11,11 @@
       <span
         v-if="i === limit - 1 && images.length > limit"
         :class="$style.inner"
-        class="is-h2"
       >
         +{{images.length - limit + 1}}
       </span>
       <img
         :src="`${image}?w=200&auto=format&fm=jpg`"
-        class="is-full-width"
         :class="$style.thumbnailImage"
       />
     </li>
@@ -44,6 +39,10 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
+.thumbnailList {
+  composes: unstyledList from global;
+  composes: clearfix from global;
+}
 .thumbnailList li {
   position: relative;
   border: 1px solid var(--color-grey-light);
@@ -78,6 +77,8 @@ export default {
 
 .thumbnailImage {
   display: block;
+  width: 100%;
+  height: auto;
   color: var(--color-white);
   position: absolute;
   left: 0;
@@ -92,6 +93,7 @@ export default {
 }
 
 .inner {
+  composes: h2 from global;
   display: block;
   color: var(--color-white);
   position: absolute;

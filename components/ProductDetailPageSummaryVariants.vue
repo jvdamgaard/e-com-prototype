@@ -2,10 +2,10 @@
   <div :class="$style.variants">
     <template v-for="(variant, variantPos) of product.variants">
       <p>
-        <strong class="is-dimmed">{{variant.header}}:</strong>
+        <strong :class="$style.header">{{variant.header}}:</strong>
         {{getActiveItem(variantPos).description}}
       </p>
-      <ul class="is-inline-list" :class="{ [$style.variantWithPrice]: variant.changePrice }">
+      <ul class="inlineList" :class="{ [$style.variantWithPrice]: variant.changePrice }">
         <li
           v-for="(item, itemPos) in variant.items"
           :class="{
@@ -84,6 +84,8 @@ export default {
 .variants li.activeVariant {
   border-color: var(--color-primary) !important;
 }
+
+.header { color: var(--color-grey-dark); }
 
 .imageContainer {
   position: relative;

@@ -1,14 +1,13 @@
 <template>
-  <p class="is-aligned-right has-small-top-margin">
+  <p :class="$style.container">
     <span
       v-if="product.beforePrice"
-      class="has-tiny-right-margin"
       :class="$style.beforePrice"
     >
       {{numberWithDots(calculated('beforePrice'))}},00 kr.
     </span>
-    <span class="is-h1" :class="{
-      'is-red': product.beforePrice,
+    <span class="h1" :class="{
+      'red': product.beforePrice,
     }">{{numberWithDots(calculated('price'))}},00 kr.</span>
   </p>
 </template>
@@ -47,8 +46,15 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
+.container {
+  text-align: right;
+  margin-top: 1rem;
+}
+
 .beforePrice {
   color: var(--color-grey);
   text-decoration: line-through;
+  margin-right: 0.5rem;
 }
+.red { color: var(--color-red); }
 </style>
