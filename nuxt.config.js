@@ -72,6 +72,11 @@ module.exports = {
     analyze: true,
     vendor: [
       './utils',
+      './components/Grid.vue',
+      './components/GridCol.vue',
+      './components/Btn.vue',
+      './components/ProductSlider.vue',
+      './components/ProductCard.vue',
       'axios',
       'vue-lazyload',
       'lodash/throttle',
