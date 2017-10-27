@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="ProductSlider__inner" :style="{
-          'transform': `translate3d(-${position}00%, 0, 0)`,
+          'transform': `translate3d(${position === 0 ? '0' : `-${position}00%`}, 0, 0)`,
         }">
         <div v-for="(product, i) in shownProducts" :key="product.id" class="ProductSlider__item">
           <product-card v-if="i < 36" :product="product" :lazy="lazy || i > 5" />

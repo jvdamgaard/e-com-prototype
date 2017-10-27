@@ -1,7 +1,7 @@
 <template>
   <img
     :src="`https://jvdamgaard.github.io/e-com-prototype/icons/star-${color}.svg`"
-    class="Star"
+    :class="$style.star"
   />
 </template>
 
@@ -29,8 +29,8 @@ export default {
 </script>
 
 
-<style>
-.Star {
+<style module>
+.star {
   width: 1rem;
   height: 1rem;
 }
