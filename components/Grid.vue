@@ -1,10 +1,11 @@
 <template>
-  <div class="Grid" :class="[
-    `Grid--has-${rowGap}-row-gap`,
-    `Grid--has-${colGap}-col-gap`,
-    `Grid--is-full-width-until-${fullWidthUntil}`,
+  <div :class="[
+    $style.grid,
     {
-      'Grid--inner': inner,
+      [$style.inner]: inner,
+      [$style[`${rowGap}RowGap`]]: rowGap !== 'default',
+      [$style[`${colGap}ColGap`]]: colGap !== 'default',
+      [$style[`fulWidthUntil${fullWidthUntil}`]]: fullWidthUntil !== 'none',
     }
   ]">
     <slot />
@@ -40,8 +41,8 @@ export default {
 };
 </script>
 
-<style>
-.Grid {
+<style module>
+.grid {
   display: grid;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
@@ -50,139 +51,50 @@ export default {
   padding: 0 1rem;
 }
 
-.Grid--inner {
+.inner {
   margin: 0;
   padding: 0;
 }
 
 @media (max-width: 399px) {
-  .Grid--is-full-width-until-mobile { padding: 0 !important; }
+  .fullWidthUntilMobile { padding: 0 !important; }
 }
 @media (max-width: 767px) {
-  .Grid--is-full-width-until-phablet { padding: 0 !important; }
+  .fullWidthUntilPhablet { padding: 0 !important; }
 }
 @media (max-width: 1023px) {
-  .Grid--is-full-width-until-tablet { padding: 0 !important; }
+  .fullWidthUntilTablet { padding: 0 !important; }
 }
 @media (max-width: 1537px) {
-  .Grid--is-full-width-until-laptop { padding: 0 !important; }
+  .fullWidthUntilLaptop { padding: 0 !important; }
 }
-.Grid--is-full-width-until-desktop { padding: 0 !important; }
+.fullWidthUntilDesktop { padding: 0 !important; }
 
-.Grid--has-none-row-gap { grid-row-gap: 0; }
-.Grid--has-large-row-gap { grid-row-gap: 2rem; }
+.noneRowGap { grid-row-gap: 0; }
+.largeRowGap { grid-row-gap: 2rem; }
 
-.Grid--has-none-col-gap { grid-column-gap: 0; }
-.Grid--has-large-col-gap { grid-column-gap: 2rem; }
-
-/* Align */
-.Grid.is-aligned-vertical-center > * {
-  align-self: center;
-}
-
-.Grid * { position: relative; }
-
-.Grid .is-1-col { grid-column: span 1; }
-.Grid .is-2-col { grid-column: span 2; }
-.Grid .is-3-col { grid-column: span 3; }
-.Grid .is-4-col { grid-column: span 4; }
-.Grid .is-5-col { grid-column: span 5; }
-.Grid .is-6-col { grid-column: span 6; }
-.Grid .is-7-col { grid-column: span 7; }
-.Grid .is-8-col { grid-column: span 8; }
-.Grid .is-9-col { grid-column: span 9; }
-.Grid .is-10-col { grid-column: span 10; }
-.Grid .is-11-col { grid-column: span 11; }
-.Grid .is-12-col { grid-column: span 12; }
-
-.Grid .is-1-row { grid-row: span 1; }
-.Grid .is-2-row { grid-row: span 2; }
-.Grid .is-3-row { grid-row: span 3; }
-.Grid .is-4-row { grid-row: span 4; }
-
-@media (min-width: 25rem) {
-
-  .Grid .is-1-col-on-phablet { grid-column: span 1; }
-  .Grid .is-2-col-on-phablet { grid-column: span 2; }
-  .Grid .is-3-col-on-phablet { grid-column: span 3; }
-  .Grid .is-4-col-on-phablet { grid-column: span 4; }
-  .Grid .is-5-col-on-phablet { grid-column: span 5; }
-  .Grid .is-6-col-on-phablet { grid-column: span 6; }
-  .Grid .is-7-col-on-phablet { grid-column: span 7; }
-  .Grid .is-8-col-on-phablet { grid-column: span 8; }
-  .Grid .is-9-col-on-phablet { grid-column: span 9; }
-  .Grid .is-10-col-on-phablet { grid-column: span 10; }
-  .Grid .is-11-col-on-phablet { grid-column: span 11; }
-  .Grid .is-12-col-on-phablet { grid-column: span 12; }
-
-}
+.noneColGap { grid-column-gap: 0; }
+.largeColGap { grid-column-gap: 2rem; }
 
 @media (min-width: 48rem) {
-
-  .Grid {
+  .grid {
     margin: 2rem 0;
     padding: 0 2.5rem;
   }
-  .Grid--inner {
+  .inner {
     margin: 0;
     padding: 0;
   }
-
-  .Grid .is-1-col-on-tablet { grid-column: span 1; }
-  .Grid .is-2-col-on-tablet { grid-column: span 2; }
-  .Grid .is-3-col-on-tablet { grid-column: span 3; }
-  .Grid .is-4-col-on-tablet { grid-column: span 4; }
-  .Grid .is-5-col-on-tablet { grid-column: span 5; }
-  .Grid .is-6-col-on-tablet { grid-column: span 6; }
-  .Grid .is-7-col-on-tablet { grid-column: span 7; }
-  .Grid .is-8-col-on-tablet { grid-column: span 8; }
-  .Grid .is-9-col-on-tablet { grid-column: span 9; }
-  .Grid .is-10-col-on-tablet { grid-column: span 10; }
-  .Grid .is-11-col-on-tablet { grid-column: span 11; }
-  .Grid .is-12-col-on-tablet { grid-column: span 12; }
-
 }
 
 @media (min-width: 64rem) {
-
-  .Grid {
+  .grid {
     margin: 3.5rem 0;
     padding: 0 4rem;
   }
-  .Grid--inner {
+  .inner {
     margin: 0;
     padding: 0;
   }
-
-  .Grid .is-1-col-on-laptop { grid-column: span 1; }
-  .Grid .is-2-col-on-laptop { grid-column: span 2; }
-  .Grid .is-3-col-on-laptop { grid-column: span 3; }
-  .Grid .is-4-col-on-laptop { grid-column: span 4; }
-  .Grid .is-5-col-on-laptop { grid-column: span 5; }
-  .Grid .is-6-col-on-laptop { grid-column: span 6; }
-  .Grid .is-7-col-on-laptop { grid-column: span 7; }
-  .Grid .is-8-col-on-laptop { grid-column: span 8; }
-  .Grid .is-9-col-on-laptop { grid-column: span 9; }
-  .Grid .is-10-col-on-laptop { grid-column: span 10; }
-  .Grid .is-11-col-on-laptop { grid-column: span 11; }
-  .Grid .is-12-col-on-laptop { grid-column: span 12; }
-
-}
-
-@media (min-width: 96rem) {
-
-  .Grid .is-1-col-on-desktop { grid-column: span 1; }
-  .Grid .is-2-col-on-desktop { grid-column: span 2; }
-  .Grid .is-3-col-on-desktop { grid-column: span 3; }
-  .Grid .is-4-col-on-desktop { grid-column: span 4; }
-  .Grid .is-5-col-on-desktop { grid-column: span 5; }
-  .Grid .is-6-col-on-desktop { grid-column: span 6; }
-  .Grid .is-7-col-on-desktop { grid-column: span 7; }
-  .Grid .is-8-col-on-desktop { grid-column: span 8; }
-  .Grid .is-9-col-on-desktop { grid-column: span 9; }
-  .Grid .is-10-col-on-desktop { grid-column: span 10; }
-  .Grid .is-11-col-on-desktop { grid-column: span 11; }
-  .Grid .is-12-col-on-desktop { grid-column: span 12; }
-
 }
 </style>
