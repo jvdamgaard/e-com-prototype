@@ -29,7 +29,11 @@
           >
             <span :class="$style.basketFullText">Kurv ({{itemsInBasket}})</span>
             <span :class="$style.basketShortText">{{itemsInBasket}}</span>
-            <icon-basket />
+            <img
+              :src="`https://jvdamgaard.github.io/e-com-prototype/icons/basket-${state.miniBasketActive ? 'grey-darker' : 'white'}.svg`"
+              height="32"
+              width="32"
+            />
           </div>
         </div>
       </grid-col>
@@ -205,25 +209,18 @@ export default {
   transition: all 0.25s ease;
   white-space: nowrap;
 }
-.basketIcon svg {
+.basketIcon img {
   height: 2rem;
   width: 2rem;
   display: inline-block;
   vertical-align: middle;
   margin: 0.25rem 0;
 }
-.basketIcon path {
-  transition: fill 0.25s ease;
-  fill: var(--color-white);
-}
 .basketIconActive {
   composes: basketIcon;
   background-color: var(--color-white);
   color: var(--color-grey-darker);
   z-index: 10;
-}
-.basketIconActive path {
-  fill: var(--color-grey-darker);
 }
 
 .basketIconText {
