@@ -64,6 +64,7 @@ export default {
 
 .container {
   composes: clearfix from global;
+  position: relative;
   padding: 0.5rem;
   margin-bottom: 1px;
   background-color: var(--color-white);
