@@ -5,7 +5,7 @@
       [$style.inner]: inner,
       [$style[`${rowGap}RowGap`]]: rowGap !== 'default',
       [$style[`${colGap}ColGap`]]: colGap !== 'default',
-      [$style[`fulWidthUntil${fullWidthUntil}`]]: fullWidthUntil !== 'none',
+      [$style[`fullWidthUntil-${fullWidthUntil}`]]: fullWidthUntil !== 'none',
     }
   ]">
     <slot />
@@ -57,18 +57,18 @@ export default {
 }
 
 @media (max-width: 399px) {
-  .fullWidthUntilMobile { padding: 0 !important; }
+  .fullWidthUntil-mobile { padding: 0 !important; }
 }
 @media (max-width: 767px) {
-  .fullWidthUntilPhablet { padding: 0 !important; }
+  .fullWidthUntil-phablet { padding: 0 !important; }
 }
 @media (max-width: 1023px) {
-  .fullWidthUntilTablet { padding: 0 !important; }
+  .fullWidthUntil-tablet { padding: 0 !important; }
 }
 @media (max-width: 1537px) {
-  .fullWidthUntilLaptop { padding: 0 !important; }
+  .fullWidthUntil-laptop { padding: 0 !important; }
 }
-.fullWidthUntilDesktop { padding: 0 !important; }
+.fullWidthUntil-desktop { padding: 0 !important; }
 
 .noneRowGap { grid-row-gap: 0; }
 .largeRowGap { grid-row-gap: 2rem; }

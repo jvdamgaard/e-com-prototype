@@ -88,7 +88,7 @@ export default {
   composes: inlineList from global;
   padding-top: 0.5rem;
 }
-.ratingList li:even {
+.ratingList li:nth-child(2n) {
   padding: 0 0.5rem;
   color: var(--color-grey-dark);
 }

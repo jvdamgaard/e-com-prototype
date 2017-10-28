@@ -90,13 +90,13 @@
         />
       </grid-col>
     </grid>
-    <sticky-card
+    <!-- <sticky-card
       :product="product"
       :images="variantImages"
       :active="mobileSticky"
       ref="stickyMobileProductCard"
       class="hiddenOnLaptop"
-    />
+    /> -->
   </div>
 </template>
 
@@ -112,7 +112,7 @@ import Stock from './ProductDetailPageSummaryStock.vue';
 import Description from './ProductDetailPageSummaryDescription.vue';
 import Price from './ProductDetailPageSummaryPrice.vue';
 import Variants from './ProductDetailPageSummaryVariants.vue';
-import StickyCard from './ProductDetailPageStickyCard.vue';
+// import StickyCard from './ProductDetailPageStickyCard.vue';
 import ProductImage from './ProductImage.vue';
 import AddToCart from './AddToCart.vue';
 import ProductSticker from './ProductSticker.vue';
@@ -129,7 +129,7 @@ export default {
     Description,
     Price,
     Variants,
-    StickyCard,
+    // StickyCard,
     ProductImage,
     AddToCart,
     ProductSticker,
@@ -144,7 +144,7 @@ export default {
       imagePosition: 0,
       activeVariants: [],
       sticky: false,
-      mobileSticky: false,
+      // mobileSticky: false,
       stickyTopPosition: 'auto',
       lastSlider: null,
     };
@@ -217,14 +217,14 @@ export default {
         this.sticky = false;
       }
 
-      const {
-        top: addToCartTop,
-        height: addToCartHeight,
-      } = this.$refs.mobileAddToCart.$el.getBoundingClientRect();
+      // const {
+      //   top: addToCartTop,
+      //   height: addToCartHeight,
+      // } = this.$refs.mobileAddToCart.$el.getBoundingClientRect();
 
-      // Mobile - tablet
-      this.mobileSticky = (addToCartTop + addToCartHeight) < 0
-        && (lastElTop - window.innerHeight) > 0;
+      // // Mobile - tablet
+      // this.mobileSticky = (addToCartTop + addToCartHeight) < 0
+      //   && (lastElTop - window.innerHeight) > 0;
     },
   },
   created() {

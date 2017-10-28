@@ -6,6 +6,7 @@
       <product-slider
         :products="user.lastSeen"
         header="Du har senest kigget på"
+        key="last-seen"
       />
     </section>
   </div>
@@ -15,13 +16,12 @@
 import axios from 'axios';
 import { mapState } from 'vuex'; //eslint-disable-line
 import Modules from '../../../components/Modules.vue';
-import ProductSlider from '../../../components/ProductSlider.vue';
 import { resolveModulesData } from '../../../utils';
 
 export default {
   components: {
     Modules,
-    ProductSlider,
+    ProductSlider: () => import('../../../components/ProductSlider.vue'),
   },
   computed: {
     ...mapState(['user']),
