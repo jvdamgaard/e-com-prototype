@@ -32,6 +32,7 @@ export function resolveModulesData(res) {
         ...module,
         data: {
           ...module.data,
+          // Preload 6 items if slider is among top 4 moduls on page
           products: sliderRes.data.slice(0, i < 5 ? 6 : 0),
         },
       }));

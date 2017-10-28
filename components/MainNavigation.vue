@@ -51,7 +51,6 @@ import GridCol from './GridCol.vue';
 import Btn from './Btn.vue';
 import DepartmentNavigation from './DepartmentNavigation.vue';
 import MiniBasket from './MiniBasket.vue';
-import IconBasket from './IconBasket.vue';
 
 export default {
   components: {
@@ -60,7 +59,6 @@ export default {
     Btn,
     DepartmentNavigation,
     MiniBasket,
-    IconBasket,
   },
   data() {
     return {
