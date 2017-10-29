@@ -1,5 +1,6 @@
 <template>
   <div :class="$style.container">
+    <div :class="$style.itemMenuIcon">&#8942;</div>
     <nuxt-link :to="url" :class="$style.image">
       <image-container
         :src="product.images[0]"
@@ -8,7 +9,7 @@
       />
     </nuxt-link>
     <div :class="$style.content">
-      <h3><nuxt-link :to="url" :class="$style.blackLink"><strong>{{product.titel}}</strong></nuxt-link></h3>
+      <h3 :class="$style.header"><nuxt-link :to="url" :class="$style.blackLink"><strong>{{product.titel}}</strong></nuxt-link></h3>
       <p v-if="product.stock.status" :class="$style.red">{{product.stock.status}}</p>
       <p><span :class="$style.dimmed">Antal:</span> {{quantity}}</p>
       <p v-if="quantity > 1">
@@ -77,19 +78,36 @@ export default {
 .red { color: var(--color-red); }
 .dimmed { color: var(--color-grey-dark); }
 
+.itemMenuIcon {
+  composes: h2 from global;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  height: 2rem;
+  line-height: 2rem;
+  padding: 0 1rem;
+}
+
 .image {
-  width: 14rem;
-  height: 14rem;
-  padding: 1rem;
+  width: 8rem;
+  height: 8rem;
+  padding: 0.5rem;
 }
 
 .content {
   display: block;
   padding: 1rem;
-  width: calc(100% - 14rem);
+  width: calc(100% - 8rem);
+}
+
+.header {
+  width: calc(100% - 2.5rem);
 }
 
 .btns {
+  composes: hiddenOnMobile from global;
+  composes: visibleOnTablet from global;
   margin-top: 1rem;
 }
 
@@ -98,17 +116,42 @@ export default {
 }
 
 .prices {
+  margin-top: 1rem;
   text-align: right;
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
 }
 .beforePrice {
+  composes: small from global;
   color: var(--color-grey);
   text-decoration: line-through;
 }
 .price {
-  composes: h2 from global;
-  margin-left: 1rem;
+  composes: h3 from global;
+  margin-left: 0.5rem;
+}
+
+@media (min-width: 48rem) {
+  .image {
+    width: 14rem;
+    height: 14rem;
+    padding: 1rem;
+  }
+  .content {
+    width: calc(100% - 14rem);
+  }
+  .header {
+    width: 100%;
+  }
+  .prices {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .beforePrice {
+    font-size: 1rem;
+  }
+  .price {
+    composes: h2 from global;
+    margin-left: 1rem;
+  }
 }
 </style>

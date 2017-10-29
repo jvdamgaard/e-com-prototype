@@ -134,6 +134,8 @@ export default {
 
 .marginTop { margin-top: 1rem; }
 
+.padding { padding: 1rem; }
+
 .empty {
   text-align: center;
   margin: 8rem 0;
@@ -142,20 +144,20 @@ export default {
 .mobileTop {
   composes: hiddenOnLaptop from global;
   background-color: white;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   margin-top: 0;
 }
 
 .header {
+  composes: padding;
   background-color: white;
-  padding: 2rem;
 }
 
 .calculation {
   composes: unstyledList from global;
+  composes: padding;
   background-color: white;
-  padding: 2rem;
   margin-top: 1px;
 }
 
@@ -180,7 +182,7 @@ export default {
 
 .cta {
   background-color: white;
-  padding: 0 2rem 2rem;
+  padding: 0 1rem 1rem;
 }
 
 .paymentIcons {
@@ -191,6 +193,13 @@ export default {
   display: inline-block;
   height: 1.5rem;
   margin-right: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .padding { padding: 2rem; }
+  .cta {
+    padding: 0 2rem 2rem;
+  }
 }
 
 </style>
