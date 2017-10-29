@@ -17,6 +17,7 @@ export default {
     FrontpageTop: () => import('./FrontpageTop.vue'),
     ProductDetailPageSummary: () => import('./ProductDetailPageSummary.vue'),
     ProductDetailPageDescription: () => import('./ProductDetailPageDescription.vue'),
+    Basket: () => import('./Basket.vue'),
   },
   props: {
     modules: Array,

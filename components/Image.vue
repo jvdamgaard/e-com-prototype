@@ -42,14 +42,20 @@ export default {
 @import '../assets/css/variables.css';
 
 .container {
+  width: 100%;
   position: relative;
 }
 .image {
   display: block;
   position: absolute;
-  top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 </style>

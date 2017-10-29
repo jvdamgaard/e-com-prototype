@@ -1,5 +1,17 @@
 <template>
-  <div :class="[
+  <nuxt-link v-if="to" :to="to" :class="[
+    $style.container,
+    $style[type],
+    {
+      [$style[height]]: height !== 'default',
+      [$style.shadow]: shadow,
+    },
+  ]">
+    <div :class="$style.inner">
+      <slot />
+    </div>
+  </nuxt-link>
+  <div v-else :class="[
     $style.container,
     $style[type],
     {
@@ -20,7 +32,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'ghost-white', 'buy', 'red', 'green'].indexOf(value) !== -1;
+        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'ghost-white', 'ghost-dimmed', 'buy', 'red', 'green'].indexOf(value) !== -1;
       },
     },
     height: {
@@ -34,6 +46,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    to: String,
   },
 };
 </script>
@@ -43,16 +56,17 @@ export default {
 @import '../assets/css/variables.css';
 
 .container {
+  display: block;
   position: relative;
   font-weight: bold;
   text-align: center;
   height: 3rem;
-  font-size: 1rem;
   padding: 0 0.75rem;
   border: 0;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  text-decoration: none !important;
 }
 .inner {
   width: 100%;
@@ -72,6 +86,7 @@ export default {
 }
 
 .small {
+  composes: small from global;
   height: 2.5rem;
 }
 .large {
@@ -134,8 +149,19 @@ export default {
   border: 1px solid var(--color-white);
   background-color: transparent;
 }
-:global(.no-touch) .ghost:hover {
+:global(.no-touch) .ghost-white:hover {
   color: var(--color-black);
   background-color: var(--color-white);
+}
+
+.ghost-dimmed {
+  color: var(--color-grey-dark);
+  border: 1px solid var(--color-grey-light);
+  background-color: transparent;
+  font-weight: normal;
+}
+:global(.no-touch) .ghost-dimmed:hover {
+  color: var(--color-black);
+  border-color: var(--color-black);
 }
 </style>

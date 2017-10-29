@@ -19,8 +19,8 @@
         laptop="5"
         desktop="3"
         class="shadow"
-        @mouseover="enter"
-        @mouseleave="leave"
+        @mouseover.native="enter"
+        @mouseleave.native="leave"
       >
         <div :class="$style.background">
           <div :class="$style.items">
@@ -44,10 +44,10 @@
           </div>
           <grid inner :class="$style.bottom">
             <grid-col mobile="6">
-              <btn type="grey">Se kurven</btn>
+              <btn type="grey" to="/kurv/">Se kurven</btn>
             </grid-col>
             <grid-col mobile="6">
-              <btn type="buy" shadow>Til kassen</btn>
+              <btn type="buy" to="/kurv/" shadow>Til kassen</btn>
             </grid-col>
           </grid>
           <div :class="$style.sellingPoint">
@@ -134,7 +134,7 @@ export default {
 .background { background-color: var(--color-grey-lighter); }
 
 .items {
-  max-height: calc(100vh - 20rem);
+  max-height: calc(100vh - 30rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
