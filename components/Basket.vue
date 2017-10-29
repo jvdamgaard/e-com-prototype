@@ -12,68 +12,81 @@
       </grid-col>
     </grid>
 
-    <grid v-else>
-      <grid-col mobile="0" desktop="2" />
-      <grid-col desktop="5">
-        <h2 :class="$style.header">{{itemsInBasket}} produkt{{itemsInBasket > 1 ? 'er' : ''}} i kurven</h2>
-        <basket-item
-          v-for="item in user.basket.items"
-          :key="item.product.id"
-          v-bind="item"
-        />
-      </grid-col>
-      <grid-col desktop="3">
-        <h2 :class="$style.header">Total</h2>
-        <ul :class="$style.calculation">
-          <li :class="$style.calculationRow">
-            Total før rabat
-            <div :class="$style.calculationPrice">
-              {{numberWithDots(totalBeforePriceInBasket)}} kr
-            </div>
-          </li>
-          <li v-if="totalBeforePriceInBasket > totalPriceInBasket" :class="$style.discount">
-            Rabat
-            <div :class="$style.calculationPrice">
-              {{numberWithDots(totalPriceInBasket - totalBeforePriceInBasket)}} kr
-            </div>
-          </li>
-          <li :class="$style.calculationRow">
-            Fragt
-            <div :class="$style.calculationPrice">
-              GRATIS
-            </div>
-          </li>
-          <li :class="$style.calculationRow">
-            Betalingsgebyr
-            <div :class="$style.calculationPrice">
-              fra 0 kr
-            </div>
-          </li>
-          <li :class="$style.totalPrice">
-            Totalt at betale
-            <div :class="$style.calculationPrice">
-              {{numberWithDots(totalPriceInBasket)}} kr
-            </div>
-          </li>
-        </ul>
-        <div :class="$style.cta">
-          <btn type="buy" height="large" shadow>Til kasses</btn>
-        </div>
-        <div :class="$style.cta">
-          <h3>Betalingsmuligheder</h3>
-          <p :class="$style.paymentIcons">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/dankort.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/master-card.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/mobilepay.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/paypal.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa-electron.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa.png">
-          </p>
-        </div>
-        <h3 :class="[$style.header, $style.marginTop]">Rabatkode eller gavekort?</h3>
-      </grid-col>
-      <grid-col mobile="0" desktop="2" />
-    </grid>
+    <template v-else>
+
+      <grid :class="$style.mobileTop">
+        <grid-col mobile="7">
+          <h2>{{itemsInBasket}} produkt{{itemsInBasket > 1 ? 'er' : ''}} total</h2>
+          <h3>{{numberWithDots(totalPriceInBasket)}} kr.</h3>
+        </grid-col>
+        <grid-col mobile="5">
+          <btn type="buy" shadow>Til kasses</btn>
+        </grid-col>
+      </grid>
+
+      <grid>
+        <grid-col mobile="0" desktop="2" />
+        <grid-col laptop="7" desktop="5">
+          <h2 :class="$style.header">{{itemsInBasket}} produkt{{itemsInBasket > 1 ? 'er' : ''}} i kurven</h2>
+          <basket-item
+            v-for="item in user.basket.items"
+            :key="item.product.id"
+            v-bind="item"
+          />
+        </grid-col>
+        <grid-col laptop="5" desktop="3">
+          <h2 :class="$style.header">Total</h2>
+          <ul :class="$style.calculation">
+            <li :class="$style.calculationRow">
+              Total før rabat
+              <div :class="$style.calculationPrice">
+                {{numberWithDots(totalBeforePriceInBasket)}} kr
+              </div>
+            </li>
+            <li v-if="totalBeforePriceInBasket > totalPriceInBasket" :class="$style.discount">
+              Rabat
+              <div :class="$style.calculationPrice">
+                {{numberWithDots(totalPriceInBasket - totalBeforePriceInBasket)}} kr
+              </div>
+            </li>
+            <li :class="$style.calculationRow">
+              Fragt
+              <div :class="$style.calculationPrice">
+                GRATIS
+              </div>
+            </li>
+            <li :class="$style.calculationRow">
+              Betalingsgebyr
+              <div :class="$style.calculationPrice">
+                fra 0 kr
+              </div>
+            </li>
+            <li :class="$style.totalPrice">
+              Totalt at betale
+              <div :class="$style.calculationPrice">
+                {{numberWithDots(totalPriceInBasket)}} kr
+              </div>
+            </li>
+          </ul>
+          <div :class="$style.cta">
+            <btn type="buy" height="large" shadow>Til kasses</btn>
+          </div>
+          <div :class="$style.cta">
+            <h3>Betalingsmuligheder</h3>
+            <p :class="$style.paymentIcons">
+              <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/dankort.png">
+              <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/master-card.png">
+              <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/mobilepay.png">
+              <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/paypal.png">
+              <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa-electron.png">
+              <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa.png">
+            </p>
+          </div>
+          <h3 :class="[$style.header, $style.marginTop]">Rabatkode eller gavekort?</h3>
+        </grid-col>
+        <grid-col mobile="0" desktop="2" />
+      </grid>
+    </template>
 
   </div>
 </template>
@@ -124,6 +137,14 @@ export default {
 .empty {
   text-align: center;
   margin: 8rem 0;
+}
+
+.mobileTop {
+  composes: hiddenOnLaptop from global;
+  background-color: white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-top: 0;
 }
 
 .header {
