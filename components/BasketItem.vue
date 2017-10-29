@@ -90,7 +90,7 @@ export default {
 }
 
 .btns {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .btn {
