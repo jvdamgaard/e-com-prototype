@@ -28,7 +28,7 @@ export default {
   },
   asyncData() {
     // Fecth modules data
-    return axios.get('http://localhost:3000/json/pages/basket.json')
+    return axios.get('https://jvdamgaard.github.io/e-com-prototype/json/pages/basket.json')
       .then(resolveModulesData)
       .then(modules => ({ modules }));
   },
