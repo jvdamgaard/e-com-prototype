@@ -134,7 +134,7 @@ export default {
 .background { background-color: var(--color-grey-lighter); }
 
 .items {
-  max-height: calc(100vh - 25rem);
+  max-height: calc(100vh - 28rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
