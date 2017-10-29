@@ -8,7 +8,7 @@
         </span>
         <div :class="$style.promotion">
           <nuxt-link to="/legetoej/lego/" :class="$style.promotionLink">
-            <strong class="is-red">25% rabat</strong> på alt LEGO indtil lørdag
+            <strong class="red">25% rabat</strong> på alt LEGO indtil lørdag
           </nuxt-link>
         </div>
         <ul :class="$style.links">
