@@ -1,5 +1,5 @@
 <template>
-  <div @mouseover="setProductsInSlider" @mousewheel="scrolled">
+  <div @mouseover="setProductsInSlider" @mousewheel="scrolled" :class="$style.container">
     <grid :class="$style.headerGrid">
       <grid-col tablet="8">
         <h2 v-html="header" />
@@ -170,7 +170,7 @@ export default {
 .stepIndicatorActive {
   color: var(--color-grey-darker);
 }
-:global(.no-touch) .slider:hover .stepIndicator {
+:global(.no-touch) .container:hover .stepIndicator {
   opacity: 1;
 }
 
@@ -187,15 +187,15 @@ export default {
 
 .move {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 1rem;
+  bottom: 4rem;
   width: 2.5rem;
   z-index: 10;
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
-:global(.no-touch) .slider:hover .move {
+:global(.no-touch) .container:hover .move {
   opacity: 1;
 }
 .prev {

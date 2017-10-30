@@ -80,6 +80,7 @@ export default {
 
 .itemMenuIcon {
   composes: h2 from global;
+  composes: hiddenOnTablet from global;
   position: absolute;
   top: 0;
   right: 0;
