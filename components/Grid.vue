@@ -47,7 +47,7 @@ export default {
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
   grid-template-columns: repeat(12, 1fr);
-  margin: 1rem 0;
+  margin: 2rem 0;
   padding: 0 1rem;
 }
 
@@ -78,7 +78,6 @@ export default {
 
 @media (min-width: 48rem) {
   .grid {
-    margin: 2rem 0;
     padding: 0 2.5rem;
   }
   .inner {

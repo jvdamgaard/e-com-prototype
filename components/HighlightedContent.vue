@@ -6,6 +6,7 @@
       mobile="12"
       :phablet="items.length % 2 === 0 ? '6' : '12'"
       :tablet="`${colWidth}`"
+      :class="$style.itemWrapper"
     >
       <nuxt-link to="/" :class="$style.item">
         <p v-if="item.icon"><img v-lazy="item.icon" /></p>
@@ -61,6 +62,10 @@ export default {
   margin: 0.5rem 0;
 }
 
+.itemWrapper:hover {
+  z-index: 10;
+}
+
 .item {
   display: block;
   height: 100%;
@@ -83,7 +88,6 @@ export default {
 }
 :global(.no-touch) .item:hover {
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
-  z-index: 10;
 }
 
 @media (min-width: 48rem) {
@@ -103,7 +107,6 @@ export default {
     height: calc(100% + 1rem);
     margin: -0.5rem -1rem;
     padding: 3.5rem 1.5rem;
-    box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
   }
 }
 </style>

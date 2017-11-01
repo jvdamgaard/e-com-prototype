@@ -14,11 +14,57 @@
         />
       </section>
       <section>
+        <grid :class="$style.container">
+          <grid-col><h2>Afdelinger</h2></grid-col>
+          <grid-col
+            v-for="department in departments"
+            mobile="4"
+            phablet="3"
+            tablet="2"
+            :class="$style.item"
+            :key="department.titel"
+          >
+            <div
+              :class="$style.icon"
+              :style="{'background-image': `url('${department.iconSrc}')`,}"
+            />
+            {{department.titel}}
+          </grid-col>
+        </grid>
+      </section>
+      <section>
         <product-slider
           :products="user.lastSeen"
           :lazy="false"
           header="Fortsæt hvor du slap"
         />
+      </section>
+      <section>
+        <grid>
+          <grid-col>
+            <grid inner :class="$style.login">
+              <grid-col
+                mobile="4"
+                phablet="3"
+                tablet="2"
+              >
+                <div
+                  :class="$style.icon"
+                  :style="{'background-image': `url('https://jvdamgaard.github.io/e-com-prototype/icons/login.svg')`}"
+                />
+              </grid-col>
+              <grid-col
+                mobile="8"
+                phablet="9"
+                tablet="10"
+                verticalCenter
+              >
+                <p>Log ind eller opret bruger</p>
+                <p class="dimmed small">Opret dig få en bedre og hurtigere købsoplevelse.</p>
+              </grid-col>
+            </grid>
+          </grid-col>
+        </grid>
       </section>
     </div>
 
@@ -101,6 +147,32 @@ export default {
 
 
 <style module>
+@import '../assets/css/variables.css';
+
+.container {
+  background-color: var(--color-white);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.item {
+  text-align: center;
+}
+.icon {
+  composes: bgImage from global;
+  composes: round from global;
+  width: 100%;
+  padding-bottom: 100%;
+  margin-bottom: 1rem;
+}
+
+
+.login {
+  background-color: var(--color-white);
+  padding: 2rem 1rem;
+}
+.login .icon {
+  margin-bottom: 0;
+}
 
 .mobile {
   composes: hiddenOnLaptop from global;
