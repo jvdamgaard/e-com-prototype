@@ -85,12 +85,7 @@ export default {
     MainDepartments,
   },
   props: {},
-  data() {
-    return {
-      departments: require('../static/json/departments.json'), //eslint-disable-line
-    };
-  },
-  computed: mapState(['user']),
+  computed: mapState(['user', 'departments']),
   methods: {
     expandDepartment(department) {
       // eslint-disable-next-line

@@ -25,7 +25,7 @@
           />
           <h3 :class="$style.header">Shop efter afdeling</h3>
           <navigation-item
-            v-for="department in departments"
+            v-for="department in allDepartments"
             :titel="department.titel"
             :description="department.description"
             :icon="department.iconSrc"
@@ -41,7 +41,7 @@
         </grid-col>
       </grid>
     </div>
-    <template v-for="department in departments">
+    <template v-for="department in allDepartments">
       <div
         :class="[
           $style.sub,
@@ -151,17 +151,15 @@ export default {
     return {
       activeDepartment: null,
       activeSubDepartment: null,
-      departments: [],
+      allDepartments: [],
     };
   },
   computed: {
-    ...mapState(['state']),
+    ...mapState(['state', 'departments']),
   },
-  created() {
+  mounted() {
     if (!process.browser) { return; }
-    fetch('https://jvdamgaard.github.io/e-com-prototype/json/departments.json').then(response => response.json()).then((departments) => {
-      this.departments = departments;
-    });
+    this.allDepartments = this.departments;
   },
   methods: {
     ...mapActions({
