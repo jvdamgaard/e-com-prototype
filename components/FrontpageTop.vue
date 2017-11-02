@@ -77,6 +77,7 @@
             :expandDepartment="expandDepartment"
             :setNextDepartment="setNextDepartment"
             :activeDepartment="null"
+            :lazy="false"
           />
         </grid-col>
         <grid-col laptop="9" desktop="10">

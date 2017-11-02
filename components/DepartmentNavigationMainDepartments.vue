@@ -4,7 +4,7 @@
       titel="Log ind"
       description="Log ind eller opret bruger"
       icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
-      lazy
+      :lazy="lazy"
       :class="$style.navItem"
     />
     <h3 :class="$style.heading">Afdelinger</h3>

@@ -68,35 +68,21 @@
         </grid>
       </grid-col>
     </grid>
-    <div ref="stickyContainer" />
-    <grid
-      :class="[
-        $style.stickyContainer,
-        {
-          [$style.stickyContainerSticks]: sticky,
-        },
-      ]"
-      :style="{ top: stickyTopPosition }"
-    >
-      <grid-col mobile="9" desktop="10" />
-      <grid-col mobile="3" desktop="2">
-        <product-card
-          :product="product"
-          :images="variantImages"
-          lazy
-          static
-          ref="stickyProductCard"
-          class="hiddenOnMobile visibleOnLaptop"
-        />
-      </grid-col>
-    </grid>
-    <!-- <sticky-card
-      :product="product"
-      :images="variantImages"
-      :active="mobileSticky"
-      ref="stickyMobileProductCard"
-      class="hiddenOnLaptop"
-    /> -->
+    <sticky-scroll-wrapper :bottomEl="lastDescription" :heightEl="stickyProductCard">
+      <grid :class="$style.stickyContainer">
+        <grid-col mobile="9" desktop="10" />
+        <grid-col mobile="3" desktop="2">
+          <product-card
+            :product="product"
+            :images="variantImages"
+            lazy
+            static
+            ref="stickyProductCard"
+            class="hiddenOnMobile visibleOnLaptop"
+          />
+        </grid-col>
+      </grid>
+    </sticky-scroll-wrapper>
   </div>
 </template>
 
@@ -112,11 +98,11 @@ import Stock from './ProductDetailPageSummaryStock.vue';
 import Description from './ProductDetailPageSummaryDescription.vue';
 import Price from './ProductDetailPageSummaryPrice.vue';
 import Variants from './ProductDetailPageSummaryVariants.vue';
-// import StickyCard from './ProductDetailPageStickyCard.vue';
 import ProductImage from './ProductImage.vue';
 import AddToCart from './AddToCart.vue';
 import ProductSticker from './ProductSticker.vue';
 import ProductCard from './ProductCard.vue';
+import StickyScrollWrapper from './StickyScrollWrapper.vue';
 
 export default {
   components: {
@@ -129,11 +115,11 @@ export default {
     Description,
     Price,
     Variants,
-    // StickyCard,
     ProductImage,
     AddToCart,
     ProductSticker,
     ProductCard,
+    StickyScrollWrapper,
   },
   props: {
     product: Object,
@@ -143,10 +129,8 @@ export default {
     return {
       imagePosition: 0,
       activeVariants: [],
-      sticky: false,
-      // mobileSticky: false,
-      stickyTopPosition: 'auto',
-      lastSlider: null,
+      lastDescription: null,
+      stickyProductCard: null,
     };
   },
   computed: {
@@ -192,40 +176,6 @@ export default {
         return value;
       });
     },
-    handleScroll() {
-      // Laptop and desktop
-      const stickyOffset = 72;
-      const sectionMargin = 56;
-      const stickyTop = this.$refs.stickyContainer.getBoundingClientRect().top;
-      const stickyHeight = this.$refs.stickyProductCard.$el.getBoundingClientRect().height;
-      const {
-        top: lastElTop,
-      } = this.lastSlider.getBoundingClientRect();
-      const offsetFromBottom = lastElTop - stickyOffset - stickyHeight - sectionMargin;
-
-      if (offsetFromBottom < 0) {
-        const scrollTop = window.pageYOffset;
-        const { clientTop } = document.documentElement;
-        const lastElBottomPos = (lastElTop + scrollTop) - clientTop;
-        this.stickyTopPosition = `${lastElBottomPos - stickyHeight - sectionMargin}px`;
-        this.sticky = false;
-      } else if (stickyTop <= stickyOffset) {
-        this.stickyTopPosition = `${stickyOffset}px`;
-        this.sticky = true;
-      } else {
-        this.stickyTopPosition = 'auto';
-        this.sticky = false;
-      }
-
-      // const {
-      //   top: addToCartTop,
-      //   height: addToCartHeight,
-      // } = this.$refs.mobileAddToCart.$el.getBoundingClientRect();
-
-      // // Mobile - tablet
-      // this.mobileSticky = (addToCartTop + addToCartHeight) < 0
-      //   && (lastElTop - window.innerHeight) > 0;
-    },
   },
   created() {
     if (this.product.variants) {
@@ -234,17 +184,9 @@ export default {
   },
   mounted() {
     this.addToLastSeen(this.product);
-
-    if (process.browser) {
-      [this.lastSlider] = document.getElementsByClassName('section__ProductSlider');
-      this.handleScroll();
-      window.addEventListener('scroll', this.handleScroll, { passive: true });
-    }
-  },
-  destroyed() {
-    if (process.browser) {
-      window.removeEventListener('scroll', this.handleScroll, { passive: true });
-    }
+    const descriptionSections = document.getElementsByClassName('section__ProductDetailPageDescription');
+    this.lastDescription = descriptionSections[descriptionSections.length - 1];
+    this.stickyProductCard = this.$refs.stickyProductCard.$el;
   },
 };
 </script>
@@ -270,16 +212,7 @@ export default {
 .marginThumbnail { margin: 1rem; }
 
 .stickyContainer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 0;
   margin: 0;
-  overflow: visible;
-}
-
-.stickyContainerSticks {
-  position: fixed;
 }
 
 @media (min-width: 48rem) {

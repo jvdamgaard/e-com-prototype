@@ -34,6 +34,7 @@ export default {
 
 .promo {
   composes: bgImage from global;
+  position: relative;
   width: 100%;
   height: 100%;
   display: block;
