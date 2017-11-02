@@ -1,52 +1,54 @@
 <template>
-  <div
-    :class="[
-      $style.container,
-      { [$style.active]: this.state.departmentNavActive }
-    ]"
-    @click.self="closeNav"
-  >
-    <grid
-      :class="$style.grid"
-      @click.native.self="closeNav"
+  <no-ssr>
+    <div
+      :class="[
+        $style.container,
+        { [$style.active]: this.state.departmentNavActive }
+      ]"
+      @click.self="closeNav"
     >
-      <grid-col
-        mobile="11"
-        tablet="4"
-        laptop="3"
-        desktop="2"
-        :class="$style.mainContainer"
-        @mouseover.native="enterMain"
-        @mouseleave.native="leaveMain"
+      <grid
+        :class="$style.grid"
+        @click.native.self="closeNav"
       >
-        <main-departments
-          :departments="enhancedDepartments"
-          :expandDepartment="expandDepartment"
-          :setNextDepartment="setNextDepartment"
-          :activeDepartment="activeDepartment"
-          lazy
-        />
-      </grid-col>
-      <grid-col
-        v-for="department in enhancedDepartments"
-        v-show="department.titel === activeDepartment"
-        mobile="8"
-        laptop="9"
-        desktop="6"
-        :class="$style.subDepartmentsGrid"
-        @mouseover.native="setNextDepartment(department.titel); enterSub();"
-        @mouseleave.native="leaveSub();"
-        :key="department.titel"
-      >
-        <sub-departments
-          :colOneDepartments="department.col1.subDepartments"
-          :colTwoDepartments="department.col2.subDepartments"
-          :promotion="department.promotion"
-          :brands="department.brands"
-        />
-      </grid-col>
-    </grid>
-  </div>
+        <grid-col
+          mobile="11"
+          tablet="4"
+          laptop="3"
+          desktop="2"
+          :class="$style.mainContainer"
+          @mouseover.native="enterMain"
+          @mouseleave.native="leaveMain"
+        >
+          <main-departments
+            :departments="enhancedDepartments"
+            :expandDepartment="expandDepartment"
+            :setNextDepartment="setNextDepartment"
+            :activeDepartment="activeDepartment"
+            lazy
+          />
+        </grid-col>
+        <grid-col
+          v-for="department in enhancedDepartments"
+          v-show="department.titel === activeDepartment"
+          mobile="8"
+          laptop="9"
+          desktop="6"
+          :class="$style.subDepartmentsGrid"
+          @mouseover.native="setNextDepartment(department.titel); enterSub();"
+          @mouseleave.native="leaveSub();"
+          :key="department.titel"
+        >
+          <sub-departments
+            :colOneDepartments="department.col1.subDepartments"
+            :colTwoDepartments="department.col2.subDepartments"
+            :promotion="department.promotion"
+            :brands="department.brands"
+          />
+        </grid-col>
+      </grid>
+    </div>
+  </no-ssr>
 </template>
 
 <script>
@@ -70,13 +72,12 @@ export default {
       nextDepartment: null,
       hoverMain: false,
       hoverSub: false,
-      allDepartments: [],
     };
   },
   computed: {
     ...mapState(['state', 'departments']),
     enhancedDepartments() {
-      return this.allDepartments.map((department) => {
+      return this.departments.map((department) => {
         const col1 = {
           subDepartments: [],
           count: 0,
@@ -103,10 +104,6 @@ export default {
         };
       });
     },
-  },
-  mounted() {
-    if (!process.browser) { return; }
-    this.allDepartments = this.departments;
   },
   methods: {
     ...mapActions({

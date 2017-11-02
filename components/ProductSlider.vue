@@ -26,7 +26,12 @@
           'transform': `translate3d(${position === 0 ? '0' : `-${position}00%`}, 0, 0)`,
         }">
         <div v-for="(product, i) in shownProducts" :key="product.id" :class="$style.item">
-          <product-card v-if="i < 36" :product="product" :lazy="lazy || i > 5" />
+          <template v-if="i<=5">
+            <product-card :product="product" :lazy="lazy" />
+          </template>
+          <no-ssr v-else>
+            <product-card :product="product" :lazy="true" />
+          </no-ssr>
         </div>
         <div :class="[$style.item, $style.showAll]">
           <btn type="grey" shadow :class="$style.showAllBtn">Vis alle</btn>
@@ -45,7 +50,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 import throttle from 'lodash/throttle';
 import Grid from '../components/Grid.vue';
 import GridCol from '../components/GridCol.vue';
@@ -89,12 +94,6 @@ export default {
       }
       return this.products;
     },
-  },
-  created() {
-    if (!this.src || !process.browser) { return; }
-    axios.get(this.src).then(({ data }) => {
-      this.fetchedProducts = data.slice(0, 36);
-    });
   },
   methods: {
     next() {

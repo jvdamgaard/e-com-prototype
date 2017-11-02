@@ -69,7 +69,7 @@ module.exports = {
     ],
   },
   build: {
-    analyze: true,
+    extractCSS: true,
     vendor: [
       './utils',
       './components/Grid.vue',

@@ -1,134 +1,136 @@
 <template>
-  <div>
-    <div
-      :class="[
-        $style.main,
-        {
-          [$style.active]: this.state.departmentNavActive,
-          [$style.beyond]: activeDepartment,
-        },
-      ]"
-    >
-      <mobile-navigation-back
-        :back="expandDepartment"
-        :close="closeNav"
-      />
-      <grid :class="$style.inner">
-        <grid-col>
-          <h3 :class="$style.header">Mit bilka</h3>
-          <navigation-item
-            titel="Log ind"
-            description="Log ind eller opret bruger"
-            icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
-            lazy
-            :class="$style.navItem"
-          />
-          <h3 :class="$style.header">Shop efter afdeling</h3>
-          <navigation-item
-            v-for="department in allDepartments"
-            :titel="department.titel"
-            :description="department.description"
-            :icon="department.iconSrc"
-            :key="department.titel"
-            @click.native="expandDepartment(department.titel)"
-            lazy
-            :class="$style.navItem"
-          />
-          <h3 :class="$style.header">Mere fra bilka</h3>
-          <navigation-item titel="Tilbudsavis" :class="$style.navItem" />
-          <navigation-item titel="Find butik" :class="$style.navItem" />
-          <navigation-item titel="Kundeservice" :class="$style.navItem" />
-        </grid-col>
-      </grid>
-    </div>
-    <template v-for="department in allDepartments">
+  <no-ssr>
+    <div>
       <div
         :class="[
-          $style.sub,
+          $style.main,
           {
-            [$style.active]: department.titel === activeDepartment,
-            [$style.beyond]: department.titel === activeDepartment && activeSubDepartment,
+            [$style.active]: this.state.departmentNavActive,
+            [$style.beyond]: activeDepartment,
           },
         ]"
       >
         <mobile-navigation-back
           :back="expandDepartment"
-          :titel="department.titel"
           :close="closeNav"
         />
         <grid :class="$style.inner">
-          <grid-col :class="$style.promotionContainer">
-            <nuxt-link
-              to="/"
-              :class="$style.promotionLink"
-              v-lazy:background-image="department.promotion.imageSrc"
-              :key="department.titel"
-            >
-              <btn
-                v-if="department.promotion.btnLabel"
-                type="yellow"
-                height="small"
-                :class="$style.promotionButton"
-              >
-                {{department.promotion.btnLabel}}
-              </btn>
-            </nuxt-link>
-          </grid-col>
           <grid-col>
+            <h3 :class="$style.header">Mit bilka</h3>
             <navigation-item
-              titel="Vis alle produkter"
+              titel="Log ind"
+              description="Log ind eller opret bruger"
+              icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
+              lazy
+              :class="$style.navItem"
+            />
+            <h3 :class="$style.header">Shop efter afdeling</h3>
+            <navigation-item
+              v-for="department in allDepartments"
+              :titel="department.titel"
+              :description="department.description"
               :icon="department.iconSrc"
+              :key="department.titel"
+              @click.native="expandDepartment(department.titel)"
+              lazy
               :class="$style.navItem"
             />
-            <h3 :class="$style.header">Shop efter afdeling</h3>
-            <navigation-item
-              v-for="subDepartment in department.subDepartments"
-              :titel="subDepartment.titel"
-              :key="subDepartment.titel"
-              @click.native="expandSubDepartment(subDepartment.titel)"
-              :class="$style.navItem"
-            />
-            <h3 :class="$style.header">Shop efter brand</h3>
-            <navigation-item
-              v-for="brand in department.brands"
-              :key="brand.imgSrc"
-              :titel="brand.titel"
-              :icon="brand.imgSrc"
-              :class="$style.navItem"
-            />
+            <h3 :class="$style.header">Mere fra bilka</h3>
+            <navigation-item titel="Tilbudsavis" :class="$style.navItem" />
+            <navigation-item titel="Find butik" :class="$style.navItem" />
+            <navigation-item titel="Kundeservice" :class="$style.navItem" />
           </grid-col>
         </grid>
       </div>
-      <div
-        v-for="subDepartment in department.subDepartments"
-        :class="[
-          $style.subSub,
-          { [$style.active]: subDepartment.titel === activeSubDepartment },
-        ]"
-      >
-        <mobile-navigation-back
-          :back="expandSubDepartment"
-          :titel="subDepartment.titel"
-          :close="closeNav"
-        />
-        <grid :class="$style.inner">
-          <grid-col :class="$style.departments">
-            <NavigationItem
-              titel="Vis alle produkter"
-              :class="$style.navItem"
-            />
-            <h3 :class="$style.header">Shop efter afdeling</h3>
-            <NavigationItem
-              v-for="subSubDepartment in subDepartment.subDepartments"
-              :titel="subSubDepartment.titel"
-              :key="subSubDepartment.titel"
-              :class="$style.navItem"
-            />
-          </grid-col>
-        </grid>
-      </div>
-    </template>
-  </div>
+      <template v-for="department in allDepartments">
+        <div
+          :class="[
+            $style.sub,
+            {
+              [$style.active]: department.titel === activeDepartment,
+              [$style.beyond]: department.titel === activeDepartment && activeSubDepartment,
+            },
+          ]"
+        >
+          <mobile-navigation-back
+            :back="expandDepartment"
+            :titel="department.titel"
+            :close="closeNav"
+          />
+          <grid :class="$style.inner">
+            <grid-col :class="$style.promotionContainer">
+              <nuxt-link
+                to="/"
+                :class="$style.promotionLink"
+                v-lazy:background-image="department.promotion.imageSrc"
+                :key="department.titel"
+              >
+                <btn
+                  v-if="department.promotion.btnLabel"
+                  type="yellow"
+                  height="small"
+                  :class="$style.promotionButton"
+                >
+                  {{department.promotion.btnLabel}}
+                </btn>
+              </nuxt-link>
+            </grid-col>
+            <grid-col>
+              <navigation-item
+                titel="Vis alle produkter"
+                :icon="department.iconSrc"
+                :class="$style.navItem"
+              />
+              <h3 :class="$style.header">Shop efter afdeling</h3>
+              <navigation-item
+                v-for="subDepartment in department.subDepartments"
+                :titel="subDepartment.titel"
+                :key="subDepartment.titel"
+                @click.native="expandSubDepartment(subDepartment.titel)"
+                :class="$style.navItem"
+              />
+              <h3 :class="$style.header">Shop efter brand</h3>
+              <navigation-item
+                v-for="brand in department.brands"
+                :key="brand.imgSrc"
+                :titel="brand.titel"
+                :icon="brand.imgSrc"
+                :class="$style.navItem"
+              />
+            </grid-col>
+          </grid>
+        </div>
+        <div
+          v-for="subDepartment in department.subDepartments"
+          :class="[
+            $style.subSub,
+            { [$style.active]: subDepartment.titel === activeSubDepartment },
+          ]"
+        >
+          <mobile-navigation-back
+            :back="expandSubDepartment"
+            :titel="subDepartment.titel"
+            :close="closeNav"
+          />
+          <grid :class="$style.inner">
+            <grid-col :class="$style.departments">
+              <NavigationItem
+                titel="Vis alle produkter"
+                :class="$style.navItem"
+              />
+              <h3 :class="$style.header">Shop efter afdeling</h3>
+              <NavigationItem
+                v-for="subSubDepartment in subDepartment.subDepartments"
+                :titel="subSubDepartment.titel"
+                :key="subSubDepartment.titel"
+                :class="$style.navItem"
+              />
+            </grid-col>
+          </grid>
+        </div>
+      </template>
+    </div>
+  </no-ssr>
 </template>
 
 <script>
