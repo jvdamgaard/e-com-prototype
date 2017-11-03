@@ -20,12 +20,12 @@
           <btn type="yellow" :class="$style.searchButton">
             <img src="https://jvdamgaard.github.io/e-com-prototype/icons/search-black.svg" height="32" width="32" />
           </btn>
-          <div
+          <nuxt-link
             :class="state.miniBasketActive ? $style.basketIconActive : $style.basketIcon"
-            @click="openMiniBasket"
-            @touchstart="openMiniBasket"
-            @mouseover="enterMiniBasket"
-            @mouseleave="leaveMiniBasket"
+            to="/kurv/"
+            @touchstart.native="openMiniBasket"
+            @mouseover.native="enterMiniBasket"
+            @mouseleave.native="leaveMiniBasket"
           >
             <span :class="$style.basketFullText">Kurv ({{itemsInBasket}})</span>
             <span :class="$style.basketShortText">{{itemsInBasket}}</span>
@@ -34,7 +34,7 @@
               height="32"
               width="32"
             />
-          </div>
+          </nuxt-link>
         </div>
       </grid-col>
     </grid>
@@ -206,6 +206,8 @@ export default {
   cursor: pointer;
   transition: all 0.25s ease;
   white-space: nowrap;
+  color: var(--color-white);
+  text-decoration: none !important;
 }
 .basketIcon img {
   height: 2rem;
