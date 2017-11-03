@@ -18,9 +18,8 @@
           <grid-col><h2>Afdelinger</h2></grid-col>
           <grid-col
             v-for="department in departments"
-            mobile="4"
-            phablet="3"
-            tablet="2"
+            mobile="3"
+            phablet="2"
             :class="$style.item"
             :key="department.titel"
           >
@@ -156,6 +155,7 @@ export default {
   padding-bottom: 2rem;
 }
 .item {
+  composes: small from global;
   text-align: center;
 }
 .icon {
@@ -163,9 +163,17 @@ export default {
   composes: round from global;
   width: 100%;
   padding-bottom: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
+@media (min-width: 48rem) {
+  .icon {
+    width: 4rem;
+    padding-bottom: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 .login {
   background-color: var(--color-white);
