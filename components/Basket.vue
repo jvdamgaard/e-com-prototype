@@ -43,6 +43,9 @@
             v-bind="item"
           />
         </grid-col>
+        <grid-col laptop="5" desktop="3" :class="$style.ghostBasket">
+          <basket-summary />
+        </grid-col>
       </grid>
 
       <grid class="hiddenOnLaptop">
@@ -125,6 +128,11 @@ export default {
   padding-top: 2rem;
   padding-bottom: 2rem;
   margin-top: 0;
+}
+
+.ghostBasket {
+  opacity: 0;
+  z-index: -100;
 }
 
 .header {
