@@ -121,10 +121,10 @@ module.exports = {
     { src: '~plugins/persisted-state.js', ssr: false },
     { src: '~plugins/lazy-load.js' },
   ],
-  modules: [
+  modules: (process.env.NODE_ENV === 'generate') ? [
     '@nuxtjs/icon',
     '@nuxtjs/manifest',
     '@nuxtjs/meta',
     '@nuxtjs/workbox',
-  ],
+  ] : [],
 };
