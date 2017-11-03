@@ -15,8 +15,8 @@
     <template v-else>
       <grid :class="$style.mobileTop">
         <grid-col mobile="7">
-          <h2>{{itemsInBasket}} produkt{{itemsInBasket > 1 ? 'er' : ''}} total</h2>
-          <h3>{{numberWithDots(totalPriceInBasket)}} kr.</h3>
+          <h2>{{itemsInBasket}} produkt{{itemsInBasket > 1 ? 'er' : ''}}</h2>
+          <p>Total {{numberWithDots(totalPriceInBasket)}} kr.</p>
         </grid-col>
         <grid-col mobile="5">
           <btn type="buy" shadow>Til kassen</btn>
@@ -112,7 +112,7 @@ export default {
 
 .marginTop { margin-top: 1rem; }
 
-.padding { padding: 1rem; }
+.padding { padding: 2rem 1rem; }
 
 .empty {
   text-align: center;
@@ -122,8 +122,8 @@ export default {
 .mobileTop {
   composes: hiddenOnLaptop from global;
   background-color: white;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   margin-top: 0;
 }
 

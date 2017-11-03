@@ -87,7 +87,7 @@ export default {
 @import '../assets/css/variables.css';
 
 .marginTop { margin-top: 1rem; }
-.padding { padding: 1rem; }
+.padding { padding: 2rem 1rem; }
 
 .header {
   composes: padding;
@@ -122,7 +122,7 @@ export default {
 
 .cta {
   background-color: white;
-  padding: 0 1rem 1rem;
+  padding: 0 1rem 2rem;
 }
 
 .paymentIcons {

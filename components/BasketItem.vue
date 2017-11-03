@@ -87,7 +87,7 @@ export default {
   text-align: center;
   height: 2rem;
   line-height: 2rem;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .image {
