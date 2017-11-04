@@ -77,7 +77,6 @@ export default {
   flex-direction: column;
 }
 
-
 .shadow {
   box-shadow: 0 0.125rem 0.75rem rgba(0,0,0,0.2);
 }
@@ -123,10 +122,10 @@ export default {
 }
 
 .grey-light {
-  background-color: var(--color-grey-light);
+  background-color: var(--color-grey-lighter);
 }
 :global(.no-touch) .grey-light:hover {
-  background-color: var(--color-grey);
+  background-color: var(--color-grey-light);
 }
 
 .yellow {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <checkout-header-box :number="1" header="Dine oplysninger" :filled="valid" :edit="edit"/>
-    <checkout-box v-if="!valid">
-      <form :class="$style.form">
+    <checkout-header-box :number="1" header="Dine oplysninger" :filled="valid && !edit" :edit="editForm"/>
+    <checkout-form v-if="!valid || edit">
+      <checkout-box>
         <p>
           <label for="name">Fulde navn</label>
           <input type="text" id="name" name="name" required autocomplete="name" v-model="personalInformation.name" ref="name">
@@ -20,17 +20,17 @@
           <input type="search" id="address" name="address" required autocomplete="shipping street-address" v-model="personalInformation.address" ref="address">
         </p>
         <p>
-          <label for="music">
+          <label for="create-user">
             <input type="checkbox" id="create-user" name="create-user" value="true">
             Opret bruger <span class="dimmed">(tilgå nemt din ordre efter bestilling)</span>
           </label>
         </p>
-        <p>
-          <btn type="primary" height="large" shadow :class="$style.cta" @click.native="save">Gem dine oplysninger</btn>
-        </p>
-      </form>
-    </checkout-box>
-    <checkout-box v-if="valid">
+      </checkout-box>
+      <checkout-box>
+        <btn type="primary" height="large" shadow :class="$style.cta" @click.native="save">Gem dine oplysninger</btn>
+      </checkout-box>
+    </checkout-form>
+    <checkout-box v-if="valid && !edit">
       <p><span class="dimmed">Fulde navn:</span> {{this.user.personalInformation.name}}</p>
       <p><span class="dimmed">E-mail:</span> {{this.user.personalInformation.email}}</p>
       <p><span class="dimmed">Mobilnummer:</span> {{this.user.personalInformation.phone}}</p>
@@ -42,12 +42,14 @@
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import CheckoutBox from './CheckoutBox.vue';
+import CheckoutForm from './CheckoutForm.vue';
 import CheckoutHeaderBox from './CheckoutHeaderBox.vue';
 import Btn from './Btn.vue';
 
 export default {
   components: {
     CheckoutBox,
+    CheckoutForm,
     CheckoutHeaderBox,
     Btn,
   },
@@ -65,6 +67,7 @@ export default {
         address: null,
         phone: null,
       },
+      edit: false,
     };
   },
   computed: {
@@ -77,14 +80,10 @@ export default {
     save() {
       // Validate
       this.savePersonalInformation({ ...this.personalInformation });
+      this.edit = false;
     },
-    edit() {
-      this.savePersonalInformation({
-        name: null,
-        email: null,
-        address: null,
-        phone: null,
-      });
+    editForm() {
+      this.edit = true;
     },
   },
   created() {
@@ -95,32 +94,4 @@ export default {
 
 <style module>
 @import '../assets/css/variables.css';
-
-.number {
-  composes: h2 from global;
-  float: left;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  height: 2rem;
-  width: 2rem;
-  text-align: center;
-  line-height: 2rem;
-  border-radius: 100%;
-  margin-right: 1rem;
-}
-.header {
-  line-height: 2rem;
-}
-.form p:not(:first-child) {
-  margin-top: 1rem;
-}
-.form input[type="checkbox"] {
-  display: inline-block;
-  width: auto;
-  height: auto;
-  margin-right: 0.5rem;
-}
-.cta {
-  margin-top: 2rem;
-}
 </style>

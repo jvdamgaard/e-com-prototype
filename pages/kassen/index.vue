@@ -4,9 +4,7 @@
     <grid-col desktop="2"/>
     <grid-col desktop="5">
       <checkout-personal-information :valid="personalInformationValid" />
-      <div>
-        <checkout-header-box :number="2" header="Levering" inactive/>
-      </div>
+      <checkout-delivery :valid="deliveryValid" :inactive="!personalInformationValid" />
       <div>
         <checkout-header-box :number="3" header="Betaling" inactive/>
       </div>
@@ -30,6 +28,7 @@ import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
 import Btn from '../../components/Btn.vue';
 import CheckoutPersonalInformation from '../../components/CheckoutPersonalInformation.vue';
+import CheckoutDelivery from '../../components/CheckoutDelivery.vue';
 import CheckoutHeaderBox from '../../components/CheckoutHeaderBox.vue';
 import CheckoutBox from '../../components/CheckoutBox.vue';
 
@@ -40,6 +39,7 @@ export default {
     GridCol,
     Btn,
     CheckoutPersonalInformation,
+    CheckoutDelivery,
     CheckoutHeaderBox,
     CheckoutBox,
   },
@@ -51,6 +51,12 @@ export default {
         this.user.personalInformation.email &&
         this.user.personalInformation.phone &&
         this.user.personalInformation.address
+      );
+    },
+    deliveryValid() {
+      return !!(
+        this.user.checkout.delivery.method &&
+        this.user.checkout.delivery.address
       );
     },
   },

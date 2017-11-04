@@ -7,6 +7,12 @@ export function state() {
     basket: {
       items: [],
     },
+    checkout: {
+      delivery: {
+        method: null,
+        address: null,
+      },
+    },
     personalInformation: {
       name: null,
       email: null,
@@ -49,6 +55,9 @@ export const mutations = {
   changePersonalInformation(s, personalInformation) {
     s.personalInformation = personalInformation;
   },
+  changeCheckoutDelivery(s, delivery) {
+    s.checkout.delivery = delivery;
+  },
 };
 
 export const actions = {
@@ -73,5 +82,8 @@ export const actions = {
   },
   savePersonalInformation({ commit }, personalInformation) {
     commit('changePersonalInformation', personalInformation);
+  },
+  saveCheckoutDelivery({ commit }, delivery) {
+    commit('changeCheckoutDelivery', delivery);
   },
 };
