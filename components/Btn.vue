@@ -125,6 +125,9 @@ export default {
 .grey-light {
   background-color: var(--color-grey-light);
 }
+:global(.no-touch) .grey-light:hover {
+  background-color: var(--color-grey);
+}
 
 .yellow {
   color: var(--color-black);

@@ -47,7 +47,7 @@
               <btn type="grey" to="/kurv/">Se kurven</btn>
             </grid-col>
             <grid-col mobile="6">
-              <btn type="buy" to="/kurv/" shadow>Til kassen</btn>
+              <btn type="buy" to="/kassen/" shadow>Til kassen</btn>
             </grid-col>
           </grid>
           <div :class="$style.sellingPoint">

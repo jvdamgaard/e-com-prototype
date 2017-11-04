@@ -34,7 +34,7 @@
       </li>
     </ul>
     <div :class="$style.cta">
-      <btn type="buy" height="large" shadow>Til kassen</btn>
+      <btn type="buy" height="large" to="/kassen/" shadow>Til kassen</btn>
     </div>
     <div :class="$style.cta">
       <h3>Betalingsmuligheder</h3>

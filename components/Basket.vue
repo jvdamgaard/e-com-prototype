@@ -1,6 +1,6 @@
 <template>
   <div>
-    <grid v-if="user.basket.items.length === 0" :class="$style.empty">
+    <grid v-show="user.basket.items.length === 0" :class="$style.empty">
       <grid-col>
         <p><img src="https://jvdamgaard.github.io/e-com-prototype/icons/basket-grey-darker.svg" height="64" width="64" /></p>
         <p class="h1">Din kurv er tom</p>
@@ -12,14 +12,14 @@
       </grid-col>
     </grid>
 
-    <template v-else>
+    <div v-show="user.basket.items.length > 0">
       <grid :class="$style.mobileTop">
         <grid-col mobile="7">
           <h2>{{itemsInBasket}} produkt{{itemsInBasket > 1 ? 'er' : ''}}</h2>
           <p>Total {{numberWithDots(totalPriceInBasket)}} kr.</p>
         </grid-col>
         <grid-col mobile="5">
-          <btn type="buy" shadow>Til kassen</btn>
+          <btn type="buy" to="/kassen/" shadow>Til kassen</btn>
         </grid-col>
       </grid>
 
@@ -53,7 +53,7 @@
           <basket-summary />
         </grid-col>
       </grid>
-    </template>
+    </div>
 
   </div>
 </template>

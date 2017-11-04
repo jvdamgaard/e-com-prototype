@@ -7,6 +7,12 @@ export function state() {
     basket: {
       items: [],
     },
+    personalInformation: {
+      name: null,
+      email: null,
+      address: null,
+      phone: null,
+    },
   };
 }
 
@@ -40,6 +46,9 @@ export const mutations = {
       ...s.lastSeen,
     ], 'id').slice(0, 100);
   },
+  changePersonalInformation(s, personalInformation) {
+    s.personalInformation = personalInformation;
+  },
 };
 
 export const actions = {
@@ -61,5 +70,8 @@ export const actions = {
   },
   addToLastSeen({ commit }, product) {
     commit('addToLastSeen', product);
+  },
+  savePersonalInformation({ commit }, personalInformation) {
+    commit('changePersonalInformation', personalInformation);
   },
 };
