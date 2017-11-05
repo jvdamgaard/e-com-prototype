@@ -10,7 +10,7 @@
         <h1 :class="$style.header">Kassen</h1>
       </grid-col>
       <grid-col mobile="4" :class="$style.secure">
-        100% sikker betaling
+        &#128274; 100% sikker betaling
       </grid-col>
     </grid>
   </div>
@@ -34,7 +34,7 @@ export default {
 
 .container {
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .logo {

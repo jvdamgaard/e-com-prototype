@@ -23,4 +23,10 @@
 .form label div {
   float: right;
 }
+
+.form label img {
+  display: inline-block;
+  height: 1rem;
+  margin-left: 0.5rem;
+}
 </style>

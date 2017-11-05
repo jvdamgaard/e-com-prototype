@@ -3,7 +3,7 @@
     :class="{ [$style.inactive]: inactive, [$style.filled]: filled }"
     :inactive="inactive"
   >
-    <div :class="$style.number">{{number}}</div>
+    <div v-if="number" :class="$style.number">{{number}}</div>
     <btn
       v-if="filled"
       type="grey-light"
@@ -64,14 +64,15 @@ export default {
   line-height: 2.5rem;
 }
 
+.filled .number {
+  background-color: var(--color-black);
+}
+
 .inactive {
   color: var(--color-grey);
 }
-.inactive .number, .filled .number {
+.inactive .number {
   background-color: var(--color-grey);
-}
-.filled .number {
-  background-color: var(--color-black);
 }
 
 .change {

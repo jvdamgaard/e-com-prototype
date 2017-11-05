@@ -37,7 +37,9 @@ export default {
   margin-bottom: 1rem;
 }
 
-.transparent { background-color: transparent; }
+.transparent {
+  background-color: transparent;
+}
 
 .inactive { opacity: 0.5; }
 

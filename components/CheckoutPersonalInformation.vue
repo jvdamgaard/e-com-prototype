@@ -30,7 +30,7 @@
         <btn type="primary" height="large" shadow :class="$style.cta" @click.native="save">Gem dine oplysninger</btn>
       </checkout-box>
     </checkout-form>
-    <checkout-box v-if="valid && !edit">
+    <checkout-box v-if="valid && !edit" :inactive="inactive">
       <p><span class="dimmed">Fulde navn:</span> {{this.user.personalInformation.name}}</p>
       <p><span class="dimmed">E-mail:</span> {{this.user.personalInformation.email}}</p>
       <p><span class="dimmed">Mobilnummer:</span> {{this.user.personalInformation.phone}}</p>
@@ -55,6 +55,10 @@ export default {
   },
   props: {
     valid: {
+      type: Boolean,
+      default: false,
+    },
+    inactive: {
       type: Boolean,
       default: false,
     },

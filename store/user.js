@@ -12,6 +12,10 @@ export function state() {
         method: null,
         address: null,
       },
+      payment: {
+        method: null,
+        address: null,
+      },
     },
     personalInformation: {
       name: null,

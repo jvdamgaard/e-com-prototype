@@ -1,25 +1,33 @@
 <template>
-  <!-- Modules -->
-  <grid :class="$style.container">
-    <grid-col desktop="2"/>
-    <grid-col desktop="5">
-      <checkout-personal-information :valid="personalInformationValid" />
-      <checkout-delivery :valid="deliveryValid" :inactive="!personalInformationValid" />
-      <div>
-        <checkout-header-box :number="3" header="Betaling" inactive/>
-      </div>
-      <div>
-        <checkout-box transparent inactive>
-          <btn type="buy" height="large" shadow>Afsend bestilling og betal</btn>
-          <div :class="$style.terms">Ved afgivelse af denne bestilling accepterer du <nuxt-link to="/">Brands databeskyttelse</nuxt-link> og <nuxt-link to="/">handelsbetingelser</nuxt-link>.</div>
-        </checkout-box>
-      </div>
-    </grid-col>
-    <grid-col dekstop="3">
-
-    </grid-col>
-    <grid-col desktop="2"/>
-  </grid>
+  <div>
+    <sticky-scroll-wrapper
+      :offsetTop="16"
+      :bottomEl="paymentEl"
+      :heightEl="summaryEl"
+      class="hiddenOnMobile visibleOnLaptop"
+    >
+      <grid ref="summary" :style="{ margin: 0 }">
+        <grid-col mobile="0" laptop="7" />
+        <grid-col laptop="5" desktop="3">
+          <checkout-header-box :header="`${user.basket.items.length} produkter`" :filled="true" :edit="editBasket"/>
+          <mini-basket-item
+            v-for="item in user.basket.items"
+            :key="item.product.id"
+            v-bind="item"
+          />
+        </grid-col>
+        <grid-col mobile="0" desktop="2" />
+      </grid>
+    </sticky-scroll-wrapper>
+    <grid :class="$style.container">
+      <grid-col mobile="0" desktop="2"/>
+      <grid-col laptop="7" desktop="5">
+        <checkout-personal-information :valid="personalInformationValid" />
+        <checkout-delivery :valid="deliveryValid" :inactive="!personalInformationValid" />
+        <checkout-payment :valid="paymentValid" :inactive="!personalInformationValid || !deliveryValid" ref="payment" />
+      </grid-col>
+    </grid>
+  </div>
 </template>
 
 <script>
@@ -29,8 +37,11 @@ import GridCol from '../../components/GridCol.vue';
 import Btn from '../../components/Btn.vue';
 import CheckoutPersonalInformation from '../../components/CheckoutPersonalInformation.vue';
 import CheckoutDelivery from '../../components/CheckoutDelivery.vue';
+import CheckoutPayment from '../../components/CheckoutPayment.vue';
 import CheckoutHeaderBox from '../../components/CheckoutHeaderBox.vue';
 import CheckoutBox from '../../components/CheckoutBox.vue';
+import StickyScrollWrapper from '../../components/StickyScrollWrapper.vue';
+import MiniBasketItem from '../../components/MiniBasketItem.vue';
 
 export default {
   layout: 'checkout',
@@ -40,8 +51,17 @@ export default {
     Btn,
     CheckoutPersonalInformation,
     CheckoutDelivery,
+    CheckoutPayment,
     CheckoutHeaderBox,
     CheckoutBox,
+    StickyScrollWrapper,
+    MiniBasketItem,
+  },
+  data() {
+    return {
+      summaryEl: null,
+      paymentEl: null,
+    };
   },
   computed: {
     ...mapState(['user']),
@@ -59,11 +79,20 @@ export default {
         this.user.checkout.delivery.address
       );
     },
+    paymentValid() {
+      return !!(
+        this.user.checkout.payment.method &&
+        this.user.checkout.payment.address
+      );
+    },
   },
   methods: {
     ...mapActions({
       closeMiniBasket: 'state/closeMiniBasket',
     }),
+    editBasket() {
+      this.$router.push('/kurv/');
+    },
   },
   fetch({ store, redirect }) {
     if (store.state.user.basket.items.length === 0) {
@@ -72,9 +101,11 @@ export default {
     return null;
   },
   mounted() {
-    const initPos = (window.pageYOffset > 33) ? 33 : 0;
-    window.scrollTo(0, initPos);
+    window.scrollTo(0, 0);
     this.closeMiniBasket();
+
+    this.paymentEl = this.$refs.payment.$el;
+    this.summaryEl = this.$refs.summary.$el;
   },
 };
 </script>
@@ -82,15 +113,5 @@ export default {
 <style module>
 .container {
   margin-top: 1rem;
-}
-.terms {
-  composes: dimmed from global;
-  composes: small from global;
-  margin-top: 1rem;
-  text-align: center;
-}
-.terms a {
-  color: var(--color-grey-dark);
-  text-decoration: underline;
 }
 </style>
