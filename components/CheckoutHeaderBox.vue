@@ -13,7 +13,7 @@
     >
       Rediger
     </btn>
-    <h2 :class="$style.header">{{header}}</h2>
+    <h2 :class="[$style.header, { 'h3': small }]">{{header}}</h2>
   </checkout-box>
 </template>
 
@@ -34,6 +34,10 @@ export default {
       default: false,
     },
     filled: {
+      type: Boolean,
+      default: false,
+    },
+    small: {
       type: Boolean,
       default: false,
     },

@@ -6,7 +6,7 @@
         <h3>Faktureringsadresse</h3>
         <p>
           <label for="payment-address-home">
-            <input type="radio" id="payment-address-home" name="payment-address" :value="user.personalInformation.address" v-model="payment.address">
+            <input type="radio" id="payment-address-home" name="payment-address" value="home" v-model="payment.address">
             Din hjemmeadresse <span class="dimmed">({{user.personalInformation.address}})</span>
           </label>
         </p>
@@ -105,7 +105,10 @@ export default {
     }),
     save() {
       // Validate
-      this.saveCheckoutDelivery({ ...this.delivery });
+      this.saveCheckoutDelivery({
+        ...this.payment,
+        address: this.payment.address === 'home' ? this.user.personalInformation.address : '',
+      });
       this.edit = false;
     },
     editForm() {
@@ -114,6 +117,9 @@ export default {
   },
   created() {
     this.payment = { ...this.user.checkout.payment };
+    if (!this.payment.address || this.payment.address === this.user.personalInformation.address) {
+      this.payment.address = 'home';
+    }
   },
 };
 </script>

@@ -3,6 +3,21 @@
     <checkout-header-box :number="2" header="Levering" :inactive="inactive" :filled="valid && !edit&& !inactive" :edit="editForm"/>
     <checkout-form v-if="!inactive && (!valid || edit)">
       <checkout-box>
+        <h3>Leveringsadresse</h3>
+        <p>
+          <label for="delivery-address-home">
+            <input type="radio" id="delivery-address-home" name="delivery-address" value="home" v-model="delivery.address" checked>
+            Din hjemmeadresse <span class="dimmed">({{user.personalInformation.address}})</span>
+          </label>
+        </p>
+        <p>
+          <label for="delivery-address-other">
+            <input type="radio" id="delivery-address-other" name="delivery-address" value="other" v-model="delivery.address">
+            Brug en anden adresse
+          </label>
+        </p>
+      </checkout-box>
+      <checkout-box>
         <h3>Leveringsmetode</h3>
         <p>
           <label for="delivery-method-cheap">
@@ -23,21 +38,6 @@
             <input type="radio" id="delivery-method-express" name="delivery-method" value="Indenfor 24 timer (45,00 kr.)" v-model="delivery.method">
             Indenfor 24 timer
             <div>45,00 kr.</div>
-          </label>
-        </p>
-      </checkout-box>
-      <checkout-box>
-        <h3>Leveringsadresse</h3>
-        <p>
-          <label for="delivery-address-home">
-            <input type="radio" id="delivery-address-home" name="delivery-address" :value="user.personalInformation.address" v-model="delivery.address" checked>
-            Din hjemmeadresse <span class="dimmed">({{user.personalInformation.address}})</span>
-          </label>
-        </p>
-        <p>
-          <label for="delivery-address-other">
-            <input type="radio" id="delivery-address-other" name="delivery-address" value="other" v-model="delivery.address">
-            Brug en anden adresse
           </label>
         </p>
       </checkout-box>
@@ -94,7 +94,10 @@ export default {
     }),
     save() {
       // Validate
-      this.saveCheckoutDelivery({ ...this.delivery });
+      this.saveCheckoutDelivery({
+        ...this.delivery,
+        address: this.delivery.address === 'home' ? this.user.personalInformation.address : '',
+      });
       this.edit = false;
     },
     editForm() {
@@ -103,6 +106,9 @@ export default {
   },
   created() {
     this.delivery = { ...this.user.checkout.delivery };
+    if (!this.delivery.address || this.delivery.address === this.user.personalInformation.address) {
+      this.delivery.address = 'home';
+    }
   },
 };
 </script>

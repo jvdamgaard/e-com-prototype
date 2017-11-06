@@ -40,7 +40,7 @@ export default {
 .logo {
   text-decoration: none;
   display: block;
-  height: 3.5rem;
+  height: 4rem;
   vertical-align: middle;
   margin-right: 1rem;
 }
@@ -48,7 +48,7 @@ export default {
 .logo img {
   height: 4rem;
   width: auto;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
 }
 
 .header {
@@ -58,7 +58,7 @@ export default {
 }
 
 .secure {
-  composes: h2 from global;
+  composes: h3 from global;
   text-align: right;
   line-height: 4rem;
 }

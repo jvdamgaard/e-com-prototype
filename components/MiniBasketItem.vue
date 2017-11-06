@@ -3,17 +3,25 @@
     $style.container,
     { [$style.added]: added }
   ]">
-    <nuxt-link :to="url" :class="$style.image">
+    <nuxt-link v-if="interactive" :to="url" :class="$style.image">
       <img :src="product.images[0]" />
     </nuxt-link>
+    <div v-else :class="$style.image">
+      <img :src="product.images[0]" />
+    </div>
     <p :class="$style.titel">
-      <nuxt-link :to="url" :class="$style.blackLink"><strong>{{product.titel}}</strong></nuxt-link>
+      <nuxt-link v-if="interactive" :to="url" :class="$style.blackLink"><strong>{{product.titel}}</strong></nuxt-link>
+      <span v-else :class="$style.blackLink"><strong>{{product.titel}}</strong></span>
+
       <span v-if="product.stock.status" :class="$style.red"><br>{{product.stock.status}}</span>
       <br><span :class="$style.dimmed">Antal:</span> {{quantity}}
       <span v-if="quantity > 1"><br>
         <span :class="$style.dimmed">Pr. stk.:</span> {{numberWithDots(product.price)}} kr
       </span>
-      <br><a href="#" :class="$style.blackLink" @click.prevent="removeFromBasket(product)">Fjern fra kurven</a>
+
+      <template v-if="interactive">
+        <br><a href="#" :class="$style.blackLink" @click.prevent="removeFromBasket(product)">Fjern fra kurven</a>
+      </template>
     </p>
     <p :class="$style.prices">
       <span v-if="product.beforePrice" :class="$style.beforePrice">{{numberWithDots(quantity * product.beforePrice)}} kr</span>
@@ -34,6 +42,10 @@ export default {
   props: {
     quantity: Number,
     product: Object,
+    interactive: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {

@@ -9,12 +9,25 @@
       <grid ref="summary" :style="{ margin: 0 }">
         <grid-col mobile="0" laptop="7" />
         <grid-col laptop="5" desktop="3">
-          <checkout-header-box :header="`${user.basket.items.length} produkter`" :filled="true" :edit="editBasket"/>
-          <mini-basket-item
-            v-for="item in user.basket.items"
-            :key="item.product.id"
-            v-bind="item"
-          />
+          <div>
+            <checkout-header-box :header="`${user.basket.items.length} produkter`" filled small :edit="editBasket"/>
+            <div :class="$style.basket">
+              <mini-basket-item
+                v-for="item in user.basket.items"
+                :key="item.product.id"
+                v-bind="item"
+                :interactive="false"
+              />
+            </div>
+          </div>
+          <div>
+            <checkout-box>
+              <basket-calculation />
+            </checkout-box>
+          </div>
+          <div>
+            <checkout-discount />
+          </div>
         </grid-col>
         <grid-col mobile="0" desktop="2" />
       </grid>
@@ -42,6 +55,8 @@ import CheckoutHeaderBox from '../../components/CheckoutHeaderBox.vue';
 import CheckoutBox from '../../components/CheckoutBox.vue';
 import StickyScrollWrapper from '../../components/StickyScrollWrapper.vue';
 import MiniBasketItem from '../../components/MiniBasketItem.vue';
+import BasketCalculation from '../../components/BasketCalculation.vue';
+import CheckoutDiscount from '../../components/CheckoutDiscount.vue';
 
 export default {
   layout: 'checkout',
@@ -56,6 +71,8 @@ export default {
     CheckoutBox,
     StickyScrollWrapper,
     MiniBasketItem,
+    BasketCalculation,
+    CheckoutDiscount,
   },
   data() {
     return {
@@ -113,5 +130,12 @@ export default {
 <style module>
 .container {
   margin-top: 1rem;
+}
+
+.basket {
+  margin-bottom: 1px;
+  max-height: 16rem;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 </style>
