@@ -27,6 +27,7 @@
     "@nuxtjs/workbox": "latest",
     "axios": "latest",
     "cross-env": "latest",
+    "dawa-autocomplete2": "latest",
     "gh-pages": "latest",
     "lodash": "latest",
     "lru-cache": "latest",

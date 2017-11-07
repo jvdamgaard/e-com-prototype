@@ -17,7 +17,7 @@
         </p>
         <p>
           <label for="address">Find din adresse <span class="dimmed">(til fakturering)</span></label>
-          <input type="search" id="address" name="address" required autocomplete="shipping street-address" v-model="personalInformation.address" ref="address">
+          <input-address :changeValue="changeAddress" :value="personalInformation.address" />
         </p>
         <p>
           <label for="create-user">
@@ -44,6 +44,7 @@ import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import CheckoutBox from './CheckoutBox.vue';
 import CheckoutForm from './CheckoutForm.vue';
 import CheckoutHeaderBox from './CheckoutHeaderBox.vue';
+import InputAddress from './InputAddress.vue';
 import Btn from './Btn.vue';
 
 export default {
@@ -51,6 +52,7 @@ export default {
     CheckoutBox,
     CheckoutForm,
     CheckoutHeaderBox,
+    InputAddress,
     Btn,
   },
   props: {
@@ -88,6 +90,9 @@ export default {
     },
     editForm() {
       this.edit = true;
+    },
+    changeAddress(address) {
+      this.personalInformation.address = address;
     },
   },
   created() {

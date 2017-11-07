@@ -28,6 +28,7 @@
               v-for="item in user.basket.items"
               :key="item.product.id"
               v-bind="item"
+              :class="$style.item"
             />
           </div>
           <div :class="$style.total">
@@ -137,6 +138,10 @@ export default {
   max-height: calc(100vh - 28rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 1px;
 }
 
 .total {

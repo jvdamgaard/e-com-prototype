@@ -17,6 +17,7 @@
                 :key="item.product.id"
                 v-bind="item"
                 :interactive="false"
+                :class="$style.basketItem"
               />
             </div>
           </div>
@@ -137,5 +138,9 @@ export default {
   max-height: 16rem;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+
+.basketItem:not(:last-child) {
+  margin-bottom: 1px;
 }
 </style>

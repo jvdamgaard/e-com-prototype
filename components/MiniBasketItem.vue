@@ -78,7 +78,6 @@ export default {
   composes: clearfix from global;
   position: relative;
   padding: 0.5rem;
-  margin-bottom: 1px;
   background-color: var(--color-white);
   transition: opacity 1s ease;
   opacity: 0;

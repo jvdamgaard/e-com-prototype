@@ -3,7 +3,7 @@
     <grid :class="$style.container">
       <grid-col mobile="4">
         <nuxt-link to="/" :class="$style.logo">
-          <img src="http://localhost:3000/images/logo-primary.svg" width="84" height="24" />
+          <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo-primary.svg" width="84" height="24" />
         </nuxt-link>
       </grid-col>
       <grid-col mobile="4">
