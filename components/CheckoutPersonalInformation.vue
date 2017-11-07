@@ -21,10 +21,20 @@
         </p>
         <p>
           <label for="create-user">
-            <input type="checkbox" id="create-user" name="create-user" value="true">
+            <input type="checkbox" id="create-user" name="create-user" v-model="createUser">
             Opret bruger <span class="dimmed">(tilgå nemt din ordre efter bestilling)</span>
           </label>
         </p>
+        <template v-if="createUser">
+          <p>
+            <div :class="$style.password">
+              <label for="password">Kodeord <span class="dimmed">(mindst 6 tegn)</span></label>
+              <div :class="$style.showPassword" @click="togglePassword">{{showPassword ? 'skjul' : 'vis'}}</div>
+              <input :type="showPassword ? 'text' : 'password'" id="password" name="password" required autocomplete="new-password">
+            </div>
+            <span class="small dimmed">Ved oprettelse laver vi et <nuxt-link to="/">Dansk Supermarked Login</nuxt-link>, som kan bruges på tværs af alle <nuxt-link to="/">vores kæder</nuxt-link> og du accepterer <nuxt-link to="/">profilbetingelserne</nuxt-link> (herunder samtykke, jf. pkt. 9.1) samt <nuxt-link to="/">persondatapolitikken</nuxt-link>.</span>
+          </p>
+        </template>
       </checkout-box>
       <checkout-box>
         <btn type="primary" height="large" shadow :class="$style.cta" @click.native="save">Gem dine oplysninger</btn>
@@ -74,6 +84,8 @@ export default {
         phone: null,
       },
       edit: false,
+      createUser: false,
+      showPassword: false,
     };
   },
   computed: {
@@ -94,6 +106,9 @@ export default {
     changeAddress(address) {
       this.personalInformation.address = address;
     },
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+    },
   },
   created() {
     this.personalInformation = { ...this.user.personalInformation };
@@ -103,4 +118,17 @@ export default {
 
 <style module>
 @import '../assets/css/variables.css';
+
+.password {
+  position: relative;
+}
+
+.showPassword {
+  composes: small from global;
+  position: absolute;
+  right: 0;
+  line-height: 2.5rem;
+  padding: 0 1rem;
+  cursor: pointer;
+}
 </style>

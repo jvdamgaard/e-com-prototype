@@ -53,6 +53,13 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, .smallLineHeight { line-height: 1.1; }
 /* Colors */
 .red { color: var(--color-red); }
 .dimmed { color: var(--color-grey-dark); }
+.dimmed a {
+  color: var(--color-grey-dark);
+  text-decoration: underline;
+}
+.no-touch .dimmed a:hover {
+  color: var(--color-black);
+}
 
 
 /* Links */
