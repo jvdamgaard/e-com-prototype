@@ -26,14 +26,17 @@
     "@nuxtjs/meta": "latest",
     "@nuxtjs/workbox": "latest",
     "axios": "latest",
+    "contentful": "^5.0.3",
+    "contentful-management": "latest",
     "cross-env": "latest",
     "dawa-autocomplete2": "latest",
     "gh-pages": "latest",
+    "hash.js": "latest",
     "lodash": "latest",
     "lru-cache": "latest",
     "nuxt": "latest",
     "vue-lazyload": "latest",
-    "vuex-persistedstate": "latest"
+    "vuex-persistedstate": "2.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

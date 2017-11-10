@@ -1,6 +1,12 @@
 const lruCache = require('lru-cache');
+const contentfulConfig = require('./.contentful.json');
 
 module.exports = {
+
+  env: {
+    ...contentfulConfig,
+  },
+
   /*
   ** Headers of the page
   */
@@ -81,6 +87,9 @@ module.exports = {
       'lodash/throttle',
       'lodash/kebabCase',
       'lodash/debounce',
+      'contentful-management',
+      'contentful',
+      'hash.js/lib/hash/sha/256',
     ],
 
     /*

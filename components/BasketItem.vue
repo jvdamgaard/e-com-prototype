@@ -113,6 +113,7 @@ export default {
 }
 
 .btn {
+  width: auto!important;
   display: inline-block;
 }
 

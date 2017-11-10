@@ -1,7 +1,5 @@
 /* eslint no-param-reassign: 0 */
 import uniqBy from 'lodash/uniqBy';
-import sha256 from 'hash.js/lib/hash/sha/256';
-import * as contentful from '../plugins/contentful';
 
 export function state() {
   return {
@@ -91,49 +89,5 @@ export const actions = {
   },
   saveCheckoutDelivery({ commit }, delivery) {
     commit('changeCheckoutDelivery', delivery);
-  },
-  createUser({ commit }, userData) {
-    return contentful.managementClient
-      .getSpace(process.env.CTF_SPACE_ID)
-      .then(space => space.createEntry('user', {
-        fields: {
-          name: { 'da-DK': userData.name },
-          email: { 'da-DK': userData.email },
-          address: { 'da-DK': userData.address },
-          phone: { 'da-DK': userData.phone },
-          password: { 'da-DK': sha256().update(userData.password).digest('hex') },
-        },
-      }))
-      .then(entry => entry.publish())
-      .then((entry) => {
-        window.localStorage.setItem('userId', entry.sys.id);
-        commit('changePersonalInformation', {
-          name: entry.fields.name['da-DK'],
-          email: entry.fields.email['da-DK'],
-          address: entry.fields.address['da-DK'],
-          phone: entry.fields.phone['da-DK'],
-        });
-      });
-  },
-  updateUser({ commit }, userData) {
-    return contentful.managementClient
-      .getSpace(process.env.CTF_SPACE_ID)
-      .then(space => space.getEntry(window.localStorage.getItem('userId')))
-      .then((entry) => {
-        entry.fields.name['da-DK'] = userData.name;
-        entry.fields.email['da-DK'] = userData.email;
-        entry.fields.address['da-DK'] = userData.address;
-        entry.fields.phone['da-DK'] = userData.phone;
-
-        commit('changePersonalInformation', userData);
-        return entry.update();
-      });
-  },
-  fetchUser({ commit }, userId) {
-    return contentful.deliveryClient
-      .getEntry(userId)
-      .then((entry) => {
-        commit('changePersonalInformation', { ...entry.fields });
-      });
   },
 };

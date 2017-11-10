@@ -5,6 +5,8 @@
     {
       [$style[height]]: height !== 'default',
       [$style.shadow]: shadow,
+      [$style.loading]: loading,
+      [$style.done]: done,
     },
   ]">
     <div :class="$style.inner">
@@ -17,6 +19,8 @@
     {
       [$style[height]]: height !== 'default',
       [$style.shadow]: shadow,
+      [$style.loading]: loading,
+      [$style.done]: done,
     },
   ]">
     <div :class="$style.inner">
@@ -47,6 +51,8 @@ export default {
       default: false,
     },
     to: String,
+    loading: Boolean,
+    done: Boolean,
   },
 };
 </script>
@@ -67,6 +73,7 @@ export default {
   transition: all 0.2s ease;
   white-space: nowrap;
   text-decoration: none !important;
+  width: 100%;
 }
 .inner {
   width: 100%;
@@ -165,5 +172,82 @@ export default {
 :global(.no-touch) .ghost-dimmed:hover {
   color: var(--color-black);
   border-color: var(--color-black);
+}
+
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes counter-rotating {
+  from {
+    transform: rotate(405deg);
+  }
+  to {
+    transform: rotate(45deg);
+  }
+}
+
+.loading {
+  width: 3rem;
+  margin: 0 auto;
+  background-color: transparent;
+  border-radius: 1.5rem;
+  box-shadow: none !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 0;
+}
+:global(.no-touch) .loading:hover {
+  background-color: transparent;
+  cursor: default;
+}
+
+.loading.small {
+  width: 2.5rem;
+  border-radius: 1.25rem;
+}
+.loading.large {
+  width: 4rem;
+  border-radius: 2rem;
+}
+
+.loading:before {
+  content: '✓';
+  color: var(--color-buy);
+  font-size: 3rem;
+  font-weight: 300;
+  position: absolute;
+  top: -0.25rem;
+  right: 0.5rem;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: rotate(-90deg);
+}
+
+.loading .inner {
+  color: transparent;
+  border-radius: 100%;
+  border: 2px solid transparent;
+  border-right-color: var(--color-primary);
+  animation: rotating 1s cubic-bezier(0.58, 0.13, 0.35, 0.71) infinite;
+  animation-delay: 0.3s;
+  transition: all 1s ease;
+}
+
+.done {
+  composes: loading;
+}
+
+.done:before {
+  opacity: 1;
+  color: var(--color-buy);
+  transform: rotate(0deg);
+}
+.done .inner {
+  border: 2px solid var(--color-buy) !important;
 }
 </style>

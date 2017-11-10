@@ -195,6 +195,7 @@ export default {
   composes: visibleOnTablet from global;
   line-height: 2.5rem!important;
   height: 2.5rem!important;
+  width: auto!important;
 }
 
 .basketIcon {

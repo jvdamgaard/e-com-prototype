@@ -19,25 +19,34 @@
           <label for="address">Find din adresse <span class="dimmed">(til fakturering)</span></label>
           <input-address :changeValue="changeAddress" :value="personalInformation.address" />
         </p>
-        <p>
+        <p v-if="!isLoggedIn">
           <label for="create-user">
-            <input type="checkbox" id="create-user" name="create-user" v-model="createUser">
+            <input type="checkbox" id="create-user" name="create-user" v-model="createUserFlag">
             Opret bruger <span class="dimmed">(tilgå nemt din ordre efter bestilling)</span>
           </label>
         </p>
-        <template v-if="createUser">
+        <template v-if="createUserFlag">
           <p>
             <div :class="$style.password">
               <label for="password">Kodeord <span class="dimmed">(mindst 6 tegn)</span></label>
               <div :class="$style.showPassword" @click="togglePassword">{{showPassword ? 'skjul' : 'vis'}}</div>
-              <input :type="showPassword ? 'text' : 'password'" id="password" name="password" required autocomplete="new-password">
+              <input v-if="!showPassword" type="password" id="password" name="password" required autocomplete="new-password" v-model="password">
+              <input v-if="showPassword" type="text" id="password" name="password" required autocomplete="new-password" v-model="password">
             </div>
             <span class="small dimmed">Ved oprettelse laver vi et <nuxt-link to="/">Dansk Supermarked Login</nuxt-link>, som kan bruges på tværs af alle <nuxt-link to="/">vores kæder</nuxt-link> og du accepterer <nuxt-link to="/">profilbetingelserne</nuxt-link> (herunder samtykke, jf. pkt. 9.1) samt <nuxt-link to="/">persondatapolitikken</nuxt-link>.</span>
           </p>
         </template>
       </checkout-box>
       <checkout-box>
-        <btn type="primary" height="large" shadow :class="$style.cta" @click.native="save">Gem dine oplysninger</btn>
+        <btn
+          type="primary"
+          height="large"
+          :loading="saving"
+          :done="saved"
+          shadow
+          :class="$style.cta"
+          @click.native="save"
+        >Gem dine oplysninger</btn>
       </checkout-box>
     </checkout-form>
     <checkout-box v-if="valid && !edit" :inactive="inactive">
@@ -84,21 +93,78 @@ export default {
         phone: null,
       },
       edit: false,
-      createUser: false,
+      createUserFlag: false,
       showPassword: false,
+      password: null,
+      saving: false,
+      saved: false,
     };
   },
   computed: {
     ...mapState(['user']),
+    isLoggedIn() {
+      if (!process.browser) {
+        return false;
+      }
+      return (window.localStorage.getItem('userId') !== null);
+    },
   },
   methods: {
     ...mapActions({
       savePersonalInformation: 'user/savePersonalInformation',
+      createUser: 'user/createUser',
+      updateUser: 'user/updateUser',
     }),
     save() {
-      // Validate
-      this.savePersonalInformation({ ...this.personalInformation });
-      this.edit = false;
+      this.saving = true;
+      this.edit = true;
+
+      if (this.isLoggedIn) {
+        Promise.all([
+          this.updateUser(this.personalInformation),
+          new Promise(resolve => setTimeout(resolve, 1500)),
+        ])
+          .then(() => {
+            this.saved = true;
+            return new Promise(resolve => setTimeout(resolve, 1500));
+          })
+          .then(() => {
+            this.edit = false;
+            this.saving = false;
+            this.saved = false;
+          })
+          .catch(console.error);
+      }
+
+      if (!this.createUserFlag) {
+        new Promise(resolve => setTimeout(resolve, 1500))
+          .then(() => {
+            this.saved = true;
+            return new Promise(resolve => setTimeout(resolve, 1500));
+          })
+          .then(() => {
+            this.savePersonalInformation({ ...this.personalInformation });
+            this.edit = false;
+            this.saving = false;
+            this.saved = false;
+          });
+        return;
+      }
+
+      Promise.all([
+        this.createUser(this.personalInformation),
+        new Promise(resolve => setTimeout(resolve, 1500)),
+      ])
+        .then(() => {
+          this.saved = true;
+          return new Promise(resolve => setTimeout(resolve, 1500));
+        })
+        .then(() => {
+          this.edit = false;
+          this.saving = false;
+          this.saved = false;
+        })
+        .catch(console.error);
     },
     editForm() {
       this.edit = true;

@@ -47,7 +47,7 @@
           </label>
         </p>
       </checkout-box>
-      <checkout-box>
+      <checkout-box v-if="payment.method === 'Betalingskort (0,00 kr.)'">
         <p>
           <label for="save-credit-card">
             <input type="checkbox" id="save-credit-card" name="save-credit-card" value="true">
