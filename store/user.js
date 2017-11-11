@@ -98,26 +98,26 @@ export const actions = {
       .then(() => dispatch('updateUser', userData))
 
       // If user doesn't exist try to create a new one
-      .catch(() => contentful.managementClient.getSpace(process.env.CTF_SPACE_ID))
-      .then(space => space.createEntry('user', {
-        fields: {
-          name: { 'da-DK': userData.name },
-          email: { 'da-DK': userData.email },
-          address: { 'da-DK': userData.address },
-          phone: { 'da-DK': userData.phone },
-          password: { 'da-DK': sha256().update(userData.password).digest('hex') },
-        },
-      }))
-      .then(entry => entry.publish())
-      .then((entry) => {
-        window.localStorage.setItem('userId', entry.sys.id);
-        commit('changePersonalInformation', {
-          name: entry.fields.name['da-DK'],
-          email: entry.fields.email['da-DK'],
-          address: entry.fields.address['da-DK'],
-          phone: entry.fields.phone['da-DK'],
-        });
-      });
+      .catch(() => contentful.managementClient.getSpace(process.env.CTF_SPACE_ID)
+        .then(space => space.createEntry('user', {
+          fields: {
+            name: { 'da-DK': userData.name },
+            email: { 'da-DK': userData.email },
+            address: { 'da-DK': userData.address },
+            phone: { 'da-DK': userData.phone },
+            password: { 'da-DK': sha256().update(userData.password).digest('hex') },
+          },
+        }))
+        .then(entry => entry.publish())
+        .then((entry) => {
+          window.localStorage.setItem('userId', entry.sys.id);
+          commit('changePersonalInformation', {
+            name: entry.fields.name['da-DK'],
+            email: entry.fields.email['da-DK'],
+            address: entry.fields.address['da-DK'],
+            phone: entry.fields.phone['da-DK'],
+          });
+        }));
   },
   updateUser({ commit }, userData) {
     commit('changePersonalInformation', userData);
