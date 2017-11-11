@@ -2,15 +2,15 @@
   <div>
     <sticky-scroll-wrapper
       :offsetTop="16"
-      bottomId="payment"
-      heightId="summary"
+      bottomSelector="#payment"
+      heightSelector="#summary"
       class="hiddenOnMobile visibleOnLaptop"
     >
       <grid id="summary" :style="{ margin: 0 }">
         <grid-col mobile="0" laptop="7" />
         <grid-col laptop="5" desktop="3">
           <div>
-            <checkout-header-box :header="`${user.basket.items.length} produkter`" filled small :edit="editBasket"/>
+            <checkout-header-box :header="`${user.basket.items.length} produkt${user.basket.items.length > 1 ? 'er' : ''}`" filled small :edit="editBasket"/>
             <div :class="$style.basket">
               <mini-basket-item
                 v-for="item in user.basket.items"

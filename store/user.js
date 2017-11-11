@@ -83,8 +83,18 @@ export const actions = {
       context.dispatch('state/closeMiniBasket', null, { root: true });
     }
   },
-  addToLastSeen({ commit }, product) {
-    commit('addToLastSeen', product);
+  addToLastSeen(ctx, product) {
+    ctx.commit('addToLastSeen', product);
+    if (window.localStorage.getItem('userId')) {
+      contentful.managementClient
+        .getSpace(process.env.CTF_SPACE_ID)
+        .then(space => space.getEntry(window.localStorage.getItem('userId')))
+        .then((entry) => {
+          entry.fields.lastSeen['da-DK'] = ctx.state.lastSeen.map(item => ({ id: item.id }));
+          return entry.update();
+        })
+        .then(entry => entry.publish());
+    }
   },
   savePersonalInformation({ commit }, personalInformation) {
     commit('changePersonalInformation', personalInformation);

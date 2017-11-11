@@ -68,7 +68,7 @@
         </grid>
       </grid-col>
     </grid>
-    <sticky-scroll-wrapper :bottomEl="lastDescription" :heightEl="stickyProductCard">
+    <sticky-scroll-wrapper bottomSelector=".section__ProductDetailPageDescription" heightSelector="#stickyProductCard">
       <grid :class="$style.stickyContainer">
         <grid-col mobile="9" desktop="10" />
         <grid-col mobile="3" desktop="2">
@@ -77,7 +77,7 @@
             :images="variantImages"
             lazy
             static
-            ref="stickyProductCard"
+            id="stickyProductCard"
             class="hiddenOnMobile visibleOnLaptop"
           />
         </grid-col>
@@ -129,8 +129,6 @@ export default {
     return {
       imagePosition: 0,
       activeVariants: [],
-      lastDescription: null,
-      stickyProductCard: null,
     };
   },
   computed: {
@@ -184,9 +182,6 @@ export default {
   },
   mounted() {
     this.addToLastSeen(this.product);
-    const descriptionSections = document.getElementsByClassName('section__ProductDetailPageDescription');
-    this.lastDescription = descriptionSections[descriptionSections.length - 1];
-    this.stickyProductCard = this.$refs.stickyProductCard.$el;
   },
 };
 </script>

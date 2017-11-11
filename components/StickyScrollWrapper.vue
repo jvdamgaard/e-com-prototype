@@ -24,8 +24,8 @@ export default {
       type: Number,
       default: 0,
     },
-    heightId: String,
-    bottomId: String,
+    heightSelector: String,
+    bottomSelector: String,
   },
   data() {
     return {
@@ -67,8 +67,11 @@ export default {
   },
   mounted() {
     if (process.browser) {
-      this.heightEl = document.getElementById(this.heightId);
-      this.bottomEl = document.getElementById(this.bottomId);
+      this.heightEl = document.querySelector(this.heightSelector);
+
+      const bottomEls = document.querySelectorAll(this.bottomSelector);
+      this.bottomEl = bottomEls[bottomEls.length - 1];
+
       this.handleScroll();
       window.addEventListener('scroll', this.handleScroll, { passive: true });
     }

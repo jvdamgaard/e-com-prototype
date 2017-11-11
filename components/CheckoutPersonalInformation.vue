@@ -132,8 +132,7 @@ export default {
             this.edit = false;
             this.saving = false;
             this.saved = false;
-          })
-          .catch(console.error);
+          });
       }
 
       if (!this.createUserFlag) {
@@ -163,8 +162,8 @@ export default {
           this.edit = false;
           this.saving = false;
           this.saved = false;
-        })
-        .catch(console.error);
+          this.isLoggedIn = true;
+        });
     },
     editForm() {
       this.edit = true;

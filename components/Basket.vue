@@ -23,7 +23,7 @@
         </grid-col>
       </grid>
 
-      <sticky-scroll-wrapper bottomId="products" heightId="summary" class="hiddenOnMobile visibleOnLaptop">
+      <sticky-scroll-wrapper bottomSelector="#products" heightSelector="#summary" class="hiddenOnMobile visibleOnLaptop">
         <grid id="summary" :style="{ margin: 0 }">
           <grid-col mobile="0" laptop="7" />
           <grid-col laptop="5" desktop="3">
