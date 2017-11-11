@@ -92,9 +92,13 @@ export const actions = {
   saveCheckoutDelivery({ commit }, delivery) {
     commit('changeCheckoutDelivery', delivery);
   },
-  createUser({ commit }, userData) {
-    return contentful.managementClient
-      .getSpace(process.env.CTF_SPACE_ID)
+  createUser({ commit, dispatch }, userData) {
+    // Try to login user
+    return dispatch('login', userData)
+      .then(() => dispatch('updateUser', userData))
+
+      // If user doesn't exist try to create a new one
+      .catch(() => contentful.managementClient.getSpace(process.env.CTF_SPACE_ID))
       .then(space => space.createEntry('user', {
         fields: {
           name: { 'da-DK': userData.name },
@@ -116,6 +120,7 @@ export const actions = {
       });
   },
   updateUser({ commit }, userData) {
+    commit('changePersonalInformation', userData);
     return contentful.managementClient
       .getSpace(process.env.CTF_SPACE_ID)
       .then(space => space.getEntry(window.localStorage.getItem('userId')))
@@ -124,16 +129,27 @@ export const actions = {
         entry.fields.email['da-DK'] = userData.email;
         entry.fields.address['da-DK'] = userData.address;
         entry.fields.phone['da-DK'] = userData.phone;
-
-        commit('changePersonalInformation', userData);
         return entry.update();
-      });
+      })
+      .then(entry => entry.publish());
   },
   fetchUser({ commit }, userId) {
     return contentful.deliveryClient
       .getEntry(userId)
       .then((entry) => {
         commit('changePersonalInformation', { ...entry.fields });
+      });
+  },
+  login({ commit }, { email, password }) {
+    return contentful.deliveryClient
+      .getEntries({
+        content_type: 'user',
+        'fields.email': email,
+        'fields.password': sha256().update(password).digest('hex'),
+      })
+      .then((res) => {
+        window.localStorage.setItem('userId', res.items[0].sys.id);
+        commit('changePersonalInformation', { ...res.items[0].fields });
       });
   },
 };

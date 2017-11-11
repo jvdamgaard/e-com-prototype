@@ -6,7 +6,7 @@
         <h3>Leveringsadresse</h3>
         <p>
           <label for="delivery-address-home">
-            <input type="radio" id="delivery-address-home" name="delivery-address" value="home" v-model="delivery.address" checked>
+            <input type="radio" id="delivery-address-home" name="delivery-address" value="home" v-model="delivery.address">
             Din hjemmeadresse <span class="dimmed">({{user.personalInformation.address}})</span>
           </label>
         </p>
@@ -21,7 +21,7 @@
         <h3>Leveringsmetode</h3>
         <p>
           <label for="delivery-method-cheap">
-            <input type="radio" id="delivery-method-cheap" name="delivery-method" value="Indenfor 7 arbejdsdage (15,00 kr.)" v-model="delivery.method">
+            <input type="radio" id="delivery-method-cheap" name="delivery-method" value="Indenfor 7 arbejdsdage (15,00 kr.)" v-model="delivery.method" checked>
             Indenfor 7 arbejdsdage
             <div>15,00 kr.</div>
           </label>
@@ -79,8 +79,8 @@ export default {
   data() {
     return {
       delivery: {
-        method: null,
-        address: null,
+        method: '1-3 arbejdsdage (30,00 kr.)',
+        address: 'home',
       },
       edit: false,
     };

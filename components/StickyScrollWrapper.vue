@@ -24,13 +24,15 @@ export default {
       type: Number,
       default: 0,
     },
-    heightEl: HTMLElement,
-    bottomEl: HTMLElement,
+    heightId: String,
+    bottomId: String,
   },
   data() {
     return {
       sticky: false,
       stickyTopPosition: 'auto',
+      heightEl: null,
+      bottomEl: null,
     };
   },
   methods: {
@@ -65,6 +67,8 @@ export default {
   },
   mounted() {
     if (process.browser) {
+      this.heightEl = document.getElementById(this.heightId);
+      this.bottomEl = document.getElementById(this.bottomId);
       this.handleScroll();
       window.addEventListener('scroll', this.handleScroll, { passive: true });
     }

@@ -2,11 +2,11 @@
   <div>
     <sticky-scroll-wrapper
       :offsetTop="16"
-      :bottomEl="paymentEl"
-      :heightEl="summaryEl"
+      bottomId="payment"
+      heightId="summary"
       class="hiddenOnMobile visibleOnLaptop"
     >
-      <grid ref="summary" :style="{ margin: 0 }">
+      <grid id="summary" :style="{ margin: 0 }">
         <grid-col mobile="0" laptop="7" />
         <grid-col laptop="5" desktop="3">
           <div>
@@ -38,7 +38,7 @@
       <grid-col laptop="7" desktop="5">
         <checkout-personal-information :valid="personalInformationValid" />
         <checkout-delivery :valid="deliveryValid" :inactive="!personalInformationValid" />
-        <checkout-payment :valid="paymentValid" :inactive="!personalInformationValid || !deliveryValid" ref="payment" />
+        <checkout-payment :valid="paymentValid" :inactive="!personalInformationValid || !deliveryValid" id="payment" />
       </grid-col>
     </grid>
   </div>
@@ -74,12 +74,6 @@ export default {
     MiniBasketItem,
     BasketCalculation,
     CheckoutDiscount,
-  },
-  data() {
-    return {
-      summaryEl: null,
-      paymentEl: null,
-    };
   },
   computed: {
     ...mapState(['user']),
@@ -121,9 +115,6 @@ export default {
   mounted() {
     window.scrollTo(0, 0);
     this.closeMiniBasket();
-
-    this.paymentEl = this.$refs.payment.$el;
-    this.summaryEl = this.$refs.summary.$el;
   },
 };
 </script>

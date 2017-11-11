@@ -23,8 +23,8 @@
         </grid-col>
       </grid>
 
-      <sticky-scroll-wrapper :bottomEl="productsEl" :heightEl="summaryEl" class="hiddenOnMobile visibleOnLaptop">
-        <grid ref="summary" :style="{ margin: 0 }">
+      <sticky-scroll-wrapper bottomId="products" heightId="summary" class="hiddenOnMobile visibleOnLaptop">
+        <grid id="summary" :style="{ margin: 0 }">
           <grid-col mobile="0" laptop="7" />
           <grid-col laptop="5" desktop="3">
             <basket-summary />
@@ -33,7 +33,7 @@
         </grid>
       </sticky-scroll-wrapper>
 
-      <grid ref="products">
+      <grid id="products">
         <grid-col mobile="0" desktop="2" />
         <grid-col laptop="7" desktop="5">
           <h2 :class="$style.header">{{itemsInBasket}} produkt{{itemsInBasket > 1 ? 'er' : ''}} i kurven</h2>
@@ -102,10 +102,6 @@ export default {
   },
   methods: {
     numberWithDots,
-  },
-  mounted() {
-    this.productsEl = this.$refs.products.$el;
-    this.summaryEl = this.$refs.summary.$el;
   },
 };
 </script>

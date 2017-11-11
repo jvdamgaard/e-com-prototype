@@ -22,7 +22,7 @@ export default {
     }),
   },
   created() {
-    if (process.browser) {
+    if (process.browser && window.localStorage.getItem('userId')) {
       this.fetchUser(window.localStorage.getItem('userId'));
     }
   },
