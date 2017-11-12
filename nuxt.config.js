@@ -1,10 +1,11 @@
 const lruCache = require('lru-cache');
-const contentfulConfig = require('./.contentful.json');
 
 module.exports = {
 
   env: {
-    ...contentfulConfig,
+    CTF_SPACE_ID: process.env.CTF_SPACE_ID,
+    CTF_CM_ACCESS_TOKEN: process.env.CTF_CM_ACCESS_TOKEN,
+    CTF_CD_ACCESS_TOKEN: process.env.CTF_CD_ACCESS_TOKEN,
   },
 
   /*
