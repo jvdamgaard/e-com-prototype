@@ -1,5 +1,18 @@
 [
   {
+    "id": 30,
+    "images": [
+      "https://store.storeimages.cdn-apple.com/4662/as-images.apple.com/is/image/AppleInc/aos/published/images/H/KN/HKN62/HKN62?wid=1000&hei=1000&fmt=jpeg&qlt=95&op_sharpen=0&resMode=bicub&op_usm=0.5,0.5,0,0&iccEmbed=0&layer=comp&.v=1477424960886"
+    ],
+    "titel": "LG UltraFine 5K-skærm",
+    "stock": {
+      "level": 10
+    },
+    "price": 10490,
+    "rating": 4.3,
+    "recommendations": 0.93
+  },
+  {
     "id": 19,
     "images": [
       "https://bilkadk.imgix.net/medias/sys_master/root/hc6/h8b/9642471751710/55U6663-HIGH.jpg?w=600&h=360&auto=format&fm=jpg"
