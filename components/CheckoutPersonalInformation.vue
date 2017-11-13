@@ -16,7 +16,7 @@
           <input type="tel" id="phone" name="phone" required autocomplete="tel" v-model="personalInformation.phone" ref="phone">
         </p>
         <p>
-          <label for="address">Find din adresse <span class="dimmed">(til fakturering)</span></label>
+          <label for="address">Din hjemmeadresse</label>
           <input-address :changeValue="changeAddress" :value="personalInformation.address" />
         </p>
         <p v-if="!isLoggedIn">

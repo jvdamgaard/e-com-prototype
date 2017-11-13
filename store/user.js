@@ -1,7 +1,9 @@
 /* eslint no-param-reassign: 0 */
 import uniqBy from 'lodash/uniqBy';
 import sha256 from 'hash.js/lib/hash/sha/256';
+import axios from 'axios';
 import * as contentful from '../plugins/contentful';
+import { uploadBasket, uploadLastSeen, createUser, updateUser, getUser } from '../utils/user';
 
 export function state() {
   return {
@@ -52,14 +54,31 @@ export const mutations = {
   removeFromBasket(s, product) {
     s.basket.items = s.basket.items.filter(item => item.product.id !== product.id);
   },
+  setBasketItems(s, items) {
+    s.basket.items = items;
+  },
   addToLastSeen(s, product) {
     s.lastSeen = uniqBy([
       product,
       ...s.lastSeen,
     ], 'id').slice(0, 100);
   },
+  setLastSeen(s, products) {
+    s.lastSeen = products;
+  },
   changePersonalInformation(s, personalInformation) {
-    s.personalInformation = personalInformation;
+    const {
+      name,
+      email,
+      address,
+      phone,
+    } = personalInformation;
+    s.personalInformation = {
+      name,
+      email,
+      address,
+      phone,
+    };
   },
   changeCheckoutDelivery(s, delivery) {
     s.checkout.delivery = delivery;
@@ -73,28 +92,22 @@ export const actions = {
     if (!existing) {
       context.dispatch('state/openMiniBasket', null, { root: true });
     }
+    uploadBasket(context.state.basket);
   },
   subtractInBasket(context, product) {
     context.commit('subtractInBasket', product);
+    uploadBasket(context.state.basket);
   },
   removeFromBasket(context, product) {
     context.commit('removeFromBasket', product);
     if (context.state.basket.items.length === 0) {
       context.dispatch('state/closeMiniBasket', null, { root: true });
     }
+    uploadBasket(context.state.basket);
   },
   addToLastSeen(ctx, product) {
     ctx.commit('addToLastSeen', product);
-    if (window.localStorage.getItem('userId')) {
-      contentful.managementClient
-        .getSpace(process.env.CTF_SPACE_ID)
-        .then(space => space.getEntry(window.localStorage.getItem('userId')))
-        .then((entry) => {
-          entry.fields.lastSeen['da-DK'] = ctx.state.lastSeen.map(item => ({ id: item.id }));
-          return entry.update();
-        })
-        .then(entry => entry.publish());
-    }
+    uploadLastSeen();
   },
   savePersonalInformation({ commit }, personalInformation) {
     commit('changePersonalInformation', personalInformation);
@@ -108,49 +121,46 @@ export const actions = {
       .then(() => dispatch('updateUser', userData))
 
       // If user doesn't exist try to create a new one
-      .catch(() => contentful.managementClient.getSpace(process.env.CTF_SPACE_ID)
-        .then(space => space.createEntry('user', {
-          fields: {
-            name: { 'da-DK': userData.name },
-            email: { 'da-DK': userData.email },
-            address: { 'da-DK': userData.address },
-            phone: { 'da-DK': userData.phone },
-            password: { 'da-DK': sha256().update(userData.password).digest('hex') },
-          },
-        }))
-        .then(entry => entry.publish())
+      .catch(() => createUser(userData)
         .then((entry) => {
           window.localStorage.setItem('userId', entry.sys.id);
-          commit('changePersonalInformation', {
-            name: entry.fields.name['da-DK'],
-            email: entry.fields.email['da-DK'],
-            address: entry.fields.address['da-DK'],
-            phone: entry.fields.phone['da-DK'],
-          });
+          commit('changePersonalInformation', userData);
         }));
   },
   updateUser({ commit }, userData) {
     commit('changePersonalInformation', userData);
-    return contentful.managementClient
-      .getSpace(process.env.CTF_SPACE_ID)
-      .then(space => space.getEntry(window.localStorage.getItem('userId')))
-      .then((entry) => {
-        entry.fields.name['da-DK'] = userData.name;
-        entry.fields.email['da-DK'] = userData.email;
-        entry.fields.address['da-DK'] = userData.address;
-        entry.fields.phone['da-DK'] = userData.phone;
-        return entry.update();
-      })
-      .then(entry => entry.publish());
+    return updateUser(userData);
   },
-  fetchUser({ commit }, userId) {
-    return contentful.deliveryClient
-      .getEntry(userId)
-      .then((entry) => {
-        commit('changePersonalInformation', { ...entry.fields });
+  fetchUser(ctx) {
+    return getUser()
+      .then((user) => {
+        ctx.commit('changePersonalInformation', { ...user.fields });
+        return user;
+      })
+      .then((user) => {
+        if (ctx.state.basket.length > 0) {
+          uploadBasket(ctx.state.basket);
+        } else {
+          Promise.all(user.fields.basket.map(item => axios.get(`https://jvdamgaard.github.io/e-com-prototype/json/products/${item.product.id}.json`)))
+            .then((responses) => {
+              ctx.commit('setBasketItems', user.fields.basket.map((item, i) => ({
+                quantity: item.quantity,
+                product: responses[i].data.modules[0].data.product,
+              })));
+            });
+        }
+        return user;
+      })
+      .then((user) => {
+        Promise.all(user.fields.lastSeen.map(product => axios.get(`https://jvdamgaard.github.io/e-com-prototype/json/products/${product.id}.json`)))
+          .then((responses) => {
+            const lastSeen = responses.map(response => response.data.modules[0].data.product);
+            ctx.commit('setLastSeen', lastSeen);
+          });
+        return user;
       });
   },
-  login({ commit }, { email, password }) {
+  login({ dispatch }, { email, password }) {
     return contentful.deliveryClient
       .getEntries({
         content_type: 'user',
@@ -159,7 +169,7 @@ export const actions = {
       })
       .then((res) => {
         window.localStorage.setItem('userId', res.items[0].sys.id);
-        commit('changePersonalInformation', { ...res.items[0].fields });
+        dispatch('fetchUser', res.items[0].sys.id);
       });
   },
 };

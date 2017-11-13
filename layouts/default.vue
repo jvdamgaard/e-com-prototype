@@ -22,8 +22,8 @@ export default {
     }),
   },
   created() {
-    if (process.browser && window.localStorage.getItem('userId')) {
-      this.fetchUser(window.localStorage.getItem('userId'));
+    if (process.browser) {
+      this.fetchUser();
     }
   },
 };

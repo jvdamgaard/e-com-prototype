@@ -19,7 +19,7 @@
         <h3 :class="$style.header">Tilmeld nyhedsbrev</h3>
         <div :class="$style.newsletterGroup">
           <input type="text" placeholder="Din e-mail adresse" :class="$style.newsletterInput">
-          <Btn type="grey" height="small">Tilmeld</Btn>
+          <Btn type="grey" height="small" :class="$style.newsletterBtn">Tilmeld</Btn>
         </div>
         <p :class="$style.newsletterDescription">
           Tilmeld dig Bilkas nyhedsbrev og få ugens tilbudsavis samt gode tilbud, information om spændende kampagner og konkurrencer.<br>
@@ -174,6 +174,7 @@ export default {
   background-color: var(--color-grey-lighter);
   border: 0;
 }
+.newsletterBtn { width: auto; }
 .newsletterDescription {
   composes: small from global;
   color: var(--color-grey-dark);
