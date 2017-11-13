@@ -73,6 +73,7 @@ module.exports = {
       '/produkt/apple-i-phone-x/27/',
       '/produkt/in-shape-mavetraeningshjul/28/',
       '/produkt/ron-thompson-ontario-jakke/29/',
+      '/produkt/lg-ultra-fine-5-k-skaerm/30/',
     ],
   },
   build: {
