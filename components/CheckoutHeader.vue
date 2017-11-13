@@ -1,15 +1,15 @@
 <template>
   <div>
     <grid :class="$style.container">
-      <grid-col mobile="4">
+      <grid-col mobile="6" tablet="4">
         <nuxt-link to="/" :class="$style.logo">
           <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo-primary.svg" width="84" height="24" />
         </nuxt-link>
       </grid-col>
-      <grid-col mobile="4">
+      <grid-col mobile="6" tablet="4">
         <h1 :class="$style.header">Kassen</h1>
       </grid-col>
-      <grid-col mobile="4" :class="$style.secure">
+      <grid-col mobile="0" tablet="4" :class="$style.secure">
         &#128274; 100% sikker betaling
       </grid-col>
     </grid>
@@ -53,8 +53,13 @@ export default {
 
 .header {
   composes: h2 from global;
-  text-align: center;
+  text-align: right;
   line-height: 4rem;
+}
+@media (min-width: 48rem) {
+  .header {
+    text-align: center;
+  }
 }
 
 .secure {

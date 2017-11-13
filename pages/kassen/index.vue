@@ -33,7 +33,7 @@
         <grid-col mobile="0" desktop="2" />
       </grid>
     </sticky-scroll-wrapper>
-    <grid :class="$style.container">
+    <grid :class="$style.container" full-width-until="mobile">
       <grid-col mobile="0" desktop="2"/>
       <grid-col laptop="7" desktop="5">
         <checkout-personal-information :valid="personalInformationValid" />

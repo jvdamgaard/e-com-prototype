@@ -29,12 +29,19 @@ export default {
 @import '../assets/css/variables.css';
 
 .container {
+  composes: small from global;
   background-color: var(--color-white);
-  padding: 2rem 1rem;
+  padding: 1rem;
   margin-bottom: 1px;
 }
 .container:last-child {
   margin-bottom: 1rem;
+}
+@media (min-width: 48rem) {
+  .container {
+    padding: 2rem 1rem;
+    font-size: 1rem;
+  }
 }
 
 .transparent {
