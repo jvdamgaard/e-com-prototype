@@ -107,7 +107,7 @@ export const actions = {
   },
   addToLastSeen(ctx, product) {
     ctx.commit('addToLastSeen', product);
-    uploadLastSeen();
+    uploadLastSeen(ctx.state.lastSeen);
   },
   savePersonalInformation({ commit }, personalInformation) {
     commit('changePersonalInformation', personalInformation);
