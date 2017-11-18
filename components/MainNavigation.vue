@@ -16,8 +16,8 @@
             <span :class="$style.burgerIcon">&#8801;</span>
             <span :class="$style.textMenu">Afdelinger ▼</span>
           </div>
-          <input type="text" placeholder="Søg i mere end 250.000 produkter" :class="$style.searchInput">
-          <btn type="yellow" :class="$style.searchButton">
+          <input type="text" placeholder="Søg i mere end 250.000 produkter" :class="$style.searchInput" v-model="searchQuery" @keyup.enter="search">
+          <btn type="yellow" :class="$style.searchButton" @click.native="search">
             <img src="https://jvdamgaard.github.io/e-com-prototype/icons/search-black.svg" height="32" width="32" />
           </btn>
           <nuxt-link
@@ -64,6 +64,7 @@ export default {
     return {
       hoverDepartment: false,
       hoverMiniBasket: false,
+      searchQuery: '',
     };
   },
   computed: {
@@ -114,6 +115,9 @@ export default {
       if (this.user.basket.items.length > 0) {
         this.openMiniBasketNow();
       }
+    },
+    search() {
+      this.$router.push(`/search/${this.searchQuery}`);
     },
   },
 };
@@ -188,7 +192,7 @@ export default {
   white-space: nowrap;
 }
 
-.searchInput { border: 0; }
+.searchInput { border: 0 !important; }
 
 .searchButton {
   composes: hiddenOnMobile from global;
