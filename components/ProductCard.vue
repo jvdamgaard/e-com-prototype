@@ -138,7 +138,7 @@ export default {
   width: calc(100% + 1rem);
   padding: 1rem 1rem 5.5rem 1rem;
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
-  z-index: 10;
+  z-index: 100;
 }
 :global(.no-touch) .outOfStock.noStatic:hover {
   margin-bottom: -0.5rem;

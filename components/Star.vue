@@ -13,13 +13,13 @@ export default {
   },
   computed: {
     color() {
-      if (this.rating < this.pos) {
+      if (Math.round(this.rating) < this.pos) {
         return 'grey';
       }
-      if (this.rating === 1) {
+      if (Math.round(this.rating) === 1) {
         return 'red';
       }
-      if (this.rating === 2 || this.rating === 3) {
+      if (Math.round(this.rating) === 2 || Math.round(this.rating) === 3) {
         return 'yellow';
       }
       return 'green';
