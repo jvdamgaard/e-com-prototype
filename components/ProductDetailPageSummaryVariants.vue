@@ -15,7 +15,7 @@
         >
           <template v-if="!item.images || item.images.length === 0">{{item.description}}</template>
           <template v-else>
-            <div :class="$style.imageContainer"><img :src="`${item.images[0]}?w=200&auto=format&fm=jpg`" /></div>
+            <div :class="$style.imageContainer"><img :src="`${item.images[0]}?w=200&fm=webp`" /></div>
           </template>
           <span v-if="!Number.isNaN(Number(item.price))">{{difference(variantPos, itemPos, item.price)}}</span>
         </li>

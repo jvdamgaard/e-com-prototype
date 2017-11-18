@@ -1,5 +1,5 @@
 <template>
-  <div v-if="label" :class="[$style.sticker, $style[label.color]]">
+  <div v-if="label && label.text" :class="[$style.sticker, $style[label.color]]">
     {{label.text}}
   </div>
 </template>

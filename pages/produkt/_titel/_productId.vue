@@ -13,10 +13,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { getProductModules } from '../../../utils/product';
 import { mapState } from 'vuex'; //eslint-disable-line
 import Modules from '../../../components/Modules.vue';
-import { resolveModulesData } from '../../../utils';
 
 export default {
   components: {
@@ -27,8 +26,7 @@ export default {
     ...mapState(['user']),
   },
   asyncData({ params }) {
-    return axios.get(`https://jvdamgaard.github.io/e-com-prototype/json/products/${params.productId}.json`)
-      .then(resolveModulesData)
+    return getProductModules(params.productId)
       .then(modules => ({ modules }));
   },
   mounted() {

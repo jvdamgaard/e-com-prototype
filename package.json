@@ -34,6 +34,7 @@
     "hash.js": "latest",
     "lodash": "latest",
     "lru-cache": "latest",
+    "marked": "latest",
     "nuxt": "latest",
     "vue-lazyload": "latest",
     "vuex-persistedstate": "2.2.0"

@@ -94,10 +94,7 @@ export default {
       }
     },
     getImagePath(position) {
-      return `${this.images[position]}?w=${this.width}&h=${this.height}&auto=format&ch=Width,DPR`;
-    },
-    getPlaceholder() {
-      return `${this.images[0]}?w=${this.width / 10}&h=${this.height / 10}&auto=format&ch=Width,DPR&blur=200&px=16&`;
+      return `${this.images[position]}?fm=webp&w=${this.width}&h=${this.height}`;
     },
     loadImage(position) {
       this.loading = true;

@@ -93,6 +93,7 @@ module.exports = {
       'contentful-management',
       'contentful',
       'hash.js/lib/hash/sha/256',
+      'marked',
     ],
 
     /*

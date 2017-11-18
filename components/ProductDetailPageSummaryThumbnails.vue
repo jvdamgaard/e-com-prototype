@@ -15,7 +15,7 @@
         +{{images.length - limit + 1}}
       </span>
       <img
-        :src="`${image}?w=200&auto=format&fm=jpg`"
+        :src="`${image}?w=200&fm=webp`"
         :class="$style.thumbnailImage"
       />
     </li>
