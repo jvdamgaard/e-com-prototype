@@ -58,6 +58,7 @@ import Arrow from './Arrow.vue';
 import Btn from './Btn.vue';
 import ProductCard from './ProductCard.vue';
 import { getDataFromCss } from '../utils';
+import { getProducts, Product } from '../utils/product';
 
 export default {
   components: {
@@ -69,11 +70,7 @@ export default {
   },
   props: {
     header: String,
-    src: String,
-    products: {
-      type: Array,
-      default: [],
-    },
+    query: Object,
     lazy: {
       type: Boolean,
       default: true,
@@ -85,6 +82,7 @@ export default {
       productsInSlider: 0,
       slides: 1,
       fetchedProducts: null,
+      products: [],
     };
   },
   computed: {
@@ -122,6 +120,14 @@ export default {
         this.slide(event.wheelDeltaX, this.next, this.prev);
       }
     },
+  },
+  mounted() {
+    console.log(this.query);
+    getProducts({ ...this.query, limit: 36 })
+      .then((data) => {
+        console.log(data);
+        this.products = data.items.map(Product);
+      });
   },
 };
 </script>
