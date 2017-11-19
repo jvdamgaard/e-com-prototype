@@ -1,5 +1,6 @@
 /* eslint no-param-reassign: 0 */
 import marked from 'marked';
+import kebabCase from 'lodash/kebabCase';
 import * as contentful from '../plugins/contentful';
 
 function ProductDetailPageDescription(content) {
@@ -22,7 +23,11 @@ function ProductDetailPageDescription(content) {
   };
 }
 
-function Product(product) {
+export function url({ titel, id }) {
+  return `/produkt/${kebabCase(titel)}/${id}/`;
+}
+
+export function Product(product) {
   return {
     id: product.sys.id,
     titel: product.fields.titel,
@@ -78,16 +83,15 @@ export function getProducts(query, exclude) {
     });
 }
 
-function ProductSlider(slider, exclude = '') {
-  return getProducts({ ...slider.fields.query, limit: 36 }, exclude)
-    .then(data => ({
-      id: slider.sys.id,
-      type: 'ProductSlider',
-      data: {
-        header: slider.fields.header,
-        products: data.items.map(Product),
-      },
-    }));
+function ProductSlider(slider) {
+  return {
+    id: slider.sys.id,
+    type: 'ProductSlider',
+    data: {
+      header: slider.fields.header,
+      query: slider.fields.query,
+    },
+  };
 }
 
 export function getProduct(id, deep = false) {

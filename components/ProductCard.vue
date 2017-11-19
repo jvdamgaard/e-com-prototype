@@ -47,8 +47,8 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
-import kebabCase from 'lodash/kebabCase';
 import { numberWithDots } from '../utils';
+import { url } from '../utils/product';
 import Btn from './Btn.vue';
 import Arrow from './Arrow.vue';
 import Star from './Star.vue';
@@ -94,7 +94,7 @@ export default {
       return match.quantity;
     },
     url() {
-      return `/produkt/${kebabCase(this.product.titel)}/${this.product.id}/`;
+      return url(this.product);
     },
     shownImages() {
       return this.images ? this.images : this.product.images;
@@ -138,7 +138,7 @@ export default {
   width: calc(100% + 1rem);
   padding: 1rem 1rem 5.5rem 1rem;
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
-  z-index: 100;
+  z-index: 20;
 }
 :global(.no-touch) .outOfStock.noStatic:hover {
   margin-bottom: -0.5rem;

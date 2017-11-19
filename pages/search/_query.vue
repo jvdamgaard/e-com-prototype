@@ -8,7 +8,7 @@
 
 <script>
 import { mapState } from 'vuex'; //eslint-disable-line
-import { searchProducts } from '../../utils/product';
+import { searchProducts, url } from '../../utils/product';
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
 import ProductCard from '../../components/ProductCard.vue';
@@ -19,9 +19,14 @@ export default {
     GridCol,
     ProductCard,
   },
-  asyncData({ params }) {
+  asyncData({ params, redirect }) {
     return searchProducts(params.query)
-      .then(products => ({ products }));
+      .then((products) => {
+        if (products.length === 1) {
+          redirect(url(products[0]));
+        }
+        return { products };
+      });
   },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;
