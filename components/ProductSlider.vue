@@ -71,6 +71,7 @@ export default {
   props: {
     header: String,
     query: Object,
+    initProducts: Array,
     lazy: {
       type: Boolean,
       default: true,
@@ -122,12 +123,16 @@ export default {
     },
   },
   mounted() {
-    console.log(this.query);
-    getProducts({ ...this.query, limit: 36 })
-      .then((data) => {
-        console.log(data);
-        this.products = data.items.map(Product);
-      });
+    if (this.initProducts) {
+      this.products = this.initProducts;
+      return;
+    }
+    if (this.query) {
+      getProducts({ ...this.query, limit: 36 })
+        .then((data) => {
+          this.products = data.items.map(Product);
+        });
+    }
   },
 };
 </script>

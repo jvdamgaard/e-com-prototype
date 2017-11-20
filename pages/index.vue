@@ -1,21 +1,23 @@
 <template>
   <!-- Modules -->
-  <modules :modules="modules" />
+  <div>
+    <frontpage-top key="frontpage-top" />
+    <modules :modules="modules" />
+  </div>
 </template>
 
 <script>
-import axios from 'axios';
 import Modules from '../components/Modules.vue';
-import { resolveModulesData } from '../utils';
+import { getPageModules } from '../utils/page';
 
 export default {
   components: {
     Modules,
+    FrontpageTop: () => import('../components/FrontpageTop.vue'),
   },
   asyncData() {
     // Fecth modules data
-    return axios.get('https://jvdamgaard.github.io/e-com-prototype/json/pages/home.json')
-      .then(resolveModulesData)
+    return getPageModules('53o6jmHL3GcsqSGOCEOQmu')
       .then(modules => ({ modules }));
   },
   mounted() {

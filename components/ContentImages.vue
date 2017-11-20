@@ -14,8 +14,8 @@
       <image-container
         :lazy="lazy"
         :src="image.url"
-        :width="image.width"
-        :height="image.height"
+        :width="size.width"
+        :height="size.height"
       />
     </grid-col>
   </grid>
@@ -38,6 +38,24 @@ export default {
     lazy: {
       type: Boolean,
       default: true,
+    },
+  },
+  computed: {
+    size() {
+      if (this.images.length === 1 && this.fullWidth) {
+        return { width: 2400, height: 800 };
+      }
+
+      if (this.images.length === 1 || (this.images.length === 2 && this.fullWidth)) {
+        return { width: 1600, height: 800 };
+      }
+
+      if (this.images.length === 2 || this.images.length === 4) {
+        return { width: 800, height: 600 };
+      }
+
+      // Three images
+      return { width: 1000, height: 600 };
     },
   },
   methods: {

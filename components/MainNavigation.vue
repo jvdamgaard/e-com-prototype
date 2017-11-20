@@ -117,7 +117,7 @@ export default {
       }
     },
     search() {
-      this.$router.push(`/search/${this.searchQuery}`);
+      this.$router.push(`/search/${this.searchQuery}/`);
     },
   },
 };

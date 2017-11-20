@@ -83,7 +83,7 @@ export function getProducts(query, exclude) {
     });
 }
 
-function ProductSlider(slider) {
+export function ProductSlider(slider) {
   return {
     id: slider.sys.id,
     type: 'ProductSlider',
@@ -106,38 +106,28 @@ export function getProduct(id, deep = false) {
 }
 
 export function getProductModules(id) {
-  const modules = [];
-  return getProduct(id, true)
+  return getProduct(id, true).then((product) => {
+    const modules = [];
 
     // Summary
-    .then((product) => {
-      modules.push(ProductDetailPageSummary(product));
-      return product;
-    })
+    modules.push(ProductDetailPageSummary(product));
 
     // Content sections
-    .then((product) => {
-      if (product.fields.content) {
-        product.fields.content.forEach((content) => {
-          modules.push(ProductDetailPageDescription(content));
-        });
-      }
-      return product;
-    })
+    if (product.fields.content) {
+      product.fields.content.forEach((content) => {
+        modules.push(ProductDetailPageDescription(content));
+      });
+    }
 
     // Related products
-    .then((product) => {
-      if (!product.fields.relatedProducts) {
-        return product;
-      }
-      return Promise
-        .all(product.fields.relatedProducts.map(slider => ProductSlider(slider, id)))
-        .then((sliders) => {
-          sliders.forEach(slider => modules.push(slider));
-        })
-        .then(() => product);
-    })
-    .then(() => modules);
+    if (product.fields.relatedProducts) {
+      product.fields.relatedProducts.forEach((slider) => {
+        modules.push(ProductSlider(slider));
+      });
+    }
+
+    return modules;
+  });
 }
 
 export function searchProducts(query) {

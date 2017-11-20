@@ -5,7 +5,7 @@
   >
     <img
       v-if="lazy"
-      v-lazy="src"
+      v-lazy="url"
       :width="width"
       :height="height"
       :alt="alt"
@@ -13,7 +13,7 @@
     />
     <img
       v-if="!lazy"
-      :src="src"
+      :src="url"
       :width="width"
       :height="height"
       :alt="alt"
@@ -33,6 +33,11 @@ export default {
     lazy: {
       type: Boolean,
       default: true,
+    },
+  },
+  computed: {
+    url() {
+      return `${this.src}?w=${this.width}&h=${this.height}&fm=webp&fit=fill&f=face`;
     },
   },
 };

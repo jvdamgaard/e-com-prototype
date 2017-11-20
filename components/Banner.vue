@@ -12,8 +12,8 @@
           <image-container
             :lazy="lazy"
             :src="banner.image.url"
-            :width="banner.image.width"
-            :height="banner.image.height"
+            :width="size.width"
+            :height="size.height"
           />
         </nuxt-link>
       </grid-col>
@@ -37,6 +37,14 @@ export default {
     lazy: {
       type: Boolean,
       default: true,
+    },
+  },
+  computed: {
+    size() {
+      if (this.banners.length === 1) {
+        return { width: 2400, height: 800 };
+      }
+      return { width: 1600, height: 800 };
     },
   },
 };

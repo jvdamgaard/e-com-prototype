@@ -4,7 +4,7 @@
     <modules :modules="modules" />
     <section>
       <product-slider
-        :products="user.lastSeen"
+        :initProducts="user.lastSeen"
         header="Du har senest kigget på"
         key="last-seen"
       />
