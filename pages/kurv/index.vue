@@ -1,10 +1,12 @@
 <template>
   <!-- Modules -->
   <div>
-    <modules :modules="modules" />
+    <section>
+      <basket />
+    </section>
     <section>
       <product-slider
-        :products="user.lastSeen"
+        :initProducts="user.lastSeen"
         header="Du har senest kigget på"
         key="last-seen"
       />
@@ -13,24 +15,15 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { mapState, mapActions } from 'vuex'; //eslint-disable-line
-import Modules from '../../components/Modules.vue';
-import { resolveModulesData } from '../../utils';
 
 export default {
   components: {
-    Modules,
     ProductSlider: () => import('../../components/ProductSlider.vue'),
+    Basket: () => import('../../components/Basket.vue'),
   },
   computed: {
     ...mapState(['user']),
-  },
-  asyncData() {
-    // Fecth modules data
-    return axios.get('https://jvdamgaard.github.io/e-com-prototype/json/pages/basket.json')
-      .then(resolveModulesData)
-      .then(modules => ({ modules }));
   },
   methods: {
     ...mapActions({
