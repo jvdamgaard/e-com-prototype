@@ -1,9 +1,9 @@
 /* eslint no-param-reassign: 0 */
 import uniqBy from 'lodash/uniqBy';
 import sha256 from 'hash.js/lib/hash/sha/256';
-import axios from 'axios';
 import * as contentful from '../plugins/contentful';
 import { uploadBasket, uploadLastSeen, createUser, updateUser, getUser } from '../utils/user';
+import { Product } from '../utils/product';
 
 export function state() {
   return {
@@ -131,34 +131,27 @@ export const actions = {
     commit('changePersonalInformation', userData);
     return updateUser(userData);
   },
-  fetchUser(ctx) {
-    return getUser()
-      .then((user) => {
-        ctx.commit('changePersonalInformation', { ...user.fields });
-        return user;
-      })
-      .then((user) => {
-        if (ctx.state.basket.length > 0) {
-          uploadBasket(ctx.state.basket);
-        } else {
-          Promise.all(user.fields.basket.map(item => axios.get(`https://jvdamgaard.github.io/e-com-prototype/json/products/${item.product.id}.json`)))
-            .then((responses) => {
-              ctx.commit('setBasketItems', user.fields.basket.map((item, i) => ({
-                quantity: item.quantity,
-                product: responses[i].data.modules[0].data.product,
-              })));
-            });
-        }
-        return user;
-      })
-      .then((user) => {
-        Promise.all(user.fields.lastSeen.map(product => axios.get(`https://jvdamgaard.github.io/e-com-prototype/json/products/${product.id}.json`)))
-          .then((responses) => {
-            const lastSeen = responses.map(response => response.data.modules[0].data.product);
-            ctx.commit('setLastSeen', lastSeen);
-          });
-        return user;
-      });
+  setUserData(ctx, user) {
+    // Set personal data
+    ctx.commit('changePersonalInformation', { ...user.fields });
+
+    // Upload current basket, if user have put items in it
+    if (ctx.state.basket.length > 0) {
+      uploadBasket(ctx.state.basket);
+
+      // Get saved basket
+    } else if (user.fields.basket) {
+      ctx.commit('setBasketItems', user.fields.basket.map(item => ({
+        quantity: item.fields.quantity,
+        product: Product(item.fields.product),
+      })));
+    }
+
+    // Get last seen items
+    ctx.commit('setLastSeen', user.fields.lastSeen.map(Product));
+  },
+  fetchUser({ dispatch }) {
+    return getUser().then(user => dispatch('setUserData', user));
   },
   login({ dispatch }, { email, password }) {
     return contentful.deliveryClient
@@ -169,7 +162,7 @@ export const actions = {
       })
       .then((res) => {
         window.localStorage.setItem('userId', res.items[0].sys.id);
-        dispatch('fetchUser', res.items[0].sys.id);
+        dispatch('setUserData', res.items[0]);
       });
   },
 };
