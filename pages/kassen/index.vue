@@ -2,6 +2,7 @@
   <div>
     <sticky-scroll-wrapper
       :offsetTop="16"
+      :offsetBottom="-16"
       bottomSelector="#payment"
       heightSelector="#summary"
       class="hiddenOnMobile visibleOnLaptop"
@@ -38,7 +39,7 @@
       <grid-col laptop="7" desktop="5">
         <checkout-personal-information :valid="personalInformationValid" />
         <checkout-delivery :valid="deliveryValid" :inactive="!personalInformationValid" />
-        <checkout-payment :valid="paymentValid" :inactive="!personalInformationValid || !deliveryValid" id="payment" />
+        <checkout-payment :valid="paymentValid" :inactive="!personalInformationValid || !deliveryValid" />
       </grid-col>
     </grid>
   </div>

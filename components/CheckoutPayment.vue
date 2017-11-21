@@ -1,7 +1,7 @@
 <template>
   <div>
     <checkout-header-box :number="3" header="Betaling" :inactive="inactive" :filled="valid && !edit && !inactive" :edit="editForm"/>
-    <checkout-form v-if="!inactive && (!valid || edit)">
+    <checkout-form v-if="!inactive && (!valid || edit)" id="payment">
       <checkout-box>
         <h3>Faktureringsadresse</h3>
         <p>

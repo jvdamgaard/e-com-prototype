@@ -6,6 +6,7 @@
         :src="product.images[0]"
         :width="448"
         :height="448"
+        :crop="false"
       />
     </nuxt-link>
     <div :class="$style.content">

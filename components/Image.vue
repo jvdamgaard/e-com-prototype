@@ -34,10 +34,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    crop: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     url() {
-      return `${this.src}?w=${this.width}&h=${this.height}&fm=webp&fit=fill&f=face`;
+      return `${this.src}?w=${this.width}&h=${this.height}&fm=webp${this.crop ? '&fit=fill&f=face' : ''}`;
     },
   },
 };

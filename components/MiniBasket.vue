@@ -135,7 +135,7 @@ export default {
 .background { background-color: var(--color-grey-lighter); }
 
 .items {
-  max-height: calc(100vh - 28rem);
+  max-height: calc(100vh - 18rem);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -147,7 +147,7 @@ export default {
 .total {
   composes: h3 from global;
   composes: clearfix from global;
-  padding: 2rem 1rem;
+  padding: 1rem;
 }
 .totalPrice { float: right; }
 .beforePrice {
@@ -168,6 +168,6 @@ export default {
 
 .sellingPoint {
   text-align: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 </style>
