@@ -55,10 +55,10 @@ export default {
 
 .banner {
   display: block;
-  transition: box-shadow 0.2s ease;
+  transition: all 0.2s ease;
   background-color: var(--color-white);
 }
 :global(.no-touch) .banner:hover {
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
 }
 </style>

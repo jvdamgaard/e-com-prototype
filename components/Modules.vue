@@ -1,7 +1,7 @@
 <template>
   <div>
     <section v-for="(module, i) in modules" :key="module.id">
-      <component :is="module.type" v-bind="module.data" />
+      <component :is="module.type" v-bind="module.data" :lazy="i > 2" />
     </section>
   </div>
 </template>
