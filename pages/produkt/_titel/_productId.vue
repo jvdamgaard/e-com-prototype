@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import { getProductModules } from '../../../utils/product';
 import { mapState } from 'vuex'; //eslint-disable-line
+import { getProductModules } from '../../../utils/product';
 import Modules from '../../../components/Modules.vue';
 
 export default {

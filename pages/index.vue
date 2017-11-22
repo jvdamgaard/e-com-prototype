@@ -1,9 +1,5 @@
 <template>
-  <!-- Modules -->
-  <div>
-    <frontpage-top key="frontpage-top" />
-    <modules :modules="modules" />
-  </div>
+  <modules :modules="modules" />
 </template>
 
 <script>
@@ -13,7 +9,6 @@ import { getPageModules } from '../utils/page';
 export default {
   components: {
     Modules,
-    FrontpageTop: () => import('../components/FrontpageTop.vue'),
   },
   asyncData() {
     // Fecth modules data

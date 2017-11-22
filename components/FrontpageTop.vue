@@ -6,7 +6,7 @@
         <banner :lazy="false" :banners="[{
             id: 87248725,
             image: {
-              url: 'https://jvdamgaard.github.io/e-com-prototype/images/top-banner.jpg',
+              url: 'https://images.contentful.com/n8ckv2qtuzei/2NagGNTirugKgYQWUeIIs0/2ab3908af971d35c1dbfd4eb56ce9f6e/1067349_us_wireless-products_iphone-event_1800x360_desktop_r2.jpg',
               width: 900,
               height: 360,
             },
@@ -33,7 +33,7 @@
       </section>
       <section>
         <product-slider
-          :products="user.lastSeen"
+          :initProducts="user.lastSeen"
           :lazy="false"
           header="Fortsæt hvor du slap"
         />
@@ -83,7 +83,7 @@
           <nuxt-link to="/">
             <image-container
               :lazy="false"
-              src="https://images-na.ssl-images-amazon.com/images/G/01/img17/consumer-electronics/desktop/1067349_us_wireless-products_iphone-event_1800x360_desktop_r2.jpg"
+              src="https://images.contentful.com/n8ckv2qtuzei/2NagGNTirugKgYQWUeIIs0/2ab3908af971d35c1dbfd4eb56ce9f6e/1067349_us_wireless-products_iphone-event_1800x360_desktop_r2.jpg"
               :width="1800"
               :height="360"
             />

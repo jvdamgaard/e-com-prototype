@@ -1,7 +1,7 @@
 <template>
   <div>
-    <section v-for="(module, i) in modules" :key="i" :id="module.id" :class="`section__${module.type}`">
-      <component :is="module.type" v-bind="module.data" :key="i" />
+    <section v-for="(module, i) in modules" :key="module.id">
+      <component :is="module.type" v-bind="module.data" />
     </section>
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
     ProductDetailPageSummary: () => import('./ProductDetailPageSummary.vue'),
     ProductDetailPageDescription: () => import('./ProductDetailPageDescription.vue'),
     Basket: () => import('./Basket.vue'),
+    Departments: () => import('./Departments.vue'),
+    LastSeenSlider: () => import('./LastSeenSlider.vue'),
+    Login: () => import('./Login.vue'),
   },
   props: {
     modules: Array,
