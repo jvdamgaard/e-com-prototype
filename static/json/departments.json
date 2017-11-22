@@ -2,7 +2,7 @@
   {
     "titel": "Elektronik",
     "description": "Telfon, Computer, TV, Husholding",
-    "iconSrc": "https://images.unsplash.com/photo-1485988412941-77a35537dae4?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/3OB5VrqqXSmUiuu8yWQ0gy/86eba618dcfb0a9b19fa9411c514e12f/julian-o-hayon-265589.jpg",
     "promotion": {
       "imageSrc": "http://static1.businessinsider.com/image/59b8459838d20d3c098b509c-2400/gettyimages-846148982.jpg",
       "btnLabel": "Bestil iPhone X nu"
@@ -163,7 +163,7 @@
   {
     "titel": "Bolig & indretning",
     "description": "Bord, Stol, Sofa, Seng",
-    "iconSrc": "https://images.unsplash.com/photo-1501045661006-fcebe0257c3f?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/6s0l755eDukmgoaYkAceCg/35577738d28465fe91d89c3d8b22100f/tim-wright-272031.jpg",
     "promotion": {
       "imageSrc": "https://f.nordiskemedier.dk/22mv6249df3c014b.jpg",
       "btnLabel": "NOFU - dansk design"
@@ -351,7 +351,7 @@
   {
     "titel": "Have",
     "description": "Grill, Havemøbel, Haveredskaber",
-    "iconSrc": "https://images.unsplash.com/photo-1481402665672-0a280f0e9845?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/5piWKQhaViSKU62wcMa2mG/6acfebcbd9b33e7329dd1957db087fb2/daniel-hjalmarsson-269425.jpg",
     "promotion": {
       "imageSrc": "https://bilkadk.imgix.net/medias/sys_master/root/he5/hc4/9721975210014.jpg?w=1050&h=1050&auto=format&fm=jpg",
       "btnLabel": "Kun 2.999,-"
@@ -515,7 +515,7 @@
   {
     "titel": "Leg",
     "description": "Legetøj, Trampolin, Lønehjul, Legehus",
-    "iconSrc": "https://images.unsplash.com/photo-1503739171234-327ce271626f?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/2t0O4hFoAw0CYAEYWaKAgY/2c302fa027a6bcb462eec6bb3283239a/michal-parzuchowski-224092.jpg",
     "promotion": {
       "imageSrc": "https://images.unsplash.com/photo-1485783522162-1dbb8ffcbe5b?dpr=2&auto=format&fit=crop&w=500&h=994&q=80&cs=tinysrgb&crop=",
       "btnLabel": "25% på LEGO lige nu"
@@ -685,7 +685,7 @@
   {
     "titel": "Fritid og skødhed",
     "description": "Cykel, Makeup, Tasker",
-    "iconSrc": "https://images.unsplash.com/photo-1452727229762-7380dd7ba044?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/5ERGgOiGGsSEswOC8Agias/8645d0cdde0857a5d0e10c0362527c7a/alejandra-higareda-270528.jpg",
     "promotion": {
       "imageSrc": "https://images.unsplash.com/photo-1457972729786-0411a3b2b626?dpr=2&auto=format&fit=crop&w=500&h=1000&q=80&cs=tinysrgb&crop="
     },
@@ -840,7 +840,7 @@
   {
     "titel": "Vin og spiritus",
     "description": "Rødvin, Champagne, Rom, Cognac",
-    "iconSrc": "https://images.unsplash.com/photo-1485828052706-d62c6a23905f?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/dy4YUsGoOkgwoi6y0wA8g/3ca78303f823068a71831a7e898a6869/kym-ellis-391585.jpg",
     "promotion": {
       "imageSrc": "https://images.unsplash.com/photo-1470158499416-75be9aa0c4db?dpr=1&auto=compress,format&fit=crop&w=500&h=&q=80&cs=tinysrgb&crop="
     },
@@ -982,7 +982,7 @@
   {
     "titel": "Hvidevarer",
     "description": "Vaskemaskine, Komfur, Køleskab",
-    "iconSrc": "https://images.unsplash.com/photo-1502849394214-c4b6352145ee?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/4zTKbOVJ6gyKsiKsOwIe64/d314cae004d7961909e1dce454109e5c/eric-barbeau-56714.jpg",
     "promotion": {
       "imageSrc": "https://images.unsplash.com/photo-1476055439777-977cdf3a5699?dpr=1&auto=compress,format&fit=crop&w=500&h=&q=80&cs=tinysrgb&crop="
     },
@@ -1110,7 +1110,7 @@
   {
     "titel": "Byggemarked",
     "description": "Værktøj, Maling, Big bag, VVS",
-    "iconSrc": "https://images.unsplash.com/photo-1480090962546-e96bb84f6021?dpr=1&auto=compress,format&fit=crop&w=200&h=&q=80&cs=tinysrgb&crop=",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/4nux9iNYaAOMQWWgYykIUk/6eb15a3fb813d4d04ded50d90dac075d/el-alce-web-379807.jpg",
     "promotion": {
       "imageSrc": "https://images.unsplash.com/photo-1454694220579-9d6672b1ec2a?dpr=1&auto=compress,format&fit=crop&w=500&h=&q=80&cs=tinysrgb&crop="
     },
@@ -1271,7 +1271,7 @@
   {
     "titel": "Tilbud",
     "description": "Fra alle afdelinger",
-    "iconSrc": "https://jvdamgaard.github.io/e-com-prototype/icons/offers.png",
+    "iconSrc": "https://images.contentful.com/n8ckv2qtuzei/5MwG0VDWsEqSWyOgWqgA2g/9474d28a1957c00710386898da57f554/Offer.png",
     "promotion": {
       "imageSrc": "https://images.unsplash.com/photo-1459257831348-f0cdd359235f?dpr=2&auto=format&fit=crop&w=500&h=1000&q=80&cs=tinysrgb&crop="
     },

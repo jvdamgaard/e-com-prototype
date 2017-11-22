@@ -1,27 +1,15 @@
 <template>
   <grid>
-    <grid-col>
-      <grid inner :class="$style.login">
-        <grid-col
-          mobile="4"
-          phablet="3"
-          tablet="2"
-        >
-          <div
-            :class="$style.icon"
-            :style="{'background-image': `url('https://jvdamgaard.github.io/e-com-prototype/icons/login.svg')`}"
-          />
-        </grid-col>
-        <grid-col
-          mobile="8"
-          phablet="9"
-          tablet="10"
-          verticalCenter
-        >
-          <p>{{ label }}</p>
-          <p class="dimmed small">{{ sublabel }}</p>
-        </grid-col>
-      </grid>
+    <grid-col mobile="0" tablet="2" laptop="3" />
+    <grid-col tablet="8" laptop="6">
+      <div :class="$style.login">
+        <div
+          :class="$style.icon"
+          :style="{'background-image': `url('https://jvdamgaard.github.io/e-com-prototype/icons/login.svg')`}"
+        />
+        <p>{{ label }}</p>
+        <p class="dimmed small">{{ sublabel }}</p>
+      </div>
     </grid-col>
   </grid>
 </template>
@@ -46,25 +34,19 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
+.login {
+  composes: clearfix from global;
+  background-color: var(--color-white);
+  padding: 2rem 1rem;
+}
+
 .icon {
   composes: bgImage from global;
   composes: round from global;
-  width: 100%;
-  padding-bottom: 100%;
+  width: 4rem;
+  padding-bottom: 4rem;
   margin-bottom: 0;
-}
-
-@media (min-width: 48rem) {
-  .icon {
-    width: 4rem;
-    padding-bottom: 4rem;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-.login {
-  background-color: var(--color-white);
-  padding: 2rem 1rem;
+  margin-right: 1rem;
+  float: left;
 }
 </style>
