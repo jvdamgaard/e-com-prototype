@@ -128,6 +128,7 @@ export default {
   color: var(--color-black);
   overflow: hidden;
   background-color: var(--color-white);
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0);
 }
 .container:hover {
   text-decoration: none!important;
@@ -137,7 +138,7 @@ export default {
   height: calc(100% + 3.5rem);
   width: calc(100% + 1rem);
   padding: 1rem 1rem 5.5rem 1rem;
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
   z-index: 20;
 }
 :global(.no-touch) .outOfStock.noStatic:hover {

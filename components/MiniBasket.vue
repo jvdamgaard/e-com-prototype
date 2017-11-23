@@ -29,6 +29,7 @@
               :key="item.product.id"
               v-bind="item"
               :class="$style.item"
+              animate
             />
           </div>
           <div :class="$style.total">

@@ -85,10 +85,10 @@ export default {
 }
 
 .shadow {
-  box-shadow: 0 0.125rem 0.75rem rgba(0,0,0,0.2);
+  box-shadow: 0 0.125rem 0.75rem rgba(0,0,0,0.15);
 }
 :global(.no-touch) .shadow:hover {
-  box-shadow: 0 0.125rem 1.5rem rgba(0,0,0,0.3);
+  box-shadow: 0 0.125rem 1.5rem rgba(0,0,0,0.25);
 }
 
 .small {

@@ -59,6 +59,7 @@ export default {
   background-color: var(--color-white);
   height: 100%;
   width: 100%;
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0);
 }
 .container:hover {
   text-decoration: none!important;
@@ -67,7 +68,7 @@ export default {
   margin: -0.5rem;
   height: calc(100% + 1rem);
   width: calc(100% + 1rem);
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
 }
 
 .headerRight { text-align: right; }

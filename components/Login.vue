@@ -2,14 +2,14 @@
   <grid>
     <grid-col mobile="0" tablet="2" laptop="3" />
     <grid-col tablet="8" laptop="6">
-      <div :class="$style.login">
+      <nuxt-link to="/login/" :class="$style.login">
         <div
           :class="$style.icon"
           :style="{'background-image': `url('https://jvdamgaard.github.io/e-com-prototype/icons/login.svg')`}"
         />
         <p>{{ label }}</p>
         <p class="dimmed small">{{ sublabel }}</p>
-      </div>
+      </nuxt-link>
     </grid-col>
   </grid>
 </template>
@@ -38,6 +38,19 @@ export default {
   composes: clearfix from global;
   background-color: var(--color-white);
   padding: 2rem 1rem;
+  display: block;
+  transition: all 0.2s ease;
+  color: var(--color-black);
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0);
+}
+.login:hover {
+  text-decoration: none!important;
+}
+:global(.no-touch) .login:hover {
+  /*margin: -0.5rem;
+  height: calc(100% + 1rem);
+  width: calc(100% + 1rem);*/
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
 }
 
 .icon {

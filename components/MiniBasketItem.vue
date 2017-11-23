@@ -1,7 +1,7 @@
 <template>
   <div :class="[
     $style.container,
-    { [$style.added]: added }
+    { [$style.added]: added || !animate }
   ]">
     <nuxt-link v-if="interactive" :to="url" :class="$style.image">
       <img :src="product.images[0]" />
@@ -46,6 +46,7 @@ export default {
       type: Boolean,
       default: true,
     },
+    animate: Boolean,
   },
   data() {
     return {
