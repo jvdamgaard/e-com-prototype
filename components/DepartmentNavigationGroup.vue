@@ -21,7 +21,7 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
-.container { padding-top: 2rem; }
+.container { padding-top: 0.5rem; }
 .headerLink { color: var(--color-black); }
 .subLink { color: var(--color-grey-darker); }
 .list {

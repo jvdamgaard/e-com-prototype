@@ -18,8 +18,8 @@
         <image-container
           :src="department.iconSrc"
           :width="400"
-          :height="400"
-          :lazy="false"
+          :height="225"
+          :lazy="lazy"
         />
         <div :class="$style.text">
           {{ department.titel }}
@@ -43,6 +43,7 @@ export default {
   },
   props: {
     header: String,
+    lazy: Boolean,
   },
   computed: mapState(['departments']),
 };

@@ -1,13 +1,13 @@
 <template>
   <grid inner :class="$style.container">
-    <grid-col mobile="6" laptop="4">
+    <grid-col mobile="6" laptop="4" :class="$style.groupContainer">
       <group
         v-for="department in colOneDepartments"
         v-bind="department"
         :key="department.titel"
       />
     </grid-col>
-    <grid-col mobile="6" laptop="4">
+    <grid-col mobile="6" laptop="4" :class="$style.groupContainer">
       <group
         v-for="department in colTwoDepartments"
         v-bind="department"
@@ -62,7 +62,9 @@ export default {
   padding-left: 1rem;
   border-left: 1px solid var(--color-grey-light);
 }
-
+.groupContainer {
+  padding-top: 1rem;
+}
 .promoContainer {
   padding: 1rem 1rem 1rem 0;
 }
