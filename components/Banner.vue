@@ -1,5 +1,5 @@
 <template>
-  <grid>
+  <grid :fullWidthUntil="banners.length === 1 ? 'desktop' : undefined">
     <template v-for="banner in banners">
       <grid-col
         mobile="12"
@@ -55,11 +55,5 @@ export default {
 
 .banner {
   display: block;
-  transition: all 0.2s ease;
-  background-color: var(--color-white);
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0);
-}
-:global(.no-touch) .banner:hover {
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
 }
 </style>

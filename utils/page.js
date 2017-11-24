@@ -17,7 +17,7 @@ export function getPage(id, deep = false) {
 export function Images(entry) {
   return {
     id: entry.sys.id,
-    type: 'Images',
+    type: 'ContentImages',
     data: {
       fullWidth: entry.fields.fullWidth,
       images: entry.fields.images.map(image => ({
@@ -31,6 +31,8 @@ export function Banner(entry) {
   return {
     id: entry.sys.id,
     type: 'Banner',
+    noSpacingTop: !!entry.fields.noSpacingTop,
+    noSpacingBottom: !!entry.fields.noSpacingBottom,
     data: {
       banners: entry.fields.images.map(image => ({
         id: image.sys.id,
@@ -77,7 +79,7 @@ export function Login(entry) {
 export function Text(entry) {
   return {
     id: entry.sys.id,
-    type: 'Text',
+    type: 'ContentText',
     data: {
       content: marked(entry.fields.content, { gfm: true }),
     },
@@ -102,15 +104,25 @@ export function Content(entry) {
   };
 }
 
-export function getPageModules(id) {
-  return getPage(id, true).then(page => page.fields.modules.map((module) => {
-    if (module.sys.contentType.sys.id === 'productSlider') { return ProductSlider(module); }
-    if (module.sys.contentType.sys.id === 'content') { return Content(module); }
-    if (module.sys.contentType.sys.id === 'banner') { return Banner(module); }
-    if (module.sys.contentType.sys.id === 'departments') { return Departments(module); }
-    if (module.sys.contentType.sys.id === 'lastSeenSlider') { return LastSeenSlider(module); }
-    if (module.sys.contentType.sys.id === 'login') { return Login(module); }
-    return null;
-  }))
-    .then(modules => modules.filter(module => !!module));
+export function Module(entry) {
+  if (entry.sys.contentType.sys.id === 'productSlider') { return ProductSlider(entry); }
+  if (entry.sys.contentType.sys.id === 'images') { return Images(entry); }
+  if (entry.sys.contentType.sys.id === 'text') { return Text(entry); }
+  if (entry.sys.contentType.sys.id === 'banner') { return Banner(entry); }
+  if (entry.sys.contentType.sys.id === 'departments') { return Departments(entry); }
+  if (entry.sys.contentType.sys.id === 'lastSeenSlider') { return LastSeenSlider(entry); }
+  if (entry.sys.contentType.sys.id === 'login') { return Login(entry); }
+  return null;
+}
+
+export function Section(entry) {
+  return {
+    modules: entry.fields.modules.map(Module).filter(module => !!module),
+    theme: entry.fields.theme || 'None',
+    id: entry.sys.id,
+  };
+}
+
+export function getPageSections(id) {
+  return getPage(id, true).then(page => page.fields.sections.map(Section));
 }

@@ -1,19 +1,18 @@
 <template>
-  <modules :modules="modules" />
+  <sections :sections="sections" />
 </template>
 
 <script>
-import Modules from '../components/Modules.vue';
-import { getPageModules } from '../utils/page';
+import Sections from '../components/Sections.vue';
+import { getPageSections } from '../utils/page';
 
 export default {
   components: {
-    Modules,
+    Sections,
   },
-  asyncData() {
-    // Fecth modules data
-    return getPageModules('53o6jmHL3GcsqSGOCEOQmu')
-      .then(modules => ({ modules }));
+  async asyncData() {
+    const sections = await getPageSections('53o6jmHL3GcsqSGOCEOQmu');
+    return { sections };
   },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;

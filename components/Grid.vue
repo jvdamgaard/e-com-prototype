@@ -47,14 +47,10 @@ export default {
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
   grid-template-columns: repeat(12, 1fr);
-  margin: 2rem 0;
   padding: 0 1rem;
 }
 
-.inner {
-  margin: 0;
-  padding: 0;
-}
+.inner { padding: 0; }
 
 @media (max-width: 399px) {
   .fullWidthUntil-mobile { padding: 0 !important; }
@@ -77,23 +73,12 @@ export default {
 .largeColGap { grid-column-gap: 2rem; }
 
 @media (min-width: 48rem) {
-  .grid {
-    padding: 0 2.5rem;
-  }
-  .inner {
-    margin: 0;
-    padding: 0;
-  }
+  .grid { padding: 0 2.5rem; }
+  .inner { padding: 0; }
 }
 
 @media (min-width: 64rem) {
-  .grid {
-    margin: 3.5rem 0;
-    padding: 0 4rem;
-  }
-  .inner {
-    margin: 0;
-    padding: 0;
-  }
+  .grid { padding: 0 4rem; }
+  .inner { padding: 0; }
 }
 </style>

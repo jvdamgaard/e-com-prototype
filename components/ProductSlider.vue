@@ -161,7 +161,7 @@ export default {
   z-index: 10;
 }
 
-.headerGrid { margin-bottom: 0.5rem; }
+.headerGrid { margin-bottom: 1rem; }
 .headerRight { text-align: right; }
 
 .stepIndicatorWrapper {
