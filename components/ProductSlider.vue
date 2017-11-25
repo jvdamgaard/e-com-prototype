@@ -60,6 +60,10 @@ import ProductCard from './ProductCard.vue';
 import { getDataFromCss } from '../utils';
 import { getProducts, Product } from '../utils/product';
 
+const emptyProduct = {
+  images: ['https://images.contentful.com/n8ckv2qtuzei/3ukzEElRAkO08o0owQA28K/d2385d4d79c93a0b8842aa2aa05eeb12/Bars.gif'],
+};
+
 export default {
   components: {
     Grid,
@@ -83,7 +87,14 @@ export default {
       productsInSlider: 0,
       slides: 1,
       fetchedProducts: null,
-      products: [{}, {}, {}, {}, {}, {}],
+      products: [
+        emptyProduct,
+        emptyProduct,
+        emptyProduct,
+        emptyProduct,
+        emptyProduct,
+        emptyProduct,
+      ],
     };
   },
   computed: {
