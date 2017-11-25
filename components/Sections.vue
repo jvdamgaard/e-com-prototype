@@ -29,6 +29,7 @@ export default {
     MainFooter: () => import('./MainFooter.vue'),
     ContentImages: () => import('./ContentImages.vue'),
     ContentText: () => import('./ContentText.vue'),
+    ContentBoxes: () => import('./ContentBoxes.vue'),
     FrontpageTop: () => import('./FrontpageTop.vue'),
     ProductDetailPageSummary: () => import('./ProductDetailPageSummary.vue'),
     ProductDetailPageDescription: () => import('./ProductDetailPageDescription.vue'),

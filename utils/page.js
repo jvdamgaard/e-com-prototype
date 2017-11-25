@@ -5,7 +5,7 @@ import { ProductSlider } from './product';
 
 export function getPage(id, deep = false) {
   return contentful.deliveryClient
-    .getEntries({ 'sys.id': id, include: deep ? 2 : 0 })
+    .getEntries({ 'sys.id': id, include: deep ? 3 : 0 })
     .then((entries) => {
       if (!entries || entries.length === 0) {
         return Promise.reject();
@@ -42,6 +42,14 @@ export function Banner(entry) {
         },
       })),
     },
+  };
+}
+
+export function UniqueSellingPoint(entry) {
+  return {
+    id: entry.sys.id,
+    type: 'UniqueSellingPoints',
+    data: {},
   };
 }
 
@@ -86,20 +94,27 @@ export function Text(entry) {
   };
 }
 
-export function Content(entry) {
+export function ContentBox(entry) {
   return {
     id: entry.sys.id,
-    type: 'ContentContainer',
+    type: 'ContentBox',
     data: {
-      modules: entry.fields.sections.map((section) => {
-        if (section.sys.contentType.sys.id === 'images') {
-          return Images(section);
-        }
-        if (section.sys.contentType.sys.id === 'text') {
-          return Text(section);
-        }
-        return null;
-      }).filter(module => !!module),
+      header: entry.fields.header,
+      text: entry.fields.text,
+      buttonLabel: entry.fields.buttonLabel,
+      link: entry.fields.link,
+      imgSrc: entry.fields.image.fields.file.url,
+    },
+  };
+}
+
+export function ContentBoxes(entry) {
+  console.log(JSON.stringify(entry, null, 2));
+  return {
+    id: entry.sys.id,
+    type: 'ContentBoxes',
+    data: {
+      contentBoxes: entry.fields.contentBoxes.map(ContentBox),
     },
   };
 }
@@ -110,8 +125,10 @@ export function Module(entry) {
   if (entry.sys.contentType.sys.id === 'text') { return Text(entry); }
   if (entry.sys.contentType.sys.id === 'banner') { return Banner(entry); }
   if (entry.sys.contentType.sys.id === 'departments') { return Departments(entry); }
+  if (entry.sys.contentType.sys.id === 'contentBoxes') { return ContentBoxes(entry); }
   if (entry.sys.contentType.sys.id === 'lastSeenSlider') { return LastSeenSlider(entry); }
   if (entry.sys.contentType.sys.id === 'login') { return Login(entry); }
+  if (entry.sys.contentType.sys.id === 'uniqueSellingPoint') { return UniqueSellingPoint(entry); }
   return null;
 }
 

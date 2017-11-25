@@ -67,7 +67,7 @@ export default {
   font-weight: bold;
   text-align: center;
   height: 3rem;
-  padding: 0 0.75rem;
+  padding: 0 1rem;
   border: 0;
   cursor: pointer;
   transition: all 0.2s ease;
