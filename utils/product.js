@@ -3,13 +3,13 @@ import marked from 'marked';
 import kebabCase from 'lodash/kebabCase';
 import * as contentful from '../plugins/contentful';
 
-function ProductDetailPageDescription(content) {
+function ProductDetailPageDescription(entry) {
   return {
-    id: content.sys.id,
+    id: entry.sys.id,
     type: 'ProductDetailPageDescription',
     data: {
-      ...content.fields,
-      sections: content.fields.sections.map(section => ({
+      ...entry.fields,
+      sections: entry.fields.sections.map(section => ({
         id: section.sys.id,
         header: section.fields.header,
         text: marked(section.fields.text, { sanitize: true, breaks: true }),
@@ -27,29 +27,29 @@ export function url({ titel, id }) {
   return `/produkt/${kebabCase(titel)}/${id}/`;
 }
 
-export function Product(product) {
+export function Product(entry) {
   return {
-    id: product.sys.id,
-    titel: product.fields.titel,
-    shortDescription: product.fields.shortDescription,
-    price: product.fields.price,
-    rating: product.fields.rating,
-    recommendations: product.fields.recommendations,
-    beforePrice: product.fields.beforePrice,
-    images: product.fields.images.map(image => image.fields.file.url),
+    id: entry.sys.id,
+    titel: entry.fields.titel,
+    shortDescription: entry.fields.shortDescription,
+    price: entry.fields.price,
+    rating: entry.fields.rating,
+    recommendations: entry.fields.recommendations,
+    beforePrice: entry.fields.beforePrice,
+    images: entry.fields.images.map(image => image.fields.file.url),
     stock: {
-      level: product.fields.stockLevel,
-      status: product.fields.stockStatus,
+      level: entry.fields.stockLevel,
+      status: entry.fields.stockStatus,
     },
     label: {
-      text: product.fields.labelText,
-      color: product.fields.labelColor,
+      text: entry.fields.labelText,
+      color: entry.fields.labelColor,
     },
-    keySpecifications: product.fields.keySpecifications ?
-      product.fields.keySpecifications.map(pair => pair.fields) :
+    keySpecifications: entry.fields.keySpecifications ?
+      entry.fields.keySpecifications.map(pair => pair.fields) :
       null,
-    variants: product.fields.variants ?
-      product.fields.variants.map(variant => ({
+    variants: entry.fields.variants ?
+      entry.fields.variants.map(variant => ({
         ...variant.fields,
         items: variant.fields.items.map(item => ({
           ...item.fields,
@@ -62,36 +62,58 @@ export function Product(product) {
   };
 }
 
-function ProductDetailPageSummary(product) {
+function ProductDetailPageSummary(entry) {
   return {
-    id: 'product-summary',
+    id: `${entry.sys.id}-summary`,
     type: 'ProductDetailPageSummary',
     data: {
-      product: Product(product),
-      departments: product.fields.departments,
+      product: Product(entry),
+      departments: entry.fields.departments,
     },
   };
 }
 
 export function getProducts(query, exclude) {
-  return contentful.deliveryClient
-    .getEntries({
-      ...query,
-      content_type: 'product',
-      include: 1,
-      'sys.id[nin]': exclude,
-    });
+  return contentful.deliveryClient.getEntries({
+    ...query,
+    content_type: 'product',
+    include: 1,
+    'sys.id[nin]': exclude,
+  });
 }
 
-export function ProductSlider(slider) {
+export function ProductSlider(entry) {
   return {
-    id: slider.sys.id,
+    id: entry.sys.id,
     type: 'ProductSlider',
     data: {
-      header: slider.fields.header,
-      query: slider.fields.query,
+      header: entry.fields.header,
+      query: entry.fields.query,
     },
   };
+}
+
+export function ProductModules(entry) {
+  const modules = [];
+
+  // Summary
+  modules.push(ProductDetailPageSummary(entry));
+
+  // Content sections
+  if (entry.fields.content) {
+    entry.fields.content.forEach((content) => {
+      modules.push(ProductDetailPageDescription(content));
+    });
+  }
+
+  // Related products
+  if (entry.fields.relatedProducts) {
+    entry.fields.relatedProducts.forEach((slider) => {
+      modules.push(ProductSlider(slider));
+    });
+  }
+
+  return modules;
 }
 
 export function getProduct(id, deep = false) {
@@ -105,28 +127,30 @@ export function getProduct(id, deep = false) {
     });
 }
 
-export function getProductModules(id) {
-  return getProduct(id, true).then((product) => {
-    const modules = [];
 
-    // Summary
-    modules.push(ProductDetailPageSummary(product));
+export function getProductSections(id) {
+  return getProduct(id, true).then((entry) => {
+    const sections = [];
 
-    // Content sections
-    if (product.fields.content) {
-      product.fields.content.forEach((content) => {
-        modules.push(ProductDetailPageDescription(content));
-      });
-    }
+    sections.push({
+      modules: ProductModules(entry),
+      theme: 'None',
+      id: entry.sys.id,
+    });
 
-    // Related products
-    if (product.fields.relatedProducts) {
-      product.fields.relatedProducts.forEach((slider) => {
-        modules.push(ProductSlider(slider));
-      });
-    }
+    sections.push({
+      modules: [{
+        id: `${entry.sys.id}-LastSeenSlider-module`,
+        type: 'LastSeenSlider',
+        data: {
+          header: 'Du har senest kigget på',
+        },
+      }],
+      theme: 'Dark',
+      id: `${entry.sys.id}-LastSeenSlider-section`,
+    });
 
-    return modules;
+    return sections;
   });
 }
 

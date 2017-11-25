@@ -68,7 +68,11 @@
         </grid>
       </grid-col>
     </grid>
-    <sticky-scroll-wrapper bottomSelector=".section__ProductDetailPageDescription" heightSelector="#stickyProductCard">
+    <sticky-scroll-wrapper
+      bottomSelector=".ProductDetailPageDescription"
+      heightSelector="#stickyProductCard"
+      :class="$style.stickyScrollWrapper"
+    >
       <grid :class="$style.stickyContainer">
         <grid-col mobile="9" desktop="10" />
         <grid-col mobile="3" desktop="2">
@@ -205,6 +209,11 @@ export default {
 .price { margin-bottom: 2rem; }
 
 .marginThumbnail { margin: 1rem; }
+
+.stickyScrollWrapper {
+  margin-top: 3rem;
+  margin-bottom: -3rem;
+}
 
 .stickyContainer {
   margin: 0;

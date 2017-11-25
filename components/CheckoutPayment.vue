@@ -56,10 +56,6 @@
         </p>
       </checkout-box>
     </checkout-form>
-    <checkout-box :inactive="inactive" transparent>
-      <btn type="buy" height="large" shadow>Afsend bestilling og betal</btn>
-      <div :class="$style.terms">Ved afgivelse af denne bestilling accepterer du <nuxt-link to="/">Brands databeskyttelse</nuxt-link> og <nuxt-link to="/">handelsbetingelser</nuxt-link>.</div>
-    </checkout-box>
   </div>
 </template>
 
@@ -126,15 +122,4 @@ export default {
 
 <style module>
 @import '../assets/css/variables.css';
-
-.terms {
-  composes: dimmed from global;
-  composes: small from global;
-  margin-top: 1rem;
-  text-align: center;
-}
-.terms a {
-  color: var(--color-grey-dark);
-  text-decoration: underline;
-}
 </style>

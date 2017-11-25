@@ -1,5 +1,5 @@
 <template>
-  <grid fullWidthUntil="phablet">
+  <grid fullWidthUntil="phablet" class="ProductDetailPageDescription">
     <grid-col
       laptop="9"
       desktop="10"

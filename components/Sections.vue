@@ -38,10 +38,10 @@ export default {
     Login: () => import('./Login.vue'),
   },
   props: {
-    sections: Array,
-  },
-  mounted() {
-    console.log('sections', this.sections);
+    sections: {
+      type: Array,
+      default: [],
+    },
   },
 };
 </script>

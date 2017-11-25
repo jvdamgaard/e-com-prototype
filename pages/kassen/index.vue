@@ -39,7 +39,11 @@
       <grid-col laptop="7" desktop="5">
         <checkout-personal-information :valid="personalInformationValid" />
         <checkout-delivery :valid="deliveryValid" :inactive="!personalInformationValid" />
-        <checkout-payment :valid="paymentValid" :inactive="!personalInformationValid || !deliveryValid" />
+        <checkout-payment :valid="paymentValid" :inactive="!personalInformationValid || !deliveryValid" id="payment" />
+        <checkout-box :inactive="!personalInformationValid || !deliveryValid" transparent>
+          <btn type="buy" height="large" shadow>Afsend bestilling og betal</btn>
+          <div :class="$style.terms">Ved afgivelse af denne bestilling accepterer du <nuxt-link to="/">Brands databeskyttelse</nuxt-link> og <nuxt-link to="/">handelsbetingelser</nuxt-link>.</div>
+        </checkout-box>
       </grid-col>
     </grid>
   </div>
@@ -134,5 +138,16 @@ export default {
 
 .basketItem:not(:last-child) {
   margin-bottom: 1px;
+}
+
+.terms {
+  composes: dimmed from global;
+  composes: small from global;
+  margin-top: 1rem;
+  text-align: center;
+}
+.terms a {
+  color: var(--color-grey-dark);
+  text-decoration: underline;
 }
 </style>

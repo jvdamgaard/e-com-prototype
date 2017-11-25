@@ -25,8 +25,6 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
-.container { background-color: var(--color-white); }
-
 .content > * { margin: 1rem 0; }
 .content > *:first-child { margin-top: 0; }
 .content > *:last-child { margin-bottom: 0; }

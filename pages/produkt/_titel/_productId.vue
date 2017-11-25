@@ -1,33 +1,17 @@
 <template>
-  <!-- Modules -->
-  <div>
-    <modules :modules="modules" />
-    <section>
-      <product-slider
-        :initProducts="user.lastSeen"
-        header="Du har senest kigget på"
-        key="last-seen"
-      />
-    </section>
-  </div>
+  <sections :sections="sections" />
 </template>
 
 <script>
-import { mapState } from 'vuex'; //eslint-disable-line
-import { getProductModules } from '../../../utils/product';
-import Modules from '../../../components/Modules.vue';
+import { getProductSections } from '../../../utils/product';
 
 export default {
   components: {
-    Modules,
-    ProductSlider: () => import('../../../components/ProductSlider.vue'),
+    Sections: () => import('../../../components/Sections.vue'),
   },
-  computed: {
-    ...mapState(['user']),
-  },
-  asyncData({ params }) {
-    return getProductModules(params.productId)
-      .then(modules => ({ modules }));
+  async asyncData({ params }) {
+    const sections = await getProductSections(params.productId);
+    return { sections };
   },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;

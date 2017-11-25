@@ -15,12 +15,15 @@
       :key="department.titel"
     >
       <nuxt-link to="/" :class="$style.container">
-        <image-container
-          :src="department.iconSrc"
-          :width="400"
-          :height="225"
-          :lazy="lazy"
-        />
+        <div :class="$style.image">
+          <image-container
+            :src="department.iconSrc"
+            :width="400"
+            :height="300"
+            :lazy="lazy"
+            :crop="false"
+          />
+        </div>
         <div :class="$style.text">
           {{ department.titel }}
         </div>
@@ -70,6 +73,10 @@ export default {
   height: calc(100% + 1rem);
   width: calc(100% + 1rem);
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
+}
+
+.image {
+  padding: 1rem 1rem 0;
 }
 
 .headerRight { text-align: right; }
