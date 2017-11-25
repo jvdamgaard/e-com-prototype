@@ -20,5 +20,6 @@ export function loadImage(src) {
 }
 
 export function numberWithDots(x) {
+  if (!x) { return ''; }
   return x.toString().replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }

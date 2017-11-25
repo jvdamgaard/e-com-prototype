@@ -3,8 +3,8 @@
     <image-container
       :src="imgSrc"
       :lazy="lazy"
-      :width="1000"
-      :height="1000"
+      :width="1600"
+      :height="800"
     />
     <div :class="$style.content">
       <h2>{{ header }}</h2>

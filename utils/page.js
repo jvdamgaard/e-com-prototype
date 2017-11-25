@@ -109,7 +109,6 @@ export function ContentBox(entry) {
 }
 
 export function ContentBoxes(entry) {
-  console.log(JSON.stringify(entry, null, 2));
   return {
     id: entry.sys.id,
     type: 'ContentBoxes',
@@ -141,5 +140,6 @@ export function Section(entry) {
 }
 
 export function getPageSections(id) {
-  return getPage(id, true).then(page => page.fields.sections.map(Section));
+  return getPage(id, true)
+    .then(page => page.fields.sections.map(Section));
 }

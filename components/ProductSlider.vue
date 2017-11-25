@@ -83,7 +83,7 @@ export default {
       productsInSlider: 0,
       slides: 1,
       fetchedProducts: null,
-      products: [],
+      products: [{}, {}, {}, {}, {}, {}],
     };
   },
   computed: {

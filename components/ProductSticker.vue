@@ -20,7 +20,7 @@ export default {
       return match.quantity;
     },
     label() {
-      if (this.product.stock.level === 0) {
+      if (this.product.stock && this.product.stock.level === 0) {
         return {
           color: 'red',
           text: this.product.stock.status,

@@ -4,7 +4,7 @@
     :class="[
       $style.container,
       {
-        [$style.outOfStock]: product.stock.level === 0,
+        [$style.outOfStock]: product.stock && product.stock.level === 0,
         [$style.inBasket]: quantityInBasket > 0,
         [$style.static]: static,
         [$style.noStatic]: !static,
@@ -30,7 +30,7 @@
     </p>
     <p :class="$style.titel">
       {{product.titel}}<br>
-      <span v-if="product.stock.status" :class="$style.stockStatus">{{product.stock.status}}</span>
+      <span v-if="product.stock && product.stock.status" :class="$style.stockStatus">{{product.stock.status}}</span>
     </p>
     <p :class="$style.prices">
       <span v-if="product.beforePrice" :class="$style.beforePrice">{{numberWithDots(product.beforePrice)}},-</span>

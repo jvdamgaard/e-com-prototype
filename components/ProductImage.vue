@@ -8,7 +8,7 @@
   ]">
     <div :class="$style.rightArrow" @click.prevent.stop="nextImage">
       <arrow
-        v-if="images.length > 1 && imagePosition < images.length - 1"
+        v-if="images && images.length > 1 && imagePosition < images.length - 1"
         direction="right"
       />
     </div>
@@ -94,6 +94,7 @@ export default {
       }
     },
     getImagePath(position) {
+      if (!this.images) { return ''; }
       return `${this.images[position]}?fm=webp&w=${this.width}&h=${this.height}`;
     },
     loadImage(position) {
