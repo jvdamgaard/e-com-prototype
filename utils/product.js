@@ -82,13 +82,14 @@ export function getProducts(query, exclude) {
   });
 }
 
-export function ProductSlider(entry) {
+export async function ProductSlider(entry) {
+  const query = await getProducts({ ...entry.fields.query, limit: 36 });
   return {
     id: entry.sys.id,
     type: 'ProductSlider',
     data: {
       header: entry.fields.header,
-      query: entry.fields.query,
+      products: query.items.map(Product),
     },
   };
 }

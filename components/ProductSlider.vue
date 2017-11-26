@@ -25,7 +25,7 @@
       <div :class="$style.sliderInner" :style="{
           'transform': `translate3d(${position === 0 ? '0' : `-${position}00%`}, 0, 0)`,
         }">
-        <div v-for="(product, i) in shownProducts" :key="product.id" :class="$style.item">
+        <div v-for="(product, i) in products" :key="product.id" :class="$style.item">
           <template v-if="i<=5">
             <product-card :product="product" :lazy="lazy" />
           </template>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div
-        v-if="position + 1 < shownProducts.length / productsInSlider"
+        v-if="position + 1 < products.length / productsInSlider"
         :class="[$style.move, $style.next]"
       >
         <div :class="$style.moveInner" @click="next">
@@ -58,11 +58,6 @@ import Arrow from './Arrow.vue';
 import Btn from './Btn.vue';
 import ProductCard from './ProductCard.vue';
 import { getDataFromCss } from '../utils';
-import { getProducts, Product } from '../utils/product';
-
-const emptyProduct = {
-  images: ['https://images.contentful.com/n8ckv2qtuzei/3ukzEElRAkO08o0owQA28K/d2385d4d79c93a0b8842aa2aa05eeb12/Bars.gif'],
-};
 
 export default {
   components: {
@@ -74,8 +69,7 @@ export default {
   },
   props: {
     header: String,
-    query: Object,
-    initProducts: Array,
+    products: Array,
     lazy: {
       type: Boolean,
       default: true,
@@ -86,24 +80,7 @@ export default {
       position: 0,
       productsInSlider: 0,
       slides: 1,
-      fetchedProducts: null,
-      products: [
-        emptyProduct,
-        emptyProduct,
-        emptyProduct,
-        emptyProduct,
-        emptyProduct,
-        emptyProduct,
-      ],
     };
-  },
-  computed: {
-    shownProducts() {
-      if (this.fetchedProducts) {
-        return this.fetchedProducts;
-      }
-      return this.products;
-    },
   },
   methods: {
     next() {
@@ -118,7 +95,7 @@ export default {
     },
     setProductsInSlider() {
       this.productsInSlider = getDataFromCss('visibleProductsInSlider', 0);
-      this.slides = Math.ceil(this.shownProducts.length / this.productsInSlider);
+      this.slides = Math.ceil(this.products.length / this.productsInSlider);
     },
     slide: throttle((delta, next, prev) => {
       if (delta < 0) {
@@ -132,18 +109,6 @@ export default {
         this.slide(event.wheelDeltaX, this.next, this.prev);
       }
     },
-  },
-  mounted() {
-    if (this.initProducts) {
-      this.products = this.initProducts;
-      return;
-    }
-    if (this.query) {
-      getProducts({ ...this.query, limit: 36 })
-        .then((data) => {
-          this.products = data.items.map(Product);
-        });
-    }
   },
 };
 </script>

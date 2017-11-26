@@ -1,6 +1,6 @@
 <template>
   <product-slider
-    :initProducts="user.lastSeen"
+    :products="user.lastSeen"
     :header="header"
   />
 </template>

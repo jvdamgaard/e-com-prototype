@@ -3,15 +3,15 @@ import marked from 'marked';
 import * as contentful from '../plugins/contentful';
 import { ProductSlider } from './product';
 
-export function getPage(id, deep = false) {
-  return contentful.deliveryClient
-    .getEntries({ 'sys.id': id, include: deep ? 3 : 0 })
-    .then((entries) => {
-      if (!entries || entries.length === 0) {
-        return Promise.reject();
-      }
-      return entries.items[0];
-    });
+export async function getPage(id, deep = false) {
+  const entries = await contentful.deliveryClient
+    .getEntries({ 'sys.id': id, include: deep ? 3 : 0 });
+
+  if (!entries || entries.length === 0) {
+    return [];
+  }
+
+  return entries.items[0];
 }
 
 export function Images(entry) {
@@ -118,28 +118,33 @@ export function ContentBoxes(entry) {
   };
 }
 
-export function Module(entry) {
-  if (entry.sys.contentType.sys.id === 'productSlider') { return ProductSlider(entry); }
-  if (entry.sys.contentType.sys.id === 'images') { return Images(entry); }
-  if (entry.sys.contentType.sys.id === 'text') { return Text(entry); }
-  if (entry.sys.contentType.sys.id === 'banner') { return Banner(entry); }
-  if (entry.sys.contentType.sys.id === 'departments') { return Departments(entry); }
-  if (entry.sys.contentType.sys.id === 'contentBoxes') { return ContentBoxes(entry); }
-  if (entry.sys.contentType.sys.id === 'lastSeenSlider') { return LastSeenSlider(entry); }
-  if (entry.sys.contentType.sys.id === 'login') { return Login(entry); }
-  if (entry.sys.contentType.sys.id === 'uniqueSellingPoint') { return UniqueSellingPoint(entry); }
-  return null;
+export async function Module(entry) {
+  let module = null;
+  if (entry.sys.contentType.sys.id === 'productSlider') { module = await ProductSlider(entry); }
+  if (entry.sys.contentType.sys.id === 'images') { module = await Images(entry); }
+  if (entry.sys.contentType.sys.id === 'text') { module = await Text(entry); }
+  if (entry.sys.contentType.sys.id === 'banner') { module = await Banner(entry); }
+  if (entry.sys.contentType.sys.id === 'departments') { module = await Departments(entry); }
+  if (entry.sys.contentType.sys.id === 'contentBoxes') { module = await ContentBoxes(entry); }
+  if (entry.sys.contentType.sys.id === 'lastSeenSlider') { module = await LastSeenSlider(entry); }
+  if (entry.sys.contentType.sys.id === 'login') { module = await Login(entry); }
+  if (entry.sys.contentType.sys.id === 'uniqueSellingPoint') { module = await UniqueSellingPoint(entry); }
+  return module;
 }
 
-export function Section(entry) {
+export async function Section(entry) {
+  const promises = entry.fields.modules.map(Module);
+  const modules = await Promise.all(promises);
   return {
-    modules: entry.fields.modules.map(Module).filter(module => !!module),
+    modules: modules.filter(module => !!module),
     theme: entry.fields.theme || 'None',
     id: entry.sys.id,
   };
 }
 
-export function getPageSections(id) {
-  return getPage(id, true)
-    .then(page => page.fields.sections.map(Section));
+export async function getPageSections(id) {
+  const page = await getPage(id, true);
+  const promises = page.fields.sections.map(Section);
+  const sections = await Promise.all(promises);
+  return sections;
 }
