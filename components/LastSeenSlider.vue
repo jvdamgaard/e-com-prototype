@@ -2,6 +2,7 @@
   <product-slider
     :products="user.lastSeen"
     :header="header"
+    key="last-seen"
   />
 </template>
 

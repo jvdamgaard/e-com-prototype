@@ -86,7 +86,7 @@ export default {
 <style module>
 @import '../assets/css/variables.css';
 
-.marginTop { margin-top: 2rem; }
+.marginTop { margin-top: 1rem; }
 .padding { padding: 2rem 1rem; }
 
 .header {

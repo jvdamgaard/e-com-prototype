@@ -1,16 +1,15 @@
 <template>
-  <!-- Modules -->
   <div>
-    <section>
-      <basket />
-    </section>
-    <section>
-      <product-slider
-        :initProducts="user.lastSeen"
-        header="Du har senest kigget på"
-        key="last-seen"
-      />
-    </section>
+    <article class="theme-None" :class="$style.basketContainer">
+      <section>
+        <basket />
+      </section>
+    </article>
+    <article class="theme-Dark" key="last-seen-basket">
+      <section>
+        <last-seen-slider header="Du har senest kigget på" />
+      </section>
+    </article>
   </div>
 </template>
 
@@ -19,11 +18,8 @@ import { mapState, mapActions } from 'vuex'; //eslint-disable-line
 
 export default {
   components: {
-    ProductSlider: () => import('../../components/ProductSlider.vue'),
     Basket: () => import('../../components/Basket.vue'),
-  },
-  computed: {
-    ...mapState(['user']),
+    LastSeenSlider: () => import('../../components/LastSeenSlider.vue'),
   },
   methods: {
     ...mapActions({
@@ -38,5 +34,6 @@ export default {
 };
 </script>
 
-<style>
+<style module>
+.basketContainer { margin-top: 1rem !important; }
 </style>
