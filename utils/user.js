@@ -10,7 +10,7 @@ export function getUser() {
   return contentful.deliveryClient
     .getEntries({
       'sys.id': window.localStorage.getItem('userId'),
-      include: 2,
+      include: 3,
     })
     .then(entries => entries.items[0]);
 }
@@ -46,7 +46,6 @@ export function createBasketItem(item) {
 }
 
 export function deleteBasketItem(item) {
-  console.log('Delete', item);
   return contentful.managementClient
     .getSpace(process.env.CTF_SPACE_ID)
     .then(space => space.getEntry(item.sys.id))
@@ -62,7 +61,6 @@ export function uploadBasket(basket) {
       .then((basketItems) => {
         if (user.fields.basket) {
           oldBasketItems = user.fields.basket['da-DK'];
-          console.log(oldBasketItems);
         }
         user.fields.basket = {
           'da-DK': basketItems.map(basketItem => ({

@@ -144,6 +144,12 @@ export const actions = {
       ctx.commit('setBasketItems', user.fields.basket.map(item => ({
         quantity: item.fields.quantity,
         product: Product(item.fields.product),
+        variantSelections: item.fields.variantSelections ?
+          item.fields.variantSelections.map(selection => ({
+            variant: selection.fields.variantGroup.fields.header,
+            item: selection.fields.variant.fields.description,
+          })) :
+          null,
       })));
     }
 
@@ -159,6 +165,7 @@ export const actions = {
         content_type: 'user',
         'fields.email': email,
         'fields.password': sha256().update(password).digest('hex'),
+        include: 3,
       })
       .then((res) => {
         window.localStorage.setItem('userId', res.items[0].sys.id);

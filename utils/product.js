@@ -50,8 +50,10 @@ export function Product(entry) {
       null,
     variants: entry.fields.variants ?
       entry.fields.variants.map(variant => ({
+        id: variant.sys.id,
         ...variant.fields,
         items: variant.fields.items.map(item => ({
+          id: item.sys.id,
           ...item.fields,
           images: item.fields && item.fields.images ?
             item.fields.images.map(image => image.fields.file.url) :
