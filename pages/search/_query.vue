@@ -2,12 +2,24 @@
   <article class="theme-None" :class="$style.container">
     <section>
       <grid>
-        <grid-col desktop="2" :class="$style.filterContainer">
+        <grid-col
+          mobile="0"
+          laptop="3"
+          desktop="2"
+          :class="$style.filterContainer"
+        >
           <div :class="$style.filters">
             Filtre
           </div>
         </grid-col>
-        <grid-col v-for="product in products" :key="product.id" desktop="2">
+        <grid-col
+          v-for="product in products"
+          :key="product.id"
+          mobile="6"
+          tablet="4"
+          laptop="3"
+          desktop="2"
+        >
           <product-card :product="product" :lazy="true" />
         </grid-col>
       </grid>

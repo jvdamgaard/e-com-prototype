@@ -96,7 +96,7 @@ export async function ProductSlider(entry) {
   };
 }
 
-export function ProductModules(entry) {
+export async function ProductModules(entry) {
   const modules = [];
 
   // Summary
@@ -111,50 +111,52 @@ export function ProductModules(entry) {
 
   // Related products
   if (entry.fields.relatedProducts) {
-    entry.fields.relatedProducts.forEach((slider) => {
-      modules.push(ProductSlider(slider));
+    const sliderPromises = entry.fields.relatedProducts.map(await ProductSlider);
+    const sliders = await Promise.all(sliderPromises);
+    sliders.forEach((slider) => {
+      modules.push(slider);
     });
   }
 
   return modules;
 }
 
-export function getProduct(id, deep = false) {
-  return contentful.deliveryClient
-    .getEntries({ 'sys.id': id, include: deep ? 2 : 0 })
-    .then((entries) => {
-      if (!entries || entries.length === 0) {
-        return Promise.reject();
-      }
-      return entries.items[0];
-    });
+export async function getProduct(id, deep = false) {
+  const entries = await contentful.deliveryClient
+    .getEntries({ 'sys.id': id, include: deep ? 2 : 0 });
+
+  if (!entries || entries.length === 0) {
+    return null;
+  }
+  return entries.items[0];
 }
 
 
-export function getProductSections(id) {
-  return getProduct(id, true).then((entry) => {
-    const sections = [];
+export async function getProductSections(id) {
+  const entry = await getProduct(id, true);
+  const sections = [];
 
-    sections.push({
-      modules: ProductModules(entry),
-      theme: 'None',
-      id: entry.sys.id,
-    });
+  const modules = await ProductModules(entry);
 
-    sections.push({
-      modules: [{
-        id: `${entry.sys.id}-LastSeenSlider-module`,
-        type: 'LastSeenSlider',
-        data: {
-          header: 'Du har senest kigget på',
-        },
-      }],
-      theme: 'Dark',
-      id: `${entry.sys.id}-LastSeenSlider-section`,
-    });
-
-    return sections;
+  sections.push({
+    modules,
+    theme: 'None',
+    id: entry.sys.id,
   });
+
+  sections.push({
+    modules: [{
+      id: `${entry.sys.id}-LastSeenSlider-module`,
+      type: 'LastSeenSlider',
+      data: {
+        header: 'Du har senest kigget på',
+      },
+    }],
+    theme: 'Dark',
+    id: `${entry.sys.id}-LastSeenSlider-section`,
+  });
+
+  return sections;
 }
 
 export function searchProducts(query) {
