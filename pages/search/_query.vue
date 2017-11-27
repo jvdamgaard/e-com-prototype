@@ -1,9 +1,18 @@
 <template>
-  <grid>
-    <grid-col v-for="product in products" :key="product.id" desktop="2">
-      <product-card :product="product" :lazy="true" />
-    </grid-col>
-  </grid>
+  <article class="theme-None" :class="$style.container">
+    <section>
+      <grid>
+        <grid-col desktop="2" :class="$style.filterContainer">
+          <div :class="$style.filters">
+            Filtre
+          </div>
+        </grid-col>
+        <grid-col v-for="product in products" :key="product.id" desktop="2">
+          <product-card :product="product" :lazy="true" />
+        </grid-col>
+      </grid>
+    </section>
+  </article>
 </template>
 
 <script>
@@ -35,5 +44,16 @@ export default {
 };
 </script>
 
-<style>
+<style module>
+@import '../../assets/css/variables.css';
+
+.container { margin-top: 1rem; }
+
+.filterContainer {
+  grid-row: span 12;
+}
+.filters {
+  background-color: var(--color-white);
+  height: 100%;
+}
 </style>

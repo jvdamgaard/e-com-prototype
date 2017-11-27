@@ -158,6 +158,6 @@ export function getProductSections(id) {
 }
 
 export function searchProducts(query) {
-  return getProducts({ query, limit: 36 })
+  return getProducts({ query, limit: 60 })
     .then(data => data.items.map(Product));
 }
