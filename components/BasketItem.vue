@@ -16,6 +16,12 @@
       <p v-if="quantity > 1">
         <span :class="$style.dimmed">Pr. stk.:</span> {{numberWithDots(product.price)}} kr
       </p>
+      <p
+        v-if="variantSelections"
+        v-for="variantSelection in variantSelections"
+      >
+        <span :class="$style.dimmed">{{ variantSelection.variant }}:</span> {{ variantSelection.item }}
+      </p>
       <div :class="$style.btns">
         <p><btn type="ghost-dimmed" height="small" @click.native="removeFromBasket(product)" :class="$style.btn">Fjern fra kurven</btn></p>
       </div>
@@ -50,6 +56,7 @@ export default {
   props: {
     product: Object,
     quantity: Number,
+    variantSelections: Array,
   },
   computed: {
     url() {

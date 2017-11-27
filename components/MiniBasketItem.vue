@@ -15,10 +15,15 @@
 
       <span v-if="product.stock.status" :class="$style.red"><br>{{product.stock.status}}</span>
       <br><span :class="$style.dimmed">Antal:</span> {{quantity}}
-      <span v-if="quantity > 1"><br>
-        <span :class="$style.dimmed">Pr. stk.:</span> {{numberWithDots(product.price)}} kr
-      </span>
-
+      <template v-if="quantity > 1">
+        <br><span :class="$style.dimmed">Pr. stk.:</span> {{numberWithDots(product.price)}} kr
+      </template>
+      <template
+        v-if="variantSelections"
+        v-for="variantSelection in variantSelections"
+      >
+        <br><span :class="$style.dimmed">{{ variantSelection.variant }}:</span> {{ variantSelection.item }}
+      </template>
       <template v-if="interactive">
         <br><a href="#" :class="$style.blackLink" @click.prevent="removeFromBasket(product)">Fjern fra kurven</a>
       </template>
@@ -42,6 +47,7 @@ export default {
   props: {
     quantity: Number,
     product: Object,
+    variantSelections: Array,
     interactive: {
       type: Boolean,
       default: true,
