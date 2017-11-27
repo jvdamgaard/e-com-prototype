@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     url() {
-      return `${this.src}?w=${this.width}&h=${this.height}&fm=webp${this.crop ? '&fit=fill&f=face' : ''}`;
+      return `${this.src}?w=${this.width}&h=${this.height}&fm=jpg${this.crop ? '&fit=fill&f=face' : ''}`;
     },
   },
 };

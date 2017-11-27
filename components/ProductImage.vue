@@ -95,7 +95,7 @@ export default {
     },
     getImagePath(position) {
       if (!this.images) { return ''; }
-      return `${this.images[position]}?fm=webp&w=${this.width}&h=${this.height}`;
+      return `${this.images[position]}?fm=jpg&w=${this.width}&h=${this.height}`;
     },
     loadImage(position) {
       this.loading = true;
