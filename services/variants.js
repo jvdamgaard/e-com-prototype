@@ -15,6 +15,10 @@ const VARIANT_URLS = process.argv.splice(4);
 const client = contentfulManagement
   .createClient({ accessToken: process.env.CTF_CM_ACCESS_TOKEN });
 
+function jsUcfirst(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function createImageAsset({ space, url }) {
   const extension = path.extname(url).replace('.', '');
   const filename = path.basename(url);
@@ -71,6 +75,7 @@ function createVariant({ space, url }) {
       selector: '.variantSelector select option:selected',
       attr: 'value',
     },
+    titel: 'h1.bilka_main_heading',
     images: {
       listItem: '.pdp_desk_media_pager li',
       data: {
@@ -82,7 +87,9 @@ function createVariant({ space, url }) {
       },
     },
   })
-    .then(data => Promise.all(data.images.map(image => createImageAsset({ space, url: image.url })))
+    .then(data => Promise.all(data.images
+      .filter(image => image.url.indexOf('http') === 0)
+      .map(image => createImageAsset({ space, url: image.url })))
       .then((images) => {
         const imageLinks = images.map(image => ({
           sys: {
@@ -91,9 +98,10 @@ function createVariant({ space, url }) {
             type: 'Link',
           },
         }));
+
         return space.createEntry('variant', {
           fields: {
-            description: { 'da-DK': data.description },
+            description: { 'da-DK': jsUcfirst(data.description || data.titel.split(' - ')[1]) },
             images: { 'da-DK': imageLinks },
           },
         });
