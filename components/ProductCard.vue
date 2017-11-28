@@ -22,7 +22,9 @@
       :hovering="hovering"
       type="productCard"
       width="400"
-      height="300"
+      height="400"
+      :crop="product.hasEnvironmentImage"
+      :class="{ [$style.fullWidthImage]: product.hasEnvironmentImage }"
     />
     <p :class="$style.reviews">
       <star v-for="n in 5" :key="n" :rating="product.rating" :pos="n" />
@@ -156,6 +158,13 @@ export default {
   :global(.no-touch) .outOfStock.noStatic:hover {
     padding-bottom: 3.5rem;
   }
+}
+
+.fullWidthImage {
+  margin-left: -2.5rem !important;
+  margin-top: -2.5rem !important;
+  width: calc(100% + 5rem) !important;
+  padding-bottom: calc(100% + 3rem) !important;
 }
 
 .sticker {

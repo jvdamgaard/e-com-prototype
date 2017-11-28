@@ -37,6 +37,7 @@ export function Product(entry) {
     recommendations: entry.fields.recommendations,
     beforePrice: entry.fields.beforePrice,
     images: entry.fields.images.map(image => image.fields.file.url),
+    hasEnvironmentImage: !!entry.fields.hasEnvironmentImage,
     stock: {
       level: entry.fields.stockLevel,
       status: entry.fields.stockStatus,

@@ -70,6 +70,10 @@ export default {
       type: String,
       default: '1000',
     },
+    crop: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -95,7 +99,7 @@ export default {
     },
     getImagePath(position) {
       if (!this.images) { return ''; }
-      return `${this.images[position]}?fm=jpg&w=${this.width}&h=${this.height}`;
+      return `${this.images[position]}?fm=jpg&w=${this.width}&h=${this.height}${this.crop ? '&fit=fill&f=face' : ''}`;
     },
     loadImage(position) {
       this.loading = true;
@@ -142,7 +146,7 @@ export default {
 }
 
 .productCard {
-  padding-bottom: 75%;
+  padding-bottom: 100%;
 }
 
 .image img {
