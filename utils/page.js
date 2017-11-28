@@ -155,7 +155,7 @@ function Department(entry) {
 
 export async function getPage(id) {
   const page = await getPageEntry(id, true);
-  const promises = page.fields.sections.map(Section);
+  const promises = page.fields.sections ? page.fields.sections.map(Section) : [];
   const sections = await Promise.all(promises);
   const departments = page.fields.parents && page.fields.parents.map(Department);
   return {
