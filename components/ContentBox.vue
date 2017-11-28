@@ -42,11 +42,16 @@ export default {
 
 .container {
   background-color: var(--color-white);
+  height: 100%;
 }
 
 .content {
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+}
+
+@media (min-width: 48rem) {
+  .content { padding: 2rem; }
 }
 
 .content > *:not(:last-child) {

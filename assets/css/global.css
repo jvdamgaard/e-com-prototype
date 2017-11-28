@@ -62,8 +62,8 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, .smallLineHeight { line-height: 1.1; }
   color: var(--color-black);
 }
 
-.theme-None section:first-child { padding-top: 0; }
-.theme-None section:last-child { padding-bottom: 0; }
+.theme-None section:first-child, .theme-noTopPadding section:first-child { padding-top: 0; }
+.theme-None section:last-child, .theme-noBottomPadding section:last-child { padding-bottom: 0; }
 
 .theme-Dark {
   background-color: var(--color-grey-darker);

@@ -205,18 +205,34 @@ export default {
 
 .prices {
   position: absolute;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 0.5rem;
+  right: 0.5rem;
   transition: all 0.2s ease;
   text-align: right;
 }
 :global(.no-touch) .noStatic:hover .prices {
-  bottom: 4rem;
-  right: 1.5rem;
+  bottom: 3.5rem;
+  right: 1rem;
 }
 :global(.no-touch) .outOfStock.noStatic:hover .prices {
-  bottom: 1.5rem;
+  bottom: 1rem;
 }
+
+@media (min-width: 36rem) {
+  .prices {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  :global(.no-touch) .noStatic:hover .prices {
+    bottom: 4rem;
+    right: 1.5rem;
+  }
+  :global(.no-touch) .outOfStock.noStatic:hover .prices {
+    bottom: 1.5rem;
+  }
+}
+
+
 .beforePrice {
   color: var(--color-grey);
   text-decoration: line-through;

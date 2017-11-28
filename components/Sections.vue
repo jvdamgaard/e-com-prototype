@@ -3,7 +3,13 @@
     <article
       v-for="(section, i) in sections"
       :key="section.id"
-      :class="`theme-${section.theme}`"
+      :class="[
+        `theme-${section.theme}`,
+        {
+          'theme-noTopPadding': section.noTopPadding,
+          'theme-noBottomPadding': section.noBottomPadding,
+        },
+      ]"
     >
       <section
         v-for="module in section.modules"

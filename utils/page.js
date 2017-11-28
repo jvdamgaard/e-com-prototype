@@ -140,6 +140,8 @@ export async function Section(entry) {
   return {
     modules: modules.filter(module => !!module),
     theme: entry.fields.theme || 'None',
+    noTopPadding: !!entry.fields.noTopPadding,
+    noBottomPadding: !!entry.fields.noBottomPadding,
     id: entry.sys.id,
   };
 }
@@ -147,7 +149,7 @@ export async function Section(entry) {
 function Department(entry) {
   return {
     titel: entry.fields.titel,
-    url: (entry.sys.id === '53o6jmHL3GcsqSGOCEOQmu') ? '/' : `/afdeling/${kebabCase(entry.fields.titel)}/${entry.sys.id}/`,
+    url: (entry.sys.id === '53o6jmHL3GcsqSGOCEOQmu') ? '/' : `/${kebabCase(entry.fields.type)}/${kebabCase(entry.fields.titel)}/${entry.sys.id}/`,
   };
 }
 

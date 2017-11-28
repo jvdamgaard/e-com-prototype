@@ -57,7 +57,7 @@ module.exports = {
 
       // Pages
       const pageEntries = await client.getEntries({ content_type: 'page', limit: 1000 });
-      pageEntries.items.forEach(item => routes.push(`/afdeling/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+      pageEntries.items.forEach(item => routes.push(`/${item.fields.type.toLowerCase()}/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
 
       return routes;
     },
