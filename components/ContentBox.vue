@@ -9,7 +9,7 @@
     <div :class="$style.content">
       <h2>{{ header }}</h2>
       <p>{{ text }}</p>
-      <btn to="link" type="ghost" :class="$style.btn">{{ buttonLabel }}</btn>
+      <btn :to="link" type="ghost" :class="$style.btn">{{ buttonLabel }}</btn>
     </div>
   </div>
 </template>
