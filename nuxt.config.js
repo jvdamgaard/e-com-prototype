@@ -43,18 +43,23 @@ module.exports = {
     },
   },
   generate: {
-    routes() {
+    routes: async () => {
       const routes = [];
-      return contentful.createClient({
+
+      const client = contentful.createClient({
         space: process.env.CTF_SPACE_ID,
         accessToken: process.env.CTF_CD_ACCESS_TOKEN,
-      })
-        .getEntries({ content_type: 'product' })
-        .then(response => (
-          response.items.forEach(item => routes.push(`/produkt/${kebabCase(item.fields.titel)}/${item.sys.id}/`))
-        ))
+      });
 
-        .then(() => routes);
+      // Products
+      const productEntries = await client.getEntries({ content_type: 'product', limit: 1000 });
+      productEntries.items.forEach(item => routes.push(`/produkt/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      // Pages
+      const pageEntries = await client.getEntries({ content_type: 'page', limit: 1000 });
+      pageEntries.items.forEach(item => routes.push(`/afdeling/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      return routes;
     },
   },
   build: {

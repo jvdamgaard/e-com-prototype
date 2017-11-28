@@ -1,7 +1,7 @@
 <template>
   <grid :class="$style.container">
-    <grid-col mobile="0" laptop="2" desktop="3" />
-    <grid-col laptop="8" desktop="6" >
+    <grid-col v-if="!fullWidth" mobile="0" laptop="2" desktop="3" />
+    <grid-col :laptop="!fullWidth ? '8' : undefined" :desktop="!fullWidth ? '6' : undefined" >
       <div v-html="content" :class="$style.content" />
     </grid-col>
   </grid>
@@ -18,6 +18,10 @@ export default {
   },
   props: {
     content: String,
+    fullWidth: {
+      type: Boolean,
+      default: false,
+    },
   },
 };
 </script>

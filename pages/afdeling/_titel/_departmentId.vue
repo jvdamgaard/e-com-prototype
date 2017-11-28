@@ -1,18 +1,23 @@
 <template>
-  <sections :sections="sections" />
+  <main>
+    <breadcrumb v-if="departments" :paths="departments" :current="titel" />
+    <sections :sections="sections" />
+  </main>
 </template>
 
 <script>
 import Sections from '../../../components/Sections.vue';
-import { getPageSections } from '../../../utils/page';
+import Breadcrumb from '../../../components/Breadcrumb.vue';
+import { getPage } from '../../../utils/page';
 
 export default {
   components: {
     Sections,
+    Breadcrumb,
   },
   async asyncData({ params }) {
-    const sections = await getPageSections(params.departmentId);
-    return { sections };
+    const data = await getPage(params.departmentId);
+    return data;
   },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;

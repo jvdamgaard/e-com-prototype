@@ -4,15 +4,15 @@
 
 <script>
 import Sections from '../components/Sections.vue';
-import { getPageSections } from '../utils/page';
+import { getPage } from '../utils/page';
 
 export default {
   components: {
     Sections,
   },
   async asyncData() {
-    const sections = await getPageSections('53o6jmHL3GcsqSGOCEOQmu');
-    return { sections };
+    const data = await getPage('53o6jmHL3GcsqSGOCEOQmu');
+    return data;
   },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;

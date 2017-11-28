@@ -1,14 +1,15 @@
 /* eslint no-param-reassign: 0 */
 import marked from 'marked';
+import kebabCase from 'lodash/kebabCase';
 import * as contentful from '../plugins/contentful';
 import { ProductSlider } from './product';
 
-export async function getPage(id, deep = false) {
+export async function getPageEntry(id, deep = false) {
   const entries = await contentful.deliveryClient
     .getEntries({ 'sys.id': id, include: deep ? 3 : 0 });
 
   if (!entries || entries.length === 0) {
-    return [];
+    return null;
   }
 
   return entries.items[0];
@@ -89,6 +90,7 @@ export function Text(entry) {
     id: entry.sys.id,
     type: 'ContentText',
     data: {
+      fullWidth: !!entry.fields.fullWidth,
       content: marked(entry.fields.content, { gfm: true }),
     },
   };
@@ -142,9 +144,21 @@ export async function Section(entry) {
   };
 }
 
-export async function getPageSections(id) {
-  const page = await getPage(id, true);
+function Department(entry) {
+  return {
+    titel: entry.fields.titel,
+    url: (entry.sys.id === '53o6jmHL3GcsqSGOCEOQmu') ? '/' : `/afdeling/${kebabCase(entry.fields.titel)}/${entry.sys.id}/`,
+  };
+}
+
+export async function getPage(id) {
+  const page = await getPageEntry(id, true);
   const promises = page.fields.sections.map(Section);
   const sections = await Promise.all(promises);
-  return sections;
+  const departments = page.fields.parents && page.fields.parents.map(Department);
+  return {
+    sections,
+    departments,
+    titel: page.fields.titel,
+  };
 }
