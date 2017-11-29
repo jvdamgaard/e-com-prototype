@@ -162,6 +162,8 @@ article:last-child { margin-bottom: 0; }
   clear: both;
 }
 
+.disable-hover { pointer-events: none; }
+
 
 /* Form */
 
