@@ -2,7 +2,7 @@
   <div :class="$style.container">
     <h3>Top brands</h3>
     <p>
-      <nuxt-link v-for="brand in brands" to="/" :key="brand.imgSrc">
+      <nuxt-link v-for="brand in brands" :to="brand.url || '/'" :key="brand.imgSrc">
         <img v-lazy="brand.imgSrc" :class="$style.brandIcon"/>
       </nuxt-link>
     </p>
@@ -27,7 +27,7 @@ export default {
   height: 2rem;
   margin-right: 1rem;
   margin-top: 1rem;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease !important;
 }
 :global(.no-touch) .brandIcon:hover {
   transform: scale(1.2);
