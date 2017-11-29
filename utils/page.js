@@ -4,6 +4,17 @@ import kebabCase from 'lodash/kebabCase';
 import * as contentful from '../plugins/contentful';
 import { ProductSlider } from './product';
 
+function entryUrl(entry) {
+  let type = entry.sys.contentType.sys.id;
+  if (type === 'department') {
+    type = 'afdeling';
+  }
+  if (type === 'productListPage') {
+    type = 'produkter';
+  }
+  return `/${kebabCase(type)}/${kebabCase(entry.fields.titel)}/${entry.sys.id}/`;
+}
+
 export async function getPageEntry(id, deep = false) {
   const entries = await contentful.deliveryClient
     .getEntries({ 'sys.id': id, include: deep ? 3 : 0 });
@@ -60,6 +71,11 @@ export function Departments(entry) {
     type: 'Departments',
     data: {
       header: entry.fields.header,
+      links: entry.fields.links ? entry.fields.links.map(link => ({
+        titel: link.fields.titel,
+        image: link.fields.image.fields.file.url,
+        url: entryUrl(link),
+      })) : [],
     },
   };
 }
@@ -149,7 +165,7 @@ export async function Section(entry) {
 function Department(entry) {
   return {
     titel: entry.fields.titel,
-    url: (entry.sys.id === '53o6jmHL3GcsqSGOCEOQmu') ? '/' : `/${kebabCase(entry.fields.type)}/${kebabCase(entry.fields.titel)}/${entry.sys.id}/`,
+    url: entryUrl(entry),
   };
 }
 
@@ -157,7 +173,11 @@ export async function getPage(id) {
   const page = await getPageEntry(id, true);
   const promises = page.fields.sections ? page.fields.sections.map(Section) : [];
   const sections = await Promise.all(promises);
-  const departments = page.fields.parents && page.fields.parents.map(Department);
+  const departments = page.fields.parents ? page.fields.parents.map(Department) : [];
+  departments.unshift({
+    titel: 'Forside',
+    url: '/',
+  });
   return {
     sections,
     departments,

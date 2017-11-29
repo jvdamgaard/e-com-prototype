@@ -55,9 +55,17 @@ module.exports = {
       const productEntries = await client.getEntries({ content_type: 'product', limit: 1000 });
       productEntries.items.forEach(item => routes.push(`/produkt/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
 
-      // Pages
-      const pageEntries = await client.getEntries({ content_type: 'page', limit: 1000 });
-      pageEntries.items.forEach(item => routes.push(`/${item.fields.type.toLowerCase()}/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+      // Departments
+      const departmentEntries = await client.getEntries({ content_type: 'department', limit: 1000 });
+      departmentEntries.items.forEach(item => routes.push(`/afdeling/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      // Brands
+      const brandEntries = await client.getEntries({ content_type: 'brand', limit: 1000 });
+      brandEntries.items.forEach(item => routes.push(`/brand/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      // Product List Pages
+      const plpEntries = await client.getEntries({ content_type: 'productListPage', limit: 1000 });
+      plpEntries.items.forEach(item => routes.push(`/produkter/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
 
       return routes;
     },

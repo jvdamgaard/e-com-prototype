@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import Sections from '../../components/Sections.vue';
-import Breadcrumb from '../../components/Breadcrumb.vue';
-import { getPage } from '../../utils/page';
+import Sections from '../../../components/Sections.vue';
+import Breadcrumb from '../../../components/Breadcrumb.vue';
+import { getPage } from '../../../utils/page';
 
 export default {
   components: {
     Sections,
     Breadcrumb,
   },
-  async asyncData() {
-    const data = await getPage('12um56cVbMYGWEosCgUuaY');
+  async asyncData({ params }) {
+    const data = await getPage(params.entryId);
     return data;
   },
   mounted() {

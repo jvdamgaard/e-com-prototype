@@ -7,17 +7,17 @@
         <nuxt-link to="/" :class="$style.showAllLink">vis alle</nuxt-link>
       </grid-col>
     <grid-col
-      v-for="department in departments"
+      v-for="link in links"
       mobile="6"
       phablet="4"
       tablet="3"
       laptop="2"
-      :key="department.titel"
+      :key="link.titel"
     >
-      <nuxt-link to="/" :class="$style.container">
+      <nuxt-link :to="link.url" :class="$style.container">
         <div :class="$style.image">
           <image-container
-            :src="department.iconSrc"
+            :src="link.image"
             :width="400"
             :height="300"
             :lazy="lazy"
@@ -25,7 +25,7 @@
           />
         </div>
         <div :class="$style.text">
-          {{ department.titel }}
+          {{ link.titel }}
         </div>
       </nuxt-link>
     </grid-col>
@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'; // eslint-disable-line
 import Grid from './Grid.vue';
 import GridCol from './GridCol.vue';
 import ImageContainer from './Image.vue';
@@ -47,8 +46,8 @@ export default {
   props: {
     header: String,
     lazy: Boolean,
+    links: Array,
   },
-  computed: mapState(['departments']),
 };
 </script>
 
