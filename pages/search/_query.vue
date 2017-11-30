@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'; //eslint-disable-line
+import { mapState, mapActions } from 'vuex'; //eslint-disable-line
 import { searchProducts, url } from '../../utils/product';
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
@@ -49,9 +49,17 @@ export default {
         return { products };
       });
   },
+  methods: {
+    ...mapActions({
+      closeMiniBasket: 'state/closeMiniBasket',
+      closeDepartmentNav: 'state/closeDepartmentNav',
+    }),
+  },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;
     window.scrollTo(0, initPos);
+    this.closeMiniBasket();
+    this.closeDepartmentNav();
   },
 };
 </script>

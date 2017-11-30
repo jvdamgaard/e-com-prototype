@@ -75,6 +75,7 @@ export function Departments(entry) {
         titel: link.fields.titel,
         image: link.fields.image.fields.file.url,
         url: entryUrl(link),
+        hasEnvironmentImage: !!link.fields.hasEnvironmentImage,
       })) : [],
     },
   };

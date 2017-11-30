@@ -96,6 +96,7 @@
                 :titel="brand.titel"
                 :icon="brand.imgSrc"
                 :class="$style.navItem"
+                :to="brand.url || '/'"
               />
             </grid-col>
           </grid>

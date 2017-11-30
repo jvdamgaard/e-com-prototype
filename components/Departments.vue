@@ -15,13 +15,16 @@
       :key="link.titel"
     >
       <nuxt-link :to="link.url" :class="$style.container">
-        <div :class="$style.image">
+        <div :class="[
+          $style.image,
+          { [$style.fullWidthImage]: link.hasEnvironmentImage },
+        ]">
           <image-container
             :src="link.image"
             :width="400"
-            :height="300"
+            :height="400"
             :lazy="lazy"
-            :crop="false"
+            :crop="link.hasEnvironmentImage"
           />
         </div>
         <div :class="$style.text">
@@ -63,6 +66,7 @@ export default {
   height: 100%;
   width: 100%;
   box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0);
+  overflow: hidden;
 }
 .container:hover {
   text-decoration: none!important;
@@ -76,6 +80,15 @@ export default {
 
 .image {
   padding: 1rem 1rem 0;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+:global(.no-touch) .container:hover .image { padding: 1.5rem 1.5rem 0; }
+
+.fullWidthImage {
+  margin-left: -1.5rem !important;
+  margin-top: -1.5rem !important;
+  width: calc(100% + 3rem) !important;
 }
 
 .headerRight { text-align: right; }

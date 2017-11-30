@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'; //eslint-disable-line
 import { getProductSections } from '../../../utils/product';
 
 export default {
@@ -13,9 +14,17 @@ export default {
     const sections = await getProductSections(params.productId);
     return { sections };
   },
+  methods: {
+    ...mapActions({
+      closeMiniBasket: 'state/closeMiniBasket',
+      closeDepartmentNav: 'state/closeDepartmentNav',
+    }),
+  },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;
     window.scrollTo(0, initPos);
+    this.closeMiniBasket();
+    this.closeDepartmentNav();
   },
 };
 </script>

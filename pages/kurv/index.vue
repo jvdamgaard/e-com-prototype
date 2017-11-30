@@ -24,12 +24,14 @@ export default {
   methods: {
     ...mapActions({
       closeMiniBasket: 'state/closeMiniBasket',
+      closeDepartmentNav: 'state/closeDepartmentNav',
     }),
   },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;
     window.scrollTo(0, initPos);
     this.closeMiniBasket();
+    this.closeDepartmentNav();
   },
 };
 </script>

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'; //eslint-disable-line
 import Sections from '../../../components/Sections.vue';
 import Breadcrumb from '../../../components/Breadcrumb.vue';
 import { getPage } from '../../../utils/page';
@@ -19,9 +20,17 @@ export default {
     const data = await getPage(params.entryId);
     return data;
   },
+  methods: {
+    ...mapActions({
+      closeMiniBasket: 'state/closeMiniBasket',
+      closeDepartmentNav: 'state/closeDepartmentNav',
+    }),
+  },
   mounted() {
     const initPos = (window.pageYOffset > 33) ? 33 : 0;
     window.scrollTo(0, initPos);
+    this.closeMiniBasket();
+    this.closeDepartmentNav();
   },
 };
 </script>

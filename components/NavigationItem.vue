@@ -1,5 +1,5 @@
 <template>
-  <div :class="[
+  <nuxt-link tag="div" :to="to" :class="[
     $style.container,
     { [$style.active]: active}
   ]">
@@ -18,7 +18,7 @@
         <span v-html="titel" />
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -28,6 +28,10 @@ export default {
     description: String,
     icon: String,
     active: Boolean,
+    to: {
+      type: String,
+      default: '/',
+    },
     lazy: {
       type: Boolean,
       default: false,
