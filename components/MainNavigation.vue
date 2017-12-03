@@ -4,7 +4,7 @@
       <grid-col verticalCenter>
         <div :class="$style.group">
           <nuxt-link to="/" :class="$style.logo">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo.svg" width="84" height="24" />
+            MARKET
           </nuxt-link>
           <div
             :class="state.departmentNavActive ? $style.menuIconActive : $style.menuIcon"
@@ -141,17 +141,13 @@ export default {
 .logo {
   composes: hiddenOnMobile from global;
   composes: visibleOnTablet from global;
+  font-size: 1.5rem;
+  font-weight: 900;
   text-decoration: none;
   display: block;
-  height: 3.5rem;
-  vertical-align: middle;
+  line-height: 3.5rem;
   margin-right: 1rem;
-}
-
-.logo img {
-  height: 3.5rem;
-  width: auto;
-  padding: 1.25rem 0;
+  color: var(--color-white);
 }
 
 .menuIcon {

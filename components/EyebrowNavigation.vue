@@ -2,10 +2,7 @@
   <grid :class="$style.container">
     <grid-col verticalCenter>
       <div :class="$style.group">
-        <nuxt-link to="/" :class="$style.logo">Bilka</nuxt-link>
-        <span :class="$style.tagline">
-          Dit hypermarked
-        </span>
+        <nuxt-link to="/" :class="$style.logo">MARKET</nuxt-link>
         <div :class="$style.promotion">
           <nuxt-link to="/legetoej/lego/" :class="$style.promotionLink">
             <strong class="red">25% rabat</strong> på alt LEGO indtil lørdag
