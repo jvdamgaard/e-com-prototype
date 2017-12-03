@@ -46,6 +46,10 @@ export function Banner(entry) {
     noSpacingTop: !!entry.fields.noSpacingTop,
     noSpacingBottom: !!entry.fields.noSpacingBottom,
     data: {
+      buttonLabel: entry.fields.buttonLabel,
+      text: entry.fields.text,
+      link: entry.fields.link,
+      header: entry.fields.header,
       banners: entry.fields.images.map(image => ({
         id: image.sys.id,
         url: '/',

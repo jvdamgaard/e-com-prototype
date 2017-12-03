@@ -36,7 +36,7 @@ export default {
       type: String,
       default: 'primary',
       validator(value) {
-        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'ghost-white', 'ghost-dimmed', 'buy', 'red', 'green'].indexOf(value) !== -1;
+        return ['primary', 'grey', 'yellow', 'grey-light', 'ghost', 'ghost-white', 'ghost-dimmed', 'buy', 'red', 'green', 'black'].indexOf(value) !== -1;
       },
     },
     height: {
@@ -126,6 +126,15 @@ export default {
 }
 :global(.no-touch) .grey:hover {
   background-color: var(--color-grey-darker);
+}
+
+.black {
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+:global(.no-touch) .black:hover {
+  color: var(--color-black);
+  background-color: var(--color-white);
 }
 
 .grey-light {
