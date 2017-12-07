@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.container">
+  <div>
     <navigation />
     <nuxt/>
     <main-footer />
@@ -30,7 +30,4 @@ export default {
 </script>
 
 <style module>
-.container {
-  padding-top: 5.5rem;
-}
 </style>
