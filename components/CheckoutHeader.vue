@@ -3,7 +3,7 @@
     <grid :class="$style.container">
       <grid-col mobile="6" tablet="4">
         <nuxt-link to="/" :class="$style.logo">
-          <img src="https://jvdamgaard.github.io/e-com-prototype/images/logo-primary.svg" width="84" height="24" />
+          MARKET
         </nuxt-link>
       </grid-col>
       <grid-col mobile="6" tablet="4">
@@ -38,17 +38,12 @@ export default {
 }
 
 .logo {
+  font-size: 1.5rem;
+  font-weight: 900;
   text-decoration: none;
   display: block;
-  height: 4rem;
-  vertical-align: middle;
+  line-height: 4rem;
   margin-right: 1rem;
-}
-
-.logo img {
-  height: 4rem;
-  width: auto;
-  padding: 1.25rem 0;
 }
 
 .header {

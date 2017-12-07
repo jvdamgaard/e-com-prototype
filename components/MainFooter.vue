@@ -22,7 +22,7 @@
           <Btn type="grey" height="small" :class="$style.newsletterBtn">Tilmeld</Btn>
         </div>
         <p :class="$style.newsletterDescription">
-          Tilmeld dig Bilkas nyhedsbrev og få ugens tilbudsavis samt gode tilbud, information om spændende kampagner og konkurrencer.<br>
+          Tilmeld dig Markets nyhedsbrev og få ugens tilbudsavis samt gode tilbud, information om spændende kampagner og konkurrencer.<br>
           Hver måned trækkes en vinder af tre måneders forbrug af Nivea produkter til dame eller herre blandt alle modtagere af nyhedsmailen.
         </p>
       </grid-col>
@@ -44,7 +44,7 @@
     </grid>
     <grid :class="$style.bottomNav">
       <grid-col tablet="6">
-        <p>Copyright Dansk Supermarked Group</p>
+        <p>Copyright Market</p>
       </grid-col>
       <grid-col tablet="6">
         <p :class="$style.bottomNavLinks">
@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       linkSections: [{
-        header: 'Bilka',
+        header: 'Market',
         links: [
           { label: 'Om os', link: '/' },
           { label: 'Kerneværdier', link: '/' },
@@ -88,8 +88,7 @@ export default {
         header: 'Brug hjælp?',
         links: [
           { label: 'Kundeservice', link: '/' },
-          { label: 'Find din Bilka', link: '/' },
-          { label: 'Sådan handler du på bilka.dk', link: '/' },
+          { label: 'Sådan handler du på market.io', link: '/' },
           { label: 'Levering', link: '/' },
           { label: 'Returnering', link: '/' },
           { label: 'Reklamation', link: '/' },
@@ -99,15 +98,13 @@ export default {
         links: [
           { label: 'Shopping inspiration', link: '/' },
           { label: 'Shopping guides', link: '/' },
-          { label: 'Set i TV', link: '/' },
-          { label: 'Mærker på bilka.dk', link: '/' },
         ],
       }, {
         header: 'Tjen sammen med os',
         links: [
           { label: 'Online shopping', link: '/' },
-          { label: 'Sælg på bilka.dk', link: '/' },
-          { label: 'Annoncer på bilka.dk', link: '/' },
+          { label: 'Sælg på market.io', link: '/' },
+          { label: 'Annoncer på market.io', link: '/' },
           { label: 'Medie forespørgsler', link: '/' },
           { label: 'Bliv en affiliate', link: '/' },
         ],
