@@ -152,10 +152,6 @@ article:last-child { margin-bottom: 0; }
   vertical-align: middle;
   align-items: center;
 }
-.group > * {
-  position: relative;
-  display: flex;
-}
 .clearfix:after {
   content: " ";
   display: table;

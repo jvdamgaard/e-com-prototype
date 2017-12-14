@@ -76,9 +76,4 @@ export default {
   .grid { padding: 0 2.5rem; }
   .inner { padding: 0; }
 }
-
-@media (min-width: 64rem) {
-  .grid { padding: 0 4rem; }
-  .inner { padding: 0; }
-}
 </style>

@@ -3,6 +3,7 @@ export function state() {
   return {
     departmentNavActive: false,
     miniBasketActive: false,
+    overlayActive: false,
   };
 }
 
@@ -13,15 +14,15 @@ export const mutations = {
   toggleMiniBasket(s, open) {
     s.miniBasketActive = open;
   },
+  toggleOverlay(s, active) {
+    s.overlayActive = active;
+  },
 };
 
 export const actions = {
   openDepartmentNav({ commit }) {
-    commit('toggleMiniBasket', false);
+    commit('toggleOverlay', true);
     commit('toggleDepartmentNav', true);
-  },
-  closeDepartmentNav({ commit }) {
-    commit('toggleDepartmentNav', false);
   },
   openMiniBasket({ commit }) {
     commit('toggleDepartmentNav', false);
@@ -29,5 +30,12 @@ export const actions = {
   },
   closeMiniBasket({ commit }) {
     commit('toggleMiniBasket', false);
+  },
+  activateOverlay({ commit }) {
+    commit('toggleOverlay', true);
+  },
+  deactivateOverlay({ commit }) {
+    commit('toggleOverlay', false);
+    commit('toggleDepartmentNav', false);
   },
 };

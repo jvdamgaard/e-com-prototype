@@ -251,15 +251,7 @@ body:before {
     flex: 0 0 25%; /* 3 cols */
   }
 }
-@media (min-width: 64rem) {
-  .slider {
-    padding-left: 3.5rem;
-    padding-right: 3.5rem;
-  }
-  .move {
-    width: 4rem;
-  }
-}
+
 @media (min-width: 80rem) {
   body:before { content: '{ "visibleProductsInSlider": 6 }'; }
   .item {
