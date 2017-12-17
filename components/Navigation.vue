@@ -27,23 +27,23 @@
       <grid-col verticalCenter>
         <div :class="$style.group">
           <a href="#" @touchstart.prevent="openMobileNav" @click.prevent="openMobileNav" class="hiddenOnLaptop" :class="[$style.iconLink, $style.menu]">
-            <img src="/icons/ic_menu_white_24px.svg"/>
+            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/ic_menu_white_24px.svg"/>
           </a>
           <nuxt-link to="/" :class="$style.logo">
             <span>mrkt</span>
           </nuxt-link>
           <input type="search" placeholder="Søg efter produkter, brands, afdelinger eller inspiration" class="hiddenOnMobile visibleOnTablet" :class="$style.search">
           <nuxt-link to="/søg/" class="hiddenOnTablet" :class="$style.iconLink">
-            <img src="/icons/ic_search_white_24px.svg"/>
+            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/ic_search_white_24px.svg"/>
           </nuxt-link>
           <nuxt-link to="/min-konto/" :class="$style.iconLink">
-            <img src="/icons/ic_perm_identity_white_24px.svg"/>
+            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/ic_perm_identity_white_24px.svg"/>
           </nuxt-link>
           <nuxt-link to="/favoritter/" class="hiddenOnMobile visibleOnPhablet" :class="$style.iconLink">
-            <img src="/icons/ic_favorite_border_white_24px.svg"/>
+            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/ic_favorite_border_white_24px.svg"/>
           </nuxt-link>
           <nuxt-link to="/kurv/" :class="$style.iconLink">
-            <img src="/icons/ic_bag_outline_white_24px.svg"/>
+            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/ic_bag_outline_white_24px.svg"/>
           </nuxt-link>
         </div>
       </grid-col>
