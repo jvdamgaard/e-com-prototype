@@ -14,6 +14,10 @@ html {
 
 body {
   background-color: var(--color-grey-lighter);
+  overflow-x: hidden;
+}
+body.lock-scroll {
+  overflow-y: hidden;
 }
 
 *, *:before, *:after {
@@ -151,10 +155,6 @@ article:last-child { margin-bottom: 0; }
   width: 100%;
   vertical-align: middle;
   align-items: center;
-}
-.group > * {
-  position: relative;
-  display: flex;
 }
 .clearfix:after {
   content: " ";

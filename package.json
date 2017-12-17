@@ -37,7 +37,7 @@
     "marked": "latest",
     "nuxt": "latest",
     "vue-lazyload": "latest",
-    "vuex-persistedstate": "2.2.0"
+    "vuex-persistedstate": "latest"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",
