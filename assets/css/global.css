@@ -14,6 +14,10 @@ html {
 
 body {
   background-color: var(--color-grey-lighter);
+  overflow-x: hidden;
+}
+body.lock-scroll {
+  overflow-y: hidden;
 }
 
 *, *:before, *:after {

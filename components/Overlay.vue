@@ -1,9 +1,8 @@
 
 <template>
   <div
-    v-if="state.overlayActive"
-    :class="$style.overlay"
-    @click.self="deactivate"
+    :class="[$style.overlay, { [$style.active]: state.overlayActive}]"
+    @click.self="deactivateOverlay"
     @mouseover.self="over"
     @mouseleave.self="leave"
   ></div>
@@ -23,9 +22,9 @@ export default {
     }),
     debounceDeactivate: debounce((deactivateNav) => {
       deactivateNav();
-    }, 500),
+    }, 250),
     deactivate() {
-      if (this.hover) {
+      if (this.hover && this.state.overlayHoverClose) {
         this.deactivateOverlay();
       }
     },
@@ -39,12 +38,18 @@ export default {
 @import '../assets/css/variables.css';
 
 .overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.active {
   z-index: 99;
+  opacity: 1;
 }
 </style>

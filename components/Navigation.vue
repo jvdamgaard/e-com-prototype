@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="{ [$style.mobileNavActive]: state.mobileNavActive }">
     <grid :class="$style.eyebrow">
       <grid-col mobile="0" tablet="12">
         <div :class="$style.group">
@@ -26,9 +26,9 @@
     <grid :class="$style.main">
       <grid-col verticalCenter>
         <div :class="$style.group">
-          <nuxt-link to="/navigation/" class="hiddenOnLaptop" :class="[$style.iconLink, $style.menu]">
+          <a href="#" @touchstart.prevent="openMobileNav" @click.prevent="openMobileNav" class="hiddenOnLaptop" :class="[$style.iconLink, $style.menu]">
             <img src="/icons/ic_menu_white_24px.svg"/>
-          </nuxt-link>
+          </a>
           <nuxt-link to="/" :class="$style.logo">
             <span>mrkt</span>
           </nuxt-link>
@@ -49,24 +49,67 @@
       </grid-col>
     </grid>
 
-    <grid :class="$style.departments">
-      <grid-col verticalCenter mobile="0" laptop="12">
+    <grid fullWidthUntil="tablet" :class="$style.departments">
+      <grid-col mobile="12">
+        <div class="hiddenOnLaptop">
+          <p class="h2">{{myAccountNavigation.header}}</p>
+          <ul class="inlineList">
+            <li v-for="department in myAccountNavigation.departments">
+              <nuxt-link
+                to="/"
+              >
+                <span
+                  v-if="department.imageUrl"
+                  :style="{ 'background-image': `url(${department.imageUrl}?w=112&h=112&fm=jpg)`}"
+                  class="bgImage"
+                />
+                {{department.header}}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
+        <p class="h2 hiddenOnLaptop">{{ mainNavigation.header }}</p>
         <ul class="inlineList">
-          <li v-for="department in departments">
+          <li v-for="department in mainNavigation.departments">
             <nuxt-link
               :class="{ [$style.activeDepartmentLink]: (activeDepartment.id === department.id && state.departmentNavActive)}"
               to="/"
               @mouseover.native="openDepartment(department)"
-            >{{department.header}}</nuxt-link>
+            >
+              <span
+                v-if="department.imageUrl"
+                :style="{ 'background-image': `url(${department.imageUrl}?w=112&h=112&fm=jpg)`}"
+                class="bgImage"
+              />
+              {{department.header}}
+            </nuxt-link>
           </li>
         </ul>
+
+        <div class="hiddenOnLaptop">
+          <p class="h2">{{moreMrktNavigation.header}}</p>
+          <ul class="inlineList">
+            <li v-for="department in moreMrktNavigation.departments">
+              <nuxt-link
+                to="/"
+              >
+                <span
+                  v-if="department.imageUrl"
+                  :style="{ 'background-image': `url(${department.imageUrl}?w=112&h=112&fm=jpg)`}"
+                  class="bgImage"
+                />
+                {{department.header}}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
       </grid-col>
     </grid>
     <grid :class="[
       $style.subDepartmentContainer,
       { [$style.subDepartmentActive]: state.departmentNavActive },
     ]">
-      <grid-col :class="$style.subDepartmentBackground">
+      <grid-col :class="$style.subDepartmentBackground" mobile="0" laptop="12">
         <grid inner>
           <grid-col v-for="section in activeDepartment.sections" :key="section.id" :class="$style.subDepartment" laptop="3">
             <template v-if="section.type === 'navigationLinks'">
@@ -74,7 +117,7 @@
               <nuxt-link v-for="link in section.data.links" :key="link.id" :to="link.url">
                 <span
                   v-if="link.imageUrl"
-                  :style="{ 'background-image': `url(${link.imageUrl}?w=80&h=80&fm=jpg&fit=pad)`}"
+                  :style="{ 'background-image': `url(${link.imageUrl}?w=112&h=112&fm=jpg)`}"
                   class="bgImage"
                 />
                 {{link.titel}}
@@ -123,15 +166,27 @@ export default {
     };
   },
   computed: {
-    ...mapState(['state', 'departments']),
+    ...mapState(['state', 'navigation']),
+    mainNavigation() {
+      return this.navigation[process.env.CTF_MAIN_NAVIGATION_ID];
+    },
+    myAccountNavigation() {
+      return this.navigation[process.env.CTF_MY_ACCOUNT_NAVIGATION_ID];
+    },
+    moreMrktNavigation() {
+      return this.navigation[process.env.CTF_MORE_MRKT_NAVIGATION_ID];
+    },
   },
   methods: {
     ...mapActions({
       openDepartmentNav: 'state/openDepartmentNav',
+      openMobileNav: 'state/openMobileNav',
     }),
     openDepartment(department) {
-      this.activeDepartment = department;
-      this.openDepartmentNav();
+      if (!this.state.mobileNavActive) {
+        this.activeDepartment = department;
+        this.openDepartmentNav();
+      }
     },
   },
 };
@@ -231,19 +286,98 @@ export default {
   .menu { margin-right: 1rem; }
 }
 
-.departments {
-  position: relative;
-  background-color: var(--color-grey-dark);
-  color: var(--color-white);
-  z-index: 100;
+@media (max-width: 1023px) {
+  .departments {
+    font-size: 0.8125rem;
+    position: fixed;
+    top: 0;
+    left: -20rem;
+    width: 20rem;
+    height: 100%;
+    z-index: 100;
+    background-color: var(--color-grey-lighter);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: translate3d(0, 0, 0);
+    transition: transform 0.2s ease;
+  }
+  .mobileNavActive .departments {
+    transform: translate3d(20rem, 0, 0);
+  }
+  .departments p {
+    margin: 2rem 1rem 1rem;
+  }
+  .departments li { display: block; }
+  .departments a {
+    position: relative;
+    display: block;
+    width: 100%;
+    line-height: 4rem;
+    background-color: var(--color-white);
+    margin: 1px 0;
+    padding: 0 1rem;
+    color: var(--color-black);
+  }
+  .departments a:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    width: 1.5rem;
+    height: 4rem;
+    background-image: url(/icons/ic_keyboard_arrow_right_grey_24px.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .departments a:hover:after {
+    background-image: url(/icons/ic_keyboard_arrow_right_primary_24px.svg);
+  }
+  .departments a span {
+    display: inline-block;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px var(--color-grey-light);
+    border: 0.125rem solid var(--color-grey-lighter);
+    background-color: var(--color-white);
+    vertical-align: middle;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+    transition: all 0.2s ease;
+  }
+  :global(.no-touch) .departments a:hover span {
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
 }
 
-.departments a {
-  display: inline-block;
-  color: var(--color-white);
-  line-height: 3rem;
-  padding: 0 0.5rem;
+@media (min-width: 1024px) {
+  .departments {
+    font-weight: bold;
+    position: relative;
+    background-color: var(--color-grey-dark);
+    color: var(--color-white);
+    z-index: 100;
+  }
+
+  .departments a {
+    font-size: 0.8125rem;
+    display: inline-block;
+    color: var(--color-white);
+    line-height: 3rem;
+    padding: 0 0.5rem;
+  }
 }
+@media (min-width: 75rem) {
+  .departments a {
+    font-weight: normal;
+    font-size: 1rem;
+  }
+}
+@media (min-width: 90rem) {
+  .departments a {
+    padding: 0 1rem;
+  }
+}
+
 .activeDepartmentLink {
   background-color: var(--color-grey-lighter);
   color: var(--color-grey-darker) !important;
@@ -266,7 +400,7 @@ export default {
   display: none !important;
   position: absolute;
   width: 100%;
-  max-width: 85rem;
+  max-width: 90rem;
   left: 0;
 }
 

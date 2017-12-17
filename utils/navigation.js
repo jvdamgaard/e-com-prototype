@@ -3,6 +3,9 @@ import kebabCase from 'lodash/kebabCase';
 import * as contentful from '../plugins/contentful';
 
 function entryUrl(entry) {
+  if (!entry) {
+    return '/';
+  }
   let type = entry.sys.contentType.sys.id;
   if (type === 'department') {
     type = 'afdeling';
@@ -31,7 +34,7 @@ export function NavigationLinks(entry) {
     type: 'navigationLinks',
     data: {
       header: entry.fields.header,
-      links: entry.fields.links.map(NavigationLink),
+      links: entry.fields.links ? entry.fields.links.map(NavigationLink) : [],
     },
   };
 }
@@ -71,13 +74,16 @@ export function NavigationDepartment(entry) {
   return {
     id: entry.sys.id,
     header: entry.fields.header,
-    sections: entry.fields.sections.map(NavigationSection).filter(section => !!section),
+    imageUrl: entry.fields.image ? entry.fields.image.fields.file.url : null,
+    sections: entry.fields.sections
+      ? entry.fields.sections.map(NavigationSection).filter(section => !!section)
+      : [],
   };
 }
 
-export async function getNavigationEntry() {
+export async function getNavigationEntry(id) {
   const entries = await contentful.deliveryClient
-    .getEntries({ 'sys.id': process.env.CTF_NAVIGATION_ID, include: 4 });
+    .getEntries({ 'sys.id': id, include: 4 });
 
   if (!entries || entries.length === 0) {
     return null;
@@ -87,7 +93,11 @@ export async function getNavigationEntry() {
 }
 
 
-export async function getNavigation() {
-  const entry = await getNavigationEntry();
-  return entry.fields.departments.map(NavigationDepartment);
+export async function getNavigation(id) {
+  const entry = await getNavigationEntry(id);
+  return {
+    id: entry.sys.id,
+    header: entry.fields.header,
+    departments: entry.fields.departments.map(NavigationDepartment),
+  };
 }

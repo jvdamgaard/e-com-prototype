@@ -9,6 +9,7 @@
 
 <script>
 import { mapActions } from 'vuex'; //eslint-disable-line
+import { mapState } from 'vuex'; // eslint-disable-line
 import Navigation from '../components/Navigation.vue';
 import MainFooter from '../components/MainFooter.vue';
 import Overlay from '../components/Overlay.vue';
@@ -19,10 +20,20 @@ export default {
     MainFooter,
     Overlay,
   },
+  computed: {
+    ...mapState(['state']),
+  },
   methods: {
     ...mapActions({
       fetchUser: 'user/fetchUser',
     }),
+  },
+  head() {
+    return {
+      bodyAttrs: {
+        class: this.state.overlayActive ? 'lock-scroll' : '',
+      },
+    };
   },
   created() {
     if (process.browser) {
