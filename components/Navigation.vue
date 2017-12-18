@@ -72,9 +72,13 @@
         <ul class="inlineList">
           <li v-for="department in mainNavigation.departments">
             <nuxt-link
-              :class="{ [$style.activeDepartmentLink]: (activeDepartment.id === department.id && state.departmentNavActive)}"
+              :class="[
+                $style.departmentLink,
+                { [$style.activeDepartmentLink]: (activeDepartment.id === department.id && state.departmentNavActive)}
+              ]"
               to="/"
-              @mouseover.native="openDepartment(department)"
+              @mouseover.native="overDepartment(department)"
+              @mouseleave.native="overDepartment()"
             >
               <span
                 v-if="department.imageUrl"
@@ -148,6 +152,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
+import debounce from 'lodash/debounce';
 import Grid from './Grid.vue';
 import GridCol from './GridCol.vue';
 import Btn from './Btn.vue';
@@ -164,6 +169,7 @@ export default {
     return {
       activeDepartment: {},
       searchQuery: '',
+      nextDepartment: null,
     };
   },
   computed: {
@@ -183,10 +189,27 @@ export default {
       openDepartmentNav: 'state/openDepartmentNav',
       openMobileNav: 'state/openMobileNav',
     }),
-    openDepartment(department) {
-      if (!this.state.mobileNavActive) {
-        this.activeDepartment = department;
+    debounceOpenDepartment: debounce((openDepartment) => {
+      openDepartment();
+    }, 200),
+    debounceOpenDepartmentFast: debounce((openDepartment) => {
+      openDepartment();
+    }, 50),
+    openDepartment() {
+      if (this.nextDepartment) {
+        this.activeDepartment = this.nextDepartment;
         this.openDepartmentNav();
+      }
+    },
+    overDepartment(department) {
+      if (this.state.mobileNavActive) {
+        return;
+      }
+      this.nextDepartment = department;
+      if (this.state.departmentNavActive) {
+        this.debounceOpenDepartmentFast(this.openDepartment);
+      } else {
+        this.debounceOpenDepartment(this.openDepartment);
       }
     },
     search() {
@@ -333,7 +356,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
   }
-  .departments a:hover:after {
+  :global(.no-touch) .departments a:hover:after {
     background-image: url(/icons/ic_keyboard_arrow_right_primary_24px.svg);
   }
   .departments a span {
@@ -382,12 +405,18 @@ export default {
   }
 }
 
+:global(.no-touch) .departmentLink:hover {
+  background-color: var(--color-grey-lighter);
+  color: var(--color-grey-darker) !important;
+}
 .activeDepartmentLink {
   background-color: var(--color-grey-lighter);
   color: var(--color-grey-darker) !important;
 }
 .departments a:hover {
   text-decoration: none;
+}
+:global(.no-touch) .departments a:hover {
   color: var(--color-primary) !important;
 }
 
@@ -395,7 +424,7 @@ export default {
   color: var(--color-yellow) !important;
   font-weight: bold;
 }
-.offers:hover {
+:global(.no-touch) .offers:hover {
   background-color: var(--color-yellow) !important;
   color: var(--color-grey-darker) !important;
 }
