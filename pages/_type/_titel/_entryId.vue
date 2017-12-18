@@ -27,8 +27,7 @@ export default {
     }),
   },
   mounted() {
-    const initPos = (window.pageYOffset > 33) ? 33 : 0;
-    window.scrollTo(0, initPos);
+    window.scrollTo(0, 0);
     this.closeMiniBasket();
     this.closeDepartmentNav();
   },
