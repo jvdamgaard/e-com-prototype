@@ -2,23 +2,33 @@
   <article class="theme-None" :class="$style.container">
     <section>
       <grid>
-        <grid-col
-          mobile="0"
-          laptop="3"
-          desktop="2"
-          :class="$style.filterContainer"
-        >
-          <div :class="$style.filters">
-            Filtre
-          </div>
+        <grid-col>
+          <h1>Resultater for <em>"{{query}}"</em></h1>
         </grid-col>
+      </grid>
+    </section>
+    <section :class="$style.filterContainer">
+      <grid>
+        <grid-col>
+          Filtre
+        </grid-col>
+      </grid>
+    </section>
+    <section>
+      <grid>
+        <grid-col>
+          <strong>{{products.length}}</strong> varer fundet
+        </grid-col>
+      </grid>
+    </section>
+    <section>
+      <grid>
         <grid-col
           v-for="product in products"
           :key="product.id"
           mobile="6"
           tablet="4"
-          laptop="3"
-          desktop="2"
+          desktop="3"
         >
           <product-card :product="product" :lazy="true" />
         </grid-col>
@@ -46,7 +56,7 @@ export default {
         if (products.length === 1) {
           redirect(url(products[0]));
         }
-        return { products };
+        return { products, query: params.query };
       });
   },
   methods: {
@@ -70,10 +80,6 @@ export default {
 .container { margin-top: 1rem; }
 
 .filterContainer {
-  grid-row: span 12;
-}
-.filters {
-  background-color: var(--color-white);
-  height: 100%;
+  background-color: var(--color-grey-light);
 }
 </style>

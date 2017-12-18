@@ -32,7 +32,7 @@
           <nuxt-link to="/" :class="$style.logo">
             <span>mrkt</span>
           </nuxt-link>
-          <input type="search" placeholder="Søg efter produkter, brands, afdelinger eller inspiration" class="hiddenOnMobile visibleOnTablet" :class="$style.search">
+          <input type="search" placeholder="Søg efter produkter, brands, afdelinger eller inspiration" class="hiddenOnMobile visibleOnTablet" :class="$style.search" v-model="searchQuery" @keyup.enter="search">
           <nuxt-link to="/søg/" class="hiddenOnTablet" :class="$style.iconLink">
             <img src="https://jvdamgaard.github.io/e-com-prototype/icons/ic_search_white_24px.svg"/>
           </nuxt-link>
@@ -163,6 +163,7 @@ export default {
   data() {
     return {
       activeDepartment: {},
+      searchQuery: '',
     };
   },
   computed: {
@@ -187,6 +188,9 @@ export default {
         this.activeDepartment = department;
         this.openDepartmentNav();
       }
+    },
+    search() {
+      this.$router.push(`/search/${this.searchQuery}/`);
     },
   },
 };

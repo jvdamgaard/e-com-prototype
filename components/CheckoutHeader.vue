@@ -3,7 +3,7 @@
     <grid :class="$style.container">
       <grid-col mobile="6" tablet="4">
         <nuxt-link to="/" :class="$style.logo">
-          MARKET
+          mrkt
         </nuxt-link>
       </grid-col>
       <grid-col mobile="6" tablet="4">
@@ -38,13 +38,15 @@ export default {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 900;
   text-decoration: none;
   display: block;
   line-height: 4rem;
   margin-right: 1rem;
+  color: var(--color-grey-darker);
 }
+.logo:hover { text-decoration: none !important; }
 
 .header {
   composes: h2 from global;

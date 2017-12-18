@@ -21,8 +21,8 @@
       :lazy="lazy"
       :hovering="hovering"
       type="productCard"
-      width="400"
-      height="400"
+      width="500"
+      height="500"
       :crop="product.hasEnvironmentImage"
       :class="{ [$style.fullWidthImage]: product.hasEnvironmentImage }"
     />
