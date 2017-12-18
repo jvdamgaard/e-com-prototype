@@ -42,7 +42,7 @@ import { mapState, mapActions } from 'vuex'; //eslint-disable-line
 import { searchProducts, url } from '../../utils/product';
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
-import ProductCard from '../../components/ProductCard.vue';
+import ProductCard from '../../components/NewProductCard.vue';
 
 export default {
   components: {
