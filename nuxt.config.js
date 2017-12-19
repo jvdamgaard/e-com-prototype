@@ -40,7 +40,6 @@ module.exports = {
   ** Build configuration
   */
   router: {
-    base: (process.env.NODE_ENV === 'generate') ? '/e-com-prototype/' : '/',
     scrollBehavior() {
       return false;
     },
