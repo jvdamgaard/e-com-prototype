@@ -72,23 +72,19 @@ export default {
   text-decoration: none!important;
 }
 :global(.no-touch) .container:hover {
-  margin: -0.5rem;
-  height: calc(100% + 1rem);
-  width: calc(100% + 1rem);
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.25);
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
 }
 
 .image {
-  padding: 1rem 1rem 0;
+  padding: 15% 15% 0;
   transition: all 0.2s ease;
   width: 100%;
 }
-:global(.no-touch) .container:hover .image { padding: 1.5rem 1.5rem 0; }
 
 .fullWidthImage {
-  margin-left: -1.5rem !important;
-  margin-top: -1.5rem !important;
-  width: calc(100% + 3rem) !important;
+  margin-left: -15% !important;
+  margin-top: -15% !important;
+  width: calc(130%) !important;
 }
 
 .headerRight { text-align: right; }
@@ -98,7 +94,7 @@ export default {
 }
 
 .text {
-  composes: h3 from global;
+  composes: small from global;
   background-color: var(--color-white);
   padding: 1rem;
   text-align: center;

@@ -56,7 +56,7 @@ import Grid from '../components/Grid.vue';
 import GridCol from '../components/GridCol.vue';
 import Arrow from './Arrow.vue';
 import Btn from './Btn.vue';
-import ProductCard from './ProductCard.vue';
+import ProductCard from './NewProductCard.vue';
 import { getDataFromCss } from '../utils';
 
 export default {

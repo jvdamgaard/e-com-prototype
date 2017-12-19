@@ -96,6 +96,7 @@ export default {
 @import '../assets/css/variables.css';
 
 .container {
+  will-change: box-shadow;
   display: block;
   position: relative;
   height: 0;
@@ -103,10 +104,15 @@ export default {
   color: var(--color-black);
   overflow: hidden;
   background-color: var(--color-white);
-  padding-bottom: calc(100% + 5rem);
+  padding-bottom: calc(100% + 4.6875rem);
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0);
+  transition: box-shadow 0.2s ease;
 }
 .container:hover {
   text-decoration: none!important;
+}
+:global(.no-touch) .container:hover {
+  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
 }
 
 .stockImage {
@@ -121,13 +127,14 @@ export default {
 }
 
 .content {
+  will-change: transform;
   position: absolute;
   top: 100%;
   padding: 1rem;
   width: 100%;
   background-color: var(--color-white);
   transition: all 0.2s ease;
-  transform: translate3d(0, -5rem, 0);
+  transform: translate3d(0, -4.6875rem, 0);
 }
 
 :global(.no-touch) .container:hover .content {
@@ -154,7 +161,10 @@ export default {
 
 .titel {
   composes: small from global;
-  composes: bodySizeOnDesktop from global;
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .stockStatus {

@@ -1,6 +1,6 @@
 <template>
   <footer :class="$style.container">
-    <unique-selling-points />
+    <!-- <unique-selling-points /> -->
     <footer-highlighted-content />
     <grid row-gap="large" :class="$style.links">
       <grid-col
@@ -22,7 +22,7 @@
           <Btn type="grey" height="small" :class="$style.newsletterBtn">Tilmeld</Btn>
         </div>
         <p :class="$style.newsletterDescription">
-          Tilmeld dig Markets nyhedsbrev og få ugens tilbudsavis samt gode tilbud, information om spændende kampagner og konkurrencer.<br>
+          Tilmeld dig mrkts nyhedsbrev og få ugens tilbudsavis samt gode tilbud, information om spændende kampagner og konkurrencer.<br>
           Hver måned trækkes en vinder af tre måneders forbrug af Nivea produkter til dame eller herre blandt alle modtagere af nyhedsmailen.
         </p>
       </grid-col>
@@ -44,7 +44,7 @@
     </grid>
     <grid :class="$style.bottomNav">
       <grid-col tablet="6">
-        <p>Copyright Market</p>
+        <p>Copyright mrkt</p>
       </grid-col>
       <grid-col tablet="6">
         <p :class="$style.bottomNavLinks">
@@ -61,21 +61,21 @@
 import Grid from './Grid.vue';
 import GridCol from './GridCol.vue';
 import Btn from './Btn.vue';
-import UniqueSellingPoints from './UniqueSellingPoints.vue';
+// import UniqueSellingPoints from './UniqueSellingPoints.vue';
 import FooterHighlightedContent from './FooterHighlightedContent.vue';
 
 export default {
   components: {
     Grid,
     GridCol,
-    UniqueSellingPoints,
+    // UniqueSellingPoints,
     FooterHighlightedContent,
     Btn,
   },
   data() {
     return {
       linkSections: [{
-        header: 'Market',
+        header: 'mrkt',
         links: [
           { label: 'Om os', link: '/' },
           { label: 'Kerneværdier', link: '/' },
@@ -88,7 +88,7 @@ export default {
         header: 'Brug hjælp?',
         links: [
           { label: 'Kundeservice', link: '/' },
-          { label: 'Sådan handler du på market.io', link: '/' },
+          { label: 'Sådan handler du på mrkt.io', link: '/' },
           { label: 'Levering', link: '/' },
           { label: 'Returnering', link: '/' },
           { label: 'Reklamation', link: '/' },
@@ -103,8 +103,8 @@ export default {
         header: 'Tjen sammen med os',
         links: [
           { label: 'Online shopping', link: '/' },
-          { label: 'Sælg på market.io', link: '/' },
-          { label: 'Annoncer på market.io', link: '/' },
+          { label: 'Sælg på mrkt.io', link: '/' },
+          { label: 'Annoncer på mrkt.io', link: '/' },
           { label: 'Medie forespørgsler', link: '/' },
           { label: 'Bliv en affiliate', link: '/' },
         ],

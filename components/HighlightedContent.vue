@@ -67,12 +67,13 @@ export default {
 }
 
 .item {
+  will-change: background-color;
   display: block;
   height: 100%;
   padding: 0.75rem 1rem;
   margin: -0.5rem -1rem;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
   text-decoration: none !important;
 }
 .default .item {
@@ -86,8 +87,11 @@ export default {
 .item img {
   height: 3rem;
 }
-:global(.no-touch) .item:hover {
-  box-shadow: 0 0.25rem 1.5rem rgba(0,0,0,0.15);
+:global(.no-touch) .default .item:hover {
+  background-color: var(--color-grey-lighter);
+}
+:global(.no-touch) .primary .item:hover {
+  background-color: var(--color-primary-dark);
 }
 
 @media (min-width: 48rem) {
@@ -102,11 +106,6 @@ export default {
   .item img {
     height: 4rem;
     width: auto
-  }
-  :global(.no-touch) .item:hover {
-    height: calc(100% + 1rem);
-    margin: -0.5rem -1rem;
-    padding: 3.5rem 1.5rem;
   }
 }
 </style>
