@@ -39,12 +39,12 @@
     <div :class="$style.cta">
       <h3>Betalingsmuligheder</h3>
       <p :class="$style.paymentIcons">
-        <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/dankort.png">
-        <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/master-card.png">
-        <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/mobilepay.png">
-        <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/paypal.png">
-        <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa-electron.png">
-        <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa.png">
+        <img src="/icons/payment-methods/dankort.png">
+        <img src="/icons/payment-methods/master-card.png">
+        <img src="/icons/payment-methods/mobilepay.png">
+        <img src="/icons/payment-methods/paypal.png">
+        <img src="/icons/payment-methods/visa-electron.png">
+        <img src="/icons/payment-methods/visa.png">
       </p>
     </div>
     <h3 :class="[$style.header, $style.marginTop]">Rabatkode eller gavekort?</h3>

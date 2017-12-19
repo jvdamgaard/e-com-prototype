@@ -5,7 +5,7 @@
       <nuxt-link to="/login/" :class="$style.login">
         <div
           :class="$style.icon"
-          :style="{'background-image': `url('https://jvdamgaard.github.io/e-com-prototype/icons/login.svg')`}"
+          :style="{'background-image': `url('/icons/login.svg')`}"
         />
         <p>{{ label }}</p>
         <p class="dimmed small">{{ sublabel }}</p>

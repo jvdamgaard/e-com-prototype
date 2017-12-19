@@ -1,6 +1,6 @@
 <template>
   <img
-    :src="`https://jvdamgaard.github.io/e-com-prototype/icons/star-${color}.svg`"
+    :src="`/icons/star-${color}.svg`"
     :class="$style.star"
   />
 </template>

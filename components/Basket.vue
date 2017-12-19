@@ -2,7 +2,7 @@
   <div>
     <grid v-show="user.basket.items.length === 0" :class="$style.empty">
       <grid-col>
-        <p><img src="https://jvdamgaard.github.io/e-com-prototype/icons/basket-grey-darker.svg" height="64" width="64" /></p>
+        <p><img src="/icons/basket-grey-darker.svg" height="64" width="64" /></p>
         <p class="h1">Din kurv er tom</p>
         <p>Log ind for at se din gemte kurv.</p>
       </grid-col>

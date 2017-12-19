@@ -13,19 +13,19 @@ export default {
     return {
       items: [{
         id: 'USP-1',
-        icon: 'https://jvdamgaard.github.io/e-com-prototype/icons/click-n-collect.svg',
+        icon: '/icons/click-n-collect.svg',
         html: `
           <p>Altid <strong>fri fragt</strong> til Bilka, føtex og NETTO</p>
         `,
       }, {
         id: 'USP-2',
-        icon: 'https://jvdamgaard.github.io/e-com-prototype/icons/returns.svg',
+        icon: '/icons/returns.svg',
         html: `
           <p><strong>30 dages returret</strong></p>
         `,
       }, {
         id: 'USP-3',
-        icon: 'https://jvdamgaard.github.io/e-com-prototype/icons/free-delivery.svg',
+        icon: '/icons/free-delivery.svg',
         html: `
           <p><strong>Fri fragt</strong> på ordre over 1000,-</p>
         `,

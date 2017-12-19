@@ -112,26 +112,26 @@ export default {
       imageSections: [{
         header: 'Betalingsmuligheder',
         images: [
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/dankort.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/master-card.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/mobilepay.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/paypal.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa-electron.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa.png' },
+          { src: '/icons/payment-methods/dankort.png' },
+          { src: '/icons/payment-methods/master-card.png' },
+          { src: '/icons/payment-methods/mobilepay.png' },
+          { src: '/icons/payment-methods/paypal.png' },
+          { src: '/icons/payment-methods/visa-electron.png' },
+          { src: '/icons/payment-methods/visa.png' },
         ],
       }, {
         header: 'Partnere',
         images: [
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/partners/iposen.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/partners/wupti.png' },
+          { src: '/icons/partners/iposen.png' },
+          { src: '/icons/partners/wupti.png' },
         ],
       }, {
         header: 'Følg os',
         images: [
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/social-media/facebook.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/social-media/instagram.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/social-media/twitter.png' },
-          { src: 'https://jvdamgaard.github.io/e-com-prototype/icons/social-media/youtube.png' },
+          { src: '/icons/social-media/facebook.png' },
+          { src: '/icons/social-media/instagram.png' },
+          { src: '/icons/social-media/twitter.png' },
+          { src: '/icons/social-media/youtube.png' },
         ],
       }],
     };

@@ -20,7 +20,7 @@
             <navigation-item
               titel="Log ind"
               description="Log ind eller opret bruger"
-              icon="https://jvdamgaard.github.io/e-com-prototype/icons/login.svg"
+              icon="/icons/login.svg"
               lazy
               :class="$style.navItem"
             />

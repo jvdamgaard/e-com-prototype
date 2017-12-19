@@ -18,7 +18,7 @@
           </div>
           <input type="text" placeholder="Søg i mere end 250.000 produkter" :class="$style.searchInput" v-model="searchQuery" @keyup.enter="search">
           <btn type="yellow" :class="$style.searchButton" @click.native="search">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/search-black.svg" height="32" width="32" />
+            <img src="/icons/search-black.svg" height="32" width="32" />
           </btn>
           <nuxt-link
             :class="state.miniBasketActive ? $style.basketIconActive : $style.basketIcon"
@@ -30,7 +30,7 @@
             <span :class="$style.basketFullText">Kurv ({{itemsInBasket}})</span>
             <span :class="$style.basketShortText">{{itemsInBasket}}</span>
             <img
-              :src="`https://jvdamgaard.github.io/e-com-prototype/icons/basket-${state.miniBasketActive ? 'grey-darker' : 'white'}.svg`"
+              :src="`/icons/basket-${state.miniBasketActive ? 'grey-darker' : 'white'}.svg`"
               height="32"
               width="32"
             />

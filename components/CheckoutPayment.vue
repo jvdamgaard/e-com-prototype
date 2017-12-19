@@ -23,10 +23,10 @@
           <label for="payment-method-credit-card">
             <input type="radio" id="payment-method-credit-card" name="payment-method" value="Betalingskort (0,00 kr.)" v-model="payment.method">
             Betalingskort
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/dankort.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/master-card.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa-electron.png">
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/visa.png">
+            <img src="/icons/payment-methods/dankort.png">
+            <img src="/icons/payment-methods/master-card.png">
+            <img src="/icons/payment-methods/visa-electron.png">
+            <img src="/icons/payment-methods/visa.png">
             <div>0,00 kr.</div></span>
           </label>
         </p>
@@ -34,7 +34,7 @@
           <label for="payment-method-mobilepay">
             <input type="radio" id="payment-method-mobilepay" name="payment-method" value="MobilePay (0,00 kr.)" v-model="payment.method">
             MobilePay
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/mobilepay.png">
+            <img src="/icons/payment-methods/mobilepay.png">
             <div>0,00 kr.</div></span>
           </label>
         </p>
@@ -42,7 +42,7 @@
           <label for="payment-method-paypal">
             <input type="radio" id="payment-method-paypal" name="payment-method" value="PayPal (0,00 kr.)" v-model="payment.method">
             PayPal
-            <img src="https://jvdamgaard.github.io/e-com-prototype/icons/payment-methods/paypal.png">
+            <img src="/icons/payment-methods/paypal.png">
             <div>0,00 kr.</div></span>
           </label>
         </p>
