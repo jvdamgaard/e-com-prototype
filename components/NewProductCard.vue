@@ -98,21 +98,21 @@ export default {
 .container {
   display: block;
   position: relative;
-  height: 100%;
+  height: 0;
   width: 100%;
   color: var(--color-black);
   overflow: hidden;
   background-color: var(--color-white);
-  padding-bottom: 5rem;
+  padding-bottom: calc(100% + 5rem);
 }
 .container:hover {
   text-decoration: none!important;
 }
 
 .stockImage {
-  width: 70%;
-  padding-bottom: 70%;
-  margin: 15%;
+  width: 70% !important;
+  padding-bottom: 70% !important;
+  margin: 15% !important;
 }
 
 .sticker {
