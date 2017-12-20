@@ -1,6 +1,1 @@
-[[redirects]]
-  from = "/api/contentful/:splat"
-  to = "https://cdn.contentful.com/:splat"
-  status = 200
-  force = true
-  headers = {Authorization: "Bearer CTF_CD_ACCESS_TOKEN"}
+/api/contentful/*  https://cdn.contentful.com/:splat  200
