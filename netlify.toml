@@ -4,4 +4,4 @@
   status = 200
   force = true
   [redirects.headers]
-    Authorization = "CTF_CD_ACCESS_BEARER"
+    Authorization = CTF_CD_ACCESS_BEARER
