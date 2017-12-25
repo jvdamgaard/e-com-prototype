@@ -3,4 +3,3 @@
   to = "https://cdn.contentful.com/:splat"
   status = 200
   force = true
-  headers = {Authorization: ":CTF_CD_ACCESS_BEARER"}
