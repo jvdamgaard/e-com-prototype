@@ -1,7 +1,5 @@
 [[redirects]]
   from = "/api/contentful/*"
   to = "https://cdn.contentful.com/:splat"
-  status = 200
-  force = true
   [redirects.headers]
-    Authorization = ":CTF_CD_ACCESS_BEARER"
+    Authorization = "Bearer 3cbf6e53e87bef10a885bb99f46c31398f4808a4aa458887b629725294943d9d"
