@@ -1,15 +1,15 @@
-import * as contentfulManagement from 'contentful-management';
-import * as contentful from 'contentful';
+const contentfulManagement = require('contentful-management');
+const contentful = require('contentful');
 
-export const managementClient = contentfulManagement.createClient({
-  accessToken: process.env.CTF_CM_ACCESS_TOKEN,
+module.exports.managementClient = contentfulManagement.createClient({
+  accessToken: process.env.CTF_CM_ACCESS_TOKEN || 'netlify',
   host: process.env.DEPLOY_PRIME_URL,
-  basePath: process.env.DEPLOY_PRIME_URL ? 'api/contentful-management' : undefined,
+  basePath: process.env.DEPLOY_PRIME_URL ? 'api/contentful-management' : '',
 });
 
-export const deliveryClient = contentful.createClient({
+module.exports.deliveryClient = contentful.createClient({
   space: process.env.CTF_SPACE_ID,
-  accessToken: process.env.CTF_CD_ACCESS_TOKEN,
+  accessToken: process.env.CTF_CD_ACCESS_TOKEN || 'netlify',
   host: process.env.DEPLOY_PRIME_URL,
-  basePath: process.env.DEPLOY_PRIME_URL ? 'api/contentful-delivery' : undefined,
+  basePath: process.env.DEPLOY_PRIME_URL ? 'api/contentful-delivery' : '',
 });
