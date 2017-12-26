@@ -8,7 +8,7 @@ export const managementClient = contentfulManagement.createClient({
 });
 
 export const deliveryClient = contentful.createClient({
-  space: 'n8ckv2qtuzei',
+  space: process.env.CTF_SPACE_ID,
   accessToken: process.env.CTF_CD_ACCESS_TOKEN || 'netlify',
   host: process.env.DEPLOY_PRIME_URL,
   basePath: process.env.DEPLOY_PRIME_URL ? 'api/contentful-delivery' : undefined,
