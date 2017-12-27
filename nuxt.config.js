@@ -5,9 +5,6 @@ const contentful = require('./plugins/contentful');
 module.exports = {
 
   env: {
-    CTF_CM_ACCESS_TOKEN: process.env.CTF_CM_ACCESS_TOKEN,
-    CTF_CD_ACCESS_TOKEN: process.env.CTF_CD_ACCESS_TOKEN,
-    DEPLOY_PRIME_URL: process.env.DEPLOY_PRIME_URL,
     CTF_MAIN_NAVIGATION_ID: '3gZRQakcIUAsEMe6Q46oGa',
     CTF_MY_ACCOUNT_NAVIGATION_ID: '1H40crtAkYmmkaW8IQG2SO',
     CTF_MORE_MRKT_NAVIGATION_ID: '2aIFu001R6YM60uwuu2IeE',
