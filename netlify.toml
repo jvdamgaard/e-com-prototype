@@ -1,0 +1,15 @@
+[[redirects]]
+  from = "/api/contentful-delivery/*"
+  to = "https://cdn.contentful.com/:splat"
+  status = 200
+  force = true
+  [redirects.headers]
+    authorization = "Bearer 3cbf6e53e87bef10a885bb99f46c31398f4808a4aa458887b629725294943d9d"
+
+[[redirects]]
+  from = "/api/contentful-management/*"
+  to = "https://api.contentful.com/:splat"
+  status = 200
+  force = true
+  [redirects.headers]
+    authorization = "Bearer CFPAT-802737470517e9206951077be900c1fa1dcac09d26c9d282a5ecc3d78047eb78"

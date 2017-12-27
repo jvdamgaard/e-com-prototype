@@ -1,13 +1,10 @@
 const lruCache = require('lru-cache');
-const contentful = require('contentful');
 const kebabCase = require('lodash/kebabCase');
+const contentful = require('./plugins/contentful');
 
 module.exports = {
 
   env: {
-    CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-    CTF_CM_ACCESS_TOKEN: process.env.CTF_CM_ACCESS_TOKEN,
-    CTF_CD_ACCESS_TOKEN: process.env.CTF_CD_ACCESS_TOKEN,
     CTF_MAIN_NAVIGATION_ID: '3gZRQakcIUAsEMe6Q46oGa',
     CTF_MY_ACCOUNT_NAVIGATION_ID: '1H40crtAkYmmkaW8IQG2SO',
     CTF_MORE_MRKT_NAVIGATION_ID: '2aIFu001R6YM60uwuu2IeE',
@@ -48,10 +45,7 @@ module.exports = {
     routes: async () => {
       const routes = [];
 
-      const client = contentful.createClient({
-        space: process.env.CTF_SPACE_ID,
-        accessToken: process.env.CTF_CD_ACCESS_TOKEN,
-      });
+      const client = contentful.deliveryClient;
 
       const [
         productEntries,
@@ -137,7 +131,7 @@ module.exports = {
     { src: '~plugins/disable-hover-on-scroll.js', ssr: false },
     { src: '~plugins/lazy-load.js' },
   ],
-  modules: (process.env.NODE_ENV === 'generate') ? [
+  modules: (process.env.NODE_ENV === 'production') ? [
     '@nuxtjs/icon',
     '@nuxtjs/manifest',
     '@nuxtjs/meta',
