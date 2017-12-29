@@ -127,6 +127,7 @@ module.exports = {
     },
   },
   plugins: [
+    { src: './utils/auth.js', ssr: false },
     { src: '~plugins/persisted-state.js', ssr: false },
     { src: '~plugins/disable-hover-on-scroll.js', ssr: false },
     { src: '~plugins/lazy-load.js' },
