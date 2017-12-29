@@ -18,7 +18,7 @@
     "generate": "cross-env NODE_ENV=production nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "deploy": "gh-pages -d dist --dotfiles"
+    "deploy": "npm run generate"
   },
   "dependencies": {
     "@nuxtjs/icon": "latest",
@@ -31,6 +31,7 @@
     "cross-env": "latest",
     "dawa-autocomplete2": "latest",
     "gh-pages": "latest",
+    "gotrue-js": "latest",
     "hash.js": "latest",
     "lodash": "latest",
     "lru-cache": "latest",
