@@ -3,17 +3,19 @@
     :class="{ [$style.inactive]: inactive, [$style.filled]: filled }"
     :inactive="inactive"
   >
-    <div v-if="number" :class="$style.number">{{number}}</div>
-    <btn
-      v-if="filled"
-      type="grey-light"
-      height="small"
-      :class="$style.change"
-      @click.native="edit"
-    >
-      Rediger
-    </btn>
-    <h2 :class="[$style.header, { 'h3': small }]">{{header}}</h2>
+    <div>
+      <div v-if="number" :class="$style.number">{{number}}</div>
+      <btn
+        v-if="filled"
+        type="grey-light"
+        height="small"
+        :class="$style.change"
+        @click.native="edit"
+      >
+        {{editLabel}}
+      </btn>
+      <h2 :class="[$style.header, { 'h3': small }]">{{header}}</h2>
+    </div>
   </checkout-box>
 </template>
 
@@ -44,6 +46,10 @@ export default {
     edit: {
       type: Function,
       default: () => {},
+    },
+    editLabel: {
+      type: String,
+      default: 'Rediger',
     },
   },
 };
@@ -80,7 +86,7 @@ export default {
 }
 
 .change {
-  width: auto;
+  width: auto !important;
   float: right;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="autocomplete-container">
-    <input type="search" id="address" name="address" required autocomplete="shipping street-address" :value="value" ref="address">
+    <input type="search" required :value="value" ref="address">
     <!-- Suggestions will appear here -->
   </div>
 
@@ -23,7 +23,7 @@ export default {
     const { changeValue } = this;
     this.autocomplete = dawaAutocomplete2.dawaAutocomplete(this.$refs.address, {
       select(val) {
-        changeValue(val.tekst);
+        changeValue(val);
       },
     });
   },

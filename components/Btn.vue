@@ -133,8 +133,7 @@ export default {
   background-color: var(--color-black);
 }
 :global(.no-touch) .black:hover {
-  color: var(--color-black);
-  background-color: var(--color-white);
+  background-color: var(--color-grey-dark);
 }
 
 .grey-light {

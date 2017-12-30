@@ -37,6 +37,9 @@ export default {
 .container:last-child {
   margin-bottom: 1rem;
 }
+
+.container > *:not(:first-child) { margin-top: 1rem; }
+
 @media (min-width: 48rem) {
   .container {
     padding: 2rem 1rem;
