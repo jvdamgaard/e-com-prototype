@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
 import CheckoutHeaderBox from '../../components/CheckoutHeaderBox.vue';
@@ -115,12 +116,14 @@ export default {
       }
       this.creating = true;
       try {
+        const cfUserResponse = await axios.get('/.netlify/functions/create-user/');
         const data = {
           address: this.address,
           postal_code: this.postal_code,
           city: this.city,
           full_name: this.full_name,
           phone: this.phone,
+          cf_user_id: cfUserResponse.data.id,
         };
         await window.auth.signup(this.email, this.password, data);
         await window.auth.login(this.email, this.password, true);
