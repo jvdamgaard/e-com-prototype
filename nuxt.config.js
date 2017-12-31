@@ -1,4 +1,3 @@
-const lruCache = require('lru-cache');
 const kebabCase = require('lodash/kebabCase');
 const contentful = require('./plugins/contentful');
 
@@ -113,17 +112,6 @@ module.exports = {
           localIdentName: '[hash:base64:5]',
         };
       }
-    },
-  },
-  renderer: {
-    http2: {
-      push: true,
-    },
-    bundleRenderer: {
-      cache: lruCache({
-        max: 1000,
-        maxAge: 1000 * 60 * 15,
-      }),
     },
   },
   plugins: [
