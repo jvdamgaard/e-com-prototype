@@ -24,7 +24,7 @@ function updateLastSeen(user, event) {
 }
 
 exports.handler = (event, context, callback) => {
-  getUser()
+  getUser(event.queryStringParameters.cf_user_id)
     .then(user => updateLastSeen(user, event))
     .then(user => user.update())
     .then(user => user.publish())
