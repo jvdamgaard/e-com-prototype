@@ -15,8 +15,7 @@ export default {
     return data;
   },
   mounted() {
-    const initPos = (window.pageYOffset > 33) ? 33 : 0;
-    window.scrollTo(0, initPos);
+    window.scrollTo(0, 0);
   },
 };
 </script>

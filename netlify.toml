@@ -1,14 +1,14 @@
+[build]
+  functions = "dist-functions"
+  command = "npm run deploy"
+
 [[redirects]]
-  from = "/api/contentful-delivery/*"
+  from = "/api/contentful/*"
   to = "https://cdn.contentful.com/:splat"
   status = 200
   force = true
 
 [[redirects]]
-  from = "/api/contentful-management/*"
-  to = "https://api.contentful.com/:splat"
+  from = "/*"
+  to = "/200.html"
   status = 200
-  force = true
-
-[build]
-  functions = "dist-functions"

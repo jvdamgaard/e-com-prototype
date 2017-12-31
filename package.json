@@ -11,16 +11,14 @@
     }
   },
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "analyze": "nuxt build --analyze",
-    "start": "nuxt start",
-    "generate": "cross-env NODE_ENV=production nuxt generate",
+    "dev": "nuxt --spa",
+    "build": "cross-env NODE_ENV=production nuxt build",
+    "analyze": "cross-env NODE_ENV=production nuxt build --analyze",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "deploy": "npm run generate && npm run functions:build",
+    "deploy": "npm run build && npm run functions:build",
     "functions": "netlify-lambda serve functions",
-    "functions:build": "netlify-lambda build functions"
+    "functions:build": "cross-env NODE_ENV=production netlify-lambda build functions"
   },
   "dependencies": {
     "@nuxtjs/icon": "latest",
@@ -32,13 +30,11 @@
     "contentful-management": "latest",
     "cross-env": "latest",
     "dawa-autocomplete2": "latest",
-    "gh-pages": "latest",
     "gotrue-js": "latest",
     "hash.js": "latest",
     "lodash": "latest",
-    "lru-cache": "latest",
     "marked": "latest",
-    "netlify-lambda": "^0.1.0",
+    "netlify-lambda": "latest",
     "nuxt": "latest",
     "vue-lazyload": "latest",
     "vuex-persistedstate": "latest"
