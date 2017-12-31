@@ -3,11 +3,7 @@ import { getNavigation } from '../utils/navigation';
 
 export function state() {
   return {
-    navigation: {
-      [process.env.CTF_MAIN_NAVIGATION_ID]: {},
-      [process.env.CTF_MY_ACCOUNT_NAVIGATION_ID]: {},
-      [process.env.CTF_MORE_MRKT_NAVIGATION_ID]: {},
-    },
+    navigation: {},
   };
 }
 
@@ -18,7 +14,7 @@ export const mutations = {
 };
 
 export const actions = {
-  async browserInit({ commit }) {
+  async nuxtServerInit({ commit }) {
     const [
       mainNavigation,
       myAccountNavigation,

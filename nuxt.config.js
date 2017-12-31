@@ -1,6 +1,8 @@
-module.exports = {
+const lruCache = require('lru-cache');
+const kebabCase = require('lodash/kebabCase');
+const contentful = require('./plugins/contentful');
 
-  mode: 'spa',
+module.exports = {
 
   env: {
     CTF_MAIN_NAVIGATION_ID: '3gZRQakcIUAsEMe6Q46oGa',
@@ -37,6 +39,39 @@ module.exports = {
   router: {
     scrollBehavior() {
       return false;
+    },
+  },
+  generate: {
+    routes: async () => {
+      const routes = [];
+
+      const client = contentful.deliveryClient;
+
+      const [
+        productEntries,
+        departmentEntries,
+        brandEntries,
+        plpEntries,
+      ] = await Promise.all([
+        client.getEntries({ content_type: 'product', limit: 1000 }),
+        client.getEntries({ content_type: 'department', limit: 1000 }),
+        client.getEntries({ content_type: 'brand', limit: 1000 }),
+        client.getEntries({ content_type: 'productListPage', limit: 1000 }),
+      ]);
+
+      // Products
+      productEntries.items.forEach(item => routes.push(`/produkt/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      // Departments
+      departmentEntries.items.forEach(item => routes.push(`/afdeling/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      // Brands
+      brandEntries.items.forEach(item => routes.push(`/brand/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      // Product List Pages
+      plpEntries.items.forEach(item => routes.push(`/produkter/${kebabCase(item.fields.titel)}/${item.sys.id}/`));
+
+      return routes;
     },
   },
   build: {
@@ -80,11 +115,21 @@ module.exports = {
       }
     },
   },
+  renderer: {
+    http2: {
+      push: true,
+    },
+    bundleRenderer: {
+      cache: lruCache({
+        max: 1000,
+        maxAge: 1000 * 60 * 15,
+      }),
+    },
+  },
   plugins: [
     { src: '~plugins/persisted-state.js', ssr: false },
     { src: '~plugins/disable-hover-on-scroll.js', ssr: false },
     { src: '~plugins/auth.js', ssr: false },
-    { src: '~plugins/init-store.js', ssr: false },
     { src: '~plugins/lazy-load.js' },
   ],
   modules: (process.env.NODE_ENV === 'production') ? [
