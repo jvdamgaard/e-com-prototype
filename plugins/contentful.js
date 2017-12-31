@@ -6,12 +6,12 @@ module.exports.managementClient = contentfulManagement.createClient({
 });
 
 const settings = {
-  space: 'n8ckv2qtuzei',
-  accessToken: '3cbf6e53e87bef10a885bb99f46c31398f4808a4aa458887b629725294943d9d',
+  space: process.env.CTF_SPACE_ID,
+  accessToken: process.env.CTF_CD_ACCESS_TOKEN,
 };
 
-if (window.location.hostname !== 'localhost') {
-  settings.host = window.location.hostname;
+if (process.env.DOMAIN) {
+  settings.host = process.env.DOMAIN;
   settings.basePath = 'api/contentful';
 }
 
