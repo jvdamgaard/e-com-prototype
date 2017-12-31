@@ -1,26 +1,33 @@
-// const contentfulManagement = require('contentful-management');
+/* eslint no-param-reassign: 0 */
+const contentfulManagement = require('contentful-management');
 
-// function createUser() {
-//   const client = contentfulManagement.createClient({
-//     accessToken: process.env.CTF_CM_ACCESS_TOKEN,
-//   });
-//   return client.getSpace(process.env.CTF_SPACE_ID)
-//     .then(space => space.createEntry('user', {}))
-//     .then(user => user.publish());
-// }
+function getUser(id) {
+  const client = contentfulManagement.createClient({
+    accessToken: process.env.CTF_CM_ACCESS_TOKEN,
+  });
+  return client
+    .getSpace(process.env.CTF_SPACE_ID)
+    .then(space => space.getEntry(id));
+}
+
+function updateLastSeen(user, event) {
+  user.fields.lastSeen = {
+    'da-DK': JSON.parse(event.body).map(item => ({
+      sys: {
+        id: item.id,
+        linkType: 'Entry',
+        type: 'Link',
+      },
+    })),
+  };
+  return user;
+}
 
 exports.handler = (event, context, callback) => {
-  callback(null, {
-    statusCode: 200,
-    body: JSON.stringify({ event, context }, null, 2),
-  });
-
-  // createUser()
-  //   .then((user) => {
-  //     callback(null, {
-  //       statusCode: 200,
-  //       body: JSON.stringify({ id: user.sys.id }, null, 2),
-  //     });
-  //   })
-  //   .catch(e => callback(e));
+  getUser()
+    .then(user => updateLastSeen(user, event))
+    .then(user => user.update())
+    .then(user => user.publish())
+    .then(user => callback(null, { statusCode: 200, body: JSON.stringify(user, null, 2) }))
+    .catch(e => callback(e));
 };
