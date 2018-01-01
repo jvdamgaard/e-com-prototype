@@ -4,7 +4,6 @@ const contentful = require('./plugins/contentful');
 module.exports = {
 
   env: {
-    DOMAIN: process.env.DEPLOY_PRIME_URL,
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
     CTF_CD_ACCESS_TOKEN: process.env.CTF_CD_ACCESS_TOKEN,
     CTF_MAIN_NAVIGATION_ID: '3gZRQakcIUAsEMe6Q46oGa',
