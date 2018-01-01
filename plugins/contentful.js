@@ -10,7 +10,7 @@ const settings = {
   accessToken: process.env.CTF_CD_ACCESS_TOKEN,
 };
 
-if (process.env.DOMAIN) {
+if (process.browser && process.env.DOMAIN) {
   settings.host = process.env.DOMAIN;
   settings.basePath = 'api/contentful';
 }
