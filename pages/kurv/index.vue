@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'; //eslint-disable-line
+import { mapActions } from 'vuex'; //eslint-disable-line
 
 export default {
   components: {

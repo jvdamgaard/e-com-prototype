@@ -36,7 +36,7 @@
           <nuxt-link to="/søg/" class="hiddenOnTablet" :class="$style.iconLink">
             <img src="/icons/ic_search_white_24px.svg"/>
           </nuxt-link>
-          <nuxt-link to="/min-konto/" :class="$style.iconLink">
+          <nuxt-link to="/mit-mrkt/" :class="$style.iconLink">
             <img src="/icons/ic_perm_identity_white_24px.svg"/>
           </nuxt-link>
           <nuxt-link to="/favoritter/" class="hiddenOnMobile visibleOnPhablet" :class="$style.iconLink">

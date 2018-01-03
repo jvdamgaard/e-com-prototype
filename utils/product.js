@@ -1,7 +1,7 @@
 /* eslint no-param-reassign: 0 */
 import marked from 'marked';
 import kebabCase from 'lodash/kebabCase';
-import * as contentful from '../plugins/contentful';
+import contentful from './contentful';
 
 function ProductDetailPageDescription(entry) {
   return {
@@ -77,7 +77,7 @@ function ProductDetailPageSummary(entry) {
 }
 
 export function getProducts(query, exclude) {
-  return contentful.deliveryClient.getEntries({
+  return contentful.client.getEntries({
     ...query,
     content_type: 'product',
     include: 1,
@@ -123,7 +123,7 @@ export async function ProductModules(entry) {
 }
 
 export async function getProduct(id, deep = false) {
-  const entries = await contentful.deliveryClient
+  const entries = await contentful.client
     .getEntries({ 'sys.id': id, include: deep ? 2 : 0 });
 
   if (!entries || entries.length === 0) {

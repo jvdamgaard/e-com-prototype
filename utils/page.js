@@ -1,7 +1,7 @@
 /* eslint no-param-reassign: 0 */
 import marked from 'marked';
 import kebabCase from 'lodash/kebabCase';
-import * as contentful from '../plugins/contentful';
+import contentful from './contentful';
 import { ProductSlider } from './product';
 
 function entryUrl(entry) {
@@ -16,7 +16,7 @@ function entryUrl(entry) {
 }
 
 export async function getPageEntry(id, deep = false) {
-  const entries = await contentful.deliveryClient
+  const entries = await contentful.client
     .getEntries({ 'sys.id': id, include: deep ? 3 : 0 });
 
   if (!entries || entries.length === 0) {

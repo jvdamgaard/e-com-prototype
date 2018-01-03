@@ -1,123 +1,64 @@
 /* eslint no-param-reassign: 0 */
-import sha256 from 'hash.js/lib/hash/sha/256';
-import * as contentful from '../plugins/contentful';
+import axios from 'axios';
+import contentful from './contentful';
 
-export function getUser() {
-  if (!window.localStorage.getItem('userId')) {
-    return Promise.reject();
-  }
-
-  return contentful.deliveryClient
-    .getEntries({
-      'sys.id': window.localStorage.getItem('userId'),
-      include: 3,
-    })
+export function getUser(id) {
+  return contentful.client
+    .getEntries({ 'sys.id': id, include: 3 })
     .then(entries => entries.items[0]);
 }
 
-export function getEditableUser() {
-  if (!window.localStorage.getItem('userId')) {
-    return Promise.reject();
-  }
-
-  return contentful.managementClient
-    .getSpace(process.env.CTF_SPACE_ID)
-    .then(space => space.getEntry(window.localStorage.getItem('userId')));
-}
-
-export function createBasketItem(item) {
-  return contentful.managementClient
-    .getSpace(process.env.CTF_SPACE_ID)
-    .then(space => space.createEntry('basketItem', {
-      fields: {
-        quantity: { 'da-DK': item.quantity },
-        product: {
-          'da-DK': {
-            sys: {
-              id: item.product.id,
-              linkType: 'Entry',
-              type: 'Link',
-            },
-          },
-        },
-      },
-    }))
-    .then(entry => entry.publish());
-}
-
-export function deleteBasketItem(item) {
-  return contentful.managementClient
-    .getSpace(process.env.CTF_SPACE_ID)
-    .then(space => space.getEntry(item.sys.id))
-    .then(entry => entry.unpublish())
-    .then(entry => entry.delete());
-}
-
-// TODO
 export function uploadBasket(basket) {
-  let oldBasketItems = [];
-  return getEditableUser()
-    .then(user => Promise.all(basket.items.map(createBasketItem))
-      .then((basketItems) => {
-        if (user.fields.basket) {
-          oldBasketItems = user.fields.basket['da-DK'];
-        }
-        user.fields.basket = {
-          'da-DK': basketItems.map(basketItem => ({
-            sys: {
-              id: basketItem.sys.id,
-              linkType: 'Entry',
-              type: 'Link',
-            },
-          })),
-        };
-        return user.update();
-      }))
-    .then(user => user.publish())
-
-    // Clean up old basket items
-    .then(() => Promise.all(oldBasketItems.map(deleteBasketItem)));
+  const user = window.auth.currentUser();
+  if (!user) { return; }
+  axios.put(`/.netlify/functions/update-basket?cf_user_id=${user.user_metadata.cf_user_id}`, basket);
 }
 
 export function uploadLastSeen(lastSeen) {
-  return getEditableUser()
-    .then((user) => {
-      user.fields.lastSeen = {
-        'da-DK': lastSeen.map(item => ({
-          sys: {
-            id: item.id,
-            linkType: 'Entry',
-            type: 'Link',
-          },
-        })),
-      };
-      return user.update();
-    })
-    .then(user => user.publish());
+  const user = window.auth.currentUser();
+  if (!user) { return; }
+  axios.put(`/.netlify/functions/update-lastseen?cf_user_id=${user.user_metadata.cf_user_id}`, lastSeen);
 }
 
-export function createUser(data) {
-  return contentful.managementClient.getSpace(process.env.CTF_SPACE_ID)
-    .then(space => space.createEntry('user', {
-      fields: {
-        name: { 'da-DK': data.name },
-        email: { 'da-DK': data.email },
-        address: { 'da-DK': data.address },
-        phone: { 'da-DK': data.phone },
-        password: { 'da-DK': sha256().update(data.password).digest('hex') },
-      },
-    }))
-    .then(user => user.publish());
+export async function createUser({
+  email,
+  password,
+  address,
+  postal_code, // eslint-disable-line
+  city,
+  full_name, // eslint-disable-line
+  phone,
+}) {
+  const cfUserResponse = await axios.get('/.netlify/functions/create-user/');
+  const userMetadata = {
+    address,
+    postal_code,
+    city,
+    full_name,
+    phone,
+    cf_user_id: cfUserResponse.data.id,
+  };
+  await window.auth.signup(email, password, userMetadata);
+  await window.auth.login(email, password, true);
 }
 
-export function updateUser(data) {
-  return getEditableUser()
-    .then((user) => {
-      user.fields.name['da-DK'] = data.name;
-      user.fields.email['da-DK'] = data.email;
-      user.fields.address['da-DK'] = data.address;
-      user.fields.phone['da-DK'] = data.phone;
-      return user.update();
-    })
-    .then(user => user.publish());
+export function updateMetadata({
+  address,
+  postal_code, // eslint-disable-line
+  city,
+  full_name, // eslint-disable-line
+  phone,
+}) {
+  const user = window.auth.currentUser();
+  if (!user) { return Promise.resolve(); }
+
+  return user.update({
+    data: {
+      address,
+      postal_code,
+      city,
+      full_name,
+      phone,
+    },
+  });
 }

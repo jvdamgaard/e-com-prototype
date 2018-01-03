@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: 0 */
 import kebabCase from 'lodash/kebabCase';
-import * as contentful from '../plugins/contentful';
+import contentful from './contentful';
 
 function entryUrl(entry) {
   if (!entry) {
@@ -82,7 +82,7 @@ export function NavigationDepartment(entry) {
 }
 
 export async function getNavigationEntry(id) {
-  const entries = await contentful.deliveryClient
+  const entries = await contentful.client
     .getEntries({ 'sys.id': id, include: 4 });
 
   if (!entries || entries.length === 0) {

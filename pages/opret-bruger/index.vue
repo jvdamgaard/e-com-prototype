@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapActions } from 'vuex'; // eslint-disable-line
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
 import CheckoutHeaderBox from '../../components/CheckoutHeaderBox.vue';
@@ -68,6 +68,11 @@ function sleep(ms = 0) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function getRedirectURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('callback') || '/mit-mrkt/';
+}
+
 export default {
   components: {
     Grid,
@@ -77,6 +82,16 @@ export default {
     CheckoutForm,
     Btn,
     InputAddress,
+  },
+  fetch({ redirect }) {
+    if (process.browser && window.auth.currentUser()) {
+      redirect(getRedirectURL());
+    }
+  },
+  beforeCreate() {
+    if (process.browser && window.auth.currentUser()) {
+      this.$router.push(getRedirectURL());
+    }
   },
   data() {
     return {
@@ -94,6 +109,9 @@ export default {
   },
   computed: {},
   methods: {
+    ...mapActions({
+      createUser: 'user/createUser',
+    }),
     gotoLogin() {
       this.$router.push('/log-ind/');
     },
@@ -101,14 +119,9 @@ export default {
       this.showPassword = !this.showPassword;
     },
     changeAddress(val) {
-      let address = `${val.data.vejnavn} ${val.data.husnr}`;
-      if (val.data.etage || val.data.dør) { address += ','; }
-      if (val.data.etage) { address += ` ${val.data.etage}.`; }
-      if (val.data.dør) { address += ` ${val.data.dør}.`; }
-      if (val.data.supplerendebynavn) { address += `, ${val.data.supplerendebynavn}`; }
-      this.address = address;
-      this.city = val.data.postnrnavn;
-      this.postal_code = val.data.postnr;
+      this.address = val.address;
+      this.city = val.city;
+      this.postal_code = val.postal_code;
     },
     async create() {
       if (this.creating) {
@@ -116,24 +129,23 @@ export default {
       }
       this.creating = true;
       try {
-        const cfUserResponse = await axios.get('/.netlify/functions/create-user/');
         const data = {
+          email: this.email,
+          password: this.password,
           address: this.address,
           postal_code: this.postal_code,
           city: this.city,
           full_name: this.full_name,
           phone: this.phone,
-          cf_user_id: cfUserResponse.data.id,
         };
-        await window.auth.signup(this.email, this.password, data);
-        await window.auth.login(this.email, this.password, true);
+        await Promise.all([
+          this.createUser(data),
+          sleep(1500),
+        ]);
         this.created = true;
         await sleep(1500);
 
-        // TODO: redirect
-
-        this.creating = false;
-        this.created = false;
+        this.$router.push(getRedirectURL());
       } catch (e) {
         console.error(e);
         this.creating = false;

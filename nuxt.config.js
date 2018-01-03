@@ -1,5 +1,5 @@
 const kebabCase = require('lodash/kebabCase');
-const contentful = require('./plugins/contentful');
+const contentful = require('./utils/contentful');
 
 module.exports = {
 
@@ -46,18 +46,16 @@ module.exports = {
     routes: async () => {
       const routes = [];
 
-      const client = contentful.deliveryClient;
-
       const [
         productEntries,
         departmentEntries,
         brandEntries,
         plpEntries,
       ] = await Promise.all([
-        client.getEntries({ content_type: 'product', limit: 1000 }),
-        client.getEntries({ content_type: 'department', limit: 1000 }),
-        client.getEntries({ content_type: 'brand', limit: 1000 }),
-        client.getEntries({ content_type: 'productListPage', limit: 1000 }),
+        contentful.client.getEntries({ content_type: 'product', limit: 1000 }),
+        contentful.client.getEntries({ content_type: 'department', limit: 1000 }),
+        contentful.client.getEntries({ content_type: 'brand', limit: 1000 }),
+        contentful.client.getEntries({ content_type: 'productListPage', limit: 1000 }),
       ]);
 
       // Products
@@ -82,14 +80,12 @@ module.exports = {
       './components/GridCol.vue',
       './components/Btn.vue',
       './components/ProductCard.vue',
-      // 'axios',
+      'axios',
       'vue-lazyload',
       'lodash/throttle',
       'lodash/kebabCase',
       'lodash/debounce',
-      'contentful-management',
       'contentful',
-      'hash.js/lib/hash/sha/256',
       'marked',
     ],
 

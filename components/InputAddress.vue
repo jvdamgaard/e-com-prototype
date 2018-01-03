@@ -23,7 +23,17 @@ export default {
     const { changeValue } = this;
     this.autocomplete = dawaAutocomplete2.dawaAutocomplete(this.$refs.address, {
       select(val) {
-        changeValue(val);
+        let address = `${val.data.vejnavn} ${val.data.husnr}`;
+        if (val.data.etage || val.data.dør) { address += ','; }
+        if (val.data.etage) { address += ` ${val.data.etage}.`; }
+        if (val.data.dør) { address += ` ${val.data.dør}.`; }
+        if (val.data.supplerendebynavn) { address += `, ${val.data.supplerendebynavn}`; }
+
+        changeValue({
+          address,
+          city: val.data.postnrnavn,
+          postal_code: val.data.postnr,
+        });
       },
     });
   },

@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'; // eslint-disable-line
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
 import CheckoutHeaderBox from '../../components/CheckoutHeaderBox.vue';
@@ -52,6 +53,11 @@ import Btn from '../../components/Btn.vue';
 
 function sleep(ms = 0) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function getRedirectURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('callback') || '/mit-mrkt/';
 }
 
 export default {
@@ -72,7 +78,20 @@ export default {
       showPassword: false,
     };
   },
+  fetch({ redirect }) {
+    if (process.browser && window.auth.currentUser()) {
+      redirect(getRedirectURL());
+    }
+  },
+  beforeCreate() {
+    if (process.browser && window.auth.currentUser()) {
+      this.$router.push(getRedirectURL());
+    }
+  },
   methods: {
+    ...mapActions({
+      userLogin: 'user/login',
+    }),
     togglePassword() {
       this.showPassword = !this.showPassword;
     },
@@ -85,15 +104,11 @@ export default {
       }
       this.loggingIn = true;
       try {
-        await Promise.all([window.auth.login(this.email, this.password, true), sleep(1500)]);
-        this.loggedIn = true;
-        await sleep(1500);
-
-        // TODO: redirect
-
-        this.loggingIn = false;
-        this.loggedIn = false;
-        console.log(window.auth.currentUser());
+        await Promise.all([
+          this.userLogin({ email: this.email, password: this.password }),
+          sleep(1500),
+        ]);
+        this.$router.push(getRedirectURL());
       } catch (e) {
         console.error(e);
         this.loggingIn = false;
