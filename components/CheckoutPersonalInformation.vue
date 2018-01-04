@@ -5,7 +5,7 @@
       <checkout-box>
         <p>
           <label for="name">Fulde navn</label>
-          <input type="text" id="name" name="name" required autocomplete="name" v-model="personalInformation.name" ref="name">
+          <input type="text" id="name" name="name" required autocomplete="name" v-model="personalInformation.full_name" ref="name">
         </p>
         <p>
           <label for="email">E-mail <span class="dimmed">(til ordrebekræftigelse)</span></label>
@@ -17,7 +17,10 @@
         </p>
         <p>
           <label for="address">Din hjemmeadresse</label>
-          <input-address :changeValue="changeAddress" :value="personalInformation.address" />
+          <input-address
+            :changeValue="changeAddress"
+            :value="fullAddress"
+          />
         </p>
         <p v-if="!isLoggedIn">
           <label for="create-user">
@@ -50,10 +53,12 @@
       </checkout-box>
     </checkout-form>
     <checkout-box v-if="valid && !edit" :inactive="inactive">
-      <p><span class="dimmed">Fulde navn:</span> {{this.user.personalInformation.name}}</p>
-      <p><span class="dimmed">E-mail:</span> {{this.user.personalInformation.email}}</p>
-      <p><span class="dimmed">Mobilnummer:</span> {{this.user.personalInformation.phone}}</p>
-      <p><span class="dimmed">Adresse:</span> {{this.user.personalInformation.address}}</p>
+      <div>
+        <p><span class="dimmed">Fulde navn:</span> {{this.personalInformation.full_name}}</p>
+        <p><span class="dimmed">E-mail:</span> {{this.personalInformation.email}}</p>
+        <p><span class="dimmed">Mobilnummer:</span> {{this.personalInformation.phone}}</p>
+        <p><span class="dimmed">Adresse:</span> {{this.fullAddress}}</p>
+      </div>
     </checkout-box>
   </div>
 </template>
@@ -65,6 +70,10 @@ import CheckoutForm from './CheckoutForm.vue';
 import CheckoutHeaderBox from './CheckoutHeaderBox.vue';
 import InputAddress from './InputAddress.vue';
 import Btn from './Btn.vue';
+
+function sleep(ms = 0) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 export default {
   components: {
@@ -87,9 +96,11 @@ export default {
   data() {
     return {
       personalInformation: {
-        name: null,
+        full_name: null,
         email: null,
         address: null,
+        city: null,
+        postal_code: null,
         phone: null,
       },
       edit: false,
@@ -102,74 +113,80 @@ export default {
   },
   computed: {
     ...mapState(['user']),
+    fullAddress() {
+      if (!this.user.personalInformation.address) {
+        return '';
+      }
+      return `${this.user.personalInformation.address}, ${this.user.personalInformation.postal_code} ${this.user.personalInformation.city}`;
+    },
     isLoggedIn() {
       if (!process.browser) {
         return false;
       }
-      return (window.localStorage.getItem('userId') !== null);
+      return (window.auth.currentUser());
     },
   },
   methods: {
     ...mapActions({
       savePersonalInformation: 'user/savePersonalInformation',
       createUser: 'user/createUser',
-      updateUser: 'user/updateUser',
+      updateUserMetadata: 'user/updateUserMetadata',
     }),
-    save() {
+    async save() {
       this.saving = true;
       this.edit = true;
 
       if (this.isLoggedIn) {
-        Promise.all([
-          this.updateUser(this.personalInformation),
-          new Promise(resolve => setTimeout(resolve, 1500)),
-        ])
-          .then(() => {
-            this.saved = true;
-            return new Promise(resolve => setTimeout(resolve, 1500));
-          })
-          .then(() => {
-            this.edit = false;
-            this.saving = false;
-            this.saved = false;
-          });
-      }
-
-      if (!this.createUserFlag) {
-        new Promise(resolve => setTimeout(resolve, 1500))
-          .then(() => {
-            this.saved = true;
-            return new Promise(resolve => setTimeout(resolve, 1500));
-          })
-          .then(() => {
-            this.savePersonalInformation({ ...this.personalInformation });
-            this.edit = false;
-            this.saving = false;
-            this.saved = false;
-          });
+        await Promise.all([
+          this.updateUserMetadata(this.personalInformation),
+          sleep(1500),
+        ]);
+        this.saved = true;
+        await sleep(1500);
+        this.edit = false;
+        this.saving = false;
+        this.saved = false;
         return;
       }
 
-      Promise.all([
-        this.createUser(this.personalInformation),
-        new Promise(resolve => setTimeout(resolve, 1500)),
-      ])
-        .then(() => {
-          this.saved = true;
-          return new Promise(resolve => setTimeout(resolve, 1500));
-        })
-        .then(() => {
-          this.edit = false;
-          this.saving = false;
-          this.saved = false;
-          this.isLoggedIn = true;
-        });
+      if (this.createUserFlag) {
+        await Promise.all([
+          this.createUser(this.personalInformation),
+          sleep(1500),
+        ]);
+        this.saved = true;
+        await sleep(1500);
+        this.edit = false;
+        this.saving = false;
+        this.saved = false;
+        this.isLoggedIn = true;
+        return;
+      }
+
+      await sleep(1500);
+      this.saved = true;
+      await sleep(1500);
+      this.savePersonalInformation({
+        email: this.personalInformation.email,
+        user_metadata: {
+          full_name: this.personalInformation.full_name,
+          phone: this.personalInformation.phone,
+          address: this.personalInformation.address,
+          city: this.personalInformation.city,
+          postal_code: this.personalInformation.postal_code,
+        },
+      });
+      this.edit = false;
+      this.saving = false;
+      this.saved = false;
     },
     editForm() {
       this.edit = true;
     },
-    changeAddress(address) {
-      this.personalInformation.address = address;
+    changeAddress(val) {
+      this.personalInformation.address = val.address;
+      this.personalInformation.city = val.city;
+      this.personalInformation.postal_code = val.postal_code;
     },
     togglePassword() {
       this.showPassword = !this.showPassword;

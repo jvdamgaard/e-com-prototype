@@ -7,7 +7,7 @@
         <p>
           <label for="payment-address-home">
             <input type="radio" id="payment-address-home" name="payment-address" value="home" v-model="payment.address">
-            Din hjemmeadresse <span class="dimmed">({{user.personalInformation.address}})</span>
+            Din hjemmeadresse <span class="dimmed">({{fullAddress}})</span>
           </label>
         </p>
         <p>
@@ -94,6 +94,12 @@ export default {
   },
   computed: {
     ...mapState(['user']),
+    fullAddress() {
+      if (!this.user.personalInformation.address) {
+        return '';
+      }
+      return `${this.user.personalInformation.address}, ${this.user.personalInformation.postal_code} ${this.user.personalInformation.city}`;
+    },
   },
   methods: {
     ...mapActions({

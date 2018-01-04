@@ -84,10 +84,12 @@ export default {
     ...mapState(['user']),
     personalInformationValid() {
       return !!(
-        this.user.personalInformation.name &&
+        this.user.personalInformation.full_name &&
         this.user.personalInformation.email &&
         this.user.personalInformation.phone &&
-        this.user.personalInformation.address
+        this.user.personalInformation.address &&
+        this.user.personalInformation.city &&
+        this.user.personalInformation.postal_code
       );
     },
     deliveryValid() {

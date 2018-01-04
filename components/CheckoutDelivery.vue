@@ -7,7 +7,7 @@
         <p>
           <label for="delivery-address-home">
             <input type="radio" id="delivery-address-home" name="delivery-address" value="home" v-model="delivery.address">
-            Din hjemmeadresse <span class="dimmed">({{user.personalInformation.address}})</span>
+            Din hjemmeadresse <span class="dimmed">({{fullAddress}})</span>
           </label>
         </p>
         <p>
@@ -46,8 +46,10 @@
       </checkout-box>
     </checkout-form>
     <checkout-box v-if="valid && !edit" :inactive="inactive">
-      <p><span class="dimmed">Leveringsmetode:</span> {{this.user.checkout.delivery.method}}</p>
-      <p><span class="dimmed">Leveringsadresse:</span> {{this.user.checkout.delivery.address}}</p>
+      <div>
+        <p><span class="dimmed">Leveringsmetode:</span> {{this.user.checkout.delivery.method}}</p>
+        <p><span class="dimmed">Leveringsadresse:</span> {{this.user.checkout.delivery.address}}</p>
+      </div>
     </checkout-box>
   </div>
 </template>
@@ -87,6 +89,12 @@ export default {
   },
   computed: {
     ...mapState(['user']),
+    fullAddress() {
+      if (!this.user.personalInformation.address) {
+        return '';
+      }
+      return `${this.user.personalInformation.address}, ${this.user.personalInformation.postal_code} ${this.user.personalInformation.city}`;
+    },
   },
   methods: {
     ...mapActions({

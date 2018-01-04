@@ -125,7 +125,16 @@ export const actions = {
   },
 
   async updateUserMetadata({ commit }, userData) {
-    commit('changePersonalInformation', userData);
+    commit('changePersonalInformation', {
+      email: userData.email,
+      user_metadata: {
+        full_name: userData.full_name,
+        phone: userData.phone,
+        address: userData.address,
+        city: userData.city,
+        postal_code: userData.postal_code,
+      },
+    });
     await updateMetadata(userData);
   },
 
