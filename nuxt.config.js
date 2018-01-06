@@ -87,6 +87,7 @@ module.exports = {
       'lodash/debounce',
       'contentful',
       'marked',
+      'vue-instantsearch',
     ],
 
     /*
@@ -117,6 +118,7 @@ module.exports = {
     { src: '~plugins/disable-hover-on-scroll.js', ssr: false },
     { src: '~plugins/auth.js', ssr: false },
     { src: '~plugins/lazy-load.js' },
+    { src: '~plugins/instantsearch.js' },
   ],
   modules: (process.env.NODE_ENV === 'production') ? [
     '@nuxtjs/icon',
