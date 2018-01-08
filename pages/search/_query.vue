@@ -11,7 +11,7 @@
             >
               <ais-search-box></ais-search-box>
               <ais-results>
-                <template scope="{ result }">
+                <template slot-scope="{ result }">
                   <p>
                     <!-- {{ result.fields.titel }} -->
                     <ais-highlight :result="result" attribute-name="titel"></ais-highlight>
