@@ -64,6 +64,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'; //eslint-disable-line
+import axios from 'axios';
 import { searchProducts, url } from '../../utils/product';
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
@@ -77,6 +78,7 @@ export default {
     LastSeenSlider: () => import('../../components/LastSeenSlider.vue'),
   },
   asyncData({ params, redirect }) {
+    axios.post(`/.netlify/functions/upload-search-query?query=${params.query}`);
     return searchProducts(params.query)
       .then((products) => {
         if (products.length === 1) {
