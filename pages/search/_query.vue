@@ -78,7 +78,9 @@ export default {
     LastSeenSlider: () => import('../../components/LastSeenSlider.vue'),
   },
   asyncData({ params, redirect }) {
-    axios.post(`/.netlify/functions/upload-search-query?query=${params.query}`);
+    if (process.browser) {
+      axios.post(`/.netlify/functions/upload-search-query?query=${params.query}`);
+    }
     return searchProducts(params.query)
       .then((products) => {
         if (products.length === 1) {
