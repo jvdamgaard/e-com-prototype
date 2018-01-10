@@ -42,13 +42,14 @@ function getProducts() {
         images: !item.fields.images ? [] : item.fields.images.map(image => ({
           fields: image.fields,
         })),
-        shortDescription: item.shortDescription,
-        price: item.price,
-        beforePrice: item.beforePrice,
-        departments: item.departments,
+        shortDescription: item.fields.shortDescription,
+        price: item.fields.price,
+        beforePrice: item.fields.beforePrice,
+        departments: item.fields.departments,
         stockLevel: item.fields.stockLevel,
         rating: item.fields.rating,
         recommendations: item.fields.recommendations,
+        hasEnvironmentImage: item.fields.hasEnvironmentImage,
         content: !item.fields.content ? [] : item.fields.content.map(contentBlock => ({
           header: contentBlock.fields.header,
           sections: !contentBlock.fields.sections ? [] : contentBlock.fields.sections
