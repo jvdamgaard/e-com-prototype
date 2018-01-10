@@ -32,7 +32,32 @@
           <nuxt-link to="/" :class="$style.logo">
             <span>mrkt</span>
           </nuxt-link>
-          <input type="search" placeholder="Søg efter produkter, brands, afdelinger eller inspiration" class="hiddenOnMobile visibleOnTablet" :class="$style.search" v-model="searchQuery" @keyup.enter="search">
+          <ais-index
+              app-id="IKBKHO1MME"
+              api-key="b405042bbaca18408e300b64a4a911e3"
+              index-name="autocomplete"
+              :class="$style.searchContainer"
+          >
+            <ais-input
+              :class="$style.search"
+              placeholder="Søg efter produkter, brands, afdelinger eller inspiration"
+              class="hiddenOnMobile visibleOnTablet"
+              :value="searchQuery"
+              @input.native="searchQuery = $event.target.value"
+              @keyup.enter.native="search"
+            /></ais-input>
+            <ais-results
+              :results-per-page="6"
+              :class="$style.searchSuggestions"
+            >
+              <template slot-scope="{ result }">
+                <div :class="$style.suggestion">
+                  <ais-highlight :result="result" attribute-name="query"></ais-highlight>
+                </div>
+              </template>
+            </ais-results>
+          </ais-index>
+          <!-- <input type="search"  class="hiddenOnMobile visibleOnTablet" v-model="searchQuery" @keyup.enter="search"> -->
           <nuxt-link to="/søg/" class="hiddenOnTablet" :class="$style.iconLink">
             <img src="/icons/ic_search_white_24px.svg"/>
           </nuxt-link>
@@ -272,13 +297,38 @@ export default {
   .logo { margin-right: 1rem; }
 }
 
-.search {
+
+.searchContainer {
   width: auto;
   flex-grow: 1;
+  margin: 0 1rem;
+  position: relative;
+  z-index: 100;
+}
+.search {
   border: 0 !important;
   border-radius: 1.25rem;
-  margin: 0 1rem;
-  padding: 0 2.5rem 0 1.25rem;
+  padding: 0 2.5rem 0 2rem;
+  z-index: 2;
+  position: relative;
+}
+.searchSuggestions {
+  position: absolute;
+  background: var(--color-grey-lighter);
+  width: 100%;
+  padding: 3.5rem 0 1rem;
+  top: 0;
+  border-radius: 1.25rem;
+}
+.suggestion {
+  color: var(--color-grey-darker);
+  padding: 0 2rem;
+  line-height: 2.5rem;
+  font-weight: bold;
+}
+.suggestion em {
+  font-weight: normal;
+  font-style: normal;
 }
 
 .iconLink {
@@ -321,7 +371,7 @@ export default {
     left: -20rem;
     width: 20rem;
     height: 100%;
-    z-index: 100;
+    /*z-index: 100;*/
     background-color: var(--color-grey-lighter);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -382,7 +432,7 @@ export default {
     position: relative;
     background-color: var(--color-grey-dark);
     color: var(--color-white);
-    z-index: 100;
+    /*z-index: 100;*/
   }
 
   .departments a {

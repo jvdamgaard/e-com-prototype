@@ -1,28 +1,5 @@
 <template>
   <div>
-    <article class="theme-None">
-      <section>
-        <grid>
-          <grid-col>
-            <ais-index
-              app-id="IKBKHO1MME"
-              api-key="b405042bbaca18408e300b64a4a911e3"
-              index-name="autocomplete"
-            >
-              <ais-search-box></ais-search-box>
-              <ais-results>
-                <template slot-scope="{ result }">
-                  <p>
-                    <!-- {{ result.fields.titel }} -->
-                    <ais-highlight :result="result" attribute-name="query"></ais-highlight>
-                  </p>
-                </template>
-              </ais-results>
-            </ais-index>
-          </grid-col>
-        </grid>
-      </section>
-    </article>
     <article class="theme-Grey">
       <section>
         <grid>
