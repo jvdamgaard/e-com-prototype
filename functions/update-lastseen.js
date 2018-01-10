@@ -28,6 +28,12 @@ exports.handler = (event, context, callback) => {
     .then(user => updateLastSeen(user, event))
     .then(user => user.update())
     .then(user => user.publish())
-    .then(user => callback(null, { statusCode: 200, body: JSON.stringify(user, null, 2) }))
-    .catch(e => callback(e));
+    .then(user => callback(null, {
+      statusCode: 200,
+      body: JSON.stringify(user, null, 2),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }))
+    .catch(callback);
 };

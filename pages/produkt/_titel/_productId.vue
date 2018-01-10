@@ -4,6 +4,7 @@
 
 <script>
 import { mapActions } from 'vuex'; //eslint-disable-line
+import axios from 'axios';
 import { getProductSections } from '../../../utils/product';
 
 export default {
@@ -11,6 +12,7 @@ export default {
     Sections: () => import('../../../components/Sections.vue'),
   },
   async asyncData({ params }) {
+    axios.post(`/.netlify/functions/update-product-views?id=${params.productId}`);
     const sections = await getProductSections(params.productId);
     return { sections };
   },

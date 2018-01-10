@@ -15,7 +15,10 @@ exports.handler = (event, context, callback) => {
       callback(null, {
         statusCode: 200,
         body: JSON.stringify({ id: user.sys.id }, null, 2),
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
     })
-    .catch(e => callback(e));
+    .catch(callback);
 };

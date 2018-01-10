@@ -7,14 +7,14 @@
             <ais-index
               app-id="IKBKHO1MME"
               api-key="b405042bbaca18408e300b64a4a911e3"
-              index-name="products"
+              index-name="autocomplete"
             >
               <ais-search-box></ais-search-box>
               <ais-results>
                 <template slot-scope="{ result }">
                   <p>
                     <!-- {{ result.fields.titel }} -->
-                    <ais-highlight :result="result" attribute-name="titel"></ais-highlight>
+                    <ais-highlight :result="result" attribute-name="query"></ais-highlight>
                   </p>
                 </template>
               </ais-results>

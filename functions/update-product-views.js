@@ -5,34 +5,25 @@ const client = algoliasearch(
   process.env.ALGOLIA_APPLICATION_ID,
   process.env.ALGOLIA_API_ADMIN_KEY,
 );
-const index = client.initIndex('autocomplete');
+const index = client.initIndex('products');
 
-function queryExists(query) {
+function getProduct(query) {
   return new Promise((resolve, reject) => {
     index.search({ query }, (err, content) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(content.hits.find(hit => hit.query === query));
+      if (err) return reject(err);
+      console.log(JSON.stringify(content, null, 2));
+      const product = content.hits.find(hit => hit.sys.id === query);
+
+      if (!product) return reject(new Error('Not found'));
+      return resolve(product);
     });
   });
 }
 
-function newQuery(query) {
-  return new Promise((resolve, reject) => {
-    index.addObjects([{ hits: 1, query }], (err, content) => {
-      if (err) {
-        return reject(err);
-      }
-      return resolve(content);
-    });
-  });
-}
-
-function updateQuery({ objectID }) {
+function updateProduct({ objectID }) {
   return new Promise((resolve, reject) => {
     index.partialUpdateObject({
-      hits: {
+      views: {
         value: 1,
         _operation: 'Increment',
       },
@@ -47,14 +38,9 @@ function updateQuery({ objectID }) {
 }
 
 exports.handler = ({ queryStringParameters }, context, callback) => {
-  const query = queryStringParameters.query.toLowerCase();
-  queryExists(query)
-    .then((existing) => {
-      if (!existing) {
-        return newQuery(query);
-      }
-      return updateQuery(existing);
-    })
+  const query = queryStringParameters.id;
+  getProduct(query)
+    .then(updateProduct)
     .then((response) => {
       callback(null, {
         statusCode: 200,
