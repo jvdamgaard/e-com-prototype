@@ -25,6 +25,7 @@
     "@nuxtjs/manifest": "latest",
     "@nuxtjs/meta": "latest",
     "@nuxtjs/workbox": "latest",
+    "algoliasearch": "latest",
     "autocomplete.js": "latest",
     "axios": "latest",
     "contentful": "latest",
@@ -37,7 +38,6 @@
     "marked": "latest",
     "netlify-lambda": "latest",
     "nuxt": "latest",
-    "vue-instantsearch": "latest",
     "vue-lazyload": "latest",
     "vuex-persistedstate": "latest"
   },
