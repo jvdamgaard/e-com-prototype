@@ -186,6 +186,55 @@ input::placeholder {
   color: var(--color-grey-light);
 }
 
+/* Search */
+.algolia-autocomplete {
+  width: 100%;
+  position: relative;
+  z-index: 100;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 100%;
+  z-index: 2 !important;
+}
+.algolia-autocomplete .aa-hint {
+  background-color: var(--color-grey-light);
+}
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 100%;
+  background-color: var(--color-grey-lighter);
+  padding: 2.5rem 0 1rem;
+  top: 0 !important;
+  border-radius: 1.25rem;
+  z-index: 1 !important;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 0 2rem;
+  line-height: 2.5rem;
+  font-weight: bold;
+  color: var(--color-grey-darker);
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: var(--color-grey-light);
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: normal;
+  font-style: normal;
+}
+
+.searchSuggestions {
+  position: absolute;
+  background: var(--color-grey-lighter);
+  width: 100%;
+}
+.suggestion {
+  color: var(--color-grey-darker);
+}
+.suggestion em {
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 /* Responsive */
 

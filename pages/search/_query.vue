@@ -19,21 +19,15 @@
       </section>
       <section>
         <grid>
-          <ais-index
-            :search-store="searchStore"
-            :class="$style.indexContainer"
+          <grid-col
+            mobile="6"
+            tablet="4"
+            desktop="3"
+            v-for="product in products"
+            :key="product.id"
           >
-            <ais-results :class="$style.innerGrid">
-              <grid-col
-                mobile="6"
-                tablet="4"
-                desktop="3"
-                slot-scope="{ result }"
-              >
-                <product-card :product="Product(result)" :lazy="true" />
-              </grid-col>
-            </ais-results>
-          </ais-index>
+            <product-card :product="product" :lazy="true" />
+          </grid-col>
         </grid>
       </section>
     </article>
@@ -48,14 +42,29 @@
 <script>
 import { mapState, mapActions } from 'vuex'; //eslint-disable-line
 import axios from 'axios';
-import { createFromAlgoliaCredentials, createFromSerialized } from 'vue-instantsearch';
+import algoliasearch from 'algoliasearch';
 import { Product } from '../../utils/product';
 import Grid from '../../components/Grid.vue';
 import GridCol from '../../components/GridCol.vue';
 import ProductCard from '../../components/NewProductCard.vue';
 
-const searchStore = createFromAlgoliaCredentials('IKBKHO1MME', 'b405042bbaca18408e300b64a4a911e3');
-searchStore.indexName = 'products';
+const client = algoliasearch(
+  process.env.ALGOLIA_APPLICATION_ID,
+  process.env.ALGOLIA_API_SEARCH_KEY,
+);
+const index = client.initIndex('products');
+
+function search(query) {
+  return new Promise((resolve, reject) => {
+    index.search({
+      query,
+      hitsPerPage: 72,
+    }, (err, content) => {
+      if (err) return reject(err);
+      return resolve(content);
+    });
+  });
+}
 
 export default {
   components: {
@@ -66,32 +75,23 @@ export default {
   },
   data() {
     return {
-      searchStore: null,
       query: null,
     };
   },
-  async asyncData({ params }) {
+  asyncData({ params }) {
     if (process.browser) {
       axios.post(`/.netlify/functions/upload-search-query?query=${params.query}`);
     }
-    searchStore.query = params.query;
-    searchStore.start();
-    await searchStore.waitUntilInSync();
-
-    return {
-      serializedSearchStore: searchStore.serialize(),
-      query: params.query,
-    };
+    return search(params.query)
+      .then(content => ({
+        products: content.hits.map(Product),
+      }));
   },
   methods: {
     ...mapActions({
       closeMiniBasket: 'state/closeMiniBasket',
       closeDepartmentNav: 'state/closeDepartmentNav',
     }),
-    Product,
-  },
-  created() {
-    this.searchStore = createFromSerialized(this.serializedSearchStore);
   },
   mounted() {
     window.scrollTo(0, 0);

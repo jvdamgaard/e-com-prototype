@@ -32,32 +32,21 @@
           <nuxt-link to="/" :class="$style.logo">
             <span>mrkt</span>
           </nuxt-link>
-          <ais-index
-              app-id="IKBKHO1MME"
-              api-key="b405042bbaca18408e300b64a4a911e3"
-              index-name="autocomplete"
-              :class="$style.searchContainer"
-          >
-            <ais-input
-              :class="$style.search"
-              placeholder="Søg efter produkter, brands, afdelinger eller inspiration"
+          <div :class="$style.search">
+            <input
+              type="search"
+              id="aa-search-input"
               class="hiddenOnMobile visibleOnTablet"
-              :value="searchQuery"
-              @input.native="searchQuery = $event.target.value"
-              @keyup.enter.native="search"
-            /></ais-input>
-            <ais-results
-              :results-per-page="6"
-              :class="$style.searchSuggestions"
-            >
-              <template slot-scope="{ result }">
-                <div :class="$style.suggestion">
-                  <ais-highlight :result="result" attribute-name="query"></ais-highlight>
-                </div>
-              </template>
-            </ais-results>
-          </ais-index>
-          <!-- <input type="search"  class="hiddenOnMobile visibleOnTablet" v-model="searchQuery" @keyup.enter="search"> -->
+              placeholder="Søg efter produkter, brands, afdelinger eller inspiration"
+              name="search"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              v-model="searchQuery"
+              @keyup.enter="search"
+            />
+          </div>
           <nuxt-link to="/søg/" class="hiddenOnTablet" :class="$style.iconLink">
             <img src="/icons/ic_search_white_24px.svg"/>
           </nuxt-link>
@@ -178,10 +167,17 @@
 <script>
 import { mapState, mapActions } from 'vuex'; // eslint-disable-line
 import debounce from 'lodash/debounce';
+import algoliasearch from 'algoliasearch';
 import Grid from './Grid.vue';
 import GridCol from './GridCol.vue';
 import Btn from './Btn.vue';
 import ImageContainer from './Image.vue';
+
+const client = algoliasearch(
+  process.env.ALGOLIA_APPLICATION_ID,
+  process.env.ALGOLIA_API_SEARCH_KEY,
+);
+const index = client.initIndex('autocomplete'); // eslint-disable-line
 
 export default {
   components: {
@@ -241,6 +237,20 @@ export default {
       this.$router.push(`/search/${this.searchQuery}/`);
     },
   },
+  mounted() {
+    if (process.browser) {
+      const autocomplete = require('autocomplete.js'); // eslint-disable-line
+      autocomplete('#aa-search-input', { hint: false }, {
+        source: autocomplete.sources.hits(index, { hitsPerPage: 10 }),
+        displayKey: 'query',
+        templates: {
+          suggestion(suggestion) {
+            return `<span>${suggestion._highlightResult.query.value}</span>`; // eslint-disable-line
+          },
+        },
+      });
+    }
+  },
 };
 </script>
 
@@ -298,37 +308,20 @@ export default {
 }
 
 
-.searchContainer {
+.search {
   width: auto;
   flex-grow: 1;
   margin: 0 1rem;
   position: relative;
   z-index: 100;
 }
-.search {
+.search input {
   border: 0 !important;
   border-radius: 1.25rem;
   padding: 0 2.5rem 0 2rem;
   z-index: 2;
   position: relative;
-}
-.searchSuggestions {
-  position: absolute;
-  background: var(--color-grey-lighter);
   width: 100%;
-  padding: 3.5rem 0 1rem;
-  top: 0;
-  border-radius: 1.25rem;
-}
-.suggestion {
-  color: var(--color-grey-darker);
-  padding: 0 2rem;
-  line-height: 2.5rem;
-  font-weight: bold;
-}
-.suggestion em {
-  font-weight: normal;
-  font-style: normal;
 }
 
 .iconLink {

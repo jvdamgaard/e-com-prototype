@@ -6,6 +6,8 @@ module.exports = {
   env: {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
     CTF_CD_ACCESS_TOKEN: process.env.CTF_CD_ACCESS_TOKEN,
+    ALGOLIA_APPLICATION_ID: process.env.ALGOLIA_APPLICATION_ID,
+    ALGOLIA_API_SEARCH_KEY: process.env.ALGOLIA_API_SEARCH_KEY,
     CTF_MAIN_NAVIGATION_ID: '3gZRQakcIUAsEMe6Q46oGa',
     CTF_MY_ACCOUNT_NAVIGATION_ID: '1H40crtAkYmmkaW8IQG2SO',
     CTF_MORE_MRKT_NAVIGATION_ID: '2aIFu001R6YM60uwuu2IeE',
@@ -87,7 +89,7 @@ module.exports = {
       'lodash/debounce',
       'contentful',
       'marked',
-      'vue-instantsearch',
+      'algoliasearch',
     ],
 
     /*
@@ -118,7 +120,6 @@ module.exports = {
     { src: '~plugins/disable-hover-on-scroll.js', ssr: false },
     { src: '~plugins/auth.js', ssr: false },
     { src: '~plugins/lazy-load.js' },
-    { src: '~plugins/instantsearch.js' },
   ],
   modules: (process.env.NODE_ENV === 'production') ? [
     '@nuxtjs/icon',
